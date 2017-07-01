@@ -287,6 +287,18 @@ class XHS_Frontend_Controller extends XHS_Controller {
         {
             $missingData[] = 'payment_mode';
         }
+        $countries = array();
+        if(file_exists(XHS_COUNTRIES_FILE)){
+            $temp = file(XHS_COUNTRIES_FILE);
+            foreach($temp as $country){
+                if(trim($country) !== ''){
+                    $countries[] = $country;
+                }
+            }
+        }
+        if (!in_array($_SESSION['xhsCustomer']->country, $countries, true)) {
+            $missingData[] = 'country';
+        }
         if (count($missingData) > 0)
         {
             return $this->customersData($missingData);
