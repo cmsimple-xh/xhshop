@@ -498,9 +498,6 @@ class XHS_Frontend_Controller extends XHS_Controller {
         {
             return 'template for bill not found';
         }
-        $writer->replace($replacements);
-
-        $writer->saveBill();
         return $writer->replace($replacements);
     }
 

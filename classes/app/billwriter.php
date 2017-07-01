@@ -33,15 +33,6 @@ class XHS_BillWriter{
         return $this->template;
     }
 
-    function saveBill(){
-        $fh = fopen(XHS_BILLS_PATH.'bill.rtf','w+');
-        if ($fh)
-        {
-            fwrite ($fh,$this->template);
-            fclose($fh);
-        }
-    }
-
     function setCurrency($currency){
         if($currency == '&euro;' || '€'){$currency = "\'80";}
         if($currency == '&pound;'){$currency = "{\'a3}";}
