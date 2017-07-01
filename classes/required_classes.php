@@ -6,10 +6,6 @@ define('XHS_CATALOG', XHS_BASE_PATH . 'data/catalogue.inc' );
 define('XHS_JS_PATH', XHS_BASE_PATH .'js/' );
 define('XHS_HELP_PATH', XHS_BASE_PATH . 'help/' );
 
-$langFile = file_exists(XHS_BASE_PATH . 'lang/' .XHS_LANGUAGE . '.php') ?
-            XHS_BASE_PATH . 'lang/' .XHS_LANGUAGE . '.php' : XHS_BASE_PATH . 'lang/en.php';
-
-define('XHS_LANGUAGE_FILE', $langFile);
 define('XHS_COUNTRIES_FILE', XHS_BASE_PATH . 'lang/countries_' . XHS_LANGUAGE . '.txt');
 define('XHS_CONFIG_FILE', XHS_BASE_PATH . 'config/shopsettings.php' );
 define('XHS_BILLS_PATH', XHS_BASE_PATH . 'bills/');

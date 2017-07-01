@@ -15,11 +15,22 @@ class XHS_View{
     var $lang = array();
 
     function __construct(){
-        include XHS_LANGUAGE_FILE;
-        $this->hints = $lang['hints'];
-        $this->labels = $lang['labels'];
-        $this->mail = $lang['mail'];
+        global $plugin_tx;
 
+        $this->hints = array();
+        $this->labels = array();
+        $this->mail = array();
+        foreach ($plugin_tx['xhshop'] as $key => $value) {
+            if (strpos($key, 'hints_') === 0) {
+                $this->hints[substr($key, 6)] = $value;
+            } elseif (strpos($key, 'labels_') === 0) {
+                $this->labels[substr($key, 7)] = $value;
+            } elseif (strpos($key, 'mail_') === 0) {
+                $this->labels[substr($key, 5)] = $value;
+            } else {
+                assert(false);
+            }
+        }
     }
 
     function setDocType($docType){
