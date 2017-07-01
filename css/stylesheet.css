@@ -702,3 +702,15 @@ a.xhsCosLnk::after {
 	line-height: 0.75em;
 	vertical-align: -15%;*/
 }
+ul.xhsCatMenu {
+	margin: .5em 0 0 0;
+}
+ul.xhsCatMenu li {
+	border: 0 !important;
+}
+ul.xhsCatMenu li:last-child a {
+	border: 0 !important;
+}
+ul.xhsCatMenu li.xhsActiveCat a, ul.xhsCatMenu li.xhsActiveCat:last-child a {
+	color: #f60 !important;
+}
