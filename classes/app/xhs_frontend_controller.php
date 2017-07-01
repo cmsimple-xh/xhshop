@@ -291,7 +291,7 @@ class XHS_Frontend_Controller extends XHS_Controller {
         if(file_exists(XHS_COUNTRIES_FILE)){
             $temp = file(XHS_COUNTRIES_FILE);
             foreach($temp as $country){
-                if(trim($country) !== ''){
+                if(($country = trim($country)) !== ''){
                     $countries[] = $country;
                 }
             }
