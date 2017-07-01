@@ -87,12 +87,12 @@ class Product {
     
     function getDescription($language = null) {
         $language = ($language === null) ? XHS_LANGUAGE : $language;
-        return isset($this->descriptions[$language]) ? stripslashes($this->descriptions[$language]) : '' ;
+        return isset($this->descriptions[$language]) ? $this->descriptions[$language] : '' ;
     }
      function getTeaser($language = null) {
         $language = ($language === null) ? XHS_LANGUAGE : $language;
        
-        return isset($this->teasers[$language]) ? stripslashes($this->teasers[$language]) : '' ;
+        return isset($this->teasers[$language]) ? $this->teasers[$language] : '' ;
     }
 
     function getPageLink($language, $label = null){

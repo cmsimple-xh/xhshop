@@ -168,10 +168,6 @@ class XHS_Paypal extends XHS_Payment_Module {
         if (isset($_POST['ppBusiness']))
         {
             $business = trim($_POST['ppBusiness']);
-            if (get_magic_quotes_gpc() === 1)
-            {
-                $business = stripslashes($business);
-            }
             $this->settings['business'] = '' . $business . '';
         }
         $file     = XHS_BASE_PATH . 'classes/paymentmodules/' . $this->name . '/settings.php';
@@ -202,7 +198,7 @@ class XHS_Paypal extends XHS_Payment_Module {
 
         foreach ($_POST as $key => $value)
         {
-            $value = urlencode(stripslashes($value));
+            $value = urlencode($value);
             $req .= "&$key=$value";
         }
 

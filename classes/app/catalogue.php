@@ -406,11 +406,8 @@ class Catalogue {
         if($writeEntities === true){
             $string = htmlspecialchars($string);
         }
-        if(get_magic_quotes_gpc() === 1){
-            $string  = rtrim(stripslashes($string));
-        }
 
-        return addslashes($string);
+        return addcslashes($string, '\'\\');
     }
 
     function addProduct($product){
