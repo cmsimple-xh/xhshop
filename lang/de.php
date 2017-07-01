@@ -17,7 +17,7 @@ $lang['mail']['shipping'] = "VERSANDKOSTEN:";
 $lang['mail']['total'] = "ENDSUMME:";
 $lang['mail']['cos'] = "AGB-BESTÄTIGUNG:";
 $lang['mail']['annotation'] = "IHRE ANMERKUNG ZUR BESTELLUNG:";
-$lang['mail']['notify'] = "Bestellung eingegangen!";
+$lang['mail']['notify'] = "Bestellung von %1\$s bei %2\$s eingegangen!";
 ##### GENERAL ########
 $lang['labels']['yes']='ja';
 $lang['labels']['no']='nein';

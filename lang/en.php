@@ -17,7 +17,7 @@ $lang['mail']['shipping'] = "FORWARDING EXPENSES:";
 $lang['mail']['total'] = "TOTAL:";
 $lang['mail']['cos'] = "COS CONFIRMED:";
 $lang['mail']['annotation'] = "YOUR ANNOTATION:";
-$lang['mail']['notify'] = "AN ORDER!";
+$lang['mail']['notify'] = "Order from %1\$s received at %2\$s!";
 ##### GENERAL ########
 $lang['labels']['yes']='yes';
 $lang['labels']['no']='no';

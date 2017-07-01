@@ -533,7 +533,7 @@ class XHS_Frontend_Controller extends XHS_Controller {
 
         $mail->ClearAddresses();
         $mail->AddAddress($this->settings['order_email'], $this->settings['company_name']);
-        $mail->Subject = $this->viewProvider->mail['notify'];
+        $mail->Subject = sprintf($this->viewProvider->mail['notify'], $customerName, $this->settings['company_name']);
         $mail->AddStringAttachment($bill, "bill.rtf");
         $mail->Body = $this->htmlConfirmation();
         $mail->AltBody = $this->textConfirmation();
