@@ -186,13 +186,13 @@ class XHS_Controller {
         }
 
         $params['products'] = $this->products($category, $collectAll);
-        $params['selectedCategory'] = stripslashes($category);
+        $params['selectedCategory'] = $category;
         $params['categoryOptions'] = $this->categoryOptions();
         switch ($category) {
             case 'left_overs':
                 $params['categoryHeader'] = $this->catalog->category_for_the_left_overs[XHS_LANGUAGE];
                 break;
-            default:  $params['categoryHeader'] = stripslashes($category);
+            default:  $params['categoryHeader'] = $category;
                 break;
         }
         return $params;
@@ -243,11 +243,7 @@ class XHS_Controller {
         if($writeEntities === true){
             $string = htmlspecialchars($string);
         }
-        if(get_magic_quotes_gpc() === 1){
-            $string  = stripslashes($string);
-        }
-        return rtrim(addslashes($string));
-       // return addslashes($string);
+        return rtrim($string);
     }
 
     function addPaymentModule($module){

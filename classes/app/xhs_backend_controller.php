@@ -281,12 +281,12 @@ class XHS_Backend_Controller extends XHS_Controller {
     }
 
     function contactSettings(){
-        $params['email']        = stripslashes($this->settings['order_email']);
-        $params['company_name'] = stripslashes($this->settings['company_name']);
-        $params['name']         = stripslashes($this->settings['name']);
-        $params['street']       = stripslashes($this->settings['street']);
-        $params['zip_code']     = stripslashes($this->settings['zip_code']);
-        $params['city']         = stripslashes($this->settings['city']);
+        $params['email']        = $this->settings['order_email'];
+        $params['company_name'] = $this->settings['company_name'];
+        $params['name']         = $this->settings['name'];
+        $params['street']       = $this->settings['street'];
+        $params['zip_code']     = $this->settings['zip_code'];
+        $params['city']         = $this->settings['city'];
 
         return $this->render('contactSettings', $params);
     }
@@ -363,7 +363,7 @@ class XHS_Backend_Controller extends XHS_Controller {
             else {
                 $row = '';
                 foreach($value as $k => $t){
-                    $row .= '$zShopSettings' . "['" . $key. "']" . "['$k'] = '" . addslashes($t) . "';\n";
+                    $row .= '$zShopSettings' . "['" . $key. "']" . "['$k'] = '" . addcslashes($t, '\'\\') . "';\n";
                 }
             }
             $save .= $row;
@@ -425,10 +425,8 @@ class XHS_Backend_Controller extends XHS_Controller {
         if(isset($_POST['xhsPrice'])){
             $product->setPrice($this->tidyPostString($_POST['xhsPrice']));
         }
-      //  var_dump($_POST['xhsTeaser']);
         if(isset($_POST['xhsTeaser'])){
-         //   $product->setTeaser($this->tidyPostString($_POST['xhsTeaser'], false));
-         $product->setTeaser(addslashes(stripslashes($_POST['xhsTeaser'])));
+         $product->setTeaser($this->tidyPostString($_POST['xhsTeaser'], false));
         }
         if(isset($_POST['xhsDescription'])){
             $product->setDescription($this->tidyPostString($_POST['xhsDescription'], false));
