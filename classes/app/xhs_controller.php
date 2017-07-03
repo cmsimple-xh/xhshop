@@ -16,8 +16,15 @@ class XHS_Controller {
     var $errors = array();
 
     function __construct(){
+        global $plugin_cf;
+
         include XHS_CONFIG_FILE;
         $this->settings = $zShopSettings;
+        foreach ($plugin_cf['xhshop'] as $key => $value) {
+            if (strpos($key, 'contact_') === 0) {
+                $this->settings[substr($key, 8)] = $value;
+            }
+        }
         $this->getPaymentModules();
         $this->paymentModules = array();
         $this->payments = $this->getPaymentModules();
