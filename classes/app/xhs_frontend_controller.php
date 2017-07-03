@@ -313,6 +313,9 @@ class XHS_Frontend_Controller extends XHS_Controller {
         {
             $params[$field]       = $value;
         }
+        if (isset($params['annotation'])) {
+            $params['annotation'] = nl2br($params['annotation']);
+        }
         $params['fee']        = $this->calculatePaymentFee();
         $params['cartItems']  = $this->collectCartItems();
         $params['cartSum']    = $_SESSION['xhsOrder']->getCartSum();
@@ -375,6 +378,9 @@ class XHS_Frontend_Controller extends XHS_Controller {
         foreach ($_SESSION['xhsCustomer'] as $field => $value)
         {
             $params[$field]       = isset($value) ? $value : '';
+        }
+        if (isset($params['annotation'])) {
+            $params['annotation'] = nl2br($params['annotation']);
         }
         $_SESSION['xhsOrder']->setFee($fee);
         $params['payment']    = $paymentModule;
