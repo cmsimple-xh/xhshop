@@ -256,14 +256,6 @@ class XHS_View{
         echo $key . ' - missing in language file ([\'hints\'])';
     }
 
-    function heading($key){
-        if(isset($this->headings[$key])){
-            echo($this->headings[$key]);
-            return;
-        }
-        echo $key . ' - missing in language file ([\'headings\'])';
-    }
-
     function label($key){
         $key = str_replace("'", "", $key);
         if(isset($this->labels[$key])){
@@ -271,14 +263,6 @@ class XHS_View{
             return;
         }
         echo $key . ' - missing in language file ([\'labels\'])';
-    }
-
-    function button($key){
-        if(isset($this->buttons[$key])){
-            echo($this->buttons[$key]);
-            return;
-        }
-        echo $key . ' - missing in language file ([\'buttons\'])';
     }
 
     function submitButton($value){
