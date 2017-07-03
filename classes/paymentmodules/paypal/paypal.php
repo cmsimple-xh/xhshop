@@ -53,7 +53,7 @@ class XHS_Paypal extends XHS_Payment_Module {
     }
 
     function getLabel() {
-        return '<img src="' . XHS_BASE_PATH . 'classes/paymentmodules/paypal/images/paypal_solutions.gif">
+        return '<img src="' . XHS_BASE_PATH . 'classes/paymentmodules/paypal/images/paypal-logo.png">
 ';
     }
 
