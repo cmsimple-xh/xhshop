@@ -123,7 +123,7 @@ class XHS_Backend_Controller extends XHS_Controller {
             $params['stockOnHand']    = 1;
             $params['preview']        = '';
             $params['image']          = '';
-            $params['vat']            = $this->settings['vat_default'];
+            $params['vat']            = $this->settings['vat_default_full'] ? 'full' : 'reduced';
             $params['pages']          = array();
             $params['productCats']    = array();
         }
@@ -332,7 +332,7 @@ class XHS_Backend_Controller extends XHS_Controller {
         foreach($this->settings as $key => $value){
 			$exclude = array(
 				'order_email', 'company_name', 'name', 'street', 'zip_code', 'city',
-				'vat_full', 'vat_reduced', 'vat_default', 'dont_deal_with_taxes'
+				'vat_full', 'vat_reduced', 'vat_default_full', 'dont_deal_with_taxes'
 			);
 			if (in_array($key, $exclude, true)) {
 				continue;

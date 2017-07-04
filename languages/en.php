@@ -170,5 +170,5 @@ $plugin_tx['xhshop']['labels_usage'] = 'Usage';
 
 $plugin_tx['xhshop']['cf_taxes_vat_full']="full V.A.T.";
 $plugin_tx['xhshop']['cf_taxes_vat_reduced']="reduced V.A.T.";
-$plugin_tx['xhshop']['cf_taxes_vat_default']="Default tax rate";
+$plugin_tx['xhshop']['cf_taxes_vat_default_full']="Whether the tax rate defaults to full.";
 $plugin_tx['xhshop']['cf_taxes_dont_deal_with_taxes']='Do not handle taxes.';

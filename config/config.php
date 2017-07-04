@@ -8,5 +8,5 @@ $plugin_cf['xhshop']['contact_zip_code']="12345";
 $plugin_cf['xhshop']['contact_city']="Simpleburg/XH";
 $plugin_cf['xhshop']['taxes_vat_full']="19.00";
 $plugin_cf['xhshop']['taxes_vat_reduced']="7.00";
-$plugin_cf['xhshop']['taxes_vat_default']="full";
+$plugin_cf['xhshop']['taxes_vat_default_full']="true";
 $plugin_cf['xhshop']['taxes_dont_deal_with_taxes']="";

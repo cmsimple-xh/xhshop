@@ -170,5 +170,5 @@ $plugin_tx['xhshop']['labels_usage'] = 'Benutzung';
 
 $plugin_tx['xhshop']['cf_taxes_vat_full']="volle Umsatzsteuer";
 $plugin_tx['xhshop']['cf_taxes_vat_reduced']="ermäßigte Umsatzsteuer";
-$plugin_tx['xhshop']['cf_taxes_vat_default']="Standardsteuersatz";
+$plugin_tx['xhshop']['cf_taxes_vat_default_full']="Soll der volle Umsatzsteuersatz voreingestellt sein?";
 $plugin_tx['xhshop']['cf_taxes_dont_deal_with_taxes']='Als Kleinunternehmer berechne ich nach Par. 19 Abs. 1 UStG. keine Umsatzsteuer.';
