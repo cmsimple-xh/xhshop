@@ -27,8 +27,6 @@ class XHS_View{
                 $this->labels[substr($key, 7)] = $value;
             } elseif (strpos($key, 'mail_') === 0) {
                 $this->mail[substr($key, 5)] = $value;
-            } else {
-                assert(false);
             }
         }
     }

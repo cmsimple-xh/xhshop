@@ -21,7 +21,7 @@ class XHS_Frontend_Controller extends XHS_Controller {
      *
      */
     function vatInfo() {
-        if ($this->settings['dont_deal_with_taxes'] == 'true')
+        if ($this->settings['dont_deal_with_taxes'])
         {
             $info = 'price_info_no_vat';
         } else
@@ -326,7 +326,7 @@ class XHS_Frontend_Controller extends XHS_Controller {
         $params['vatReduced'] = $_SESSION['xhsOrder']->getVatReduced();
         $params['company']    = $this->settings['company_name'];
         $params['payment']    = $this->paymentModules[$_SESSION['xhsCustomer']->payment_mode]->getLabelString();
-        if ($this->settings['dont_deal_with_taxes'] == 'true')
+        if ($this->settings['dont_deal_with_taxes'])
         {
             $params['hideVat'] = true;
         } else
@@ -353,7 +353,7 @@ class XHS_Frontend_Controller extends XHS_Controller {
         $params['vatReduced'] = $_SESSION['xhsOrder']->getVatReduced();
         $params['company']    = $this->settings['company_name'];
         $params['payment']    = $this->paymentModules[$_SESSION['xhsCustomer']->payment_mode]->getLabelString();
-        if ($this->settings['dont_deal_with_taxes'] == 'true')
+        if ($this->settings['dont_deal_with_taxes'])
         {
             $params['hideVat'] = true;
         } else
@@ -392,7 +392,7 @@ class XHS_Frontend_Controller extends XHS_Controller {
         $params['vatTotal']   = $_SESSION['xhsOrder']->getVat();
         $params['vatFull']    = $_SESSION['xhsOrder']->getVatFull();
         $params['vatReduced'] = $_SESSION['xhsOrder']->getVatReduced();
-        if ($this->settings['dont_deal_with_taxes'] == 'true')
+        if ($this->settings['dont_deal_with_taxes'])
         {
             $params['hideVat'] = true;
         } else
@@ -454,7 +454,7 @@ class XHS_Frontend_Controller extends XHS_Controller {
             $sum     = $this->viewProvider->formatFloat($product['sum']) . $currency;
             $amount  = $product['amount'] . ' ';
             $vatRate = '(' . $this->viewProvider->labels['get_vat'] . $product['vatRate'] . ' %)';
-            if ($this->settings['dont_deal_with_taxes'] == 'true')
+            if ($this->settings['dont_deal_with_taxes'])
             {
                 $vatRate = '';
             }
@@ -470,7 +470,7 @@ class XHS_Frontend_Controller extends XHS_Controller {
             $feeLabel = $this->viewProvider->labels['fee'];
         }
 
-        if ($this->settings['dont_deal_with_taxes'] == 'true')
+        if ($this->settings['dont_deal_with_taxes'])
         {
             $vat_hint = $this->viewProvider->hints['no_vat_bill'];
         } else
