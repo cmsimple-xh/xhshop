@@ -410,7 +410,9 @@ class XHS_Frontend_Controller extends XHS_Controller {
      * @return <string>
      */
     function finishCheckOut() {
-
+        if (!isset($_SESSION['xhsCustomer']) || !isset($_SESSION['xhsOrder'])) {
+            return '';
+        }
         $bill = $this->writeBill();
         if (!$bill)
         {
