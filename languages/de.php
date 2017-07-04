@@ -75,6 +75,8 @@ $plugin_tx['xhshop']['labels_order_email'] = 'E-Mail Bestellungen an';
 $plugin_tx['xhshop']['labels_minimum_order']='Mindestbestellwert';
 $plugin_tx['xhshop']['hints_minimum_order']="( Mindestbestellwert = Warenwert + Versandkosten )";
 $plugin_tx['xhshop']['labels_other_currency']='andere';
+$plugin_tx['xhshop']['labels_full_vat']='voll';
+$plugin_tx['xhshop']['labels_reduced_vat']='ermäßigt';
 $plugin_tx['xhshop']['labels_forwarding_expenses']='Versandkosten';
 $plugin_tx['xhshop']['labels_charge_for_shipping']='Versandkosten berechnen?';
 $plugin_tx['xhshop']['labels_forwarding_expenses_up_to']='Versandkostenfrei ab';
