@@ -12,7 +12,7 @@ if(function_exists('XH_wantsPluginAdministration') && XH_wantsPluginAdministrati
         $o .= '<p><a href="?&' . $plugin . '" />setting</a></p>';
         $hint = array();
         $o .= plugin_admin_common($action,$admin,$plugin, $hint);
-    } elseif ($admin === 'plugin_language') {
+    } elseif (in_array($admin, array('plugin_config', 'plugin_language'), true)) {
         $o .= plugin_admin_common($action, $admin, $plugin);
     } else{
         $xhsController = new XHS_Backend_Controller();

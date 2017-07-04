@@ -280,17 +280,6 @@ class XHS_Backend_Controller extends XHS_Controller {
         return $this->render('mainSettings', $params);
     }
 
-    function contactSettings(){
-        $params['email']        = $this->settings['order_email'];
-        $params['company_name'] = $this->settings['company_name'];
-        $params['name']         = $this->settings['name'];
-        $params['street']       = $this->settings['street'];
-        $params['zip_code']     = $this->settings['zip_code'];
-        $params['city']         = $this->settings['city'];
-
-        return $this->render('contactSettings', $params);
-    }
-
     function updateSettings($changes = null){
         $needSave = false;
         if(!$changes){
@@ -355,6 +344,10 @@ class XHS_Backend_Controller extends XHS_Controller {
     function saveSettings(){
         $save = "<?php\n";
         foreach($this->settings as $key => $value){
+			$exclude = array('order_email', 'company_name', 'name', 'street', 'zip_code', 'city');
+			if (in_array($key, $exclude, true)) {
+				continue;
+			}
             $row = '$zShopSettings' . "['" . $key . "']";
             if(!is_array($value)){
                 $value = $this->tidyPostString($value, false);
