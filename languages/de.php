@@ -168,7 +168,13 @@ $plugin_tx['xhshop']['hints_on_netto']=" % auf Nettobetrag ";
 $plugin_tx['xhshop']['labels_cat_select'] = 'Kategorie-Auswahl';
 $plugin_tx['xhshop']['labels_usage'] = 'Benutzung';
 
-$plugin_tx['xhshop']['cf_taxes_vat_full']="volle Umsatzsteuer";
-$plugin_tx['xhshop']['cf_taxes_vat_reduced']="ermäßigte Umsatzsteuer";
-$plugin_tx['xhshop']['cf_taxes_vat_default_full']="Soll der volle Umsatzsteuersatz voreingestellt sein?";
+$plugin_tx['xhshop']['cf_contact_order_email']="E-Mail-Adresse, an die die Bestellungen verschickt werden";
+$plugin_tx['xhshop']['cf_contact_company_name']="Shop-Name oder Firmen-Name";
+$plugin_tx['xhshop']['cf_contact_name']="Name des Shop-Betreibers. Dieser Name wird u.A. unter die Bestätigungsmail gesetzt.";
+$plugin_tx['xhshop']['cf_contact_street']="Shop-Adresse: Straße Nr.";
+$plugin_tx['xhshop']['cf_contact_zip_code']="Shop-Adresse: Postleitzahl";
+$plugin_tx['xhshop']['cf_contact_city']="Shop-Adresse: Ort";
+$plugin_tx['xhshop']['cf_taxes_vat_full']="volle Umsatzsteuer in Prozent – Bruchteile eines Prozent müssen mit Dezimalpunkt angegeben werden";
+$plugin_tx['xhshop']['cf_taxes_vat_reduced']="ermäßigte Umsatzsteuer in Prozent – Bruchteile eines Prozent müssen mit Dezimalpunkt angegeben werden";
+$plugin_tx['xhshop']['cf_taxes_vat_default_full']="Soll der volle Umsatzsteuersatz für neue Produkte voreingestellt sein?";
 $plugin_tx['xhshop']['cf_taxes_dont_deal_with_taxes']='Als Kleinunternehmer berechne ich nach Par. 19 Abs. 1 UStG. keine Umsatzsteuer.';

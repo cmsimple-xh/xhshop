@@ -168,7 +168,13 @@ $plugin_tx['xhshop']['hints_on_netto']=" % auf Nettobetrag ";
 $plugin_tx['xhshop']['labels_cat_select'] = 'Select Category';
 $plugin_tx['xhshop']['labels_usage'] = 'Usage';
 
-$plugin_tx['xhshop']['cf_taxes_vat_full']="full V.A.T.";
-$plugin_tx['xhshop']['cf_taxes_vat_reduced']="reduced V.A.T.";
-$plugin_tx['xhshop']['cf_taxes_vat_default_full']="Whether the tax rate defaults to full.";
+$plugin_tx['xhshop']['cf_contact_order_email']="E-mail address to send the orders to";
+$plugin_tx['xhshop']['cf_contact_company_name']="Shop or company name";
+$plugin_tx['xhshop']['cf_contact_name']="Name of the shop operator. This name is used to sign the confirmation mail, amongst others.";
+$plugin_tx['xhshop']['cf_contact_street']="Shop address: street";
+$plugin_tx['xhshop']['cf_contact_zip_code']="Shop address: zip code";
+$plugin_tx['xhshop']['cf_contact_city']="Shop address: town";
+$plugin_tx['xhshop']['cf_taxes_vat_full']="full V.A.T. in percent – fractions of a percent have to be entered with a decimal point";
+$plugin_tx['xhshop']['cf_taxes_vat_reduced']="reduced V.A.T. in percent – fractions of a percent have to be entered with a decimal point";
+$plugin_tx['xhshop']['cf_taxes_vat_default_full']="Whether the tax rate defaults to full for new products.";
 $plugin_tx['xhshop']['cf_taxes_dont_deal_with_taxes']='Do not handle taxes.';
