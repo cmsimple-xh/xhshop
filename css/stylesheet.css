@@ -399,6 +399,9 @@ div.xhsPrevPic img {
 	min-width: 100%; /*** disable this for pictures with different sizes ***/
 	height: auto !important;
 }
+div.xhsPrevPic:empty {
+	display: none;
+}
 article.xhsOverviewPrds {
 	border-top: 1px dotted #fff;
 	border-bottom: 1px dotted #333;
