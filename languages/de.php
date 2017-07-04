@@ -17,7 +17,7 @@ $plugin_tx['xhshop']['mail_shipping'] = "VERSANDKOSTEN:";
 $plugin_tx['xhshop']['mail_total'] = "ENDSUMME:";
 $plugin_tx['xhshop']['mail_cos'] = "AGB-BESTÄTIGUNG:";
 $plugin_tx['xhshop']['mail_annotation'] = "IHRE ANMERKUNG ZUR BESTELLUNG:";
-$plugin_tx['xhshop']['mail_notify'] = "Bestellung eingegangen!";
+$plugin_tx['xhshop']['mail_notify'] = "Bestellung von %1\$s bei %2\$s eingegangen!";
 ##### GENERAL ########
 $plugin_tx['xhshop']['labels_yes']='ja';
 $plugin_tx['xhshop']['labels_no']='nein';

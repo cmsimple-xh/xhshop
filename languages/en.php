@@ -17,7 +17,7 @@ $plugin_tx['xhshop']['mail_shipping'] = "FORWARDING EXPENSES:";
 $plugin_tx['xhshop']['mail_total'] = "TOTAL:";
 $plugin_tx['xhshop']['mail_cos'] = "COS CONFIRMED:";
 $plugin_tx['xhshop']['mail_annotation'] = "YOUR ANNOTATION:";
-$plugin_tx['xhshop']['mail_notify'] = "AN ORDER!";
+$plugin_tx['xhshop']['mail_notify'] = "Order from %1\$s received at %2\$s!";
 ##### GENERAL ########
 $plugin_tx['xhshop']['labels_yes']='yes';
 $plugin_tx['xhshop']['labels_no']='no';
