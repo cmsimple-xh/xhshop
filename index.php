@@ -35,7 +35,7 @@ if($xhsController->settings[XHS_LANGUAGE]['url'] == $su && is_a($xhsController, 
 }
 
 if( is_a($xhsController, 'XHS_Frontend_Controller')
-    && $xhsController->settings['published'] != 'false'
+    && $xhsController->settings['published']
     && !$edit) {
     if(isset($_POST['xhsTask'])){
         if($_POST['xhsTask'] == 'updateCart'){

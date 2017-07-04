@@ -1,5 +1,8 @@
 <?php
 
+$plugin_cf['xhshop']['shop_published']="true";
+$plugin_cf['xhshop']['shop_minimum_order']="20.00";
+$plugin_cf['xhshop']['shop_default_currency']="€";
 $plugin_cf['xhshop']['contact_order_email']="example@example.com";
 $plugin_cf['xhshop']['contact_company_name']="XH-Shop DEMO";
 $plugin_cf['xhshop']['contact_name']="XH-Shop Team";

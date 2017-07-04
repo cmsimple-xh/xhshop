@@ -1,4 +1,5 @@
 <?php
+$plugin_tx['xhshop']['config_cos_page']="?Shop/AGB";
 ###### errors ########
 $plugin_tx['xhshop']['hints_sorry_errors'] = 'Pardon! Noch ist der xhshop-Shop nicht betriebsbereit.';
 $plugin_tx['xhshop']['labels_needs_write_permission'] = 'Braucht Schreibrechte (0666)';
@@ -168,6 +169,9 @@ $plugin_tx['xhshop']['hints_on_netto']=" % auf Nettobetrag ";
 $plugin_tx['xhshop']['labels_cat_select'] = 'Kategorie-Auswahl';
 $plugin_tx['xhshop']['labels_usage'] = 'Benutzung';
 
+$plugin_tx['xhshop']['cf_shop_published']="Ob der Shop veröffentlicht ist (andernfalls befindet er sich im Wartungsmodus)";
+$plugin_tx['xhshop']['cf_shop_minimum_order']="Mindestbestellwert (Warenwert + Versandkosten) – Eingabe mit Dezimalpunkt";
+$plugin_tx['xhshop']['cf_shop_default_currency']="Die Währung des Shops – Eingabe als Währungssymbol, beispielsweise €, $, £ or ¥";
 $plugin_tx['xhshop']['cf_contact_order_email']="E-Mail-Adresse, an die die Bestellungen verschickt werden";
 $plugin_tx['xhshop']['cf_contact_company_name']="Shop-Name oder Firmen-Name";
 $plugin_tx['xhshop']['cf_contact_name']="Name des Shop-Betreibers. Dieser Name wird u.A. unter die Bestätigungsmail gesetzt.";

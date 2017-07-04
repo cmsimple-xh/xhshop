@@ -241,36 +241,6 @@ class XHS_Backend_Controller extends XHS_Controller {
         return $this->render('shippingSettings', $params);
     }
 
-    function mainSettings(){
-        $level     = 0;
-        $headings  = $this->bridge->getHeadings($level);
-        $urls      = $this->bridge->getUrls($level);
-        $pages     = array();
-        foreach($urls as $index => $url){
-            $pages[$this->bridge->translateUrl($url)] = $headings[$index];
-        }
-        $params['pages']            = $pages;
-        $params['published']        = $this->settings['published'];
-        $params['email']            = $this->settings['order_email'];
-        $params['cos_page']         = $this->settings[XHS_LANGUAGE]['cos_page'];
-        $params['minimum_order']    = $this->settings['minimum_order'];
-
-        if(!in_array($this->settings['default_currency'], array('€', '£', '¥', '$'))){
-            $params['default_currency'] = 'other';
-            $params['other_currency'] = $this->settings['default_currency'];
-        }else{
-            $params['default_currency'] = $this->settings['default_currency'];
-            $params['other_currency'] = '';
-        }
-        if(isset($this->settings[XHS_LANGUAGE]['cos_page'])){
-            $params['cos_label'] = 'cos_page';
-        } else {
-            $params['cos_label'] = 'warn_missing_cos';
-        }
-        $this->viewProvider->setCurrency(html_entity_decode($this->settings['default_currency']));
-        return $this->render('mainSettings', $params);
-    }
-
     function updateSettings($changes = null){
         $needSave = false;
         if(!$changes){
@@ -331,6 +301,7 @@ class XHS_Backend_Controller extends XHS_Controller {
         $save = "<?php\n";
         foreach($this->settings as $key => $value){
 			$exclude = array(
+				'published', 'minimum_order', 'default_currency', 'cos_page',
 				'order_email', 'company_name', 'name', 'street', 'zip_code', 'city',
 				'vat_full', 'vat_reduced', 'vat_default_full', 'dont_deal_with_taxes'
 			);

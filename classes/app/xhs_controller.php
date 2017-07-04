@@ -16,17 +16,20 @@ class XHS_Controller {
     var $errors = array();
 
     function __construct(){
-        global $plugin_cf;
+        global $plugin_cf, $plugin_tx;
 
         include XHS_CONFIG_FILE;
         $this->settings = $zShopSettings;
         foreach ($plugin_cf['xhshop'] as $key => $value) {
-            if (strpos($key, 'contact_') === 0) {
+            if (strpos($key, 'shop_') === 0) {
+                $this->settings[substr($key, 5)] = $value;
+            } elseif (strpos($key, 'contact_') === 0) {
                 $this->settings[substr($key, 8)] = $value;
             } elseif (strpos($key, 'taxes_') === 0) {
                 $this->settings[substr($key, 6)] =$value;
             }
         }
+        $this->settings['cos_page'] = $plugin_tx['xhshop']['config_cos_page'];
         $this->getPaymentModules();
         $this->paymentModules = array();
         $this->payments = $this->getPaymentModules();

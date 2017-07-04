@@ -663,7 +663,7 @@ class XHS_Frontend_Controller extends XHS_Controller {
             unlink(XHS_BASE_PATH . 'classes/paymentmodules/paypal/tmp_orders/pp_' . session_id() . '.sent');
             return $this->thankYou();
         }
-        if ($this->settings['published'] == 'false')
+        if (!$this->settings['published'])
         {
             return $this->closed();
         }
