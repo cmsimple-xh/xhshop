@@ -18,13 +18,6 @@
                     <input value="<?php echo $this->labels['shop'] ?>" class="subTab" type="submit">
                 </form>
             </li>
-            <li class="%TAXSETTINGS%">
-                <form action="" method="post" class="tab">
-                    <input name="xhsTask" value="taxSettings" type="hidden">
-                    <input name="xhsTaskCat" value="setting_tasks" type="hidden">
-                    <input value="<?php echo $this->labels['taxes'] ?>" class="subTab" type="submit">
-                </form>
-            </li>
             <li class="%SHIPPINGSETTINGS%">
                 <form action="" method="post" class="tab">
                     <input name="xhsTask" value="shippingSettings" type="hidden">

@@ -23,6 +23,8 @@ class XHS_Controller {
         foreach ($plugin_cf['xhshop'] as $key => $value) {
             if (strpos($key, 'contact_') === 0) {
                 $this->settings[substr($key, 8)] = $value;
+            } elseif (strpos($key, 'taxes_') === 0) {
+                $this->settings[substr($key, 6)] =$value;
             }
         }
         $this->getPaymentModules();

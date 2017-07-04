@@ -181,15 +181,6 @@ class XHS_Backend_Controller extends XHS_Controller {
         return $this->render('tabs', $params);
     }
 
-    function taxSettings(){
-        $params['vat_full']             = (float)str_replace(",", ".", $this->settings['vat_full']);
-        $params['vat_reduced']          = (float)str_replace(",", ".", $this->settings['vat_reduced']);
-        $params['vat_default']          = $this->settings['vat_default'];
-        $params['dont_deal_with_taxes'] = $this->settings['dont_deal_with_taxes'];
-
-        return $this->render('taxSettings', $params);
-    }
-
     function paymentSettings(){
         $params = array();
         foreach($this->payments as $name){
@@ -286,11 +277,6 @@ class XHS_Backend_Controller extends XHS_Controller {
             $changes = $_POST;
         }
         if(isset($_POST['xhsPage'])){
-            if($_POST['xhsPage'] == 'taxSettings'){
-                if(!isset($_POST['dont_deal_with_taxes'])){
-                    $changes['dont_deal_with_taxes'] = 'false';
-                }
-            }
             if($_POST['xhsPage'] == 'shippingSettings'){
                 if(isset($_POST['forwarding_expenses_up_to'])){
                     $changes['forwarding_expenses_up_to'] = str_replace(',', '.', $_POST['forwarding_expenses_up_to']);
@@ -344,7 +330,10 @@ class XHS_Backend_Controller extends XHS_Controller {
     function saveSettings(){
         $save = "<?php\n";
         foreach($this->settings as $key => $value){
-			$exclude = array('order_email', 'company_name', 'name', 'street', 'zip_code', 'city');
+			$exclude = array(
+				'order_email', 'company_name', 'name', 'street', 'zip_code', 'city',
+				'vat_full', 'vat_reduced', 'vat_default', 'dont_deal_with_taxes'
+			);
 			if (in_array($key, $exclude, true)) {
 				continue;
 			}
