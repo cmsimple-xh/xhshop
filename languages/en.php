@@ -4,7 +4,7 @@ $plugin_tx['xhshop']['hints_sorry_errors'] = 'Sorry! There are some issuses that
 $plugin_tx['xhshop']['labels_needs_write_permission'] = 'needs write permission';
 $plugin_tx['xhshop']['labels_file_not_found'] = 'file not found';
 ####### Mail ################
-$plugin_tx['xhshop']['mail_email_subject']='Your order - ';
+$plugin_tx['xhshop']['mail_email_subject']="Your order from %s";
 $plugin_tx['xhshop']['mail_salutation'] = "Dear";
 $plugin_tx['xhshop']['mail_thank_you'] = "thank you for ordering!";
 $plugin_tx['xhshop']['mail_email_sent'] = "A confirmation email has been sent to you.";

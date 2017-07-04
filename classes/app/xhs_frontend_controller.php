@@ -523,7 +523,7 @@ class XHS_Frontend_Controller extends XHS_Controller {
         $mail->FromName = $this->settings['company_name'];
         $mail->AddReplyTo($this->settings['order_email'], $this->settings['company_name']);
         $mail->AddAddress($customer, $customerName);
-        $mail->Subject = $this->viewProvider->mail['email_subject'] . ' - ' . $this->settings['company_name'];
+        $mail->Subject = sprintf($this->viewProvider->mail['email_subject'], $this->settings['company_name']);
 
         //     $mail->AddStringAttachment($bill, "bill.rtf");
         $mail->Body = $this->htmlConfirmation();

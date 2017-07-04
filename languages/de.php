@@ -4,7 +4,7 @@ $plugin_tx['xhshop']['hints_sorry_errors'] = 'Pardon! Noch ist der xhshop-Shop n
 $plugin_tx['xhshop']['labels_needs_write_permission'] = 'Braucht Schreibrechte (0666)';
 $plugin_tx['xhshop']['labels_file_not_found'] = 'Datei nicht gefunden';
 ####### Mail ################
-$plugin_tx['xhshop']['mail_email_subject']='Ihre Bestellung - ';
+$plugin_tx['xhshop']['mail_email_subject']="Ihre Bestellung bei %s";
 $plugin_tx['xhshop']['mail_salutation'] = "Sehr geehrte(r)";
 $plugin_tx['xhshop']['mail_thank_you'] = "vielen Dank für Ihre Bestellung!";
 $plugin_tx['xhshop']['mail_email_sent'] = "In Kürze erhalten Sie eine E-Mail mit Ihren Bestelldaten.";
