@@ -1,5 +1,7 @@
 <?php
 $plugin_tx['xhshop']['config_cos_page']="?Shop/C.O.S.";
+$plugin_tx['xhshop']['config_decimal_separator']=".";
+$plugin_tx['xhshop']['config_thousands_separator']=",";
 ###### errors ########
 $plugin_tx['xhshop']['hints_sorry_errors'] = 'Sorry! There are some issuses that have to be fixed, before the xhshopShop is ready to use.';
 $plugin_tx['xhshop']['labels_needs_write_permission'] = 'needs write permission';

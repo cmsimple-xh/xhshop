@@ -1,5 +1,7 @@
 <?php
 $plugin_tx['xhshop']['config_cos_page']="?Shop/AGB";
+$plugin_tx['xhshop']['config_decimal_separator']=",";
+$plugin_tx['xhshop']['config_thousands_separator']=".";
 ###### errors ########
 $plugin_tx['xhshop']['hints_sorry_errors'] = 'Pardon! Noch ist der xhshop-Shop nicht betriebsbereit.';
 $plugin_tx['xhshop']['labels_needs_write_permission'] = 'Braucht Schreibrechte (0666)';
