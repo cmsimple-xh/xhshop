@@ -31,26 +31,6 @@ class XHS_View{
         }
     }
 
-    function setDocType($docType){
-        if($docType == 'html'){
-            $this->endTag = '>';
-        }
-        if($docType == 'xhtml'){
-            $this->endTag = ' />';
-        }
-    }
-    function getDocType(){
-
-    }
-
-    function setTemplatePath(){
-
-    }
-
-    function getTemplatePath(){
-
-    }
-
     function setCurrency($currency){
         $this->currency = $currency;
 
