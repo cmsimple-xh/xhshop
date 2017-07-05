@@ -254,8 +254,7 @@ class XHS_Frontend_Controller extends XHS_Controller {
         $params['payments']    = $this->paymentModules;
         $params['missingData'] = $missingData;
 
-        //  $params['cosUrl'] = uenc($this->settings[XHS_LANGUAGE]['cos_page']);
-        $params['cosUrl'] = ($this->settings[XHS_LANGUAGE]['cos_page']);
+        $params['cosUrl'] = ($this->settings['cos_page']);
 
         return $this->render('customersData', $params);
     }
@@ -664,7 +663,7 @@ class XHS_Frontend_Controller extends XHS_Controller {
             unlink(XHS_BASE_PATH . 'classes/paymentmodules/paypal/tmp_orders/pp_' . session_id() . '.sent');
             return $this->thankYou();
         }
-        if ($this->settings['published'] == 'false')
+        if (!$this->settings['published'])
         {
             return $this->closed();
         }

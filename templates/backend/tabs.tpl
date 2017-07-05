@@ -6,18 +6,11 @@
 <ul id="xhsTaskTabs">
     <li class="%SETTING_TASKS%">
         <form action="" method="post" class="tab">
-            <input name="xhsTask" value="mainSettings" type="hidden">
+            <input name="xhsTask" value="shippingSettings" type="hidden">
             <input name="xhsTaskCat" value="setting_tasks" type="hidden">
             <input value="<?php echo $this->labels['settings'] ?>" class="tab" type="submit">
         </form>
         <ul class="xhsSubTabs" id="xhsSettings">
-            <li class="%MAINSETTINGS%">
-                <form action="" method="post" class="tab" name="mainSettings">
-                    <input name="xhsTask" value="mainSettings" type="hidden">
-                    <input name="xhsTaskCat" value="setting_tasks" type="hidden">
-                    <input value="<?php echo $this->labels['shop'] ?>" class="subTab" type="submit">
-                </form>
-            </li>
             <li class="%SHIPPINGSETTINGS%">
                 <form action="" method="post" class="tab">
                     <input name="xhsTask" value="shippingSettings" type="hidden">

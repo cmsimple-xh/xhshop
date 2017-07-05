@@ -1,4 +1,5 @@
 <?php
+$plugin_tx['xhshop']['config_cos_page']="?Shop/C.O.S.";
 ###### errors ########
 $plugin_tx['xhshop']['hints_sorry_errors'] = 'Sorry! There are some issuses that have to be fixed, before the xhshopShop is ready to use.';
 $plugin_tx['xhshop']['labels_needs_write_permission'] = 'needs write permission';
@@ -168,6 +169,9 @@ $plugin_tx['xhshop']['hints_on_netto']=" % auf Nettobetrag ";
 $plugin_tx['xhshop']['labels_cat_select'] = 'Select Category';
 $plugin_tx['xhshop']['labels_usage'] = 'Usage';
 
+$plugin_tx['xhshop']['cf_shop_published']="Whether the shop is published (opposed to being in maintenance mode)";
+$plugin_tx['xhshop']['cf_shop_minimum_order']="The order minimum (incl. shipping and fees) – enter with decimal point";
+$plugin_tx['xhshop']['cf_shop_default_currency']="The currency of the shop – enter the currency symbol, for instance, €, $, £ or ¥";
 $plugin_tx['xhshop']['cf_contact_order_email']="E-mail address to send the orders to";
 $plugin_tx['xhshop']['cf_contact_company_name']="Shop or company name";
 $plugin_tx['xhshop']['cf_contact_name']="Name of the shop operator. This name is used to sign the confirmation mail, amongst others.";
