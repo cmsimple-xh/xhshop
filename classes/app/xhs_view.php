@@ -222,15 +222,10 @@ class XHS_View{
     }
 
     function formatFloat($sum){
-        if(XHS_LANGUAGE == 'en'){
-            $dec_sep = '.';
-            $thousands_sep = ',';
-        }else {
-// test            $dec_sep = ',';
-// test            $thousands_sep = '.';
-            $dec_sep = '.';
-            $thousands_sep = ',';
-        }
+        global $plugin_tx;
+
+        $dec_sep = trim($plugin_tx['xhshop']['config_decimal_separator']);
+        $thousands_sep = trim($plugin_tx['xhshop']['config_thousands_separator']);
         return number_format($sum, 2, $dec_sep, $thousands_sep);
     }
 
