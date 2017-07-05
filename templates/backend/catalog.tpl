@@ -18,7 +18,7 @@
 		foreach($this->products as $index=>$product){
 			$previous = $i > 0 ? $this->indices[$i - 1] : null;
 			$next = $i < count($this->products) - 1 ? $this->indices[$i + 1] : null; ?>
-			<tr class="<?php echo $this->oddOrEven($i); ?>">
+			<tr>
 				<td class="">
 				<?php if(isset($previous)){?>
 					<form action="" method="post">
