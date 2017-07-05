@@ -19,7 +19,7 @@
 				<?php }?>
 			</select>
 			<?php } ?>
-			<input class="xhsInpAmount" type="number" min="1" max="100" step="1" name="xhsAmount" value="1">
+			<input class="xhsInpAmount" type="number" min="1" step="1" name="xhsAmount" value="1">
 			x
 			<button class="xhsShopButton xhsAddCart"><span class="fa fa-cart-plus fa-lg fa-fw"></span> <?php echo $this->labels['add_to_cart']; ?></button>
 		</form>

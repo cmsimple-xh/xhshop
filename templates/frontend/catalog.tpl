@@ -51,7 +51,7 @@
 				</div>
 				<?php } ?>
 			<div class="xhsPrdPrice"><span class="xhsPrdPriceLabel"><?php echo $this->labels['price'];?></span> <span class="xhsPrdPriceNum"><?php echo $this->formatCurrency($product['price']); ?></span></div>
-				<input class="xhsInpAmount" type="number" min="1" max="100" step="1" name="xhsAmount" value="1">
+				<input class="xhsInpAmount" type="number" min="1" step="1" name="xhsAmount" value="1">
 				<input type="hidden" name="xhsTask" value="updateCart" />
 				<input type="hidden" name="xhsCategory" value="<?php echo $this->selectedCategory; ?>">
 				x
