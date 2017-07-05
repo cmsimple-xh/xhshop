@@ -91,7 +91,7 @@ class XHS_Frontend_View extends XHS_View {
 //            $link = "<a href=\"$cos_url\" target=\"_blank\">$name</a>";
 // COS-Link in fancybox
 //            $link = "<a href=\"$cos_url\" class=\"zoom_i\">$name</a>";
-			$link = "<a href=\"$cos_url&print\" class=\"zoom_i xhsCosLnk\">$name</a>"; //cmb
+			$link = "<a href=\"$cos_url&print\" class=\"zoom_i xhsCosLnk\" target=\"_blank\">$name</a>"; //cmb
             $hint = str_replace($name, $link, $hint);
         }
         return $hint;
