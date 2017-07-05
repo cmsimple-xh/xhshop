@@ -1,8 +1,5 @@
 <?php
 require_once 'XHS_CMS_Bridge.php';
-if (preg_match('/googlebot|msn|yahoo/i', gethostbyaddr($_SERVER['REMOTE_ADDR'])) === 1){
-	ini_set("url_rewriter.tags","");
-}
 
 if (function_exists('XH_startSession')) {
 	XH_startSession();
