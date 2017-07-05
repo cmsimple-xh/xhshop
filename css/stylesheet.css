@@ -36,11 +36,11 @@
 .xhsMain input[type="checkbox"], section.xhsScreen input[type="radio"] {
 	padding: 0 !important;
 }
-tr.even {
+#xhsProductsTable tr:nth-child(odd) {
 	background-color: #dfdfdf;
 	color: #333;
 }
-tr.odd {
+#xhsProductsTable tr:nth-child(even) {
 	background-color: #efefef;
 	color: #333;
 }

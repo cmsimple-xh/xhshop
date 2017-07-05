@@ -213,14 +213,6 @@ class XHS_View{
         return $this->formatFloat($sum)  . ' ' . $this->currency;
     }
 
-    function oddOrEven($index){
-        if ($index % 2 != 0) {
-            echo 'odd';
-            return;
-        }
-        echo 'even';
-    }
-
     function hint($key){
         if(isset($this->hints[$key])){
             echo($this->hints[$key]);
