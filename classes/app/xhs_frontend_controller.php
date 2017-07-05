@@ -598,6 +598,7 @@ class XHS_Frontend_Controller extends XHS_Controller {
         $params['variants']    = count($product->getVariants() > 0) ? $product->getVariants() : false;
         $params['price']       = $product->price;
         $params['uid']         = $product->uid;
+        $params['hideVat']     = (bool) $this->settings['dont_deal_with_taxes'];
         $params['vatRate']     = $this->settings['vat_' . $product->vat];
         $params['vatInfo']     = $this->vatInfo();
         $params['image'] = '';

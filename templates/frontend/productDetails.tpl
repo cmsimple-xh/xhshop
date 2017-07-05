@@ -20,7 +20,7 @@
 			</div>
 			<?php } ?>
 			<div class="xhsPrdPrice"><span class="xhsPrdPriceLabel"><?php echo $this->labels['price']; ?><br>
-				<?php $this->hint($this->vatInfo); ?> %VATRATE% %</span> <span class="xhsPrdPriceNum"><?php echo $this->formatCurrency($this->price); ?></span></div>
+				<?php $this->hint($this->vatInfo); ?> <?php if (!$this->hideVat):?>%VATRATE% %<?php endif?></span> <span class="xhsPrdPriceNum"><?php echo $this->formatCurrency($this->price); ?></span></div>
 			<input class="xhsInpAmount" type="number" min="1" max="100" step="1" name="xhsAmount" value="1">
 			x
 			<button class="xhsShopButton xhsAddCart"><span class="fa fa-cart-plus fa-lg fa-fw"></span> <?php echo $this->label('add_to_cart'); ?></button>

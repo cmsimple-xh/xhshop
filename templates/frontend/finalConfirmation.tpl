@@ -38,7 +38,11 @@
 		<td colspan="3"><h3><?php echo $product['name'];?> <?php echo $product['variantName']; ?></h3></td>
 	</tr>
 	<tr>
-		<td class="xhsTdR" colspan="3"><?php echo $product['amount']; ?> x <?php echo $this->formatCurrency($product['price']); ?> <span class="xhsVatInf">[<?php echo $product['vatRate']; ?>%]</span></td>
+		<td class="xhsTdR" colspan="3"><?php echo $product['amount']; ?> x <?php echo $this->formatCurrency($product['price']); ?>
+<?php if($this->hideVat === false):?>
+		<span class="xhsVatInf">[<?php echo $product['vatRate']; ?>%]</span>
+<?php endif?>
+		</td>
 		<td class="xhsMoneyCell"><strong><?php echo $this->formatCurrency($product['sum']); ?></strong></td>
 	</tr>
 	<tr>
@@ -81,7 +85,11 @@ if($this->fee < 0){
 <?php echo $this->label('included_vat') . ' ' . $this->formatCurrency($this->vatTotal); ?>
  (<?php echo $this->formatFloat($this->reducedRate); ?>%&nbsp;= <?php echo $this->formatCurrency($this->vatReduced); ?>
  &ndash; <?php echo $this->formatFloat($this->fullRate); ?>%&nbsp;= <?php echo $this->formatCurrency($this->vatFull); ?>)</p>
-<?php }; ?>
+<?php } else { ?>
+<p class="xhsHint">
+<?php echo $this->hint('price_info_no_vat')?>
+</p>
+<?php } ?>
 <p> </p>
 <div class="xhsLft">	
 <form action="" method="post">
