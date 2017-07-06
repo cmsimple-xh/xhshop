@@ -4,3 +4,5 @@
 <p><?php echo $this->mail['thank_you']; ?></p>
 <p> </p>
 <p><?php echo $this->mail['email_sent']; ?></p>
+</section>
+<p>&nbsp;</p>

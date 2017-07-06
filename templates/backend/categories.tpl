@@ -83,5 +83,7 @@
 			<input type="hidden" name="xhsTask" value="saveProductCategories">
 			<button class="xhsShopButton"><span class="fa fa-save fa-fw"></span> OK</button>
 		</div>
-	</form><?php } ?>
+	</form>
+	<?php } ?>
+	<p>&nbsp;</p>
 </section>

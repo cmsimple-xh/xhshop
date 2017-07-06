@@ -91,21 +91,18 @@ if($this->fee < 0){
 </p>
 <?php } ?>
 <p> </p>
-<div class="xhsLft">	
+<form action="" method="post">
+<input type="hidden" name="xhsCheckout" value="finish">
+<button class="xhsShopButton xhsRght"><?php $this->label('send_order'); ?></button>
+</form>
 <form action="" method="post">
 <input type="hidden" name="xhsCheckout" value="customersData">
 <button class="xhsShopButton"><span class="fa fa-arrow-circle-left fa-fw"></span> <?php $this->label('previous'); ?></button>
 </form>
-</div>
-<div class="xhsRght">
 <?php if($this->payment->orderSubmitForm() === false){ ?>
-<form action="" method="post">
-<input type="hidden" name="xhsCheckout" value="finish">
-<button class="xhsShopButton"><?php $this->label('send_order'); ?></button>
-</form>
 <?php
 } else {
 	echo $this->payment->orderSubmitForm();
 } ?>
-</div>
+<p>&nbsp;</p>
 </section>

@@ -76,4 +76,5 @@
 			<?php $i++; } ?>
 		</tbody>
 	</table>
+	<p>&nbsp;</p>
 </section>

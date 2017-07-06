@@ -55,11 +55,10 @@
 		<?php $this->hint('product_description'); ?></p>
 		<textarea name="xhsDescription" id="xhsDescription" class="xhsDescription" cols="50" rows="15">%DESCRIPTION%</textarea>
 		<p>&nbsp;</p>
-		<div class="xhsRght">
 			<input type="hidden" name="xhsProductID" value="<?php echo $this->product_ID; ?>">
 			<input type="hidden" name="xhsTaskCat" value="product_tasks">
 			<input type="hidden" name="xhsTask" value="saveProduct">
-			<button class="xhsShopButton"><span class="fa fa-save fa-fw"></span> <?php $this->label('save_settings'); ?></button>
-		</div>
+			<button class="xhsShopButton xhsRght"><span class="fa fa-save fa-fw"></span> <?php $this->label('save_settings'); ?></button>
 	</form>
+	<p class="xhsClearB">&nbsp;</p>
 </section>

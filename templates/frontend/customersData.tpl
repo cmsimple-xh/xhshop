@@ -55,13 +55,11 @@ if(in_array('cos_confirmed', $this->missingData)){
 <p> </p>
 <div class="xhsRght">
 <input type="hidden" name="xhsCheckout" value="checkCustomersData">
-<button class="xhsShopButton"><?php $this->label('next'); ?> <span class="fa fa-arrow-circle-right fa-fw"></span></button>
+<button class="xhsShopButton xhsRght xhsInl"><?php $this->label('next'); ?> <span class="fa fa-arrow-circle-right fa-fw"></span></button>
 </form>
-</div>
-<div class="xhsLft">	
-<form action="" method="post" style="display: inline;">
+<form action="" method="post">
 <input type="hidden" name="xhsCheckout" value="cart">
-<button class="xhsShopButton"><span class="fa fa-arrow-circle-left fa-fw"></span> <?php $this->label('previous'); ?></button>
+<button class="xhsShopButton xhsInl"><span class="fa fa-arrow-circle-left fa-fw"></span> <?php $this->label('previous'); ?></button>
 </form>
-</div>
+<p>&nbsp;</p>
 </section>

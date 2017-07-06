@@ -104,4 +104,5 @@ $xhsChk = "ok";} ?>
 </td>
 </tr>
 </table>
+<p>&nbsp;</p>
 </section>
