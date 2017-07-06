@@ -65,6 +65,13 @@ if( is_a($xhsController, 'XHS_Frontend_Controller')
     }
 }
 
+if ($f === 'xh_loggedout') {
+	$temp = XHS_BASE_PATH . 'data/catalog.bak.php';
+    if (copy(XHS_BASE_PATH . 'data/catalog.php', $temp)) {
+		$o .= XH_message('info', sprintf($plugin_tx['xhshop']['message_backup_created'], $temp));
+	}
+}
+
 function display_shop() {
 	global $xhsController, $adm, $su, $sn;
 	$html = '';

@@ -171,6 +171,8 @@ $plugin_tx['xhshop']['hints_on_netto']=" % auf Nettobetrag ";
 $plugin_tx['xhshop']['labels_cat_select'] = 'Select Category';
 $plugin_tx['xhshop']['labels_usage'] = 'Usage';
 
+$plugin_tx['xhshop']['message_backup_created']="Backup %s created";
+
 $plugin_tx['xhshop']['cf_shop_published']="Whether the shop is published (opposed to being in maintenance mode)";
 $plugin_tx['xhshop']['cf_shop_minimum_order']="The order minimum (incl. shipping and fees) – enter with decimal point";
 $plugin_tx['xhshop']['cf_shop_default_currency']="The currency of the shop – enter the currency symbol, for instance, €, $, £ or ¥";
