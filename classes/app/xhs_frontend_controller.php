@@ -605,7 +605,7 @@ class XHS_Frontend_Controller extends XHS_Controller {
         if ($pic)
         {
             $info            = getimagesize($pic);
-            $params['image'] = '<a href="' . $pic . '" ' . $info[3] . ' class="zoom"><img src="' . $pic . '" ' . $info[3] . '></a>';
+            $params['image'] = '<a href="' . $pic . '" ' . $info[3] . ' class="zoom_g"><img src="' . $pic . '" ' . $info[3] . '></a>';
         }
         $this->bridge->setTitle($params['name']);
         $this->bridge->setMeta('description', $params['teaser']);
