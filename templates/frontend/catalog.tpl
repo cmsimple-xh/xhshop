@@ -2,14 +2,14 @@
 <div class="xhsCatSelSearch">
 	<div class="xhsCatSel">
 		<?php if($this->showCategorySelect !== false){ ?>
-		<form action="" method="post">
+		<form method="post">
 			<span class="fa fa-list fa-lg fa-fw"></span> <?php echo $this->categorySelect(); ?>
 			<input name="xhsTask" value="productList" type="hidden">
 		</form>
 		<?php } ?>
 	</div>
 	<div class="xhsSearch">
-		<form action="" method="post">
+		<form method="post">
 			<span class="fa fa-search fa-lg fa-fw"></span>
 			<input name="xhsProductSearch" value="<?php echo $xhsSearch; ?>" type="text" placeholder="<?php $this->label('product_search'); ?>">
 		</form>
@@ -40,7 +40,7 @@
 		<div class="xhsPrdTeaser"><?php echo $product['teaser']; ?></div>
 		<div class="xhsDetailLink"><?php echo $product['detailLink']; ?></div>
 		<div class="xhsInfoBlock">
-			<form action="" method="post" >
+			<form method="post" >
 				<?php if(isset($product['variants'])){ ?>
 				<div class="xhsVariantsSelect"><span class="xhsPrdPriceLabel"><?php echo $this->labels['product_variants'];?></span>
 					<select name="xhsVariant">

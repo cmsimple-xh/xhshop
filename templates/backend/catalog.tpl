@@ -1,7 +1,7 @@
 <?php ?>
 <section class="xhsMain xhsClearB">
 	<div class="xhsCatSel">
-		<form class="catSelectBox" action="" method="post">
+		<form class="catSelectBox" method="post">
 			<span class="fa fa-list fa-lg fa-fw"></span> <?php echo $this->categorySelect(); ?>
 			<input name="xhsTask" value="productList" type="hidden" >
 			<input name="xhsTaskCat" value="product_tasks" type="hidden">
@@ -21,7 +21,7 @@
 			<tr>
 				<td class="">
 				<?php if(isset($previous)){?>
-					<form action="" method="post">
+					<form method="post">
 						<input type="hidden" name="xhsProductID" value="<?php echo $index; ?>">
 						<input type="hidden" name="xhsProductSwapID" value="<?php echo $previous; ?>">
 						<input type="hidden" name="xhsTask" value="productList">
@@ -34,7 +34,7 @@
 						<!--<button class="xhsProdUp"><span class="fa"> </span></button>-->
 				<?php } ?>
 				<?php if(isset($next)){?>
-					<form action="" method="post" class="xhsInl">
+					<form method="post" class="xhsInl">
 						<input type="hidden" name="xhsProductID" value="<?php echo $index; ?>">
 						<input type="hidden" name="xhsProductSwapID" value="<?php echo $next; ?>">
 						<input type="hidden" name="xhsTask" value="productList">
@@ -65,7 +65,7 @@
 						<button class="xhsProdDown" title="edit product"><span class="fa fa-edit fa-lg"></span></button>
 					</form>
 					&nbsp;
-					<form action="" method="post" class="xhsInl" onsubmit="return xhsAssureDelete('<?php echo addslashes(strip_tags($product['name'])); ?>');">
+					<form method="post" class="xhsInl" onsubmit="return xhsAssureDelete('<?php echo addslashes(strip_tags($product['name'])); ?>');">
 						<input type="hidden" name="xhsProductID" value="<?php echo $index; ?>">
 						<input type="hidden" name="xhsTask" value="deleteProduct">
 						<input type="hidden" name="xhsTaskCat" value="product_tasks">

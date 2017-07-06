@@ -9,7 +9,7 @@
 <div class="xhsClearB"></div>
 <div class="xhsStepHint"><span class="fa fa-question-circle fa-fw"></span> <?php $this->label('ask_for_contact_data'); ?></div>
 <h2><?php $this->label('ask_for_destination');?></h2>
-<form action="" method="post" class="xhs100">
+<form method="post" class="xhs100">
 <?php echo $this->contactInput('first_name'); ?>
 <?php echo $this->contactInput('last_name'); ?>
 <?php echo $this->contactInput('street'); ?>
@@ -56,7 +56,7 @@ if(in_array('cos_confirmed', $this->missingData)){
 <input type="hidden" name="xhsCheckout" value="checkCustomersData">
 <button class="xhsShopButton xhsRght xhsInl"><?php $this->label('next'); ?> <span class="fa fa-arrow-circle-right fa-fw"></span></button>
 </form>
-<form action="" method="post" class="xhsLft">
+<form method="post" class="xhsLft">
 <input type="hidden" name="xhsCheckout" value="cart">
 <button class="xhsShopButton xhsInl"><span class="fa fa-arrow-circle-left fa-fw"></span> <?php $this->label('previous'); ?></button>
 </form>

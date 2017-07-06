@@ -2,7 +2,7 @@
 <section class="xhsMain xhsClearB">
 	<h1><?php $this->label('forwarding_expenses'); ?></h1>
 	<div id="xhsShippingDetails">
-		<form method="post" action="" name="shipping">
+		<form method="post" name="shipping">
 			<p><?php echo $this->label('charge_for_shipping'); ?></p>
 			<p><?php $params['onclick'] = 'xhsEnableShipping();' ?>
 			<?php echo $this->radioNameValueLabel('charge_for_shipping', 'true', null, $params); ?>&nbsp;<?php echo $this->label('yes'); ?>&nbsp; &nbsp;

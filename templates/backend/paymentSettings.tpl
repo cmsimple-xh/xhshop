@@ -3,7 +3,7 @@
 	<h1><?php $this->label('payments'); ?></h1>
 	<p><?php $this->hint('payments'); ?></p>
         <p>
-	<form method="post" action="">
+	<form method="post">
 	<?php foreach($this->modules as $module){
 		if($module->isAvailable()){
 			$module->isActive() ? $checked = 'checked="checked"' : $checked = ''; ?>
@@ -26,7 +26,7 @@
 	<?php
 	foreach($this->modules as $module){
 		if($module->needsConfig()){ ?>
-	<form method="post" action="">
+	<form method="post">
 	<p><?php echo $module->getLabel(); ?></p>
 	<?php echo $module->settingInputs(); ?>
 	<div class="xhsRght">

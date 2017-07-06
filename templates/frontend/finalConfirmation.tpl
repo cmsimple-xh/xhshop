@@ -91,11 +91,11 @@ if($this->fee < 0){
 </p>
 <?php } ?>
 <p> </p>
-<form action="" method="post">
+<form method="post">
 <input type="hidden" name="xhsCheckout" value="finish">
 <button class="xhsShopButton xhsRght"><?php $this->label('send_order'); ?></button>
 </form>
-<form action="" method="post">
+<form method="post">
 <input type="hidden" name="xhsCheckout" value="customersData">
 <button class="xhsShopButton"><span class="fa fa-arrow-circle-left fa-fw"></span> <?php $this->label('previous'); ?></button>
 </form>
