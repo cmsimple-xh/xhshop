@@ -79,7 +79,7 @@ class XHS_Frontend_Controller extends XHS_Controller {
             return 0;
         }
         if ($this->settings['shipping_up_to'] == 'true' &&
-                $_SESSION['xhsOrder']->cartGross > (float) $this->settings['forwarding_expenses_up_to'])
+                $_SESSION['xhsOrder']->cartGross >= (float) $this->settings['forwarding_expenses_up_to'])
         {
             return 0;
         }
