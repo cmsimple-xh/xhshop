@@ -471,7 +471,7 @@ class XHS_Frontend_Controller extends XHS_Controller {
 
         if ($this->settings['dont_deal_with_taxes'])
         {
-            $vat_hint = $this->viewProvider->hints['no_vat_bill'];
+            $vat_hint = $this->viewProvider->hints['price_info_no_vat'];
         } else
         {
             $currency = ' ' . $writer->getCurrency();

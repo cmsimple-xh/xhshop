@@ -103,9 +103,11 @@ if($this->fee < 0){
 </tr>
 </table>
 <p>&nbsp;</p>
-<?php if($this->hideVat == false){ ?>
+<?php if ($this->hideVat == false):?>
 <p><?php echo $this->labels['included_vat'] . ' ' . $this->formatCurrency($this->vatTotal); ?> (<?php echo $this->formatFloat($this->reducedRate); ?>% = <?php echo $this->formatCurrency($this->vatReduced); ?> – <?php echo $this->formatFloat($this->fullRate); ?>% = <?php echo $this->formatCurrency($this->vatFull); ?>)</p>
-<?php }; ?>
+<?php else:?>
+<p><?php echo $this->hints['price_info_no_vat']?></p>
+<?php endif?>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p><?php echo $this->mail['greetings']; ?><br>

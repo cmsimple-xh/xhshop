@@ -34,10 +34,12 @@ foreach($this->cartItems as $product){
 --------------------------------------------------------------
 <?php $this->label('total');?>: <?php echo $this->formatCurrency($this->total); ?> 
 --------------------------------------------------------------
-<?php if($this->hideVat == false){ ?>
+<?php if($this->hideVat == false):?>
 <?php $this->label('included_vat');?> <?php echo $this->formatCurrency($this->vatTotal); ?> 
 (<?php echo $this->formatFloat($this->reducedRate); ?>%: <?php echo $this->formatCurrency($this->vatReduced); ?> / <?php echo $this->formatFloat($this->fullRate); ?> %: <?php echo $this->formatCurrency($this->vatFull); ?>)
- <?php } ?>
+<?php else:?>
+<?php echo $this->hints['price_info_no_vat']?>
+<?php endif?>
 
  
 <?php echo $this->mail['greetings']; ?>%COMPANY%
