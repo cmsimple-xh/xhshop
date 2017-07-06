@@ -58,7 +58,7 @@
 					</p>
 				</td>
 				<td>
-					<form action="" method="post" class="xhsInl">
+					<form method="post" class="xhsInl">
 						<input type="hidden" name="xhsProductID" value="<?php echo $index; ?>">
 						<input type="hidden" name="xhsTask" value="editProduct">
 						<input type="hidden" name="xhsTaskCat" value="product_tasks">
