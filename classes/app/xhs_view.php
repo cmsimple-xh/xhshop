@@ -254,7 +254,7 @@ class XHS_View{
         $html =    "\n\t" . '<select title="' . $this->labels['cat_select'] . '" name="xhsCategory" onchange="this.parentNode.submit();">';
         foreach($this->categoryOptions as $category){
             $selected = (html_entity_decode($category['value']) == html_entity_decode($this->selectedCategory)) ? ' selected="selected"' : '';
-            $html .= "\n\t\t" . '<option value="' . $category['value'] . '"' . $selected . '">' . $category['label'] . '</option>';
+            $html .= "\n\t\t" . '<option value="' . $category['value'] . '"' . $selected . '>' . $category['label'] . '</option>';
         }
 
         $html .= "\n\t" .'</select>';

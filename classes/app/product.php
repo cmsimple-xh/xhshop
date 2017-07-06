@@ -79,7 +79,7 @@ class Product {
      function getImage(){
          if((isset($this->image)) && strlen($this->image) > 0 && ($this->image <> '')) {
 
-            $image = '<a href="' . XHS_IMAGE_PATH.$this->image . '" alt="' .$this->getName(XHS_LANGUAGE) . '"  title="'.$this->getName(XHS_LANGUAGE). '" class="zoom"><img src="' . XHS_IMAGE_PATH.$this->image . '" alt="' .$this->getName(XHS_LANGUAGE) . '"  title="'.$this->getName(XHS_LANGUAGE). '"></a>';
+            $image = '<a href="' . XHS_IMAGE_PATH.$this->image . '" title="'.$this->getName(XHS_LANGUAGE). '" class="zoom"><img src="' . XHS_IMAGE_PATH.$this->image . '" alt="' .$this->getName(XHS_LANGUAGE) . '"  title="'.$this->getName(XHS_LANGUAGE). '"></a>';
             return $image;
         }
         return '';
@@ -125,7 +125,7 @@ class Product {
     function getPreviewPicture(){
         if((isset($this->previewPicture)) && ($this->previewPicture <> '')) {
             
-            $image = '<a href="' . XHS_IMAGE_PATH.$this->image . '" alt="' . $this->getName(XHS_LANGUAGE) . ' - Preview"  title="' . $this->getName(XHS_LANGUAGE) . '" class="zoom"><img src="'. XHS_PREVIEW_PIC_PATH . $this->previewPicture. '" alt="' .$this->getName(XHS_LANGUAGE) .' - Preview"  title="'.$this->getName(XHS_LANGUAGE). '"></a>';
+            $image = '<a href="' . XHS_IMAGE_PATH.$this->image . '" title="' . $this->getName(XHS_LANGUAGE) . '" class="zoom"><img src="'. XHS_PREVIEW_PIC_PATH . $this->previewPicture. '" alt="' .$this->getName(XHS_LANGUAGE) .' - Preview"  title="'.$this->getName(XHS_LANGUAGE). '"></a>';
             return $image;
         }
         return '';
