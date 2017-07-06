@@ -53,10 +53,8 @@ if(in_array('cos_confirmed', $this->missingData)){
 <textarea name="annotation"><?php echo $_SESSION['xhsCustomer']->annotation; ?></textarea>
 <!-- End annotation -->
 <p> </p>
-<div class="xhsRght">
 <input type="hidden" name="xhsCheckout" value="checkCustomersData">
 <button class="xhsShopButton xhsRght xhsInl"><?php $this->label('next'); ?> <span class="fa fa-arrow-circle-right fa-fw"></span></button>
-</div>
 </form>
 <form action="" method="post" class="xhsLft">
 <input type="hidden" name="xhsCheckout" value="cart">
