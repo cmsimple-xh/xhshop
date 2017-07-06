@@ -1,20 +1,19 @@
 <?php
 class Catalogue {
-    var $products, $dataFile, $cf, $separator, $categories, $category_for_the_left_overs, $default_category, $version, $cms;
+    var $products, $cf, $separator, $categories, $category_for_the_left_overs, $default_category, $version, $cms;
     function __construct($separator) {
         $this->version = '1alpha-preview';
         $this->cms = 'CMSimple_XH';
-        $this->dataFile = XHS_CATALOG;
         $this->separator = $separator;
         $this->products = array();
         $this->categories = array();
 
-        $this -> load();
+        $this -> loadArray();
     }
 
     function loadArray(){
 
-        include XHS_BASE_PATH . 'data/catalog.php';
+        include XHS_CATALOG;
 
         $this->categories = $categories;
         $this->category_for_the_left_overs = $category_for_the_left_overs;
@@ -55,51 +54,6 @@ class Catalogue {
             $product->separator = $this->separator;
             $this->products[$product->uid] = $product;
 
-        }
-
-    }
-
-    function load() {
-        if(XHS_SAVE_FORMAT == 'array' && file_exists(XHS_BASE_PATH . 'data/catalog.php')){
-            return $this->loadArray();
-        }
-        if(file_exists($this->dataFile)){
-            $temp = implode("" , file($this->dataFile));
-            $temp = unserialize($temp);
-        }
-        else{
-            $this->save();
-            return;
-        }
-
-        if(!isset($temp->products) || !is_array($temp->products)){
-            $temp->products = array();
-        }
-        $i = count($temp->products);
-        foreach($temp->products as $product) {
-            if($product -> separator <> $this -> separator) {
-                $new_links = array();
-                foreach($product -> productPages[XHS_LANGUAGE] as $page) {
-                    $new_links[] = str_replace($product->separator, $this->separator, $page);
-                }
-                $product -> productPages[XHS_LANGUAGE] = $new_links;
-            }
-
-            $product->counter = null;
-            if(!isset($product->sortIndex)){$product->sortIndex = $i;}
-            $i--;
-            if(!isset($product->uid)){$product->uid = uniqid('p');}
-            if(!isset($product->stock_on_hand)){$product->setStockOnHand(1);}
-            $product->separator = $this->separator;
-            $this->products[$product->uid] = $product;
-
-        }
-
-        $this->categories = $temp->categories;
-        $this -> category_for_the_left_overs = $temp -> category_for_the_left_overs;
-        $this -> default_category = $temp -> default_category;
-        if(!isset($temp->version)){
-            $this->save();
         }
 
     }
@@ -200,21 +154,21 @@ class Catalogue {
         }
 
         $string .= '?>';
-        if(!file_exists(XHS_BASE_PATH . 'data/catalog.php')) {
-            $handle = fopen(XHS_BASE_PATH . 'data/catalog.php', 'w');
+        if(!file_exists(XHS_CATALOG)) {
+            $handle = fopen(XHS_CATALOG, 'w');
 
             if ($handle) {
                 fwrite($handle, $string);
-                chmod(XHS_BASE_PATH . 'data/catalog.php', 0666);
+                chmod(XHS_CATALOG, 0666);
                 fclose($handle);
             } else {
-                trigger_error('Catalogue::saveCatalogArray() - failed to create data/catalog.php');
+                trigger_error('Catalogue::saveCatalogArray() - failed to create ' . XHS_CATALOG);
             }
         }
-        $handle = fopen(XHS_BASE_PATH . 'data/catalog.php', 'w');
-        if(!is_writeable(XHS_BASE_PATH . 'data/catalog.php')){
-            if(!chmod(XHS_BASE_PATH . 'data/catalog.php', 0666)){
-                trigger_error('Catalogue::saveCatalogArray() - can\'t write to data/catalog.php');
+        $handle = fopen(XHS_CATALOG, 'w');
+        if(!is_writeable(XHS_CATALOG)){
+            if(!chmod(XHS_CATALOG, 0666)){
+                trigger_error('Catalogue::saveCatalogArray() - can\'t write to ' . XHS_CATALOG);
                 fclose($handle);
                 return false;
             }
@@ -252,20 +206,9 @@ class Catalogue {
 
         $this->products = isset($products) ? $products : array();
 
-        if(XHS_SAVE_FORMAT === 'array'){
-            $this->saveCatalogArray();
-            $this->loadArray();
-            return;
-
-        }
-        $fh = fopen($this -> dataFile, "w+");
-        if(!$fh) {die("could not open " . $this->dataFile);}
-        $temp = serialize($this);
-
-        fwrite($fh, $temp) or die("could not write");
-        fclose($fh);
-
-        $this->load();
+        $this->saveCatalogArray();
+        $this->loadArray();
+        return;
     }
 
     function renameCategory($name = null, $index = null) {

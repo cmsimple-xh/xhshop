@@ -2,7 +2,7 @@
 define('XHS_LANGUAGE', basename($sl));
 define('XHS_BASE_PATH', $pth['folder']['plugins'] . 'xhshop/');
 define('XHS_LIB_PATH', XHS_BASE_PATH . 'classes/app/' );
-define('XHS_CATALOG', XHS_BASE_PATH . 'data/catalogue.inc' );
+define('XHS_CATALOG', XHS_BASE_PATH . 'data/catalog.php' );
 define('XHS_JS_PATH', XHS_BASE_PATH .'js/' );
 define('XHS_HELP_PATH', XHS_BASE_PATH . 'help/' );
 
@@ -14,7 +14,6 @@ define('XHS_CSS_PATH', XHS_BASE_PATH .  'css/');
 define('XHS_URI_SEPARATOR', $cf['uri']['seperator']);
 define('XHS_IMAGE_PATH', $pth['folder']['images'].'shop/');
 define('XHS_PREVIEW_PIC_PATH', $pth['folder']['images'].'shop/');
-define('XHS_SAVE_FORMAT', 'array' );
 
 loadXHSClasses();
 
