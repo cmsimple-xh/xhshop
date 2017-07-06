@@ -20,8 +20,7 @@
 			$next = $i < count($this->products) - 1 ? $this->indices[$i + 1] : null; ?>
 			<tr>
 				<td class="">
-				<?php if(isset($previous)){?>
-					<form action="" method="post">
+					<form action="" method="post" class="xhsMoveUp" <?php if (!isset($previous)) echo 'style="display: none"'?>>
 						<input type="hidden" name="xhsProductID" value="<?php echo $index; ?>">
 						<input type="hidden" name="xhsProductSwapID" value="<?php echo $previous; ?>">
 						<input type="hidden" name="xhsTask" value="productList">
@@ -29,12 +28,7 @@
 						<input type="hidden" name="xhsCategory" value="<?php echo $this->category; ?>">
 						<button class="xhsProdUp" title="swap sort index with previous product"><span class="fa fa-chevron-up"></span></button>
 					</form>
-				<?php }
-				else { ?>
-						<!--<button class="xhsProdUp"><span class="fa"> </span></button>-->
-				<?php } ?>
-				<?php if(isset($next)){?>
-					<form action="" method="post" class="xhsInl">
+					<form action="" method="post" class="xhsInl xhsMoveDown" <?php if (!isset($next)) echo 'style="display: none"'?>>
 						<input type="hidden" name="xhsProductID" value="<?php echo $index; ?>">
 						<input type="hidden" name="xhsProductSwapID" value="<?php echo $next; ?>">
 						<input type="hidden" name="xhsTask" value="productList">
@@ -42,7 +36,6 @@
 						<input type="hidden" name="xhsCategory" value="<?php echo $this->category; ?>">
 						<button class="xhsProdDown" title="swap sort index with previous product"><span class="fa fa-chevron-down"></span></button>
 					</form>
-				<?php } ?>
 				</td>
 				<td class="xhsTdTop"><strong><?php echo strip_tags($product['name']); ?></strong>
 					<p class=""><?php echo $this->labels['price'];?> <?php echo $this->formatCurrency($product['price']); ?><br>
