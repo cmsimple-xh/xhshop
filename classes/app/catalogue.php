@@ -110,7 +110,7 @@ class Catalogue {
                     $string .= '$products[\'' . $uid . '\'][\'variants\'][\'' . $lang . '\'] = array(';
                     if(is_array($variants)){
                         foreach($variants as $variant){
-                            $string .= "'" . $this->cleanString($variant) . "', ";
+                            $string .= "'" . trim($this->cleanString($variant)) . "', ";
                         }
                     }
                     $string .= ');' . "\n";
