@@ -1,7 +1,7 @@
 <?php ?>
 <section class="xhsMain xhsClearB">
 	<div class="xhsCatSel">
-		<form class="catSelectBox" action="" method="post">
+		<form class="catSelectBox" method="post">
 			<span class="fa fa-list fa-lg fa-fw"></span> <?php echo $this->categorySelect(); ?>
 			<input name="xhsTask" value="productList" type="hidden" >
 			<input name="xhsTaskCat" value="product_tasks" type="hidden">
@@ -20,7 +20,7 @@
 			$next = $i < count($this->products) - 1 ? $this->indices[$i + 1] : null; ?>
 			<tr>
 				<td class="">
-					<form action="" method="post" class="xhsMoveUp" <?php if (!isset($previous)) echo 'style="display: none"'?>>
+					<form method="post" class="xhsMoveUp" <?php if (!isset($previous)) echo 'style="display: none"'?>>
 						<input type="hidden" name="xhsProductID" value="<?php echo $index; ?>">
 						<input type="hidden" name="xhsProductSwapID" value="<?php echo $previous; ?>">
 						<input type="hidden" name="xhsTask" value="productList">
@@ -28,7 +28,7 @@
 						<input type="hidden" name="xhsCategory" value="<?php echo $this->category; ?>">
 						<button class="xhsProdUp" title="swap sort index with previous product"><span class="fa fa-chevron-up"></span></button>
 					</form>
-					<form action="" method="post" class="xhsInl xhsMoveDown" <?php if (!isset($next)) echo 'style="display: none"'?>>
+					<form method="post" class="xhsInl xhsMoveDown" <?php if (!isset($next)) echo 'style="display: none"'?>>
 						<input type="hidden" name="xhsProductID" value="<?php echo $index; ?>">
 						<input type="hidden" name="xhsProductSwapID" value="<?php echo $next; ?>">
 						<input type="hidden" name="xhsTask" value="productList">
@@ -51,14 +51,14 @@
 					</p>
 				</td>
 				<td>
-					<form action="" method="post" class="xhsInl">
+					<form method="post" class="xhsInl">
 						<input type="hidden" name="xhsProductID" value="<?php echo $index; ?>">
 						<input type="hidden" name="xhsTask" value="editProduct">
 						<input type="hidden" name="xhsTaskCat" value="product_tasks">
 						<button class="xhsProdDown" title="edit product"><span class="fa fa-edit fa-lg"></span></button>
 					</form>
 					&nbsp;
-					<form action="" method="post" class="xhsInl" onsubmit="return xhsAssureDelete('<?php echo addslashes(strip_tags($product['name'])); ?>');">
+					<form method="post" class="xhsInl" onsubmit="return xhsAssureDelete('<?php echo addslashes(strip_tags($product['name'])); ?>');">
 						<input type="hidden" name="xhsProductID" value="<?php echo $index; ?>">
 						<input type="hidden" name="xhsTask" value="deleteProduct">
 						<input type="hidden" name="xhsTaskCat" value="product_tasks">

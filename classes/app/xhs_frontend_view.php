@@ -100,7 +100,7 @@ class XHS_Frontend_View extends XHS_View {
     function defaultOrderSubmitForm(){
 //just for fun
         printf( <<< STOP_FORM
-<form action="" method="post" style="display: inline;">
+<form method="post" style="display: inline;">
     <input type="hidden" name="xhsCheckout" value="finish" />
     <input type="submit" class="shopButton"  value="%s" />
 </form>

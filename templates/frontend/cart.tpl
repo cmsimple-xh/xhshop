@@ -27,7 +27,7 @@ foreach($this->cartItems as $product){
 <tr>
 <td>&nbsp;</td>
 <td class="xhsMoneyCell">
-<form action="" method="post" class="xhsInl">
+<form method="post" class="xhsInl">
 <!--<input class="xhsInpAmount" type="number" min="1" step="1" name="xhsAmount" value="<?php echo $product['amount']; ?>" onChange="this.parentNode.submit()">-->
 <input class="xhsInpAmount" type="number" min="1" step="1" name="xhsAmount" value="<?php echo $product['amount']; ?>"> x <?php echo $this->formatCurrency($product['price']) ;?><br>
 <input type="hidden" name="xhsTask" value="updateCart">
@@ -35,7 +35,7 @@ foreach($this->cartItems as $product){
 <input type="hidden" name="xhsVariant" value="<?php echo $product['variantKey']; ?>">
 <input type="hidden" name="cartItem" value="<?php echo $product['key'];?>">
 <button class="xhsUpdBtn" title="<?php $this->label('update'); ?>"><span class="fa fa-refresh fa-lg"></span></button>
-</form> <form action="" method="post" class="xhsInl">
+</form> <form method="post" class="xhsInl">
 <input type="hidden" name="xhsAmount" value="0" />
 <input type="hidden" name="xhsTask" value="updateCart" />
 <input type="hidden" name="xhsCheckout" value="cart" />
@@ -91,10 +91,10 @@ $xhsChk = "ok";} ?>
 </tr>
 <tr>
 <td colspan="3">
-<form action="" method = "post" class="xhsLft">
+<form method = "post" class="xhsLft">
 <button class="xhsShopButton"><span class="fa fa-arrow-circle-left fa-fw"></span> <?php $this->label('continue_shopping');?></button>
 </form>
-<form action="" method = "post" class="xhsRght">
+<form method = "post" class="xhsRght">
 <input type="hidden" name="xhsCheckout" value="customersData">
 <?php if($xhsChk == "ok") { ?>
 <button class="xhsShopButton"><?php $this->label('order_now');?> <span class="fa fa-arrow-circle-right fa-fw"></span></button>

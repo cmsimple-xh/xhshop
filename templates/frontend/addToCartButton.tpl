@@ -8,7 +8,7 @@
             <?php $this->hint('price_info_shipping'); ?>  
 			<br></span>
 		</div>
-		<form action="" method="post">
+		<form method="post">
 			<input type="hidden" name="xhsTask" value="updateCart">
 			<input type="hidden" name="cartItem" value="<?php echo $this->product->uid ; ?>">
 			<input type="hidden" name="<?php echo session_name(); ?>" value="<?php echo session_id(); ?>">

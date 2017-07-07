@@ -6,7 +6,7 @@
 	<div class="xhsPrevPic">%IMAGE%</div>
 	<div class="xhsProdDescript">%DESCRIPTION%</div>
 	<div class="xhsInfoBlock">
-		<form action="" method="post">
+		<form method="post">
 			<input type="hidden" name="xhsTask" value="updateCart">
 			<input type="hidden" name="cartItem" value="<?php echo $this->uid ; ?>">
 			<input type="hidden" name="<?php echo session_name(); ?>" value="<?php echo session_id(); ?>">

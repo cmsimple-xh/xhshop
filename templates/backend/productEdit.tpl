@@ -1,7 +1,7 @@
 <?php ?>
 <section class="xhsMain xhsClearB">
 	<h1><?php echo $this->labels['edit_product']; ?></h1>
-	<form action="" method = "post">
+	<form method = "post">
 		<p><strong><?php $this->label('product_name'); ?>:</strong><br>
 		<?php echo $this->textInputNameValueLabel('xhsName', '%NAME%', null, array('size' => 60)); ?></p>
         <p><strong><?php $this->label('product_variants'); ?>:</strong><br>
