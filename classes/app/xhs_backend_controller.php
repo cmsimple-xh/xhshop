@@ -31,6 +31,9 @@ class XHS_Backend_Controller extends XHS_Controller {
             $swap = $this->catalog->getProduct($_POST['xhsProductSwapID']);
             $this->catalog->swapSortIndex($myself, $swap);
         }
+		if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] === 'XMLHttpRequest') {
+			exit;
+		}
 
         $indices    = array();
         $hints      = array();
