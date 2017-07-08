@@ -27,7 +27,6 @@ $plugin_tx['xhshop']['labels_no']='no';
 $plugin_tx['xhshop']['labels_or']='or';
 $plugin_tx['xhshop']['labels_up_to']='up to';
 $plugin_tx['xhshop']['labels_select'] = 'select';
-$plugin_tx['xhshop']['labels_help'] = 'Help';
 $plugin_tx['xhshop']['labels_about'] = 'About';
 $plugin_tx['xhshop']['labels_fee']='fee';
 $plugin_tx['xhshop']['labels_reduction']='reduction';

@@ -61,18 +61,7 @@
         <form method="post" class="tab">
             <input name="xhsTask" value="helpAbout" type="hidden">
             <input name="xhsTaskCat" value="help_tasks" type="hidden">
-            <input value="<?php echo $this->labels['help'] ?>" class="tab" type="submit">
+            <input value="<?php echo $this->labels['about'] ?>" class="tab" type="submit">
         </form>
-        <ul class="xhsSubTabs" id="xhsAbout">
-
-           <li class="%HELPABOUT%">
-                <form method="post" class="tab">
-                    <input name="xhsTask" value="helpAbout" type="hidden">
-                    <input name="xhsTaskCat" value="help_tasks" type="hidden">
-                    <input value="<?php echo $this->labels['about'] ?>" class="subTab" type="submit">
-                </form>
-            </li>
-
-        </ul>
     </li>
 </ul>
