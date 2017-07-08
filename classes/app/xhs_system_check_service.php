@@ -39,6 +39,7 @@ class XHS_SystemCheckService
             $this->checkPlugin('fa'),
             $this->checkWritability("$this->pluginFolder/css/"),
             $this->checkWritability("$this->pluginFolder/config/"),
+            $this->checkWritability("$this->pluginFolder/data/"),
             $this->checkWritability("$this->pluginFolder/languages/")
         );
     }
