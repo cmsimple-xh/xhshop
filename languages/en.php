@@ -29,9 +29,6 @@ $plugin_tx['xhshop']['labels_up_to']='up to';
 $plugin_tx['xhshop']['labels_select'] = 'select';
 $plugin_tx['xhshop']['labels_help'] = 'Help';
 $plugin_tx['xhshop']['labels_about'] = 'About';
-$plugin_tx['xhshop']['labels_installation'] = 'Installation';
-$plugin_tx['xhshop']['labels_getting_started'] = 'Getting started';
-$plugin_tx['xhshop']['labels_give_support'] = 'Give Help';
 $plugin_tx['xhshop']['labels_fee']='fee';
 $plugin_tx['xhshop']['labels_reduction']='reduction';
 $plugin_tx['xhshop']['labels_error'] = 'Error';
@@ -156,7 +153,6 @@ $plugin_tx['xhshop']['hints_sorry_we_are_closed'] = "<b>We are really sorry!</b>
 $plugin_tx['xhshop']['labels_save_settings'] = 'save settings';
 $plugin_tx['xhshop']['labels_get_vat']='vat.';
 $plugin_tx['xhshop']['hints_no_categories'] = 'No product categories set';
-$plugin_tx['xhshop']['labels_whats_new'] = 'What\'s new?';
 $plugin_tx['xhshop']['hints_sold_out'] = 'Sorry! No products of category &laquo;%s&raquo; available at the moment!';
 $plugin_tx['xhshop']['labels_product_search'] = 'Search for articles';
 $plugin_tx['xhshop']['hints_no_products_found'] = 'Sorry! No products with "%s" found!';
@@ -169,7 +165,6 @@ $plugin_tx['xhshop']['hints_on_netto']=" % auf Nettobetrag ";
 
 ##### NEW (fhs) ########
 $plugin_tx['xhshop']['labels_cat_select'] = 'Select Category';
-$plugin_tx['xhshop']['labels_usage'] = 'Usage';
 
 $plugin_tx['xhshop']['message_backup_created']="Backup %s created";
 

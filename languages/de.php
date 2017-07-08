@@ -29,9 +29,6 @@ $plugin_tx['xhshop']['labels_up_to']='bis einschließlich';
 $plugin_tx['xhshop']['labels_select'] = 'auswählen';
 $plugin_tx['xhshop']['labels_help'] = 'Hilfe';
 $plugin_tx['xhshop']['labels_about'] = 'About';
-$plugin_tx['xhshop']['labels_installation'] = 'Installation';
-$plugin_tx['xhshop']['labels_getting_started'] = 'Start';
-$plugin_tx['xhshop']['labels_give_support'] = 'Helfen';
 $plugin_tx['xhshop']['labels_fee']='Gebühr';
 $plugin_tx['xhshop']['labels_reduction']='Nachlass';
 $plugin_tx['xhshop']['labels_error'] = 'Fehler';
@@ -156,7 +153,6 @@ $plugin_tx['xhshop']['hints_sorry_we_are_closed'] = '<p>Wir bitten um Entschuldi
 $plugin_tx['xhshop']['labels_save_settings'] = 'speichern';
 $plugin_tx['xhshop']['labels_get_vat']='vat.';
 $plugin_tx['xhshop']['hints_no_categories'] = 'Keine Kategorien angelegt.';
-$plugin_tx['xhshop']['labels_whats_new'] = 'Was ist neu?';
 $plugin_tx['xhshop']['hints_sold_out'] = 'Wir bitten um Entschuldigung!<br><br>Leider sind in der Kategorie <span class="srchTrm">%s</span> zurzeit keine Artikel verfügbar.';
 $plugin_tx['xhshop']['labels_product_search'] = 'Artikel suchen';
 $plugin_tx['xhshop']['hints_no_products_found'] = 'Es wurden leider keine Artikel mit dem Suchbegriff <span class="srchTrm">%s</span> gefunden.';
@@ -169,7 +165,6 @@ $plugin_tx['xhshop']['hints_on_netto']=" % auf Nettobetrag ";
 
 ##### NEW (fhs) ########
 $plugin_tx['xhshop']['labels_cat_select'] = 'Kategorie-Auswahl';
-$plugin_tx['xhshop']['labels_usage'] = 'Benutzung';
 
 $plugin_tx['xhshop']['message_backup_created']="Sicherung %s angelegt";
 

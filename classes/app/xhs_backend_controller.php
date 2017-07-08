@@ -464,24 +464,6 @@ class XHS_Backend_Controller extends XHS_Controller {
         return $this->render('help_about', $params);
     }
 
-    function helpUsage(){
-        return $this->render('help_usage');
-    }
-
-    function helpInstallation(){
-        return $this->render('help_install');
-    }
-    function helpWhatsNew(){
-        return $this->render('help_whatsNew');
-    }
-
-    function helpGettingStarted(){
-        return $this->render('help_gettingStarted');
-    }
-    function helpGiveSupport(){
-        return $this->render('help_giveSupport');
-    }
-
     function checkFilePermissions(){
         $writeables = array(XHS_CONFIG_FILE, XHS_CATALOG);
         foreach($this->payments as $payment){

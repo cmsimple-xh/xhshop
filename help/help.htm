@@ -1,0 +1,159 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XH-Shop :: Hilfe</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+html, body {
+	margin: 0;
+	padding: 0;
+}
+body {
+	background-color: #e2e2e2;
+	font: 14px/1.3em Verdana, Arial, Helvetica, sans-serif;
+}
+.additional {
+	font-size: .9em;
+	color: #666;
+}
+.code {
+	font-family: "Courier New", Courier, monospace;
+	border: 1px solid #999;
+	background: #eed;
+	padding: .5em .75em;
+	word-wrap: break-word;
+}
+.codeInl {
+	color: #666;
+	font: 1.1em "Courier New", Courier, monospace;
+}
+hr {
+	border: none;
+	border-top: 1px dotted #666;
+	color: transparent;
+	background-color: transparent;
+	height: 1px;
+	margin: .5em 0;
+}
+div.main {
+	border: 1px solid rgb(187, 187, 187);
+	padding: 2em;
+}
+p {
+	margin: 0 0 1em 0;
+}
+.wrapper {
+	padding: 0;
+	width: 780px;
+	background: #fff;
+	margin: 2em auto;
+	max-width: 100%;
+}
+h1, h2, h3 {
+	font-weight: normal;
+	margin: 1.5em 0 .5em 0;
+	line-height: 1.25em;
+}
+h1 {
+	font-size: 2.5em;
+}
+h2 {
+	font-size: 1.6em;
+}
+h3 {
+	font-size: 1.3em;
+}
+.main img {
+	margin: 0 0 1em 1em;
+	float: right;
+	border-style: none;
+}
+a {
+	color: #666;
+}
+img a {
+	text-decoration: none !important;
+}
+@media screen and (max-width: 640px) {
+body {
+	font-size: 12px;
+}
+}
+</style>
+</head>
+
+<body>
+<div class="wrapper">
+	<div class="main"><img src="xhshop-logo.png" alt="Application Icon">
+		<h1>XH-Shop</h1>
+		<p>Ein kleiner simpler Shop für CMSimple_XH</p>
+		<hr>
+		<h2>Einen Shop eröffnen</h2>
+		<p>Erstelle zunächst mit dem Pagemanager (<span class="codeInl">Adminmenü ⇒ Seiten</span>) eine neue Seite für deinen Shop. Der &quot;normale&quot; Aufruf für den XH-Shop lautet:</p>
+		<p class="code">{{{display_shop();}}}</p>
+		<p>Es ist problemlos möglich oberhalb oder unterhalb dieses Aufrufes andere Elemente auf der Shop-Seite zu platzieren.</p>
+		<h2>Konfiguration/ Administration</h2>
+		<p>Hopefully the screens are self-explanatory.</p>
+		<h2>Adding the cart preview</h2>
+		<p>You don't <i>have to</i> care about this. By default the cart preview is displayed on every single page and gets inserted right above the heading. Most probably you will find a better place for it. Just add to an appropriate place in your template:</p>
+		<p class="code">&lt;?php echo $xhsCartPreview; ?&gt;</p>
+		<p>It's not necessary, but after that you might want to remove or outcomment the lines in <span class="codeInl">plugins/xhshop/index.php</span> to spare an unneeded call:</p>
+		<p class="code">if (!strpos(file_get_contents($pth['file']['template']), '$xhsCartPreview')){<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;$c[$s] = $xhsController->cartPreview() . $c[$s];<br>
+			}</p>
+		<p>If you don't want to have an always visible cart preview just drop those three lines from the <span class="codeInl">xhshop/index.php</span> and link to the cart with a form like this:</p>
+		<p class="code">&lt;form action="?&lt;?php echo XHS_URL; ?&gt" method="post"&gt;<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&lt;input value="go to cart" type="submit"&gt;<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&lt;input name="xhsCheckout" value="cart" type="hidden"&gt;<br>
+			&lt;/form&gt;</p>
+		<h2>Adding product pages</h2>
+		<p>The products got two new fields you can edit in the product editor: you can set an image and add a more detailed description.</p>
+		<p>If you add the description the xhshop will generate an internal "product page" and link to it from the cart and the product list.</p>
+		<p>If you already have created cms-pages for the products or want to present them in a more individualistic manner: just leave the description empty and xhshop will do as before: link to the first page you have selected in the form "product pages".</p>
+		<h2>Adding a better shop navigation</h2>
+		<p>In the default templates you will find a selectbox that offers to select the product categories. (If you have categorized your products.) That's definitely ugly - so find a nice place in your template for</p>
+		<p class="code"> &lt;?php echo $xhsController->shopToc(); ?&gt; </p>
+		<p>or, if you just want to show it on the "shop-page":</p>
+		<p class="code"> &lt;?php
+			if($su == XHS_URL){<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;echo $xhsController->shopToc();<br>
+			} ?&gt; </p>
+		<p>&hellip; and remove the selectbox from the shop's catalog-template. (See "Overwriting the frontend templates" below.</p>
+		<p> This shopToc is a simple <span class="codeInl">&lt;ul&gt;</span>-list containing the categories. Pimp it! (The css is up to you &hellip;)</p>
+		<h2>Relocate the product search input</h2>
+		<p>The same for the product search input: Remove it from the catalog template and find a better place in your CMSimple-template for a form like this:</p>
+		<p class="code"> &lt;form action="?&lt;?php echo XHS_URL; ?&gt;" method="post"&gt;<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&lt;input name="xhsProductSearch" value="" type="text"&gt; <br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="submit" value="Produktsuche"&gt;<br>
+			&lt;/form&gt; </p>
+		<h2>Overwriting the frontend templates</h2>
+		<p>The shop's html output is generated via the templates in the xhshop's subfolder <span class="codeInl">/templates</span>.</p>
+		<p>If you are scared to touch them - and you really should be careful - just copy the *.tpl-files you want to change for the frontend-view into the folder <span class="codeInl">xhshop/theme/frontend/</span> and play around: xhshop will have a look in there, before it opens the default template.
+		
+		<p> To get an idea what happens: Just rename the <span class="codeInl">xhshop/theme/frontend/test_catalog.tpl</span> to <span class="codeInl">catalog.tpl</span> or add some css to the <span class="codeInl">theme/frontend/shopToc.tpl</span>. </p>
+		<p> Won't work with the backend for now. </p>
+		<h2>Where is the css?</h2>
+		<p> You will find the <span class="codeInl">stylesheet.css</span> in <span class="codeInl">xhshop/css</span>. (It needs some clean-up,
+			but hey, this is beta!) </p>
+		<h2>Further Help</h2>
+		<p> &hellip; at <a href="http://www.cmsimpleforum.com">CMSimple-Forum</a> </p>
+		<p> A documentation is to be published either on <a href="http://www.zeichenkombinat.de">zeichenkombinat.de</a> or the <a href="http://www.xhshop.de">xhshop-demo site</a>, but this will take a while and start with German. So please be patient &hellip; </p>
+		<p> <b>&hellip;and have fun!</b> </p>
+		<hr>
+		<h3>Danksagung</h3>
+		<p><a href="http://3-magi.net" target="_blank">Christoph</a> (cmb): &hellip;</p>
+		<p>&hellip;</p>
+		<p>&hellip;</p>
+		<hr>
+		<h3>Copyright &amp; Lizenz</h3>
+		<p>&copy;&nbsp;2017 &hellip;</p>
+		<p>&hellip;<br>
+		</p>
+		<p>&hellip;</p>
+		<p class="additional">THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM &quot;AS IS&quot; WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.</p>
+	</div>
+</div>
+</body>
+</html>

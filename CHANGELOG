@@ -1,0 +1,56 @@
+XHShop on <https://github.com/cmsimple-xh/xhshop/> (30. June 2017):
+* Renamed to XHShop.
+* Overauled design (frase).
+
+Version 1.3 (13. June 2017):
+* Overhauled for CMSimple_XH 1.7 and PHP 7 (cmb).
+
+1.2.1 (24. Sept 2012):
+* Added: <title> set to product's name on details page.
+* Added: <meta name="description"> set to product's teaser on details page.
+* Bug fix: Repaired communication with Paypal's IPN.
+* Legal fix: Changed German label for order-button from "abschicken" to "kaufen".
+* CSS fix: Set padding and margin of the "taskTabs" in BE to "0".
+
+1.2 (2 May 2011):
+* CSS fix: Style of unordered list could have been influenced by the xhshop stylesheet.
+
+RC 1 (26 September 2010):
+* Bug fix: The chosen payment mode of the customer was not stored.
+* Bug fix: A "%" has not been replaced in the bill template.
+
+beta 1.9 (31 May 2010):
+* Bug fix: Moved the class definitions of the payment modules to the top.
+
+beta 1.8 (26 May 2010):
+* Bug fix: paypal module was linked to the "sandbox".
+* Bug fix: replaced some hard-coded German texts in paypal module.
+
+beta 1.7 (3 May 2010):
+* Bug fix: customer's payment mode is now checked.
+* Bug fix: some "slashes" had been added before.
+
+beta 1.6 (22 April 2010):
+* Bug fix: not available products were displayed in the search results.
+* Bug fix: c.o.s pages lower than the top level were not linked correctly.
+
+beta 1.5 (21 April 2010):
+* Added "internal" product pages. (See getting started)
+* Added simple product search (case insensitive, AND-relation).
+* Added template for shop navigation.
+* Added folder "theme" - a place to overwrite the default templates.
+* Bugs in xhs_backend_controller.php fixed: faulty conversions between string and float.
+* Bug in xhs_backend_controller.php fixed: the product variants > 3 got melted in input field.
+* Bugs in XHS_CMSimpleBridge.php fixed: heading and level of the first page were not found.
+* Removed a short open tag in paymentSettings.tpl
+* Added some missing strings to language files.
+* Minor changes in frontend/catalog.tpl
+
+beta 1.4 (15 April 2010):
+* Bug in customersData.tpl fixed: The deactivated payment methods were offered
+* Added programmatic import of payment methods (was set by a hardcoded array before)
+* Added check for file permissions and chmod
+Language files: Added some strings and changed some htmlentities to uft-8
+
+beta 1.3 (12 April 2010):
+* Initial public beta

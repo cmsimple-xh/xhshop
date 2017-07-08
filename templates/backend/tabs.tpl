@@ -59,40 +59,12 @@
     </li>
     <li class="%HELP_TASKS%">
         <form method="post" class="tab">
-            <input name="xhsTask" value="helpGettingStarted" type="hidden">
+            <input name="xhsTask" value="helpAbout" type="hidden">
             <input name="xhsTaskCat" value="help_tasks" type="hidden">
             <input value="<?php echo $this->labels['help'] ?>" class="tab" type="submit">
         </form>
         <ul class="xhsSubTabs" id="xhsAbout">
 
-            <li class="%HELPWHATSNEW%">
-                <form method="post" class="tab">
-                    <input name="xhsTask" value="helpWhatsNew" type="hidden">
-                    <input name="xhsTaskCat" value="help_tasks" type="hidden">
-                    <input value="<?php echo $this->labels['whats_new'] ?>" class="subTab" type="submit">
-                </form>
-            </li>
-            <li class="%HELPGETTINGSTARTED%">
-                <form method="post" class="tab">
-                    <input name="xhsTask" value="helpGettingStarted" type="hidden">
-                    <input name="xhsTaskCat" value="help_tasks" type="hidden">
-                    <input value="<?php echo $this->labels['getting_started'] ?>" class="subTab" type="submit">
-                </form>
-            </li>
-            <li class="%HELPUSAGE%">
-                <form method="post" class="tab">
-                    <input name="xhsTask" value="helpUsage" type="hidden">
-                    <input name="xhsTaskCat" value="help_tasks" type="hidden">
-                    <input value="<?php echo $this->labels['usage'] ?>" class="subTab" type="submit">
-                </form>
-            </li>
-            <li class="%HELPGIVESUPPORT%">
-                <form method="post" class="tab">
-                    <input name="xhsTask" value="helpGiveSupport" type="hidden">
-                    <input name="xhsTaskCat" value="help_tasks" type="hidden">
-                    <input value="<?php echo $this->labels['give_support'] ?>" class="subTab" type="submit">
-                </form>
-            </li>
            <li class="%HELPABOUT%">
                 <form method="post" class="tab">
                     <input name="xhsTask" value="helpAbout" type="hidden">
