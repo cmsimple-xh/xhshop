@@ -28,5 +28,6 @@ function loadXHSClasses(){
     require_once XHS_LIB_PATH . 'xhs_customer.php';
     require_once XHS_LIB_PATH . 'catalogue.php';
     require_once XHS_LIB_PATH . 'product.php';
+    require_once XHS_LIB_PATH . 'xhs_system_check_service.php';
     require_once XHS_LIB_PATH . 'xhs_payment_module.php';
 }

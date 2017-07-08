@@ -230,6 +230,12 @@ class XHS_View{
         echo $key . ' - missing in language file ([\'labels\'])';
     }
 
+    function syscheck($label, $stateLabel) {
+        global $plugin_tx;
+
+        return sprintf($plugin_tx['xhshop']['syscheck_message'], $label, $stateLabel);
+    }
+
     function submitButton($value){
         echo '<input type="submit" class="xhsShopButton" value="'.$this->buttons[$value].'"'. $this->endTag;
     }

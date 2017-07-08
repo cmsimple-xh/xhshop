@@ -168,6 +168,17 @@ $plugin_tx['xhshop']['labels_cat_select'] = 'Select Category';
 
 $plugin_tx['xhshop']['message_backup_created']="Backup %s created";
 
+$plugin_tx['xhshop']['syscheck_extension']="the PHP extension '%s' is loaded";
+$plugin_tx['xhshop']['syscheck_fail']="failure";
+$plugin_tx['xhshop']['syscheck_message']="Checking that %1\$s … %2\$s";
+$plugin_tx['xhshop']['syscheck_phpversion']="PHP version ≥ %s";
+$plugin_tx['xhshop']['syscheck_plugin']="the CMSimple_XH plugin '%s' is installed";
+$plugin_tx['xhshop']['syscheck_success']="okay";
+$plugin_tx['xhshop']['labels_syscheck']="System check";
+$plugin_tx['xhshop']['syscheck_warning']="warning";
+$plugin_tx['xhshop']['syscheck_writable']="'%s' is writable";
+$plugin_tx['xhshop']['syscheck_xhversion']="CMSimple_XH version ≥ %s";
+
 $plugin_tx['xhshop']['cf_shop_published']="Whether the shop is published (opposed to being in maintenance mode)";
 $plugin_tx['xhshop']['cf_shop_minimum_order']="The order minimum (incl. shipping and fees) – enter with decimal point";
 $plugin_tx['xhshop']['cf_shop_default_currency']="The currency of the shop – enter the currency symbol, for instance, €, $, £ or ¥";

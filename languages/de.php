@@ -168,6 +168,17 @@ $plugin_tx['xhshop']['labels_cat_select'] = 'Kategorie-Auswahl';
 
 $plugin_tx['xhshop']['message_backup_created']="Sicherung %s angelegt";
 
+$plugin_tx['xhshop']['syscheck_extension']="die PHP-Erweiterung '%s' geladen ist";
+$plugin_tx['xhshop']['syscheck_fail']="Fehler";
+$plugin_tx['xhshop']['syscheck_message']="Prüfe, dass %1\$s … %2\$s";
+$plugin_tx['xhshop']['syscheck_phpversion']="die PHP-Version ≥ %s";
+$plugin_tx['xhshop']['syscheck_plugin']="das CMSIMPLE_XH Plugin '%s' installiert ist";
+$plugin_tx['xhshop']['syscheck_success']="OK";
+$plugin_tx['xhshop']['labels_syscheck']="System-Prüfung";
+$plugin_tx['xhshop']['syscheck_warning']="Warnung";
+$plugin_tx['xhshop']['syscheck_writable']="'%s' schreibbar ist";
+$plugin_tx['xhshop']['syscheck_xhversion']="die CMSimple_XH-Version ≥ %s";
+
 $plugin_tx['xhshop']['cf_shop_published']="Ob der Shop veröffentlicht ist (andernfalls befindet er sich im Wartungsmodus)";
 $plugin_tx['xhshop']['cf_shop_minimum_order']="Mindestbestellwert (Warenwert + Versandkosten) – Eingabe mit Dezimalpunkt";
 $plugin_tx['xhshop']['cf_shop_default_currency']="Die Währung des Shops – Eingabe als Währungssymbol, beispielsweise €, $, £ or ¥";
