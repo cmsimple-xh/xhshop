@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="Xhshop" default="help">
+
+    <target name="help" description="lists available targets">
+        <exec command="phing -l" outputProperty="help"/>
+        <echo>${help}</echo>
+    </target>
+
+    <target name="compat"
+            description="checks compatibility with PHP_CompatInfo">
+        <exec command="phpcompatinfo analyser:run --alias current" logoutput="true"/>
+    </target>
+
+</project>
