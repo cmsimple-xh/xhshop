@@ -1,9 +1,7 @@
 <?php
-$zShopSettings['de']['url'] = 'Shop';
 $zShopSettings['de']['shopName'] = '';
 $zShopSettings['de']['shipping_unit'] = 'kg';
 $zShopSettings['en']['shipping_unit'] = 'kg.';
-$zShopSettings['en']['url'] = 'Shop';
 $zShopSettings['en']['shopName'] = '';
 $zShopSettings['forwarding_expenses_up_to'] = '50';
 $zShopSettings['charge_for_shipping'] = 'true';

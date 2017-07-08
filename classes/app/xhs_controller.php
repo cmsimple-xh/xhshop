@@ -29,6 +29,7 @@ class XHS_Controller {
                 $this->settings[substr($key, 6)] =$value;
             }
         }
+        $this->settings['url'] = ltrim($plugin_tx['xhshop']['config_shop_page'], '?');
         $this->settings['cos_page'] = $plugin_tx['xhshop']['config_cos_page'];
         $this->getPaymentModules();
         $this->paymentModules = array();
@@ -37,8 +38,8 @@ class XHS_Controller {
          * TODO: eliminate need of that CMSimple-separator, leave it to the bridge
          */
 
-        if(!defined('XHS_URL') && isset($this->settings[XHS_LANGUAGE]['url'])){
-            define('XHS_URL',$this->settings[XHS_LANGUAGE]['url']);
+        if(!defined('XHS_URL') && isset($this->settings['url'])){
+            define('XHS_URL',$this->settings['url']);
         }
         $this->bridge = new XHS_CMS_Bridge();
         $this->catalog = new Catalogue(XHS_URI_SEPARATOR);
@@ -48,10 +49,6 @@ class XHS_Controller {
         $viewProvider = implode('_', $viewProvider).'_View';
         $this->viewProvider = new $viewProvider();
         $this->viewProvider->setCurrency($this->settings['default_currency']);
-    }
-
-    function setShopUrl($url){
-        $this->settings[XHS_LANGUAGE]['url'] = $url;
     }
 
     function render($template, $params = null){

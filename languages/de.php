@@ -1,4 +1,5 @@
 <?php
+$plugin_tx['xhshop']['config_shop_page']="?Shop";
 $plugin_tx['xhshop']['config_cos_page']="?Shop/AGB";
 $plugin_tx['xhshop']['config_decimal_separator']=",";
 $plugin_tx['xhshop']['config_thousands_separator']=".";

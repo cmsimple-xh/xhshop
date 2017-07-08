@@ -161,7 +161,7 @@ class XHS_Backend_Controller extends XHS_Controller {
     }
 
     function tabs(){
-        $params['SHOP_URL'] = $this->settings[XHS_LANGUAGE]['url'];
+        $params['SHOP_URL'] = $this->settings['url'];
         $params['app_name'] = $this->appName;
         $params['version'] = $this->version;
         $params['setting_tasks'] = 'xhsTaskTab';
@@ -304,7 +304,7 @@ class XHS_Backend_Controller extends XHS_Controller {
         $save = "<?php\n";
         foreach($this->settings as $key => $value){
 			$exclude = array(
-				'published', 'minimum_order', 'default_currency', 'cos_page',
+				'published', 'minimum_order', 'default_currency', 'shop_page', 'cos_page',
 				'order_email', 'company_name', 'name', 'street', 'zip_code', 'city',
 				'vat_full', 'vat_reduced', 'vat_default_full', 'dont_deal_with_taxes'
 			);
@@ -451,11 +451,6 @@ class XHS_Backend_Controller extends XHS_Controller {
         }
 
         return $this->editProduct($id);
-    }
-
-    function setShopUrl($url){
-        $this->settings[XHS_LANGUAGE]['url'] = $url;
-        $this->saveSettings();
     }
 
     function helpAbout(){
