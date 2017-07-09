@@ -7,10 +7,6 @@ class XHS_Backend_Controller extends XHS_Controller {
 
     function handleRequest($request = null){
         $html = $this->tabs();
-        $this->checkFilePermissions();
-        if(count($this->errors) > 0) {
-            $html .= $this->errorList();
-        }
         $request = 'productList';
         if(isset($_POST['xhsTask'])){
             $request = $_POST['xhsTask'];
@@ -445,27 +441,6 @@ class XHS_Backend_Controller extends XHS_Controller {
 		$service = new XHS_SystemCheckService;
 		$params['syschecks'] = $service->getChecks();
         return $this->render('help_about', $params);
-    }
-
-    function checkFilePermissions(){
-        $writeables = array(XHS_CONFIG_FILE, XHS_CATALOG);
-
-        foreach($writeables as $file){
-            if(!file_exists($file)){
-                $this->errors['file_errors'][] = array($file, 'file_not_found');
-                continue;
-            }
-            if(!is_writeable($file)){
-                if(!chmod($file, 0666)){
-                    $this->errors['file_errors'][] = array($file, 'needs_write_permission');
-                }
-            }
-        }
-    }
-
-    function errorList(){
-        $params['errors'] = $this->errors;
-        return $this->render('errorList', $params );
     }
 }
 ?>
