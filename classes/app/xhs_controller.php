@@ -18,7 +18,6 @@ class XHS_Controller {
     function __construct(){
         global $pth, $plugin_cf, $plugin_tx;
 
-        include XHS_CONFIG_FILE;
         $this->settings = array();
         foreach ($plugin_cf['xhshop'] as $key => $value) {
             if (strpos($key, 'shop_') === 0) {

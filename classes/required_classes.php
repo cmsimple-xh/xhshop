@@ -6,7 +6,6 @@ define('XHS_CATALOG', XHS_BASE_PATH . 'data/catalog.php' );
 define('XHS_JS_PATH', XHS_BASE_PATH .'js/' );
 
 define('XHS_COUNTRIES_FILE', XHS_BASE_PATH . 'lang/countries_' . XHS_LANGUAGE . '.txt');
-define('XHS_CONFIG_FILE', XHS_BASE_PATH . 'config/shopsettings.php' );
 define('XHS_BILLS_PATH', XHS_BASE_PATH . 'bills/');
 define('XHS_TEMPLATES_PATH', XHS_BASE_PATH . 'templates/');
 define('XHS_CSS_PATH', XHS_BASE_PATH .  'css/');
