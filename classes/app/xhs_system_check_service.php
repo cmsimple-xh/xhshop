@@ -15,14 +15,20 @@ class XHS_SystemCheckService
     /**
      * @var array
      */
+    private $config;
+
+    /**
+     * @var array
+     */
     private $lang;
 
     public function __construct()
     {
-        global $pth, $plugin_tx;
+        global $pth, $plugin_cf, $plugin_tx;
 
         $this->pluginsFolder = $pth['folder']['plugins'];
         $this->pluginFolder = "{$this->pluginsFolder}xhshop";
+        $this->config = $plugin_cf['xhshop'];
         $this->lang = $plugin_tx['xhshop'];
     }
 
@@ -43,7 +49,8 @@ class XHS_SystemCheckService
             $this->checkWritability("$this->pluginFolder/languages/"),
             $this->checkWritability("$this->pluginFolder/classes/paymentmodules/paypal/tmp_orders/"),
             $this->checkPageExists($this->lang['config_shop_page']),
-            $this->checkPageExists($this->lang['config_cos_page'], false)
+            $this->checkPageExists($this->lang['config_cos_page'], false),
+            $this->checkForwardingExpenses()
         );
     }
 
@@ -122,5 +129,50 @@ class XHS_SystemCheckService
         $label = sprintf($this->lang['syscheck_page_exists'], $pageUrl);
         $stateLabel = $this->lang["syscheck_$state"];
         return (object) compact('state', 'label', 'stateLabel');
+    }
+
+    /**
+     * @return object
+     */
+    private function checkForwardingExpenses()
+    {
+        $state = $this->areForwardingExpensesValid() ? 'success' : 'fail';
+        $label = $this->lang['syscheck_shipping'];
+        $stateLabel = $this->lang["syscheck_$state"];
+        return (object) compact('state', 'label', 'stateLabel');
+    }
+
+    /**
+     * @return bool
+     */
+    private function areForwardingExpensesValid()
+    {
+        $weight = 0;
+        $cost = 0;
+        $finished = false;
+        foreach (explode(';', $this->config['shipping_forwarding_expenses']) as $expenses) {
+            if ($finished) {
+                return false;
+            }
+            $parts = explode('=', trim($expenses));
+            switch (count($parts)) {
+                case 1:
+                    if ($parts[0] <= $cost) {
+                        return false;
+                    }
+                    $finished = true;
+                    break;
+                case 2:
+                    if ($parts[0] <= $weight || $parts[1] <= $cost) {
+                        return false;
+                    }
+                    $weight = $parts[0];
+                    $cost = $parts[1];
+                    break;
+                default:
+                    return false;
+            }
+        }
+        return true;
     }
 }
