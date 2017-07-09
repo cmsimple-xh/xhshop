@@ -524,7 +524,7 @@ class FrontEndController extends Controller {
     }
 
     function sendEmails($bill) {
-        require_once(XHS_BASE_PATH . 'classes/phpmailer/class.phpmailer.php');
+        require_once(XHS_BASE_PATH . 'phpmailer/class.phpmailer.php');
         $mail = new PHPMailer();
         $mail->WordWrap = 60;
         $mail->IsHTML(true);
