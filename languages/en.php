@@ -168,6 +168,12 @@ $plugin_tx['xhshop']['labels_cat_select'] = 'Select Category';
 
 $plugin_tx['xhshop']['message_backup_created']="Backup %s created";
 
+$plugin_tx['xhshop']['cash-in-advance_label']="Cash in Advance";
+$plugin_tx['xhshop']['cash-on-delivery_label']="Cash on Delivery";
+$plugin_tx['xhshop']['on-account_label']="On Account";
+$plugin_tx['xhshop']['paypal_label']="Paypal";
+$plugin_tx['xhshop']['paypal_go_to_paypal']="go to paypal";
+
 $plugin_tx['xhshop']['syscheck_extension']="the PHP extension '%s' is loaded";
 $plugin_tx['xhshop']['syscheck_fail']="failure";
 $plugin_tx['xhshop']['syscheck_message']="Checking that %1\$s … %2\$s";
@@ -182,6 +188,7 @@ $plugin_tx['xhshop']['syscheck_xhversion']="CMSimple_XH version ≥ %s";
 $plugin_tx['xhshop']['cf_shop_published']="Whether the shop is published (opposed to being in maintenance mode)";
 $plugin_tx['xhshop']['cf_shop_minimum_order']="The order minimum (incl. shipping and fees) – enter with decimal point";
 $plugin_tx['xhshop']['cf_shop_default_currency']="The currency of the shop – enter the currency symbol, for instance, €, $, £ or ¥";
+$plugin_tx['xhshop']['cf_shop_currency_code']="ISO 4217 currency code of the shop's currency; for instance, EUR, USD, GBP or JPY.";
 $plugin_tx['xhshop']['cf_contact_order_email']="E-mail address to send the orders to";
 $plugin_tx['xhshop']['cf_contact_company_name']="Shop or company name";
 $plugin_tx['xhshop']['cf_contact_name']="Name of the shop operator. This name is used to sign the confirmation mail, amongst others.";
@@ -192,3 +199,5 @@ $plugin_tx['xhshop']['cf_taxes_vat_full']="full V.A.T. in percent – fractions 
 $plugin_tx['xhshop']['cf_taxes_vat_reduced']="reduced V.A.T. in percent – fractions of a percent have to be entered with a decimal point";
 $plugin_tx['xhshop']['cf_taxes_vat_default_full']="Whether the tax rate defaults to full for new products.";
 $plugin_tx['xhshop']['cf_taxes_dont_deal_with_taxes']='Do not handle taxes.';
+$plugin_tx['xhshop']['cf_paypal_business']="Your PayPal ID or a confirmed email address associated with your PayPal account";
+$plugin_tx['xhshop']['cf_paypal_sandbox']="Use the Paypal sandbox? This is only useful for development and testing; disable for production usage by all means!";

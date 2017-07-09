@@ -184,20 +184,6 @@ class XHS_Backend_Controller extends XHS_Controller {
         return $this->render('tabs', $params);
     }
 
-    function paymentSettings(){
-        $params = array();
-        foreach($this->payments as $name){
-            $this->loadPaymentModule($name);
-        }
-        if(isset($_POST['xhsPaymentTask']) && $_POST['xhsPaymentTask'] == 'updateSettings'){
-            foreach($this->paymentModules as $name => $module){
-                $module->saveSettings();
-            }
-        }
-        $params['modules'] = $this->paymentModules;
-        return $this->render('paymentSettings', $params);
-    }
-
     function shippingSettings(){
         if(isset($_POST['newWeightRange'])){
             if(!isset($_POST['shipping_up_to'])){$this->settings['shipping_up_to'] = 'false';}
@@ -463,9 +449,6 @@ class XHS_Backend_Controller extends XHS_Controller {
 
     function checkFilePermissions(){
         $writeables = array(XHS_CONFIG_FILE, XHS_CATALOG);
-        foreach($this->payments as $payment){
-            $writeables[] = XHS_BASE_PATH . 'classes/paymentmodules/' . $payment . '/settings.php';
-        }
 
         foreach($writeables as $file){
             if(!file_exists($file)){

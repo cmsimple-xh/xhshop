@@ -168,6 +168,12 @@ $plugin_tx['xhshop']['labels_cat_select'] = 'Kategorie-Auswahl';
 
 $plugin_tx['xhshop']['message_backup_created']="Sicherung %s angelegt";
 
+$plugin_tx['xhshop']['cash-in-advance_label']="Vorkasse";
+$plugin_tx['xhshop']['cash-on-delivery_label']="Nachnahme";
+$plugin_tx['xhshop']['on-account_label']="Rechnung";
+$plugin_tx['xhshop']['paypal_label']="Paypal";
+$plugin_tx['xhshop']['paypal_go_to_paypal']="mit Paypal bezahlen";
+
 $plugin_tx['xhshop']['syscheck_extension']="die PHP-Erweiterung '%s' geladen ist";
 $plugin_tx['xhshop']['syscheck_fail']="Fehler";
 $plugin_tx['xhshop']['syscheck_message']="Prüfe, dass %1\$s … %2\$s";
@@ -182,6 +188,7 @@ $plugin_tx['xhshop']['syscheck_xhversion']="die CMSimple_XH-Version ≥ %s";
 $plugin_tx['xhshop']['cf_shop_published']="Ob der Shop veröffentlicht ist (andernfalls befindet er sich im Wartungsmodus)";
 $plugin_tx['xhshop']['cf_shop_minimum_order']="Mindestbestellwert (Warenwert + Versandkosten) – Eingabe mit Dezimalpunkt";
 $plugin_tx['xhshop']['cf_shop_default_currency']="Die Währung des Shops – Eingabe als Währungssymbol, beispielsweise €, $, £ or ¥";
+$plugin_tx['xhshop']['cf_shop_currency_code']="ISO 4217 Währungscode der Shop-Währung; beispielsweise EUR, USD, GBP oder JPY.";
 $plugin_tx['xhshop']['cf_contact_order_email']="E-Mail-Adresse, an die die Bestellungen verschickt werden";
 $plugin_tx['xhshop']['cf_contact_company_name']="Shop-Name oder Firmen-Name";
 $plugin_tx['xhshop']['cf_contact_name']="Name des Shop-Betreibers. Dieser Name wird u.A. unter die Bestätigungsmail gesetzt.";
@@ -192,3 +199,5 @@ $plugin_tx['xhshop']['cf_taxes_vat_full']="volle Umsatzsteuer in Prozent – Bru
 $plugin_tx['xhshop']['cf_taxes_vat_reduced']="ermäßigte Umsatzsteuer in Prozent – Bruchteile eines Prozent müssen mit Dezimalpunkt angegeben werden";
 $plugin_tx['xhshop']['cf_taxes_vat_default_full']="Soll der volle Umsatzsteuersatz für neue Produkte voreingestellt sein?";
 $plugin_tx['xhshop']['cf_taxes_dont_deal_with_taxes']='Als Kleinunternehmer berechne ich nach Par. 19 Abs. 1 UStG. keine Umsatzsteuer.';
+$plugin_tx['xhshop']['cf_paypal_business']="Ihre E-Mail-Adresse bei Paypal";
+$plugin_tx['xhshop']['cf_paypal_sandbox']="Soll der Paypal \"Sandkasten\" verwendet werden? Das ist nur sinnvoll für Entwicklung und Tests; für den Praxiseinsatz unbedingt deaktivieren!";
