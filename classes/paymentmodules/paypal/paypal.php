@@ -19,7 +19,7 @@ class XHS_Paypal extends XHS_Payment_Module {
     }
 
     function isAvailable() {
-        return strlen(trim($this->settings['currency_code'])) === 3 && strlen(trim($this->settings['business'])) > 5;
+        return strlen(trim($this->settings['currency_code'])) === 3 && strlen(trim($this->settings['email'])) > 5;
     }
 
     function wantsCartItems() {
@@ -48,7 +48,7 @@ class XHS_Paypal extends XHS_Payment_Module {
 <form action="' . $this->urls[$this->settings['sandbox'] ? 'development' : 'production'] . '" method="post">
     <input type="hidden" name="cmd" value="_cart" />
 	<input type="hidden" name="upload" value="1" />
-	<input type="hidden" name="business" value="' . $this->settings['business'] . '">
+	<input type="hidden" name="business" value="' . $this->settings['email'] . '">
 	<input type="hidden" name="currency_code" value="' . $this->settings['currency_code'] . '" />
     <input type="hidden" name="lc" value="' . strtoupper(XHS_LANGUAGE) . '" />
 	<input type="hidden" name="rm" value="2" />
