@@ -1,5 +1,8 @@
 <?php
-class XHS_CMS_Bridge
+
+namespace Xhshop;
+
+class CmsBridge
 {
     var $headings = array();
     var $levels = array();

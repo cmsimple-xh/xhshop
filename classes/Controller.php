@@ -4,7 +4,10 @@
  *
  * @author Moritz
  */
-class XHS_Controller {
+
+namespace Xhshop;
+
+class Controller {
     var $viewProvider;
     var $catalog;
     var $settings;
@@ -46,18 +49,16 @@ class XHS_Controller {
         if(!defined('XHS_URL') && isset($this->settings['url'])){
             define('XHS_URL',$this->settings['url']);
         }
-        $this->bridge = new XHS_CMS_Bridge();
+        $this->bridge = new CmsBridge();
         $this->catalog = new Catalogue(XHS_URI_SEPARATOR);
 
-        $viewProvider = (explode('_',get_class($this)));
-        array_pop($viewProvider);
-        $viewProvider = implode('_', $viewProvider).'_View';
+        $viewProvider = preg_replace('/Controller$/', 'View', get_class($this));
         $this->viewProvider = new $viewProvider();
         $this->viewProvider->setCurrency($this->settings['default_currency']);
     }
 
     function render($template, $params = null){
-        if(!($this->viewProvider instanceof XHS_View)){
+        if(!($this->viewProvider instanceof View)){
             return "XHSController:render no view provider!";
         }
         if(is_array($params)){
@@ -79,7 +80,7 @@ class XHS_Controller {
     function categoryOptions(){
         $options = array();
 
-        if($this->settings['allow_show_all'] == 'true' || $this instanceof XHS_Backend_Controller){
+        if($this->settings['allow_show_all'] == 'true' || $this instanceof BackEndController){
             $options[] = array('value' => '', 'label' => $this->viewProvider->labels['all_categories']);
         }
         foreach($this->categories() as $category){
@@ -223,7 +224,7 @@ class XHS_Controller {
         $category = null;
         $products = array();
         // do not collect not available products for visitor
-        $collectAll = $this instanceof XHS_Backend_Controller;
+        $collectAll = $this instanceof BackendController;
         $temp = $this->products(null, $collectAll);
         $needles = explode(' ', trim($needle));
         foreach($temp as $uid => $product){
@@ -261,7 +262,7 @@ class XHS_Controller {
     }
 
     function addPaymentModule($module){
-        if($module instanceof XHS_Payment_Module){
+        if($module instanceof PaymentModule){
             $this->paymentModules[$module->getName()] = $module;
             $module->setShopCurrency(html_entity_decode($this->settings['default_currency']));
             return true;
