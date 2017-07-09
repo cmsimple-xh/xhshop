@@ -4,7 +4,6 @@ define('XHS_BASE_PATH', $pth['folder']['plugins'] . 'xhshop/');
 define('XHS_LIB_PATH', XHS_BASE_PATH . 'classes/app/' );
 define('XHS_CATALOG', XHS_BASE_PATH . 'data/catalog.php' );
 define('XHS_JS_PATH', XHS_BASE_PATH .'js/' );
-define('XHS_HELP_PATH', XHS_BASE_PATH . 'help/' );
 
 define('XHS_COUNTRIES_FILE', XHS_BASE_PATH . 'lang/countries_' . XHS_LANGUAGE . '.txt');
 define('XHS_CONFIG_FILE', XHS_BASE_PATH . 'config/shopsettings.php' );
