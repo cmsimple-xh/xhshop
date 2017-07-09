@@ -7,6 +7,8 @@
 
 namespace Xhshop;
 
+use PHPMailer;
+
 class FrontEndController extends Controller {
 
     var $requiredCustomerData = array();
@@ -448,7 +450,7 @@ class FrontEndController extends Controller {
 
     function writeBill() {
 
-        $writer = new Xhshop\BillWriter();
+        $writer = new BillWriter();
         $rows   = '';
         if (XHS_LANGUAGE == 'de')
         {
