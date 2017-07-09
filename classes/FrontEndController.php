@@ -4,7 +4,10 @@
  *
  * @author Moritz
  */
-class XHS_Frontend_Controller extends XHS_Controller {
+
+namespace Xhshop;
+
+class FrontEndController extends Controller {
 
     var $requiredCustomerData = array();
 
@@ -73,7 +76,7 @@ class XHS_Frontend_Controller extends XHS_Controller {
 
         if (!isset($_SESSION['xhsOrder']))
         {
-            $_SESSION['xhsOrder'] = new XHS_Order($this->settings['vat_full'], $this->settings['vat_reduced']);
+            $_SESSION['xhsOrder'] = new Order($this->settings['vat_full'], $this->settings['vat_reduced']);
         }
 
         if ((int) $_POST['xhsAmount'] > 0)
@@ -246,7 +249,7 @@ class XHS_Frontend_Controller extends XHS_Controller {
 
         if (!isset($_SESSION['xhsCustomer']))
         {
-            $customer                = new XHS_Customer();
+            $customer                = new Customer();
             $_SESSION['xhsCustomer'] = $customer;
         }
 
@@ -445,8 +448,7 @@ class XHS_Frontend_Controller extends XHS_Controller {
 
     function writeBill() {
 
-        require_once('billwriter.php');
-        $writer = new XHS_BillWriter();
+        $writer = new Xhshop\BillWriter();
         $rows   = '';
         if (XHS_LANGUAGE == 'de')
         {

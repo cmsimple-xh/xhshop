@@ -9,7 +9,10 @@
  *
  * @author Moritz
  */
-class XHS_Backend_View extends XHS_View {
+
+namespace Xhshop;
+
+class BackEndView extends View {
 
      function __construct(){
         parent::__construct();

@@ -4,7 +4,10 @@
  *
  * @author Moritz
  */
-class XHS_Order {
+
+namespace Xhshop;
+
+class Order {
     //put your code here
     var $items = array();
     var $cartGross;

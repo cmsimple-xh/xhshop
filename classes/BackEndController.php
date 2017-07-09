@@ -1,5 +1,8 @@
 <?php
-class XHS_Backend_Controller extends XHS_Controller {
+
+namespace Xhshop;
+
+class BackEndController extends Controller {
 
     function __construct(){
         parent::__construct();
@@ -300,7 +303,7 @@ class XHS_Backend_Controller extends XHS_Controller {
     function helpAbout(){
         $params['appName'] = $this->appName;
         $params['version'] = $this->version;
-		$service = new XHS_SystemCheckService;
+		$service = new SystemCheckService;
 		$params['syschecks'] = $service->getChecks();
         return $this->render('help_about', $params);
     }

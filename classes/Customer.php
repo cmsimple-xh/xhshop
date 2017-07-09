@@ -9,7 +9,10 @@
  *
  * @author Moritz
  */
-class XHS_Customer {
+
+namespace Xhshop;
+
+class Customer {
     var $first_name;
     var $last_name;
     var $street;

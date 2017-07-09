@@ -2,7 +2,10 @@
 /**
  *
  */
-class XHS_View{
+
+namespace Xhshop;
+
+class View{
     var $docType;
     var $endTag = ' />';
     var $templatePath;
@@ -250,7 +253,7 @@ class XHS_View{
     }
 
    function categorySelect(){
-        if(    ($this->showCategorySelect == false && !($this instanceof XHS_Backend_View))
+        if(    ($this->showCategorySelect == false && !($this instanceof BackendView))
             || !isset($this->categoryOptions) 
             || count($this->categoryOptions) == 0){
 

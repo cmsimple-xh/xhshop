@@ -1,5 +1,8 @@
 <?php
-class XHS_Frontend_View extends XHS_View {
+
+namespace Xhshop;
+
+class FrontEndView extends View {
     var $paymentHint;
 
     function __construct(){

@@ -1,6 +1,8 @@
 <?php
 
-class XHS_SystemCheckService
+namespace Xhshop;
+
+class SystemCheckService
 {
     /**
      * @var string

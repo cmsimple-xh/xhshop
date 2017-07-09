@@ -1,7 +1,10 @@
 <?php
+
+use Xhshop\PaymentModule;
+
 global $xhsController;
 
-class XHS_In_Advance extends XHS_Payment_Module {
+class XHS_In_Advance extends PaymentModule {
 
     function __construct(){
         $this->name = 'cash_in_advance';

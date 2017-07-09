@@ -1,6 +1,8 @@
 <?php
 
-class XHS_Payment_Module {
+namespace Xhshop;
+
+class PaymentModule {
     var $name = null;
     var $language = array();
     var $settings = array();

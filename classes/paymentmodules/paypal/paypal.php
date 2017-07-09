@@ -1,8 +1,10 @@
 <?php
 
+use Xhshop\PaymentModule;
+
 global $xhsController;
 
-class XHS_Paypal extends XHS_Payment_Module {
+class XHS_Paypal extends PaymentModule {
 
     var $name         = 'paypal';
     var $urls           = array(

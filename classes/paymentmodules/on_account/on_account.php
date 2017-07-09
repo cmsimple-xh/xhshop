@@ -1,7 +1,10 @@
 <?php
+
+use Xhshop\PaymentModule;
+
 global $xhsController;
    
-class XHS_On_Account extends XHS_Payment_Module {
+class XHS_On_Account extends PaymentModule {
     
     function __construct(){
      

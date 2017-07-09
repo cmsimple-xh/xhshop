@@ -1,5 +1,7 @@
 <?php
 
+use Xhshop\BackEndController;
+
 XH_registerStandardPluginMenuItems(false);
 
 if(function_exists('XH_wantsPluginAdministration') && XH_wantsPluginAdministration('xhshop') || isset($xhshop)){
@@ -15,7 +17,7 @@ if(function_exists('XH_wantsPluginAdministration') && XH_wantsPluginAdministrati
     } elseif (in_array($admin, array('plugin_config', 'plugin_language'), true)) {
         $o .= plugin_admin_common($action, $admin, $plugin);
     } else{
-        $xhsController = new XHS_Backend_Controller();
+        $xhsController = new BackEndController();
         $o .= '<p><a href="?&' . $plugin . '&admin=plugin_stylesheet&action=plugin_text" />stylesheet</a></p>';
         $o .= $xhsController->handleRequest();
     }
