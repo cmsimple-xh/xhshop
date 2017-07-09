@@ -113,9 +113,9 @@ nav {
 	overflow: hidden;
 	height: auto;
 }
-#nav ul li:first-child {
+/*#nav ul li:first-child {
 	display: none !important;
-}
+}*/
 article.main {
 	width: 100%;
 	max-width: 100%;
