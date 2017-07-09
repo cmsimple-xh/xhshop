@@ -78,7 +78,6 @@ $plugin_tx['xhshop']['labels_other_currency']='andere';
 $plugin_tx['xhshop']['labels_full_vat']='voll';
 $plugin_tx['xhshop']['labels_reduced_vat']='ermäßigt';
 $plugin_tx['xhshop']['labels_forwarding_expenses']='Versandkosten';
-$plugin_tx['xhshop']['labels_shipping_by_unit']='Versandkosten nach "Einheiten" staffeln?';
 $plugin_tx['xhshop']['labels_weightRanges'] = 'Versandkostenstaffelung:';
 $plugin_tx['xhshop']['labels_new_weightRange'] = 'Versandkostenstaffel hinzufügen:';
 $plugin_tx['xhshop']['labels_no_price'] = "keine Preisangabe";

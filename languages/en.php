@@ -78,7 +78,6 @@ $plugin_tx['xhshop']['labels_other_currency']='other';
 $plugin_tx['xhshop']['labels_full_vat']='full';
 $plugin_tx['xhshop']['labels_reduced_vat']='reduced';
 $plugin_tx['xhshop']['labels_forwarding_expenses']='Forwarding expenses';
-$plugin_tx['xhshop']['labels_shipping_by_unit']='Graded shipping calculation?';
 $plugin_tx['xhshop']['labels_weightRanges'] = 'Shipping grades';
 $plugin_tx['xhshop']['labels_new_weightRange'] = 'Add shipping grade';
 $plugin_tx['xhshop']['labels_no_price'] = "no price set";

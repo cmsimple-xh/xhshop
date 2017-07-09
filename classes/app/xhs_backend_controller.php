@@ -127,7 +127,6 @@ class XHS_Backend_Controller extends XHS_Controller {
             $params['productCats']    = array();
         }
         $params['shipping_unit']    = $this->settings['shipping_unit'];
-        $params['shipping_by_unit'] = $this->settings['shipping_by_unit'];
         $params['categories']       = $this->catalog->getCategories();
 
         $level = 0;
