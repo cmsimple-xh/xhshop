@@ -365,24 +365,12 @@ class XHS_Controller {
     }
 
     function getPaymentModules(){
-        return $this->getSubdirectoryNames(XHS_BASE_PATH . 'classes/paymentmodules/');
+        global $plugin_cf;
+
+        $modules = preg_filter('/^([\w-]+)_is_active$/', '$1', array_keys($plugin_cf['xhshop']));
+        return array_values(str_replace('-', '_', $modules));
     }
 
-    function getSubdirectoryNames($dir){
-        if (is_dir($dir)) {
-            $names = array();
-            $handle = opendir($dir);
-            if ($handle) {
-                while (($file = readdir($handle)) !== false) {
-                    if($file == '.' || $file == '..' || !filetype($dir . $file)){continue;}
-                    $names[] = $file;
-                }
-                closedir($handle);
-            }
-            return $names;
-        }
-        trigger_error('XHS_Controller::getSubdirectoryNames($dir) - no $dir (directory name)  was passes');
-    }
     function shopToc($level = 6){
         return '';
     }
