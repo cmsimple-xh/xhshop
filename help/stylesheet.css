@@ -15,7 +15,7 @@ body {
 	margin: 0 auto;
 	max-width: 100%;
 }
-div.main {
+article.main {
 	background: #fff;
 	border: 1px solid #999;
 	padding: 2em;
@@ -29,7 +29,7 @@ nav {
 	padding: 0 1em;
 	max-height: 90vh;
 	overflow: auto;
-	width: 30%;
+	max-width: 30%;
 }
 nav ul {
 	list-style: none;
@@ -116,7 +116,7 @@ nav {
 #nav ul li:first-child {
 	display: none !important;
 }
-div.main {
+article.main {
 	width: 100%;
 	max-width: 100%;
 	float: none;
