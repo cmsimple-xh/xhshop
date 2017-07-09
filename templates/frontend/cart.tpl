@@ -56,7 +56,7 @@ foreach($this->cartItems as $product){
 </tr>
 <tr>
 <td>&nbsp;</td>
-<td class="xhsTdR"><?php echo $this->label('forwarding_expenses') ?> (<?php  echo $this->units . ' '. $this->unitName ; ?>)</td>
+<td class="xhsTdR"><?php echo $this->label('forwarding_expenses') ?> (<?php  echo $this->formatFloat($this->units) . ' '. $this->unitName ; ?>)</td>
 <td class="xhsMoneyCell"><?php echo $this->formatCurrency($this->shipping); ?></td>
 </tr>
 <tr>
