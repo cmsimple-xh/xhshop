@@ -272,7 +272,7 @@ class Controller {
 
     function loadPaymentModule($name){
         $name = str_replace('.', '', $name);
-        $file = XHS_BASE_PATH . 'classes/paymentmodules/' . $name . '/' . $name . '.php';
+        $file = XHS_BASE_PATH . 'classes/paymentmodules/' . $name . '.php';
         if (file_exists($file)) {
             include_once $file;
             return true;
