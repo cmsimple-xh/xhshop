@@ -29,6 +29,8 @@ class XHS_Controller {
                 $this->settings[substr($key, 6)] =$value;
             } elseif (strpos($key, 'shipping_') === 0) {
                 $this->settings[substr($key, 9)] = $value;
+            } elseif (strpos($key, 'categories_') === 0) {
+                $this->settings[substr($key, 11)] = $value;
             }
         }
         $this->settings['image_folder'] = "{$pth['folder']['images']}{$this->settings['image_folder']}";

@@ -179,38 +179,6 @@ class XHS_Backend_Controller extends XHS_Controller {
         return $this->render('tabs', $params);
     }
 
-    function saveSettings(){
-        $save = "<?php\n";
-        foreach($this->settings as $key => $value){
-			$exclude = array(
-				'published', 'minimum_order', 'default_currency', 'shop_page', 'cos_page',
-				'order_email', 'company_name', 'name', 'street', 'zip_code', 'city',
-				'vat_full', 'vat_reduced', 'vat_default_full', 'dont_deal_with_taxes',
-				'shipping_unit', 'forwarding_expenses_up_to', 'charge_for_shipping',
-				'forwarding_expenses', 'shipping_max', 'weightRange'
-			);
-			if (in_array($key, $exclude, true)) {
-				continue;
-			}
-            $row = '$zShopSettings' . "['" . $key . "']";
-            if(!is_array($value)){
-                $value = $this->tidyPostString($value, false);
-                $row .= " = '" . $value . "';\n";
-            }
-            else {
-                $row = '';
-                foreach($value as $k => $t){
-                    $row .= '$zShopSettings' . "['" . $key. "']" . "['$k'] = '" . addcslashes($t, '\'\\') . "';\n";
-                }
-            }
-            $save .= $row;
-        }
-        $save .= '?>';
-        $fh = fopen(XHS_CONFIG_FILE, 'w');
-        fwrite($fh, $save);
-        fclose($fh);
-    }
-
     function saveProductCategories(){
         if(isset($_POST['xhsMoveCat'])){
             $this->catalog->moveCategory($_POST['xhsMoveDirection'], $_POST['xhsMoveCat']);
@@ -235,11 +203,6 @@ class XHS_Backend_Controller extends XHS_Controller {
         }
         if(isset($_POST['xhsDefaultCat'])){
             $this->catalog->setDefaultCategory($_POST['xhsDefaultCat']);
-        }
-        if(isset($_POST['xhsUseCats'])){
-            $this->settings['allow_show_all'] = $_POST['xhsAllowShowAll'];
-            $this->settings['use_categories'] = $_POST['xhsUseCats'];
-            $this->saveSettings();
         }
 
         return $this->productCategories();

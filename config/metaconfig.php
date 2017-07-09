@@ -9,3 +9,5 @@ $plugin_mcf['xhshop']['cash-on-delivery_is_active']="bool";
 $plugin_mcf['xhshop']['on-account_is_active']="bool";
 $plugin_mcf['xhshop']['paypal_is_active']="bool";
 $plugin_mcf['xhshop']['paypal_sandbox']="bool";
+$plugin_mcf['xhshop']['categories_use_categories']="bool";
+$plugin_mcf['xhshop']['categories_allow_show_all']="bool";
