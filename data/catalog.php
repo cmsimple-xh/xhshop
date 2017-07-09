@@ -126,7 +126,7 @@ $products['p4bbf078122572']['teasers']['de'] = '<p>Ganz fantastische Brötchen!<
 $products['p4bbf078122572']['descriptions']['de'] = '<p>Posse nostrum ne est, amet hinc intellegam et his. Cum tota modus exerci in, verterem aliquyam ei vix, nec id autem reprimique.</p>
 <p>Posse nostrum ne est, amet hinc intellegam et his. Cum tota modus exerci in, verterem aliquyam ei vix, nec id autem reprimique.</p>';
 $products['p4bbf078122572']['descriptions']['en'] = '<p>Posse nostrum ne est, amet hinc intellegam et his. Cum tota modus exerci in, verterem aliquyam ei vix, nec id autem reprimique.</p>';
-$products['p4bbf078122572']['variants']['de'] = array('Sesam', '            Mohn', '            Käse', );
+$products['p4bbf078122572']['variants']['de'] = array('Sesam', 'Mohn', 'Käse', );
 $products['p4bbf078122572']['variants']['en'] = array();
 $products['p4bbf078122572']['categories']['de'] = array('Essen', '– Backwaren', );
 $products['p4bbf078122572']['categories']['en'] = array('Delicious things', '-- fresh from the bakery', );
