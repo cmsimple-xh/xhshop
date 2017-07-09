@@ -16,8 +16,12 @@ class Product {
     var $uid;
     var $sortIndex;
     var $image;
+    private $imageFolder;
+    private $previewFolder;
 
     function __construct() {
+        global $pth, $plugin_cf;
+
         $this->names = array();
         $this->descriptions = array();
         $this->teasers = array();
@@ -25,7 +29,8 @@ class Product {
         $this->categories = array();
         $this->variants = array();
         $this->uid = uniqid('p');
-
+        $this->imageFolder = "{$pth['folder']['images']}{$plugin_cf['xhshop']['shop_image_folder']}";
+        $this->previewFolder = "{$pth['folder']['images']}{$plugin_cf['xhshop']['shop_preview_folder']}";
     }
 
     function getWeight(){
@@ -62,15 +67,15 @@ class Product {
      }
 
      function getBestPicture(){
-         if(isset($this->image) && strlen($this->image) > 0 && file_exists(XHS_IMAGE_PATH . $this->image)){
-             return XHS_IMAGE_PATH . $this->image;
+         if(isset($this->image) && strlen($this->image) > 0 && file_exists($this->imageFolder . $this->image)){
+             return $this->imageFolder . $this->image;
          }
          if(isset(   $this->previewPicture)
                   && strlen($this->previewPicture) > 0
-                  && file_exists(XHS_IMAGE_PATH . $this->previewPicture)){
+                  && file_exists($this->imageFolder . $this->previewPicture)){
 
 
-             return XHS_IMAGE_PATH . $this->previewPicture;
+             return $this->imageFolder . $this->previewPicture;
          }
         return  false;
      }
@@ -79,7 +84,7 @@ class Product {
      function getImage(){
          if((isset($this->image)) && strlen($this->image) > 0 && ($this->image <> '')) {
 
-            $image = '<a href="' . XHS_IMAGE_PATH.$this->image . '" title="'.$this->getName(XHS_LANGUAGE). '" class="zoom"><img src="' . XHS_IMAGE_PATH.$this->image . '" alt="' .$this->getName(XHS_LANGUAGE) . '"  title="'.$this->getName(XHS_LANGUAGE). '"></a>';
+            $image = '<a href="' . $this->imageFolder.$this->image . '" title="'.$this->getName(XHS_LANGUAGE). '" class="zoom"><img src="' . $this->imageFolder.$this->image . '" alt="' .$this->getName(XHS_LANGUAGE) . '"  title="'.$this->getName(XHS_LANGUAGE). '"></a>';
             return $image;
         }
         return '';
@@ -125,7 +130,7 @@ class Product {
     function getPreviewPicture(){
         if((isset($this->previewPicture)) && ($this->previewPicture <> '')) {
             
-            $image = '<a href="' . XHS_IMAGE_PATH.$this->image . '" title="' . $this->getName(XHS_LANGUAGE) . '" class="zoom"><img src="'. XHS_PREVIEW_PIC_PATH . $this->previewPicture. '" alt="' .$this->getName(XHS_LANGUAGE) .' - Preview"  title="'.$this->getName(XHS_LANGUAGE). '"></a>';
+            $image = '<a href="' . $this->imageFolder.$this->image . '" title="' . $this->getName(XHS_LANGUAGE) . '" class="zoom"><img src="'. $this->previewFolder . $this->previewPicture. '" alt="' .$this->getName(XHS_LANGUAGE) .' - Preview"  title="'.$this->getName(XHS_LANGUAGE). '"></a>';
             return $image;
         }
         return '';

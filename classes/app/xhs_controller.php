@@ -16,7 +16,7 @@ class XHS_Controller {
     var $errors = array();
 
     function __construct(){
-        global $plugin_cf, $plugin_tx;
+        global $pth, $plugin_cf, $plugin_tx;
 
         include XHS_CONFIG_FILE;
         $this->settings = $zShopSettings;
@@ -29,6 +29,8 @@ class XHS_Controller {
                 $this->settings[substr($key, 6)] =$value;
             }
         }
+        $this->settings['image_folder'] = "{$pth['folder']['images']}{$this->settings['image_folder']}";
+        $this->settings['preview_folder'] = "{$pth['folder']['images']}{$this->settings['preview_folder']}";
         $this->settings['url'] = ltrim($plugin_tx['xhshop']['config_shop_page'], '?');
         $this->settings['cos_page'] = $plugin_tx['xhshop']['config_cos_page'];
         $this->getPaymentModules();
@@ -295,7 +297,7 @@ class XHS_Controller {
 
     function getImageFiles($directory = null){
         if($directory === null){
-            $directory = XHS_IMAGE_PATH;
+            $directory = $this->settings['image_folder'];
         }
        $handle = opendir($directory);
         $files = array();

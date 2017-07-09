@@ -182,7 +182,7 @@ class XHS_Frontend_Controller extends XHS_Controller {
                 $cartItems[$index]['sum']         = $product['gross'] * $product['amount'];
                 if ($this->catalog->products[$productKey]->previewPicture)
                 {
-                    $cartItems[$index]['previewPicture'] = XHS_IMAGE_PATH . $this->catalog->products[$productKey]->previewPicture;
+                    $cartItems[$index]['previewPicture'] = $this->settings['image_folder'] . $this->catalog->products[$productKey]->previewPicture;
                 }
 
                 $i++;

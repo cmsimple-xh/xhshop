@@ -12,8 +12,6 @@ define('XHS_BILLS_PATH', XHS_BASE_PATH . 'bills/');
 define('XHS_TEMPLATES_PATH', XHS_BASE_PATH . 'templates/');
 define('XHS_CSS_PATH', XHS_BASE_PATH .  'css/');
 define('XHS_URI_SEPARATOR', $cf['uri']['seperator']);
-define('XHS_IMAGE_PATH', $pth['folder']['images'].'shop/');
-define('XHS_PREVIEW_PIC_PATH', $pth['folder']['images'].'shop/');
 
 loadXHSClasses();
 

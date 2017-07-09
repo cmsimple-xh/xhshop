@@ -84,12 +84,12 @@ class XHS_Backend_Controller extends XHS_Controller {
 
             $params['product_ID']     = $id;
             $params['preview_selector'] = $this->viewProvider->picSelector(
-				XHS_PREVIEW_PIC_PATH,
-                $this->getImageFiles(XHS_PREVIEW_PIC_PATH),
+				$this->settings['preview_folder'],
+                $this->getImageFiles($this->settings['preview_folder']),
                 $product->getPreviewPictureName(),
 				'xhsPreviewPic');
-            $params['image_selector'] = $this->viewProvider->picSelector(XHS_IMAGE_PATH,
-                $this->getImageFiles(XHS_IMAGE_PATH),
+            $params['image_selector'] = $this->viewProvider->picSelector($this->settings['image_folder'],
+                $this->getImageFiles($this->settings['image_folder']),
                 $product->getImageName(),
 				'xhsImage');
             $params['variants']       = $product->hasVariants() ? implode('; ', $product->getVariants(XHS_LANGUAGE)) : '';
@@ -108,13 +108,13 @@ class XHS_Backend_Controller extends XHS_Controller {
         else{
             $params['product_ID']     = 'new';
             $params['preview_selector'] = $this->viewProvider->picSelector(
-				XHS_PREVIEW_PIC_PATH,
-				$this->getImageFiles(XHS_PREVIEW_PIC_PATH),
+				$this->settings['preview_folder'],
+				$this->getImageFiles($this->settings['preview_folder']),
 				null,
 				'xhsPreviewPic');
             $params['image_selector'] = $this->viewProvider->picSelector(
-				XHS_IMAGE_PATH,
-				$this->getImageFiles(XHS_IMAGE_PATH),
+				$this->settings['image_folder'],
+				$this->getImageFiles($this->settings['image_folder']),
 				null,
 				'xhsImage');
             $params['name']           = 'N. N.';
