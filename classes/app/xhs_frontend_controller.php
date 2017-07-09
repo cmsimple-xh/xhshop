@@ -10,9 +10,23 @@ class XHS_Frontend_Controller extends XHS_Controller {
 
     function __construct() {
         parent::__construct();
+        $this->splitForwardingExpenses();
         $this->requiredCustomerData = array('first_name', 'last_name',
             'street', 'zip_code', 'city', 'cos_confirmed',
             'email', 'payment_mode');
+    }
+
+    private function splitForwardingExpenses()
+    {
+        $this->settings['weightRange'] = array();
+        foreach (explode(';', $this->settings['forwarding_expenses']) as $grade) {
+            $parts = explode('=', trim($grade));
+            if (count($parts) === 2) {
+                $this->settings['weightRange'][trim($parts[0])] = (float) $parts[1];
+            } else {
+                $this->settings['shipping_max'] = $parts[0];
+            }
+        }
     }
 
     /**
@@ -213,7 +227,7 @@ class XHS_Frontend_Controller extends XHS_Controller {
             $params['shipping_limit']   = $this->settings['shipping_up_to'];
             $params['cartSum']          = $_SESSION['xhsOrder']->cartGross;
             $params['units']            = $_SESSION['xhsOrder']->units;
-            $params['unitName']         = $this->settings[XHS_LANGUAGE]['shipping_unit'];
+            $params['unitName']         = $this->settings['shipping_unit'];
             $params['shipping']         = $_SESSION['xhsOrder']->shipping;
             $params['total']            = $_SESSION['xhsOrder']->shipping + $_SESSION['xhsOrder']->cartGross;
             $params['vatTotal']         = $_SESSION['xhsOrder']->getVat();

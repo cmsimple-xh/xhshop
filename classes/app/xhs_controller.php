@@ -27,12 +27,15 @@ class XHS_Controller {
                 $this->settings[substr($key, 8)] = $value;
             } elseif (strpos($key, 'taxes_') === 0) {
                 $this->settings[substr($key, 6)] =$value;
+            } elseif (strpos($key, 'shipping_') === 0) {
+                $this->settings[substr($key, 9)] = $value;
             }
         }
         $this->settings['image_folder'] = "{$pth['folder']['images']}{$this->settings['image_folder']}";
         $this->settings['preview_folder'] = "{$pth['folder']['images']}{$this->settings['preview_folder']}";
         $this->settings['url'] = ltrim($plugin_tx['xhshop']['config_shop_page'], '?');
         $this->settings['cos_page'] = $plugin_tx['xhshop']['config_cos_page'];
+        $this->settings['shipping_unit'] = $plugin_tx['xhshop']['config_shipping_unit'];
         $this->getPaymentModules();
         $this->paymentModules = array();
         $this->payments = $this->getPaymentModules();

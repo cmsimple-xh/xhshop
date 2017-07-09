@@ -130,7 +130,7 @@ class XHS_Backend_Controller extends XHS_Controller {
             $params['pages']          = array();
             $params['productCats']    = array();
         }
-        $params['shipping_unit']    = $this->settings[XHS_LANGUAGE]['shipping_unit'];
+        $params['shipping_unit']    = $this->settings['shipping_unit'];
         $params['shipping_by_unit'] = $this->settings['shipping_by_unit'];
         $params['categories']       = $this->catalog->getCategories();
 
@@ -184,115 +184,15 @@ class XHS_Backend_Controller extends XHS_Controller {
         return $this->render('tabs', $params);
     }
 
-    function shippingSettings(){
-        if(isset($_POST['newWeightRange'])){
-            if(!isset($_POST['shipping_up_to'])){$this->settings['shipping_up_to'] = 'false';}
-            unset($this->settings['weightRange']);
-            if(isset($_POST['weightRange'])){
-                foreach($_POST['weightRange'] as $key => $range){
-                    $tempRange = (float)str_replace(",", ".", $range);
-                    if($tempRange > 0){
-                        $temp = (float)str_replace(",", ".", $_POST['weightFee'][$key]);
-                        $this->settings['weightRange'][(string)$tempRange] = $temp;
-                    }
-                }
-            }
-            if((float)$_POST['newWeightRange'] > 0){
-                $temp = (float)str_replace(",", ".", $_POST['newWeightFee']);
-                $tempKey = (float)str_replace(",", ".", $_POST['newWeightRange']);
-                $this->settings['weightRange'][(string)$tempKey] = $temp;
-            }
-            if(isset($this->settings['weightRange'])){
-                ksort($this->settings['weightRange']);
-            }
-            $this->saveSettings();
-        }
-
-        $params['shipping_up_to']      = $this->settings['shipping_up_to'];
-        $params['shipping_limit']      = (float)str_replace(",", ".", $this->settings['forwarding_expenses_up_to']);
-        $params['charge_for_shipping'] = $this->settings['charge_for_shipping'];
-        $params['shipping_max']        = (float)str_replace(",", ".", $this->settings['shipping_max']);
-        $params['weightRanges']        = isset($this->settings['weightRange']) ? $this->settings['weightRange'] : array();
-        $params['shipping_unit']       = $this->settings[XHS_LANGUAGE]['shipping_unit'];
-        $params['shipping_by_unit']    = $this->settings['shipping_by_unit'];
-
-        if(isset($this->settings['weightRange'])&& count($this->settings['weightRange']) > 0)
-        {
-            $params['shipping_mode'] = 'shipping_graded';
-        }
-        else{
-            $params['shipping_mode'] = 'shipping_flat';
-        }
-        if($this->settings['charge_for_shipping'] == 'false'){
-            $params['disabled'] = array('disabled' => 'disabled');
-        }else{$params['disabled'] = '';}
-
-        return $this->render('shippingSettings', $params);
-    }
-
-    function updateSettings($changes = null){
-        $needSave = false;
-        if(!$changes){
-            $changes = $_POST;
-        }
-        if(isset($_POST['xhsPage'])){
-            if($_POST['xhsPage'] == 'shippingSettings'){
-                if(isset($_POST['forwarding_expenses_up_to'])){
-                    $changes['forwarding_expenses_up_to'] = str_replace(',', '.', $_POST['forwarding_expenses_up_to']);
-                }
-                if(isset($_POST['shipping_max'])){
-                    $changes['shipping_max'] = str_replace(',', '.', $_POST['shipping_max']);
-                }
-                if(isset($_POST['newWeightRange'])){
-                    $changes['newWeightRange'] = str_replace(',', '.', $_POST['newWeightRange']);
-                }
-                if(isset($_POST['newWeightFee'])){
-                    $changes['newWeightFee'] = str_replace(',', '.', $_POST['newWeightFee']);
-                }
-            }
-        }
-        
-        foreach($changes as $key => $value){
-            if(is_array($value) && count($value) > 0){
-                foreach($value as $subKey => $subValue){
-                    if(    isset($this->settings[$key]) &&
-                        $this->settings[$key][$this->tidyPostString($subKey)] != $this->tidyPostString($subValue)
-                    ){
-                        $needSave = true;
-                        $this->settings[$key][$subKey] = $this->tidyPostString($subValue);
-                    }
-                }
-            }
-            else{
-                if(    key_exists($key, $this->settings)
-                    && $this->settings[$key] != $this->tidyPostString($value)
-                ){
-                    $needSave = true;
-                   
-                   // $this->settings[$key] = $this->tidyPostString($value, $key == 'default_currency');
-                    $this->settings[$key] = $this->tidyPostString($value, false);
-                }
-            }
-        }
-        if(isset($_POST['default_currency']) && $_POST['default_currency'] == 'other'){
-            $this->settings['default_currency'] = $this->tidyPostString($_POST['other_currency'], true);
-        }
-        if($needSave){
-            $this->saveSettings();
-        }
-        if(isset($_POST['xhsPage']) && method_exists($this, $_POST['xhsPage'])){
-            return  $this->{$_POST['xhsPage']}();
-        }
-        return;
-    }
-
     function saveSettings(){
         $save = "<?php\n";
         foreach($this->settings as $key => $value){
 			$exclude = array(
 				'published', 'minimum_order', 'default_currency', 'shop_page', 'cos_page',
 				'order_email', 'company_name', 'name', 'street', 'zip_code', 'city',
-				'vat_full', 'vat_reduced', 'vat_default_full', 'dont_deal_with_taxes'
+				'vat_full', 'vat_reduced', 'vat_default_full', 'dont_deal_with_taxes',
+				'shipping_unit', 'forwarding_expenses_up_to', 'charge_for_shipping',
+				'forwarding_expenses', 'shipping_max', 'weightRange'
 			);
 			if (in_array($key, $exclude, true)) {
 				continue;

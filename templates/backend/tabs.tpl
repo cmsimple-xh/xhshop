@@ -4,22 +4,6 @@
 </div>
 <?php $this->editProductLabel = isset($this->editProductLabel) ? $this->editProductLabel : 'new_product'; ?>
 <ul id="xhsTaskTabs">
-    <li class="%SETTING_TASKS%">
-        <form method="post" class="tab">
-            <input name="xhsTask" value="shippingSettings" type="hidden">
-            <input name="xhsTaskCat" value="setting_tasks" type="hidden">
-            <input value="<?php echo $this->labels['settings'] ?>" class="tab" type="submit">
-        </form>
-        <ul class="xhsSubTabs" id="xhsSettings">
-            <li class="%SHIPPINGSETTINGS%">
-                <form method="post" class="tab">
-                    <input name="xhsTask" value="shippingSettings" type="hidden">
-                    <input name="xhsTaskCat" value="setting_tasks" type="hidden">
-                    <input value="<?php echo $this->labels['shipping']; ?>" class="subTab" type="submit">
-                </form>
-            </li>
-        </ul>
-    </li>
     <li class="%PRODUCT_TASKS%">
         <form method="post" class="tab">
             <input name="xhsTask" value="productList" type="hidden">
