@@ -184,7 +184,7 @@ class Catalogue {
         $products = array();
 
         foreach($this->products as $product) {
-            if(is_a($product, 'Product')){
+            if($product instanceof Product){
                 $product->separator = $this->separator;
                 if(!isset($product->uid)){$product->uid = uniqid('p');}
                 $products[$product->uid] = $product;
@@ -295,7 +295,7 @@ class Catalogue {
         return $this->products;
     }
     function swapSortIndex($productA, $productB){
-        if(!is_a($productA, 'Product') || !is_a($productB, 'Product')){
+        if(!($productA instanceof Product && $productB instanceof Product)){
             trigger_error('Catalogue::swapSortIndex() expects two Products  as parameter');
             return;
         }
@@ -354,7 +354,7 @@ class Catalogue {
     }
 
     function addProduct($product){
-        if(!is_a($product, 'Product')){
+        if(!($product instanceof Product)){
             trigger_error('Catalog::addProduct() - attempt to save some "No-Product" as Product.');
             return;
         }
@@ -375,7 +375,7 @@ class Catalogue {
             trigger_error('Catalogue::updateProduct($uid, $product) - no Product with this $uid');
             return;
         }
-        if(is_a($product, 'Product')){
+        if($product instanceof Product){
 
             $this->products[$uid] = $product;
         }

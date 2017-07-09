@@ -58,7 +58,7 @@ class XHS_Controller {
     }
 
     function render($template, $params = null){
-        if(!is_a($this->viewProvider, 'XHS_View')){
+        if(!($this->viewProvider instanceof XHS_View)){
             return "XHSController:render no view provider!";
         }
         if(is_array($params)){
@@ -80,7 +80,7 @@ class XHS_Controller {
     function categoryOptions(){
         $options = array();
 
-        if($this->settings['allow_show_all'] == 'true' || is_a($this, 'XHS_Backend_Controller')){
+        if($this->settings['allow_show_all'] == 'true' || $this instanceof XHS_Backend_Controller){
             $options[] = array('value' => '', 'label' => $this->viewProvider->labels['all_categories']);
         }
         foreach($this->categories() as $category){
@@ -224,7 +224,7 @@ class XHS_Controller {
         $category = null;
         $products = array();
         // do not collect not available products for visitor
-        $collectAll = is_a($this, 'XHS_Backend_Controller') ? true : false;
+        $collectAll = $this instanceof XHS_Backend_Controller;
         $temp = $this->products(null, $collectAll);
         $needles = explode(' ', trim($needle));
         foreach($temp as $uid => $product){
@@ -262,7 +262,7 @@ class XHS_Controller {
     }
 
     function addPaymentModule($module){
-        if(is_a($module, 'XHS_Payment_Module')){
+        if($module instanceof XHS_Payment_Module){
             $this->paymentModules[$module->getName()] = $module;
             $module->setShopCurrency(html_entity_decode($this->settings['default_currency']));
             return true;
@@ -334,7 +334,7 @@ class XHS_Controller {
         $field =  isset($_POST['xhsProductSortField']) ? $_POST['xhsSortField'] : 'sortIndex';
         $order =  isset($_POST['xhsProductSortOrder']) && $_POST['xhsProductSortOrder'] == 'DESC' ? $_POST['xhsProductSortOrder'] : 'ASC';
 
-        if(!is_a($productA, 'Product') || !is_a($productB, 'Product') ){
+        if(!($productA instanceof Product && $productB instanceof Product) ){
             trigger_error('Catalog::compareProducts() - expects 2 Product-Objects');
             return 0;
         }

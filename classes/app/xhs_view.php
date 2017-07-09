@@ -250,7 +250,7 @@ class XHS_View{
     }
 
    function categorySelect(){
-        if(    ($this->showCategorySelect == false && !is_a($this, 'XHS_Backend_View'))
+        if(    ($this->showCategorySelect == false && !($this instanceof XHS_Backend_View))
             || !isset($this->categoryOptions) 
             || count($this->categoryOptions) == 0){
 

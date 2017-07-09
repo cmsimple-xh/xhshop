@@ -27,11 +27,11 @@ if($adm == true){
 	} else {$xhsController = new XHS_Frontend_Controller();}
 } else {$xhsController = new XHS_Frontend_Controller();}
 
-if($xhsController->settings['url'] == $su && is_a($xhsController, 'XHS_Backend_Controller')){
+if($xhsController->settings['url'] == $su && $xhsController instanceof XHS_Backend_Controller){
 	$hjs .= '<script src="'.$pth['folder']['plugins'].'/xhshop/js/xhsbackend.js"></script>';
 }
 
-if( is_a($xhsController, 'XHS_Frontend_Controller')
+if($xhsController instanceof XHS_Frontend_Controller
     && $xhsController->settings['published']
     && !$edit) {
     if(isset($_POST['xhsTask'])){
@@ -76,7 +76,7 @@ function display_shop() {
 	global $xhsController, $adm, $su, $sn;
 	$html = '';
 	if($adm){
-		if(is_a($xhsController, 'XHS_Frontend_Controller')){
+		if($xhsController instanceof XHS_Frontend_Controller){
 			$html .= '<a href="'.$sn.'?'.$su.'&xhsMode=edit" class="xhsToggleBtn"><span class="fa fa-edit fa-fw fa-lg"></span> Shop edit</a>';
 		} else {
 			$html .= '<a href="'.$sn.'?'.$su.'&xhsMode=preview" class="xhsToggleBtn"><span class="fa fa-eye fa-fw fa-lg"></span> Shop preview</a>';
