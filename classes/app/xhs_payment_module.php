@@ -22,12 +22,6 @@ class XHS_Payment_Module {
         return true;
     }
 
-    function isActive(){
-
-        return (bool) $this->settings['is_active'];
-
-    }
-
     function getLabel(){
         return isset($this->language['label']) ? $this->language['label'] : '* ' . $this-> getName() . ' *';
     }

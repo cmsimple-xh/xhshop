@@ -368,7 +368,9 @@ class XHS_Controller {
         global $plugin_cf;
 
         $modules = preg_filter('/^([\w-]+)_is_active$/', '$1', array_keys($plugin_cf['xhshop']));
-        return array_values(str_replace('-', '_', $modules));
+        return array_values(str_replace('-', '_', array_filter($modules, function ($module) use ($plugin_cf) {
+            return $plugin_cf['xhshop']["{$module}_is_active"];
+        })));
     }
 
     function shopToc($level = 6){

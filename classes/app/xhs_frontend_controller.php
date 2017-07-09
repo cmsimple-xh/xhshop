@@ -258,11 +258,8 @@ class XHS_Frontend_Controller extends XHS_Controller {
         {
             foreach ($this->paymentModules as $module)
             {
-                if ($module->isActive())
-                {
-                    $_SESSION['xhsCustomer']->payment_mode = $module->getName();
-                    break;
-                }
+                $_SESSION['xhsCustomer']->payment_mode = $module->getName();
+                break;
             }
         }
         $params['payments']    = $this->paymentModules;
