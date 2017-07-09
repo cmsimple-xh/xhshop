@@ -29,3 +29,5 @@ $plugin_cf['xhshop']['paypal_is_active']="true";
 $plugin_cf['xhshop']['paypal_fee']="0.00";
 $plugin_cf['xhshop']['paypal_business']="";
 $plugin_cf['xhshop']['paypal_sandbox']="true";
+$plugin_cf['xhshop']['categories_use_categories']="true";
+$plugin_cf['xhshop']['categories_allow_show_all']="true";

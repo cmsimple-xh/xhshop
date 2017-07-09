@@ -1,21 +1,6 @@
 <?php ?>
 <section class="xhsMain xhsClearB">
 	<h1><?php echo $this->labels['product_categories']; ?></h1>
-	<form method="post">
-		<p><strong><?php $this->label('use_category_selector'); ?></strong><br>
-		<?php echo $this->radioNameValueLabel('xhsUseCats', 'true');?>&nbsp;<?php echo $this->label('yes') ?> 
-		<?php echo $this->radioNameValueLabel('xhsUseCats', 'false');?>&nbsp;<?php $this->label('no') ?></p>
-		<p><strong><?php $this->label('allow_show_all'); ?></strong><br>
-		<?php echo $this->radioNameValueLabel('xhsAllowShowAll', 'true');?>&nbsp;<?php echo $this->label('yes') ?> 
-		<?php echo $this->radioNameValueLabel('xhsAllowShowAll', 'false');?>&nbsp;<?php $this->label('no') ?></p>
-		<div class="xhsRght">
-			<input type="hidden" name="xhsTaskCat" value="product_tasks">
-			<input type="hidden" name="xhsTask" value="saveProductCategories">
-			<button class="xhsShopButton"><span class="fa fa-save fa-fw"></span> <?php $this->label('save_settings'); ?></button>
-		</div>
-	</form>
-	<p>&nbsp;</p>
-	<hr>
 	<?php if(count($this->categories) > 0){ ?>
 	<p><strong><?php $this->label('current_categories'); ?></strong><br>
 	<?php $this->hint('current_categories') ; ?>
