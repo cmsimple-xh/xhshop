@@ -6,8 +6,6 @@ $plugin_tx['xhshop']['config_thousands_separator']=".";
 $plugin_tx['xhshop']['config_shipping_unit']="kg";
 ###### errors ########
 $plugin_tx['xhshop']['hints_sorry_errors'] = 'Pardon! Noch ist der xhshop-Shop nicht betriebsbereit.';
-$plugin_tx['xhshop']['labels_needs_write_permission'] = 'Braucht Schreibrechte (0666)';
-$plugin_tx['xhshop']['labels_file_not_found'] = 'Datei nicht gefunden';
 ####### Mail ################
 $plugin_tx['xhshop']['mail_email_subject']="Ihre Bestellung bei %s";
 $plugin_tx['xhshop']['mail_salutation'] = "Sehr geehrte(r)";

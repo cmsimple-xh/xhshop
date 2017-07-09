@@ -6,8 +6,6 @@ $plugin_tx['xhshop']['config_thousands_separator']=",";
 $plugin_tx['xhshop']['config_shipping_unit']="kg";
 ###### errors ########
 $plugin_tx['xhshop']['hints_sorry_errors'] = 'Sorry! There are some issuses that have to be fixed, before the xhshopShop is ready to use.';
-$plugin_tx['xhshop']['labels_needs_write_permission'] = 'needs write permission';
-$plugin_tx['xhshop']['labels_file_not_found'] = 'file not found';
 ####### Mail ################
 $plugin_tx['xhshop']['mail_email_subject']="Your order from %s";
 $plugin_tx['xhshop']['mail_salutation'] = "Dear";
