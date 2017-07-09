@@ -40,7 +40,8 @@ class XHS_SystemCheckService
             $this->checkWritability("$this->pluginFolder/css/"),
             $this->checkWritability("$this->pluginFolder/config/"),
             $this->checkWritability("$this->pluginFolder/data/"),
-            $this->checkWritability("$this->pluginFolder/languages/")
+            $this->checkWritability("$this->pluginFolder/languages/"),
+            $this->checkWritability("$this->pluginFolder/classes/paymentmodules/paypal/tmp_orders/")
         );
     }
 
