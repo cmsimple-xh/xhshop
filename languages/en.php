@@ -178,6 +178,7 @@ $plugin_tx['xhshop']['syscheck_extension']="the PHP extension '%s' is loaded";
 $plugin_tx['xhshop']['syscheck_fail']="failure";
 $plugin_tx['xhshop']['syscheck_message']="Checking that %1\$s … %2\$s";
 $plugin_tx['xhshop']['syscheck_phpversion']="PHP version ≥ %s";
+$plugin_tx['xhshop']['syscheck_page_exists']="the page '%s' exists";
 $plugin_tx['xhshop']['syscheck_plugin']="the CMSimple_XH plugin '%s' is installed";
 $plugin_tx['xhshop']['syscheck_success']="okay";
 $plugin_tx['xhshop']['labels_syscheck']="System check";

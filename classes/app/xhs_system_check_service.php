@@ -41,7 +41,9 @@ class XHS_SystemCheckService
             $this->checkWritability("$this->pluginFolder/config/"),
             $this->checkWritability("$this->pluginFolder/data/"),
             $this->checkWritability("$this->pluginFolder/languages/"),
-            $this->checkWritability("$this->pluginFolder/classes/paymentmodules/paypal/tmp_orders/")
+            $this->checkWritability("$this->pluginFolder/classes/paymentmodules/paypal/tmp_orders/"),
+            $this->checkPageExists($this->lang['config_shop_page']),
+            $this->checkPageExists($this->lang['config_cos_page'], false)
         );
     }
 
@@ -102,6 +104,22 @@ class XHS_SystemCheckService
     {
         $state = is_writable($folder) ? 'success' : 'warning';
         $label = sprintf($this->lang['syscheck_writable'], $folder);
+        $stateLabel = $this->lang["syscheck_$state"];
+        return (object) compact('state', 'label', 'stateLabel');
+    }
+
+    /**
+     * @param string $pageUrl
+     * @param bool $isMandatory
+     * @return object
+     */
+    private function checkPageExists($pageUrl, $isMandatory = true)
+    {
+        global $u;
+
+        $ok = strpos($pageUrl, '?') === 0 && in_array(trim($pageUrl, '?'), $u, true);
+        $state = $ok ? 'success' : ($isMandatory ? 'fail' : 'warning');
+        $label = sprintf($this->lang['syscheck_page_exists'], $pageUrl);
         $stateLabel = $this->lang["syscheck_$state"];
         return (object) compact('state', 'label', 'stateLabel');
     }
