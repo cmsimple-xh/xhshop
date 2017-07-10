@@ -1,10 +1,10 @@
 <?php
-/**
- * Description of xhsfrontendcontroller
- *
- * @author Moritz
- */
-class XHS_Frontend_Controller extends XHS_Controller {
+
+namespace Xhshop;
+
+use PHPMailer;
+
+class FrontEndController extends Controller {
 
     var $requiredCustomerData = array();
 
@@ -73,7 +73,7 @@ class XHS_Frontend_Controller extends XHS_Controller {
 
         if (!isset($_SESSION['xhsOrder']))
         {
-            $_SESSION['xhsOrder'] = new XHS_Order($this->settings['vat_full'], $this->settings['vat_reduced']);
+            $_SESSION['xhsOrder'] = new Order($this->settings['vat_full'], $this->settings['vat_reduced']);
         }
 
         if ((int) $_POST['xhsAmount'] > 0)
@@ -246,7 +246,7 @@ class XHS_Frontend_Controller extends XHS_Controller {
 
         if (!isset($_SESSION['xhsCustomer']))
         {
-            $customer                = new XHS_Customer();
+            $customer                = new Customer();
             $_SESSION['xhsCustomer'] = $customer;
         }
 
@@ -258,11 +258,8 @@ class XHS_Frontend_Controller extends XHS_Controller {
         {
             foreach ($this->paymentModules as $module)
             {
-                if ($module->isActive())
-                {
-                    $_SESSION['xhsCustomer']->payment_mode = $module->getName();
-                    break;
-                }
+                $_SESSION['xhsCustomer']->payment_mode = $module->getName();
+                break;
             }
         }
         $params['payments']    = $this->paymentModules;
@@ -448,8 +445,7 @@ class XHS_Frontend_Controller extends XHS_Controller {
 
     function writeBill() {
 
-        require_once('billwriter.php');
-        $writer = new XHS_BillWriter();
+        $writer = new BillWriter();
         $rows   = '';
         if (XHS_LANGUAGE == 'de')
         {
@@ -523,7 +519,7 @@ class XHS_Frontend_Controller extends XHS_Controller {
     }
 
     function sendEmails($bill) {
-        require_once(XHS_BASE_PATH . 'classes/phpmailer/class.phpmailer.php');
+        require_once(XHS_BASE_PATH . 'phpmailer/class.phpmailer.php');
         $mail = new PHPMailer();
         $mail->WordWrap = 60;
         $mail->IsHTML(true);
@@ -672,9 +668,9 @@ class XHS_Frontend_Controller extends XHS_Controller {
             $this->loadPaymentModule('paypal');
             $this->paymentModules['paypal']->ipn();
         }
-        if (file_exists(XHS_BASE_PATH . 'classes/paymentmodules/paypal/tmp_orders/pp_' . session_id() . '.sent'))
+        if (file_exists(XHS_BASE_PATH . 'tmp_orders/pp_' . session_id() . '.sent'))
         {
-            unlink(XHS_BASE_PATH . 'classes/paymentmodules/paypal/tmp_orders/pp_' . session_id() . '.sent');
+            unlink(XHS_BASE_PATH . 'tmp_orders/pp_' . session_id() . '.sent');
             return $this->thankYou();
         }
         if (!$this->settings['published'])

@@ -1,4 +1,7 @@
 <?php
+
+namespace Xhshop;
+
 class Catalogue {
     var $products, $cf, $separator, $categories, $category_for_the_left_overs, $default_category, $version, $cms;
     function __construct($separator) {

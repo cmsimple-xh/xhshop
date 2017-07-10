@@ -1,5 +1,7 @@
 <?php
-require_once 'XHS_CMS_Bridge.php';
+
+use Xhshop\BackEndController;
+use Xhshop\FrontEndController;
 
 if (function_exists('XH_startSession')) {
 	XH_startSession();
@@ -20,18 +22,18 @@ if($adm == true){
 	}
     if($normal){$xhsMode = 'edit';}
     if($xhsMode !== 'preview'){
-		$xhsController = new XHS_Backend_Controller();
+		$xhsController = new BackendController();
 		if(!$edit && $su !== $xhsController->settings['url']){
-			$xhsController = new XHS_Frontend_Controller();
+			$xhsController = new FrontEndController();
 		}
-	} else {$xhsController = new XHS_Frontend_Controller();}
-} else {$xhsController = new XHS_Frontend_Controller();}
+	} else {$xhsController = new FrontEndController();}
+} else {$xhsController = new FrontEndController();}
 
-if($xhsController->settings['url'] == $su && $xhsController instanceof XHS_Backend_Controller){
+if($xhsController->settings['url'] == $su && $xhsController instanceof BackEndController){
 	$hjs .= '<script src="'.$pth['folder']['plugins'].'/xhshop/js/xhsbackend.js"></script>';
 }
 
-if($xhsController instanceof XHS_Frontend_Controller
+if($xhsController instanceof FrontEndController
     && $xhsController->settings['published']
     && !$edit) {
     if(isset($_POST['xhsTask'])){
@@ -76,7 +78,7 @@ function display_shop() {
 	global $xhsController, $adm, $su, $sn;
 	$html = '';
 	if($adm){
-		if($xhsController instanceof XHS_Frontend_Controller){
+		if($xhsController instanceof FrontEndController){
 			$html .= '<a href="'.$sn.'?'.$su.'&xhsMode=edit" class="xhsToggleBtn"><span class="fa fa-edit fa-fw fa-lg"></span> Shop edit</a>';
 		} else {
 			$html .= '<a href="'.$sn.'?'.$su.'&xhsMode=preview" class="xhsToggleBtn"><span class="fa fa-eye fa-fw fa-lg"></span> Shop preview</a>';

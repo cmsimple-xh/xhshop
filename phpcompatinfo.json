@@ -2,7 +2,7 @@
     "source-providers": [
         {
             "in": ". as current",
-            "exclude": ["classes/phpmailer", "tests", "vendor"],
+            "exclude": ["phpmailer", "tests", "vendor"],
             "name": "/\\.(php|htm)$/"
         }
     ],

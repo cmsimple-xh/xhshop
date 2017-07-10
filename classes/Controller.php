@@ -1,10 +1,8 @@
 <?php
-/**
- * Description of xhscontroller
- *
- * @author Moritz
- */
-class XHS_Controller {
+
+namespace Xhshop;
+
+class Controller {
     var $viewProvider;
     var $catalog;
     var $settings;
@@ -46,18 +44,16 @@ class XHS_Controller {
         if(!defined('XHS_URL') && isset($this->settings['url'])){
             define('XHS_URL',$this->settings['url']);
         }
-        $this->bridge = new XHS_CMS_Bridge();
+        $this->bridge = new CmsBridge();
         $this->catalog = new Catalogue(XHS_URI_SEPARATOR);
 
-        $viewProvider = (explode('_',get_class($this)));
-        array_pop($viewProvider);
-        $viewProvider = implode('_', $viewProvider).'_View';
+        $viewProvider = preg_replace('/Controller$/', 'View', get_class($this));
         $this->viewProvider = new $viewProvider();
         $this->viewProvider->setCurrency($this->settings['default_currency']);
     }
 
     function render($template, $params = null){
-        if(!($this->viewProvider instanceof XHS_View)){
+        if(!($this->viewProvider instanceof View)){
             return "XHSController:render no view provider!";
         }
         if(is_array($params)){
@@ -79,7 +75,7 @@ class XHS_Controller {
     function categoryOptions(){
         $options = array();
 
-        if($this->settings['allow_show_all'] == 'true' || $this instanceof XHS_Backend_Controller){
+        if($this->settings['allow_show_all'] == 'true' || $this instanceof BackEndController){
             $options[] = array('value' => '', 'label' => $this->viewProvider->labels['all_categories']);
         }
         foreach($this->categories() as $category){
@@ -223,7 +219,7 @@ class XHS_Controller {
         $category = null;
         $products = array();
         // do not collect not available products for visitor
-        $collectAll = $this instanceof XHS_Backend_Controller;
+        $collectAll = $this instanceof BackendController;
         $temp = $this->products(null, $collectAll);
         $needles = explode(' ', trim($needle));
         foreach($temp as $uid => $product){
@@ -261,7 +257,7 @@ class XHS_Controller {
     }
 
     function addPaymentModule($module){
-        if($module instanceof XHS_Payment_Module){
+        if($module instanceof PaymentModule){
             $this->paymentModules[$module->getName()] = $module;
             $module->setShopCurrency(html_entity_decode($this->settings['default_currency']));
             return true;
@@ -270,22 +266,16 @@ class XHS_Controller {
     }
 
     function loadPaymentModule($name){
-        $name = str_replace('.', '', $name);
-        $file = XHS_BASE_PATH . 'classes/paymentmodules/' . $name . '/' . $name . '.php';
-        if (file_exists($file)) {
-            include_once $file;
+        global $xhsController;
+
+        $classname = '\\Xhshop\\Payment\\' . str_replace(' ', '', ucwords(str_replace('_', ' ', $name)));
+        if (class_exists($classname)) {
+            $xhsController->addPaymentModule(new $classname());
             return true;
         }
         return false;
     }
 
-    function removePaymentModule($name){
-        if(key_exists($name, $this->paymentModules)){
-            unset($this->paymentModules[$name]);
-            return true;
-        }
-        return false;
-    }
 /*
     function changed(){
         if(isset($_POST['xhsPage']) && method_exists($this, $_POST['xhsPage'])){
@@ -365,24 +355,14 @@ class XHS_Controller {
     }
 
     function getPaymentModules(){
-        return $this->getSubdirectoryNames(XHS_BASE_PATH . 'classes/paymentmodules/');
+        global $plugin_cf;
+
+        $modules = preg_filter('/^([\w-]+)_is_active$/', '$1', array_keys($plugin_cf['xhshop']));
+        return array_values(str_replace('-', '_', array_filter($modules, function ($module) use ($plugin_cf) {
+            return $plugin_cf['xhshop']["{$module}_is_active"];
+        })));
     }
 
-    function getSubdirectoryNames($dir){
-        if (is_dir($dir)) {
-            $names = array();
-            $handle = opendir($dir);
-            if ($handle) {
-                while (($file = readdir($handle)) !== false) {
-                    if($file == '.' || $file == '..' || !filetype($dir . $file)){continue;}
-                    $names[] = $file;
-                }
-                closedir($handle);
-            }
-            return $names;
-        }
-        trigger_error('XHS_Controller::getSubdirectoryNames($dir) - no $dir (directory name)  was passes');
-    }
     function shopToc($level = 6){
         return '';
     }

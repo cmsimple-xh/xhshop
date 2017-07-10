@@ -1,8 +1,10 @@
 <?php
 
-global $xhsController;
+namespace Xhshop\Payment;
 
-class XHS_Paypal extends XHS_Payment_Module {
+use Xhshop\PaymentModule;
+
+class Paypal extends PaymentModule {
 
     var $name         = 'paypal';
     var $urls           = array(
@@ -27,14 +29,14 @@ class XHS_Paypal extends XHS_Payment_Module {
     }
 
     function getLabel() {
-        return '<img src="' . XHS_BASE_PATH . 'classes/paymentmodules/paypal/images/paypal-logo.png">
+        return '<img src="' . XHS_BASE_PATH . 'images/paypal-logo.png">
 ';
     }
 
     function orderSubmitForm() {
         $name = 'pp_' . session_id() . '.temp';
         //$name = 'test';
-        $fh   = fopen(XHS_BASE_PATH . 'classes/paymentmodules/paypal/tmp_orders/' . $name, "w");
+        $fh   = fopen(XHS_BASE_PATH . 'tmp_orders/' . $name, "w");
         if (!$fh)
         {
             die("could not open ");
@@ -129,7 +131,7 @@ class XHS_Paypal extends XHS_Payment_Module {
                  *  bei Bedarf pruefen, ob die Bestellung ausgefuehrt werden soll. (Stimmt die Haendler-E-Mail, ...?
                  */
               
-                $file = __DIR__ . '/tmp_orders/pp_' . $_POST['custom'];
+                $file = XHS_BASE_PATH . 'tmp_orders/pp_' . $_POST['custom'];
                 if (file_exists($file . '.temp'))
                 {
 
@@ -161,6 +163,4 @@ class XHS_Paypal extends XHS_Payment_Module {
 
 }
 
-$xhsPaypal = new XHS_Paypal();
-$xhsController->addPaymentModule($xhsPaypal);
 ?>

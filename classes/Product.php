@@ -1,4 +1,7 @@
 <?php
+
+namespace Xhshop;
+
 class Product {
 //    var $counter;
     var $names;

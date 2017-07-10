@@ -1,7 +1,6 @@
 <?php
 define('XHS_LANGUAGE', basename($sl));
 define('XHS_BASE_PATH', $pth['folder']['plugins'] . 'xhshop/');
-define('XHS_LIB_PATH', XHS_BASE_PATH . 'classes/app/' );
 define('XHS_CATALOG', XHS_BASE_PATH . 'data/catalog.php' );
 
 define('XHS_COUNTRIES_FILE', XHS_BASE_PATH . 'lang/countries_' . XHS_LANGUAGE . '.txt');
@@ -9,19 +8,9 @@ define('XHS_BILLS_PATH', XHS_BASE_PATH . 'bills/');
 define('XHS_TEMPLATES_PATH', XHS_BASE_PATH . 'templates/');
 define('XHS_URI_SEPARATOR', $cf['uri']['seperator']);
 
-loadXHSClasses();
-
-function loadXHSClasses(){
-    require_once XHS_LIB_PATH . 'xhs_view.php';
-    require_once XHS_LIB_PATH . 'xhs_controller.php';
-    require_once XHS_LIB_PATH . 'xhs_frontend_controller.php';
-    require_once XHS_LIB_PATH . 'xhs_backend_controller.php';
-    require_once XHS_LIB_PATH . 'xhs_frontend_view.php';
-    require_once XHS_LIB_PATH . 'xhs_backend_view.php';
-    require_once XHS_LIB_PATH . 'xhs_order.php';
-    require_once XHS_LIB_PATH . 'xhs_customer.php';
-    require_once XHS_LIB_PATH . 'catalogue.php';
-    require_once XHS_LIB_PATH . 'product.php';
-    require_once XHS_LIB_PATH . 'xhs_system_check_service.php';
-    require_once XHS_LIB_PATH . 'xhs_payment_module.php';
-}
+spl_autoload_register(function ($class) {
+    $parts = explode('\\', $class, 2);
+    if ($parts[0] == 'Xhshop') {
+        include_once __DIR__ . '/' . $parts[1] . '.php';
+    }
+});

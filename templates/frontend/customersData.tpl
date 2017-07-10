@@ -22,7 +22,6 @@
 <!-- start payment modes -->
 <h2><?php echo $this->paymentHint(); ?></h2>
 <?php foreach($this->payments as $module){
-if(!$module->isActive()){continue;}
 $checked = $_SESSION['xhsCustomer']->payment_mode == $module->getName() ?  ' checked="checked"' : '';
 $fee = '';
 if((float)$module->getFee() !== 0.00){

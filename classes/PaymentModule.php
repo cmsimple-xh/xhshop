@@ -1,6 +1,8 @@
 <?php
 
-class XHS_Payment_Module {
+namespace Xhshop;
+
+class PaymentModule {
     var $name = null;
     var $language = array();
     var $settings = array();
@@ -20,12 +22,6 @@ class XHS_Payment_Module {
     function isAvailable(){
         
         return true;
-    }
-
-    function isActive(){
-
-        return (bool) $this->settings['is_active'];
-
     }
 
     function getLabel(){

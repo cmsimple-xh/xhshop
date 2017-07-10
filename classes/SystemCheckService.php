@@ -1,6 +1,8 @@
 <?php
 
-class XHS_SystemCheckService
+namespace Xhshop;
+
+class SystemCheckService
 {
     /**
      * @var string
@@ -47,7 +49,7 @@ class XHS_SystemCheckService
             $this->checkWritability("$this->pluginFolder/config/"),
             $this->checkWritability("$this->pluginFolder/data/"),
             $this->checkWritability("$this->pluginFolder/languages/"),
-            $this->checkWritability("$this->pluginFolder/classes/paymentmodules/paypal/tmp_orders/"),
+            $this->checkWritability("$this->pluginFolder/tmp_orders/"),
             $this->checkPageExists($this->lang['config_shop_page']),
             $this->checkPageExists($this->lang['config_cos_page'], false),
             $this->checkForwardingExpenses()
