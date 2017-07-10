@@ -3,12 +3,12 @@
 $version = '1alpha-preview';
 
 ################### Categories ###############################;
-$categories['de'][0] = 'Essen';
-$categories['de'][1] = '– Obst';
-$categories['de'][2] = '– Gemüse';
-$categories['de'][3] = '– Backwaren';
-$categories['de'][4] = 'Das Besondere Etwas';
-$categories['de'][5] = 'Trinken';
+$categories['de'][0] = 'Trinken';
+$categories['de'][1] = 'Essen';
+$categories['de'][2] = '– Obst';
+$categories['de'][3] = '– Gemüse';
+$categories['de'][4] = '– Backwaren';
+$categories['de'][5] = 'Das Besondere Etwas';
 $categories['en'][0] = 'Beverages';
 $categories['en'][1] = 'Delicious things';
 $categories['en'][2] = '-- fresh from the bakery';
@@ -21,14 +21,14 @@ $category_for_the_left_overs['en'] = 'This &amp; that';
 
 
 ################### Products ######################;
-$products['p4bbf078122553']['names']['de'] = 'Erbsen';
+$products['p4bbf078122553']['names']['de'] = 'Erbsen (1000g-Packung)';
 $products['p4bbf078122553']['names']['en'] = 'Peas';
-$products['p4bbf078122553']['price'] = 8.74;
+$products['p4bbf078122553']['price'] = 2.25;
 $products['p4bbf078122553']['vat'] = 'reduced';
-$products['p4bbf078122553']['sortIndex'] = 9;
+$products['p4bbf078122553']['sortIndex'] = 10;
 $products['p4bbf078122553']['previewPicture'] = 'preview_peas.jpg';
 $products['p4bbf078122553']['image'] = 'peas.jpg';
-$products['p4bbf078122553']['weight'] = 0;
+$products['p4bbf078122553']['weight'] = 1.1;
 $products['p4bbf078122553']['stock_on_hand'] = 1;
 $products['p4bbf078122553']['teasers']['de'] = '<p>Wisi aeterno argumentum mea.</p>';
 $products['p4bbf078122553']['descriptions']['de'] = '<p>Wisi aeterno argumentum mea. Mea ea decore volumus, tale veniam timeam sed in. Vim an ipsum quaestio <strong>consectetuer. </strong>Scaevola perfecto mea et, eu per dolorum verterem interesset, mei ut vivendo insolens. Vix facilisi disputando at, recteque accommodare est ei. Ad doming laoreet usu. Basta!</p>';
@@ -44,14 +44,14 @@ $products['p4bbf078122553']['uid'] = 'p4bbf078122553';
 
 #-----------------------------------------------------
 
-$products['p4bbf07812255f']['names']['de'] = 'Erdbeeren';
+$products['p4bbf07812255f']['names']['de'] = 'Erdbeeren (500g-Packung)';
 $products['p4bbf07812255f']['names']['en'] = 'Strawberry';
-$products['p4bbf07812255f']['price'] = 0.69;
+$products['p4bbf07812255f']['price'] = 6.26;
 $products['p4bbf07812255f']['vat'] = 'reduced';
-$products['p4bbf07812255f']['sortIndex'] = 8;
+$products['p4bbf07812255f']['sortIndex'] = 9;
 $products['p4bbf07812255f']['previewPicture'] = 'preview_strawberry.jpg';
 $products['p4bbf07812255f']['image'] = 'strawberry.jpg';
-$products['p4bbf07812255f']['weight'] = 0;
+$products['p4bbf07812255f']['weight'] = 0.52;
 $products['p4bbf07812255f']['stock_on_hand'] = 1;
 $products['p4bbf07812255f']['teasers']['de'] = '<p>Saepe cotidieque ad vim? Mei aperiam facilis efficiantur ut?</p>';
 $products['p4bbf07812255f']['descriptions']['de'] = '<p>Saepe cotidieque ad vim? Mei aperiam facilis efficiantur ut? Vel ad atqui vulputate, ne utroque sensibus ius. His nisl saperet atomorum ei. Sit clita utroque vocibus at, mea cu quis quot. Copiosae lobortis imperdiet no usu, nam tractatos neglegentur te? Eum an tincidunt delicatissimi, quo ex melius convenire, tollit nominavi ut est? Est ei sonet probatus definitiones, ferri debitis ut nec, per facete equidem minimum no. Idque quando propriae eum in, sumo facete eum et!</p>';
@@ -67,17 +67,17 @@ $products['p4bbf07812255f']['uid'] = 'p4bbf07812255f';
 
 #-----------------------------------------------------
 
-$products['p4bbf078122566']['names']['de'] = 'Kirschen';
+$products['p4bbf078122566']['names']['de'] = 'Kirschen (500g-Packung)';
 $products['p4bbf078122566']['names']['en'] = 'Cherries';
-$products['p4bbf078122566']['price'] = 0.89;
+$products['p4bbf078122566']['price'] = 5.99;
 $products['p4bbf078122566']['vat'] = 'reduced';
-$products['p4bbf078122566']['sortIndex'] = 6;
+$products['p4bbf078122566']['sortIndex'] = 7;
 $products['p4bbf078122566']['previewPicture'] = 'preview_cherry.jpg';
 $products['p4bbf078122566']['image'] = 'cherry.jpg';
-$products['p4bbf078122566']['weight'] = 0;
+$products['p4bbf078122566']['weight'] = 0.52;
 $products['p4bbf078122566']['stock_on_hand'] = 1;
-$products['p4bbf078122566']['teasers']['de'] = 'Lucilius argumentum ea ius, no pro posse delicatissimi, at dicam viderer epicurei eam.';
-$products['p4bbf078122566']['descriptions']['de'] = '<p>Lucilius argumentum ea ius, no pro posse delicatissimi, at dicam viderer epicurei eam. Eu novum aliquyam vis. Te vis ignota causae graecis. Verear nominavi deterruisset ut eum, ullum tollit vix ad. Nec ut apeirian splendide.  At vivendum conceptam eum, in fugit elaboraret nec, ea est saepe bonorum platonem. Has ea autem melius euismod, facilisi constituto no pro.</p>';
+$products['p4bbf078122566']['teasers']['de'] = '<p>Lucilius argumentum ea ius, no pro posse delicatissimi, at dicam viderer epicurei eam.</p>';
+$products['p4bbf078122566']['descriptions']['de'] = '<p>Lucilius argumentum ea ius, no pro posse delicatissimi, at dicam viderer epicurei eam. Eu novum aliquyam vis. Te vis ignota causae graecis. Verear nominavi deterruisset ut eum, ullum tollit vix ad. Nec ut apeirian splendide. At vivendum conceptam eum, in fugit elaboraret nec, ea est saepe bonorum platonem. Has ea autem melius euismod, facilisi constituto no pro.</p>';
 $products['p4bbf078122566']['descriptions']['en'] = '<p>Lucilius argumentum ea ius, no pro posse delicatissimi, at dicam viderer epicurei eam. Eu novum aliquyam vis.</p>';
 $products['p4bbf078122566']['variants']['en'] = array();
 $products['p4bbf078122566']['variants']['de'] = array();
@@ -90,14 +90,14 @@ $products['p4bbf078122566']['uid'] = 'p4bbf078122566';
 
 #-----------------------------------------------------
 
-$products['p4bbf07812256c']['names']['de'] = 'Birnen';
+$products['p4bbf07812256c']['names']['de'] = 'Birnen (750g-Packung)';
 $products['p4bbf07812256c']['names']['en'] = 'Pears';
-$products['p4bbf07812256c']['price'] = 1;
+$products['p4bbf07812256c']['price'] = 4.95;
 $products['p4bbf07812256c']['vat'] = 'reduced';
-$products['p4bbf07812256c']['sortIndex'] = 7;
+$products['p4bbf07812256c']['sortIndex'] = 8;
 $products['p4bbf07812256c']['previewPicture'] = 'preview_pears.jpg';
 $products['p4bbf07812256c']['image'] = 'pears.jpg';
-$products['p4bbf07812256c']['weight'] = 0;
+$products['p4bbf07812256c']['weight'] = 0.8;
 $products['p4bbf07812256c']['stock_on_hand'] = 1;
 $products['p4bbf07812256c']['teasers']['de'] = '<p>No exerci audiam eam, et ius eros magna scripta.</p>';
 $products['p4bbf07812256c']['descriptions']['de'] = '<p>No exerci audiam eam, et ius eros magna scripta. Minim labitur argumentum te sed. Est eu kasd novum efficiantur. Ea vix sumo iudico voluptatum, usu elit mazim tantas ex. Pro wisi copiosae reprimique et, pri alia adolescens cu.</p>';
@@ -117,10 +117,10 @@ $products['p4bbf078122572']['names']['de'] = 'Brötchen';
 $products['p4bbf078122572']['names']['en'] = 'Roll';
 $products['p4bbf078122572']['price'] = 0.75;
 $products['p4bbf078122572']['vat'] = 'reduced';
-$products['p4bbf078122572']['sortIndex'] = 2;
+$products['p4bbf078122572']['sortIndex'] = 3;
 $products['p4bbf078122572']['previewPicture'] = 'preview_bread.jpg';
 $products['p4bbf078122572']['image'] = 'bread.jpg';
-$products['p4bbf078122572']['weight'] = 0.01;
+$products['p4bbf078122572']['weight'] = 0.04;
 $products['p4bbf078122572']['stock_on_hand'] = 1;
 $products['p4bbf078122572']['teasers']['de'] = '<p>Ganz fantastische Brötchen!</p>';
 $products['p4bbf078122572']['descriptions']['de'] = '<p>Posse nostrum ne est, amet hinc intellegam et his. Cum tota modus exerci in, verterem aliquyam ei vix, nec id autem reprimique.</p>
@@ -139,12 +139,12 @@ $products['p4bbf078122572']['uid'] = 'p4bbf078122572';
 
 $products['p4bbf078122579']['names']['de'] = 'Muffins';
 $products['p4bbf078122579']['names']['en'] = 'Muffin';
-$products['p4bbf078122579']['price'] = 1.2;
-$products['p4bbf078122579']['vat'] = 'full';
-$products['p4bbf078122579']['sortIndex'] = 3;
+$products['p4bbf078122579']['price'] = 1.25;
+$products['p4bbf078122579']['vat'] = 'reduced';
+$products['p4bbf078122579']['sortIndex'] = 4;
 $products['p4bbf078122579']['previewPicture'] = 'preview_muffin.jpg';
 $products['p4bbf078122579']['image'] = 'muffin.jpg';
-$products['p4bbf078122579']['weight'] = 0;
+$products['p4bbf078122579']['weight'] = 0.07;
 $products['p4bbf078122579']['stock_on_hand'] = 1;
 $products['p4bbf078122579']['teasers']['de'] = '<p>Vel eu graece suscipit, ad omnis meliore cum</p>';
 $products['p4bbf078122579']['descriptions']['de'] = '<p>Vel eu graece suscipit, ad omnis meliore cum. Aliquam appareat necessitatibus ad per, mea harum tantas appellantur ad.</p>';
@@ -160,14 +160,14 @@ $products['p4bbf078122579']['uid'] = 'p4bbf078122579';
 
 #-----------------------------------------------------
 
-$products['p4bbf07812257f']['names']['de'] = 'Kaffee';
+$products['p4bbf07812257f']['names']['de'] = 'Kaffee (im Versandbecher)';
 $products['p4bbf07812257f']['names']['en'] = 'Coffee';
-$products['p4bbf07812257f']['price'] = 1.5;
+$products['p4bbf07812257f']['price'] = 2.75;
 $products['p4bbf07812257f']['vat'] = 'full';
-$products['p4bbf07812257f']['sortIndex'] = 4;
+$products['p4bbf07812257f']['sortIndex'] = 5;
 $products['p4bbf07812257f']['previewPicture'] = 'preview_coffee.jpg';
 $products['p4bbf07812257f']['image'] = 'coffee.jpg';
-$products['p4bbf07812257f']['weight'] = 1;
+$products['p4bbf07812257f']['weight'] = 0.3;
 $products['p4bbf07812257f']['stock_on_hand'] = 1;
 $products['p4bbf07812257f']['teasers']['de'] = '<p>Coffee. Mediocrem erroribus forensibus ea mel, mea omnes eligendi eu. Sit sint eros ne.</p>';
 $products['p4bbf07812257f']['descriptions']['de'] = '<p>Coffee. Mediocrem erroribus forensibus ea mel, mea omnes eligendi eu. Sit sint eros ne.</p>';
@@ -183,16 +183,16 @@ $products['p4bbf07812257f']['uid'] = 'p4bbf07812257f';
 
 #-----------------------------------------------------
 
-$products['p4bbf078122585']['names']['de'] = 'Milch';
+$products['p4bbf078122585']['names']['de'] = 'Milch (1 Liter-Packung)';
 $products['p4bbf078122585']['names']['en'] = 'Milk';
-$products['p4bbf078122585']['price'] = 1.2;
+$products['p4bbf078122585']['price'] = 1.55;
 $products['p4bbf078122585']['vat'] = 'reduced';
-$products['p4bbf078122585']['sortIndex'] = 5;
+$products['p4bbf078122585']['sortIndex'] = 6;
 $products['p4bbf078122585']['previewPicture'] = 'preview_milk.jpg';
 $products['p4bbf078122585']['image'] = 'milk.jpg';
-$products['p4bbf078122585']['weight'] = 1;
+$products['p4bbf078122585']['weight'] = 1.01;
 $products['p4bbf078122585']['stock_on_hand'] = 1;
-$products['p4bbf078122585']['teasers']['de'] = 'Milch macht müde Männer munter.';
+$products['p4bbf078122585']['teasers']['de'] = '<p>Milch macht müde Männer munter.</p>';
 $products['p4bbf078122585']['descriptions']['de'] = '<p>Ne nostrud inciderint concludaturque pro. Nam te delicata definiebas, ei eam facete melius accusamus.</p>';
 $products['p4bbf078122585']['descriptions']['en'] = '<p>Ne nostrud inciderint concludaturque pro. Nam te delicata definiebas, ei eam facete melius accusamus.</p>';
 $products['p4bbf078122585']['variants']['de'] = array();
@@ -223,7 +223,7 @@ $products['p5948ea4f3940b']['descriptions']['en'] = '<p>[en]Mit diesem Allround-
 <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Quisque cursus, mauris nec sagittis dictum, nunc pede facilisis nisl, id mattis nunc nulla in ipsum. Donec ullamcorper, nulla eu faucibus sagittis, wisi risus ultrices metus, a ornare purus metus eget elit. Sed a leo. Suspendisse nisl tellus, volutpat vel, vehicula nec, venenatis eu, erat. Maecenas vulputate laoreet lectus. Fusce pulvinar ante non sapien. Aliquam iaculis, wisi ac tristique ornare, ante est lacinia urna, quis tempor neque dui id tortor. Vivamus posuere. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec facilisis. Fusce imperdiet, augue at dignissim ultricies, tortor libero vehicula neque, ac malesuada lorem dolor et arcu. Quisque accumsan metus vel diam.</p>';
 $products['p5948ea4f3940b']['variants']['de'] = array();
 $products['p5948ea4f3940b']['variants']['en'] = array();
-$products['p5948ea4f3940b']['categories']['de'] = array();
+$products['p5948ea4f3940b']['categories']['de'] = array('Das Besondere Etwas', );
 $products['p5948ea4f3940b']['categories']['en'] = array();
 $products['p5948ea4f3940b']['productPages']['de'] = array();
 $products['p5948ea4f3940b']['productPages']['en'] = array();
@@ -232,39 +232,22 @@ $products['p5948ea4f3940b']['uid'] = 'p5948ea4f3940b';
 
 #-----------------------------------------------------
 
-$products['p595520c5075c9']['names']['de'] = 'Test(art)ikel ROT';
-$products['p595520c5075c9']['price'] = 15.95;
-$products['p595520c5075c9']['vat'] = 'full';
-$products['p595520c5075c9']['sortIndex'] = 10;
-$products['p595520c5075c9']['previewPicture'] = 'no_image.jpg';
-$products['p595520c5075c9']['image'] = 'no_image.jpg';
-$products['p595520c5075c9']['weight'] = 0.25;
-$products['p595520c5075c9']['stock_on_hand'] = 1;
-$products['p595520c5075c9']['teasers']['de'] = '<p>Jetzt isses noch rot.</p>';
-$products['p595520c5075c9']['descriptions']['de'] = '';
-$products['p595520c5075c9']['variants']['de'] = array();
-$products['p595520c5075c9']['categories']['de'] = array('Das Besondere Etwas', );
-$products['p595520c5075c9']['productPages']['de'] = array('Test', );
-$products['p595520c5075c9']['separator'] = '/';
-$products['p595520c5075c9']['uid'] = 'p595520c5075c9';
-
-#-----------------------------------------------------
-
-$products['p5956631ef0023']['names']['de'] = 'Test(art)ikel BLAU';
-$products['p5956631ef0023']['price'] = 17.99;
-$products['p5956631ef0023']['vat'] = 'full';
-$products['p5956631ef0023']['sortIndex'] = 11;
-$products['p5956631ef0023']['previewPicture'] = 'no_image.jpg';
-$products['p5956631ef0023']['image'] = 'no_image.jpg';
-$products['p5956631ef0023']['weight'] = 0.3;
-$products['p5956631ef0023']['stock_on_hand'] = 1;
-$products['p5956631ef0023']['teasers']['de'] = '<p>Und jetzt ist alles BLAU!</p>';
-$products['p5956631ef0023']['descriptions']['de'] = '';
-$products['p5956631ef0023']['variants']['de'] = array();
-$products['p5956631ef0023']['categories']['de'] = array();
-$products['p5956631ef0023']['productPages']['de'] = array('Test', );
-$products['p5956631ef0023']['separator'] = '/';
-$products['p5956631ef0023']['uid'] = 'p5956631ef0023';
+$products['p595e69e48c4e4']['names']['de'] = 'XH Splitter HOL / GER';
+$products['p595e69e48c4e4']['price'] = 9.99;
+$products['p595e69e48c4e4']['vat'] = 'full';
+$products['p595e69e48c4e4']['sortIndex'] = 2;
+$products['p595e69e48c4e4']['previewPicture'] = 'preview_xh-splitter-grey.jpg';
+$products['p595e69e48c4e4']['image'] = 'xh-splitter-grey.jpg';
+$products['p595e69e48c4e4']['weight'] = 0.09;
+$products['p595e69e48c4e4']['stock_on_hand'] = 1;
+$products['p595e69e48c4e4']['teasers']['de'] = '<p>Splitten Sie mal anders!<br>Mit diesem Splitter wird Ihr XH völlig neu. Try it!</p>';
+$products['p595e69e48c4e4']['descriptions']['de'] = '<p>Für alle Bildschirme geeignet.<br>Made in Germany.<br>In vier aufregenden Varianten verfügbar.<br>Alle umwerfend gut.</p>
+<p style="clear: both;"><a class="zoom_g" title="XH-Splitter RED" href="userfiles/images/shop/xh-splitter-red.jpg"><img title="XH-Splitter RED" src="userfiles/images/shop/xh-splitter-red.jpg" alt="XH-Splitter RED" width="75"></a> <a class="zoom_g" title="XH-Splitter GREEN" href="userfiles/images/shop/xh-splitter-green.jpg"><img title="XH-Splitter GREEN" src="userfiles/images/shop/xh-splitter-green.jpg" alt="XH-Splitter GREEN" width="75"></a> <a class="zoom_g" title="XH-Splitter BLUE" href="userfiles/images/shop/xh-splitter-blue.jpg"><img title="XH-Splitter BLUE" src="userfiles/images/shop/xh-splitter-blue.jpg" alt="XH-Splitter BLUE" width="75"></a></p>';
+$products['p595e69e48c4e4']['variants']['de'] = array('neutral', 'rot', 'grün', 'blau', );
+$products['p595e69e48c4e4']['categories']['de'] = array('Das Besondere Etwas', );
+$products['p595e69e48c4e4']['productPages']['de'] = array();
+$products['p595e69e48c4e4']['separator'] = '/';
+$products['p595e69e48c4e4']['uid'] = 'p595e69e48c4e4';
 
 #-----------------------------------------------------
 
