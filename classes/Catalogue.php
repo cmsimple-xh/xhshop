@@ -11,7 +11,7 @@ class Catalogue {
         $this->products = array();
         $this->categories = array();
 
-        $this -> loadArray();
+        $this->loadArray();
     }
 
     function loadArray(){

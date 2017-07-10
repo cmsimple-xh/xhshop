@@ -25,7 +25,7 @@ class PaymentModule {
     }
 
     function getLabel(){
-        return isset($this->language['label']) ? $this->language['label'] : '* ' . $this-> getName() . ' *';
+        return isset($this->language['label']) ? $this->language['label'] : '* ' . $this->getName() . ' *';
     }
     /**
      *
@@ -34,7 +34,7 @@ class PaymentModule {
      * Do not overwrite this in subclasses - or at least return a short <string> that can be used in text emails
      */
     function getLabelString(){
-        return isset($this->language['label']) ? $this->language['label'] : '* ' . $this-> getName() . ' *';
+        return isset($this->language['label']) ? $this->language['label'] : '* ' . $this->getName() . ' *';
     }
 
     function getName(){
