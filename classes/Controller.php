@@ -275,13 +275,6 @@ class Controller {
         return false;
     }
 
-    function removePaymentModule($name){
-        if(key_exists($name, $this->paymentModules)){
-            unset($this->paymentModules[$name]);
-            return true;
-        }
-        return false;
-    }
 /*
     function changed(){
         if(isset($_POST['xhsPage']) && method_exists($this, $_POST['xhsPage'])){
