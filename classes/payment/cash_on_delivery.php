@@ -1,10 +1,12 @@
 <?php
 
+namespace Xhshop\Payment;
+
 use Xhshop\PaymentModule;
 
 global $xhsController;
 
-class XHS_On_Delivery extends PaymentModule {
+class CashOnDelivery extends PaymentModule {
 
     function __construct(){
         $this->name = 'cash_on_delivery';
@@ -13,6 +15,6 @@ class XHS_On_Delivery extends PaymentModule {
     }
 
 }
-$xhsOnDelivery = new XHS_On_Delivery();
+$xhsOnDelivery = new CashOnDelivery();
 $xhsController->addPaymentModule($xhsOnDelivery);
 ?>

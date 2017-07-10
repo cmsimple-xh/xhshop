@@ -1,10 +1,12 @@
 <?php
 
+namespace Xhshop\Payment;
+
 use Xhshop\PaymentModule;
 
 global $xhsController;
 
-class XHS_Paypal extends PaymentModule {
+class Paypal extends PaymentModule {
 
     var $name         = 'paypal';
     var $urls           = array(
@@ -163,6 +165,6 @@ class XHS_Paypal extends PaymentModule {
 
 }
 
-$xhsPaypal = new XHS_Paypal();
+$xhsPaypal = new Paypal();
 $xhsController->addPaymentModule($xhsPaypal);
 ?>

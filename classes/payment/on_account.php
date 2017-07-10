@@ -1,10 +1,12 @@
 <?php
 
+namespace Xhshop\Payment;
+
 use Xhshop\PaymentModule;
 
 global $xhsController;
    
-class XHS_On_Account extends PaymentModule {
+class OnAccount extends PaymentModule {
     
     function __construct(){
      
@@ -14,6 +16,6 @@ class XHS_On_Account extends PaymentModule {
     }
    
 }
-$xhsOnAccount = new XHS_On_Account();
+$xhsOnAccount = new OnAccount();
 $xhsController->addPaymentModule($xhsOnAccount);
 ?>
