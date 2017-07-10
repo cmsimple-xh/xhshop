@@ -14,11 +14,5 @@ class Customer {
     var $payment_mode;
     var $email;
     var $phone;
-   
-
-    function __construct(){
-
-    }
-  
 }
 ?>
