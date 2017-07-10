@@ -88,7 +88,7 @@ class FrontEndController extends Controller {
 
     function calculateShipping() {
 
-        if ($this->settings['charge_for_shipping'] == 'false')
+        if (!$this->settings['charge_for_shipping'])
         {
             return 0;
         }
