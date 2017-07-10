@@ -1,9 +1,4 @@
 <?php
-/**
- * Description of xhscontroller
- *
- * @author Moritz
- */
 
 namespace Xhshop;
 

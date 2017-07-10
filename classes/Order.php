@@ -1,9 +1,4 @@
 <?php
-/**
- * Description of xhs_order
- *
- * @author Moritz
- */
 
 namespace Xhshop;
 
