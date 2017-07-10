@@ -9,8 +9,8 @@ define('XHS_TEMPLATES_PATH', XHS_BASE_PATH . 'templates/');
 define('XHS_URI_SEPARATOR', $cf['uri']['seperator']);
 
 spl_autoload_register(function ($class) {
-    $parts = explode('\\', $class, 2);
+    $parts = explode('\\', $class);
     if ($parts[0] == 'Xhshop') {
-        include_once __DIR__ . '/' . $parts[1] . '.php';
+        include_once __DIR__ . '/' . implode('/', array_slice($parts, 1)) . '.php';
     }
 });
