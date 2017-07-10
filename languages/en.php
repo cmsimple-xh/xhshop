@@ -55,6 +55,8 @@ $plugin_tx['xhshop']['labels_male']='Mr';
 $plugin_tx['xhshop']['labels_female']='Mrs';
 $plugin_tx['xhshop']['labels_currency'] = 'Currency';
 #############################
+$plugin_tx['xhshop']['labels_preview']="Shop preview";
+$plugin_tx['xhshop']['labels_edit']="Shop edit";
 $plugin_tx['xhshop']['labels_settings']='Settings';
 $plugin_tx['xhshop']['labels_products']='Products';
 $plugin_tx['xhshop']['labels_shop']='Shop';

@@ -75,13 +75,13 @@ if ($f === 'xh_loggedout') {
 }
 
 function display_shop() {
-	global $xhsController, $adm, $su, $sn;
+	global $xhsController, $adm, $su, $sn, $plugin_tx;
 	$html = '';
 	if($adm){
 		if($xhsController instanceof FrontEndController){
-			$html .= '<a href="'.$sn.'?'.$su.'&xhsMode=edit" class="xhsToggleBtn"><span class="fa fa-edit fa-fw fa-lg"></span> Shop edit</a>';
+			$html .= '<a href="'.$sn.'?'.$su.'&xhsMode=edit" class="xhsToggleBtn"><span class="fa fa-edit fa-fw fa-lg"></span> ' . $plugin_tx['xhshop']['labels_edit'] . '</a>';
 		} else {
-			$html .= '<a href="'.$sn.'?'.$su.'&xhsMode=preview" class="xhsToggleBtn"><span class="fa fa-eye fa-fw fa-lg"></span> Shop preview</a>';
+			$html .= '<a href="'.$sn.'?'.$su.'&xhsMode=preview" class="xhsToggleBtn"><span class="fa fa-eye fa-fw fa-lg"></span> ' . $plugin_tx['xhshop']['labels_preview'] . '</a>';
 		}
 	}
 	return $html . $xhsController->handleRequest();
