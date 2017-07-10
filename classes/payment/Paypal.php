@@ -29,7 +29,7 @@ class Paypal extends PaymentModule {
     }
 
     function getLabel() {
-        return '<img src="' . XHS_BASE_PATH . 'classes/paymentmodules/paypal/images/paypal-logo.png">
+        return '<img src="' . XHS_BASE_PATH . 'images/paypal-logo.png">
 ';
     }
 
