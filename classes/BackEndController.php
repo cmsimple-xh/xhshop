@@ -289,9 +289,7 @@ class BackEndController extends Controller {
 
         if($id === 'new'){
             $this->catalog->addProduct($product);
-            //$id = end($this->catalog->products)->uid;  // Parse error bei server4you ???
-            $temp = end($this->catalog->products);
-            $id = $temp->uid;
+            $id = end($this->catalog->products)->uid;
         }
         else {
             $this->catalog->updateProduct($id, $product);
