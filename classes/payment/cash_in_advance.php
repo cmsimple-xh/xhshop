@@ -4,8 +4,6 @@ namespace Xhshop\Payment;
 
 use Xhshop\PaymentModule;
 
-global $xhsController;
-
 class CashInAdvance extends PaymentModule {
 
     function __construct(){
@@ -15,8 +13,5 @@ class CashInAdvance extends PaymentModule {
     }
 
 }
-
-$xhsInAdvance = new CashInAdvance();
-$xhsController->addPaymentModule($xhsInAdvance);
 
 ?>

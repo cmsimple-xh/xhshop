@@ -266,13 +266,19 @@ class Controller {
     }
 
     function loadPaymentModule($name){
+        global $xhsController;
+
         $name = str_replace('.', '', $name);
         $file = XHS_BASE_PATH . 'classes/payment/' . $name . '.php';
         if (file_exists($file)) {
             include_once $file;
-            return true;
+            $loaded = true;
+        } else {
+            $loaded = false;
         }
-        return false;
+        $classname = '\\Xhshop\\Payment\\' . str_replace(' ', '', ucwords(str_replace('_', ' ', $name)));
+        $xhsController->addPaymentModule(new $classname());
+        return $loaded;
     }
 
 /*

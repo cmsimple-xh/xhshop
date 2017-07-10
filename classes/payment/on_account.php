@@ -4,8 +4,6 @@ namespace Xhshop\Payment;
 
 use Xhshop\PaymentModule;
 
-global $xhsController;
-   
 class OnAccount extends PaymentModule {
     
     function __construct(){
@@ -16,6 +14,5 @@ class OnAccount extends PaymentModule {
     }
    
 }
-$xhsOnAccount = new OnAccount();
-$xhsController->addPaymentModule($xhsOnAccount);
+
 ?>

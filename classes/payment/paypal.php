@@ -4,8 +4,6 @@ namespace Xhshop\Payment;
 
 use Xhshop\PaymentModule;
 
-global $xhsController;
-
 class Paypal extends PaymentModule {
 
     var $name         = 'paypal';
@@ -165,6 +163,4 @@ class Paypal extends PaymentModule {
 
 }
 
-$xhsPaypal = new Paypal();
-$xhsController->addPaymentModule($xhsPaypal);
 ?>
