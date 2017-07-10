@@ -4,27 +4,27 @@ namespace Xhshop;
 
 class Order {
     //put your code here
-    var $items = array();
-    var $cartGross;
-    var $cartNet;
-    var $vatFull;
-    var $vatReduced;
-    var $units;
-    var $shipping;
-    var $area;
-    var $vatFullRate;
-    var $vatReducedRate;
-    var $total;
-    var $fee;
-    var $showNet = false;
+    public $items = array();
+    public $cartGross;
+    private $cartNet;
+    private $vatFull;
+    private $vatReduced;
+    public $units;
+    public $shipping;
+    private $area; // unused?
+    private $vatFullRate;
+    private $vatReducedRate;
+    private $total;
+    private $fee;
+    private $showNet = false; // practically unused
 
-    function __construct($vatFullRate, $vatReducedRate){
+    public function __construct($vatFullRate, $vatReducedRate){
         $this->vatFullRate = (float)$vatFullRate;
         $this->vatReducedRate = (float)$vatReducedRate;
 
     }
 
-    function addItem($product, $amount, $variant = null){
+    public function addItem($product, $amount, $variant = null){
         
         $index = $product->uid;
         if(isset($variant)){$index .= '_'.$variant;}
@@ -38,7 +38,7 @@ class Order {
         
     }
 
-    function removeItem($product, $variant = null){
+    public function removeItem($product, $variant = null){
         $index = $product->uid;
         if(isset($variant)){$index .= '_'.$variant;}
         unset($this->items[$index]);
@@ -46,7 +46,7 @@ class Order {
 
     }
 
-    function getProductNet($product){
+    private function getProductNet($product){
         $rate = 0;
         if($product->vat == 'full'){
             $rate = $this->vatFullRate;
@@ -57,7 +57,7 @@ class Order {
         return $product->getNet($rate);
     }
 
-    function refresh(){
+    private function refresh(){
         $this->cartGross = 0.00;
         $this->cartNet = 0.00;
         $this->units = 0.00;
@@ -79,7 +79,7 @@ class Order {
         $this->total = $this->cartGross + $this->shipping + $this->fee;
     }
 
-    function vatForShippingAndFee(){
+    private function vatForShippingAndFee(){
         $fees = $this->shipping + $this->fee;
         
      //   if(true ||(float)$fees > 0){
@@ -100,38 +100,38 @@ class Order {
        // }
         return;
     }
-    function hasItems(){
+    public function hasItems(){
         return count($this->items) > 0;
     }
 
-    function setShipping($shipping){
+    public function setShipping($shipping){
         $this->shipping = $shipping;
         $this->refresh();
     }
-    function getShipping(){
+    public function getShipping(){
         return $this->shipping;
     }
-    function setFee($fee = 0){
+    public function setFee($fee = 0){
         $this->fee = $fee;
         $this->refresh();
     }
-    function getCartSum(){
+    public function getCartSum(){
         if($this->showNet == true){
             return $this->cartNet;
         }
         return $this->cartGross;
     }
-    function getVat(){
+    public function getVat(){
         return $this->vatFull + $this->vatReduced;
     }
 
-    function getVatReduced(){
+    public function getVatReduced(){
         return $this->vatReduced;
     }
-    function getVatFull(){
+    public function getVatFull(){
         return $this->vatFull;
     }
-    function getTotal(){
+    public function getTotal(){
         return $this->cartGross + $this->shipping + $this->fee;
     }
 }
