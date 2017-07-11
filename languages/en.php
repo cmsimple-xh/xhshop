@@ -4,8 +4,6 @@ $plugin_tx['xhshop']['config_cos_page']="?Shop/C.O.S.";
 $plugin_tx['xhshop']['config_decimal_separator']=".";
 $plugin_tx['xhshop']['config_thousands_separator']=",";
 $plugin_tx['xhshop']['config_shipping_unit']="kg";
-###### errors ########
-$plugin_tx['xhshop']['hints_sorry_errors'] = 'Sorry! There are some issuses that have to be fixed, before the xhshopShop is ready to use.';
 ####### Mail ################
 $plugin_tx['xhshop']['mail_email_subject']="Your order from %s";
 $plugin_tx['xhshop']['mail_salutation'] = "Dear";
