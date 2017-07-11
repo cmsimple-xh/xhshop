@@ -47,9 +47,9 @@ class SystemCheckService
             $this->checkPlugin('fa'),
             $this->checkWritability("$this->pluginFolder/css/"),
             $this->checkWritability("$this->pluginFolder/config/"),
-            $this->checkWritability("$this->pluginFolder/data/"),
             $this->checkWritability("$this->pluginFolder/languages/"),
-            $this->checkWritability("$this->pluginFolder/tmp_orders/"),
+            $this->checkWritability(XHS_CATALOG),
+            $this->checkWritability(XHS_CONTENT_PATH . 'xhshop/tmp_orders/'),
             $this->checkPageExists($this->lang['config_shop_page']),
             $this->checkPageExists($this->lang['config_cos_page'], false),
             $this->checkForwardingExpenses()

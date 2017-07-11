@@ -668,9 +668,9 @@ class FrontEndController extends Controller {
             $this->loadPaymentModule('paypal');
             $this->paymentModules['paypal']->ipn();
         }
-        if (file_exists(XHS_BASE_PATH . 'tmp_orders/pp_' . session_id() . '.sent'))
+        if (file_exists(XHS_CONTENT_PATH . 'xhshop/tmp_orders/pp_' . session_id() . '.sent'))
         {
-            unlink(XHS_BASE_PATH . 'tmp_orders/pp_' . session_id() . '.sent');
+            unlink(XHS_CONTENT_PATH . 'xhshop/tmp_orders/pp_' . session_id() . '.sent');
             return $this->thankYou();
         }
         if (!$this->settings['published'])

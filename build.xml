@@ -12,6 +12,12 @@
     </target>
 
     <target name="setup" description="sets up the demo shop">
+        <copy todir="../../content/">
+            <fileset dir="demo/content">
+                <include name="**/*.php"/>
+            </fileset>
+        </copy>
+        <mkdir dir="../../content/xhshop/tmp_orders" mode="0777"/>
         <copy todir="../../userfiles">
             <fileset dir="demo/userfiles">
                 <include name="**/*.jpg"/>

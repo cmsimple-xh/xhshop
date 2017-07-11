@@ -1,7 +1,11 @@
 <?php
 define('XHS_LANGUAGE', basename($sl));
 define('XHS_BASE_PATH', $pth['folder']['plugins'] . 'xhshop/');
-define('XHS_CATALOG', XHS_BASE_PATH . 'data/catalog.php' );
+define(
+    'XHS_CONTENT_PATH',
+    preg_replace('/(?:\/[^\/]+\/\.\.\/|\/\.\/)$/', '/', "{$pth['folder']['content']}{$pth['folder']['base']}")
+);
+define('XHS_CATALOG', XHS_CONTENT_PATH . 'xhshop/catalog.php');
 
 define('XHS_COUNTRIES_FILE', XHS_BASE_PATH . 'lang/countries_' . XHS_LANGUAGE . '.txt');
 define('XHS_BILLS_PATH', XHS_BASE_PATH . 'bills/');
