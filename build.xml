@@ -43,4 +43,36 @@
         <exec command="phpunit --configuration coverage.xml" logoutput="true"/>
     </target>
 
+    <target name="build" description="builds distributable ZIP archive">
+        <fail unless="version" message="version is not defined!"/>
+        <exec command="git archive -o export.tar HEAD" checkreturn="true"/>
+        <untar file="export.tar" todir="export"/>
+        <delete file="export.tar"/>
+        <!-- for some unknown reason copying catalog.php doesn't work here, so we take two steps -->
+        <move todir="dist">
+            <fileset dir="export/demo">
+                <exclude name="**/catalog.php"/>
+            </fileset>
+        </move>
+        <move file="export/demo/content/xhshop/catalog.php" todir="dist/content/xhshop/"/>
+        <mkdir dir="dist/content/xhshop/tmp_orders"/>
+        <move todir="dist/plugins/xhshop">
+            <fileset dir="export">
+                <exclude name="build.xml"/>
+                <exclude name="composer.*"/>
+                <exclude name="coverage.xml"/>
+                <exclude name="demo/**"/>
+                <exclude name="pax_global_header"/>
+                <exclude name="phpcompatinfo.*"/>
+                <exclude name="setup.bat"/>
+                <exclude name="tests/**"/>
+            </fileset>
+        </move>
+        <delete dir="export"/>
+        <copy file="dist/plugins/xhshop/config/config.php" tofile="dist/plugins/xhshop/config/defaultconfig.php"/>
+        <copy file="dist/plugins/xhshop/languages/en.php" tofile="dist/plugins/xhshop/languages/default.php"/>
+        <zip destfile="XHShop-${version}.zip" basedir="dist" prefix="xhshop/"/>
+        <delete dir="dist"/>
+    </target>
+
 </project>
