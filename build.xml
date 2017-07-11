@@ -13,7 +13,7 @@
 
     <target name="setup" description="sets up the demo shop">
         <copy todir="../../userfiles">
-            <fileset dir="userfiles">
+            <fileset dir="demo/userfiles">
                 <include name="**/*.jpg"/>
             </fileset>
         </copy>

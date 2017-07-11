@@ -1,1 +1,1 @@
-@xcopy userfiles ..\..\userfiles /e
+@xcopy demo\userfiles ..\..\userfiles /e
