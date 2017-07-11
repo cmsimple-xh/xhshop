@@ -133,7 +133,7 @@ class View{
         return $html;
     }
 
-    function floatinputNameValueLabel($name, $value = 0, $label = null, $params = null){
+    function floatInputNameValueLabel($name, $value = 0, $label = null, $params = null){
         $value = (float)$value;
         if(is_array($params)){
             if(!isset($params['style'])){
@@ -157,7 +157,7 @@ class View{
         return $this->textinputNameValueLabel($name, $value, $label, $params, true);
     }
 	
-    function moneyinputNameValueLabel($name, $value = 0, $label = '', $params = array()){
+    function moneyInputNameValueLabel($name, $value = 0, $label = '', $params = array()){
         
         return $this->floatinputNameValueLabel($name, $value, $label, $params) . " ". $this->currency;
 
