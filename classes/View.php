@@ -146,14 +146,8 @@ class View{
         }
         else {$params = array('style'=> 'text-align: right;', 'size'=>'5');
         }
-         if(XHS_LANGUAGE == 'en'){
-            $dec_sep = '.';
-        }else {
-//test            $dec_sep = ',';
-            $dec_sep = '.';
-        }
 
-        $value = number_format($value, 2, $dec_sep, '');
+        $value = number_format($value, 2);
         return $this->textinputNameValueLabel($name, $value, $label, $params, true);
     }
 	
