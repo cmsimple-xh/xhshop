@@ -125,39 +125,6 @@ class View{
         return $html;
     }
 
-/*    function textinputNameValueLabel($name = '', $value = '', $label = '', $params = array()){
-        
-        $html = '<input type="text" name="'.$name.'" value="'. $value . '"';
-        if(isset($params)){$html .= $this->injectParams($params);}
-        $html .= $this->endTag;
-        return $html;
-    }
-*/
-
-/*    function floatinputNameValueLabel($name, $value = 0, $label = null, $params = null){
-        $value = (float)$value;
-        if(is_array($params)){
-            if(!isset($params['style'])){
-                $params['style'] = 'text-align: right;';}
-            else {$params['style'] = "text-align: right; ". $params['style'];
-            }
-            if(!isset($params['size'])){
-                $params['size']='5';
-            }
-        }
-        else {$params = array('style'=> 'text-align: right;', 'size'=>'5');
-        }
-         if(XHS_LANGUAGE == 'en'){
-            $dec_sep = '.';
-        }else {
-            $dec_sep = ',';
-        }
-
-        $value = number_format($value, 2, $dec_sep, '');
-        return $this->textinputNameValueLabel($name, $value, $label, $params);
-    }
-*/
-/*** cmb input type number ***/
     function textinputNameValueLabel($name = '', $value = '', $label = '', $params = array(), $isFloat = false){
         $type = $isFloat ? 'number' : 'text';
         $html = '<input type="' . $type . '" name="'.$name.'" value="'. $value . '" step="0.01"'; // steps!
@@ -189,7 +156,6 @@ class View{
         $value = number_format($value, 2, $dec_sep, '');
         return $this->textinputNameValueLabel($name, $value, $label, $params, true);
     }
-/*** cmb input type number end ***/
 	
     function moneyinputNameValueLabel($name, $value = 0, $label = '', $params = array()){
         
