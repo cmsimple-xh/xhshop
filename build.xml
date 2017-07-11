@@ -48,6 +48,16 @@
         <exec command="git archive -o export.tar HEAD" checkreturn="true"/>
         <untar file="export.tar" todir="export"/>
         <delete file="export.tar"/>
+        <move todir="dist/plugins/xhshop">
+            <fileset dir="export">
+                <include name="config/config.php"/>
+            </fileset>
+            <filterchain>
+                <replacetokens>
+                    <token key="PUBLISHED" value=""/>
+                </replacetokens>
+            </filterchain>
+        </move>
         <!-- for some unknown reason copying catalog.php doesn't work here, so we take two steps -->
         <move todir="dist">
             <fileset dir="export/demo">
