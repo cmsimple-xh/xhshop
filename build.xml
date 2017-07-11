@@ -11,6 +11,14 @@
         <echo>${help}</echo>
     </target>
 
+    <target name="setup" description="sets up the demo shop">
+        <copy todir="../../userfiles">
+            <fileset dir="userfiles">
+                <include name="**/*.jpg"/>
+            </fileset>
+        </copy>
+    </target>
+
     <target name="compat"
             description="checks compatibility with PHP_CompatInfo">
         <exec command="phpcompatinfo analyser:run --alias current" logoutput="true"/>
