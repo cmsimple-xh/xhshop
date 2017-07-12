@@ -54,7 +54,7 @@ class BillWriter
 \pard\intbl\pard\plain \intbl\ltrpar\s1\cf0\qr{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\rtlch\af1\afs24\lang255\ltrch\dbch\af1\langfe255\hich\f1\fs24\lang1031\loch\f1\fs24\lang1031 {\rtlch \ltrch\loch\f1\fs24\lang1031\i0\b0 '.$amount.'}
 \cell\pard\plain \intbl\ltrpar\s1\cf0{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\rtlch\af1\afs24\lang255\ltrch\dbch\af1\langfe255\hich\f1\fs24\lang1031\loch\f1\fs24\lang1031 {\rtlch \ltrch\loch\f1\fs24\lang1031\i0\b0 '.$name."\t".$vatRate.'}
 \cell\pard\plain \intbl\ltrpar\s1\cf0\qr{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\rtlch\af1\afs24\lang255\ltrch\dbch\af1\langfe255\hich\f1\fs24\lang1031\loch\f1\fs24\lang1031 {\rtlch \ltrch\loch\f1\fs24\lang1031\i0\b0 '.$price.' }
-\cell\pard\plain \intbl\ltrpar\s1\cf0\qr{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\rtlch\af1\afs24\lang255\ltrch\dbch\af1\langfe255\hich\f1\fs24\lang1031\loch\f1\fs24\lang1031 {\rtlch \ltrch\loch\f1\fs24\lang1031\i0\b0 '.$sum. ' '.$this->currency.'}\cell\row';
+\cell\pard\plain \intbl\ltrpar\s1\cf0\qr{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\rtlch\af1\afs24\lang255\ltrch\dbch\af1\langfe255\hich\f1\fs24\lang1031\loch\f1\fs24\lang1031 {\rtlch \ltrch\loch\f1\fs24\lang1031\i0\b0 '.$sum. ' }\cell\row';
         return $row;
     }
 }
