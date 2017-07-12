@@ -178,6 +178,8 @@ $plugin_tx['xhshop']['syscheck_warning']="Warnung";
 $plugin_tx['xhshop']['syscheck_writable']="'%s' schreibbar ist";
 $plugin_tx['xhshop']['syscheck_xhversion']="die CMSimple_XH-Version ≥ %s";
 
+$plugin_tx['xhshop']['error_no_bill']="Rechnungstemplate nicht gefunden!";
+
 $plugin_tx['xhshop']['cf_shop_published']="Ob der Shop veröffentlicht ist (andernfalls befindet er sich im Wartungsmodus)";
 $plugin_tx['xhshop']['cf_shop_minimum_order']="Mindestbestellwert (Warenwert + Versandkosten) – Eingabe mit Dezimalpunkt";
 $plugin_tx['xhshop']['cf_shop_default_currency']="Die Währung des Shops – Eingabe als Währungssymbol, beispielsweise €, $, £ or ¥";

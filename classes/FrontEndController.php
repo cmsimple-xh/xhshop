@@ -387,12 +387,6 @@ class FrontEndController extends Controller
             return '';
         }
         $bill = $this->writeBill();
-        if (!$bill) {
-            $error = '<p>Sorry! Your order could not be processed!';
-            $error .= '<p>Please try again inform us by email: <a href="mailto:' . $this->settings['order_email'] . '">' . $this->settings['order_email'] . '</a></p>';
-
-            return $error;
-        }
 
         $sent = $this->sendEmails($bill);
 
@@ -405,6 +399,7 @@ class FrontEndController extends Controller
 
     function writeBill()
     {
+        global $plugin_tx;
 
         $writer = new BillWriter();
         $rows   = '';
@@ -469,7 +464,7 @@ class FrontEndController extends Controller
         );
 
         if (!$writer->loadTemplate(XHS_BILLS_PATH . 'template.rtf')) {
-            return 'template for bill not found';
+            return $plugin_tx['xhshop']['error_no_bill'];
         }
         return $writer->replace($replacements);
     }
