@@ -20,13 +20,8 @@ class BillWriter
 
     function replace($replacements)
     {
-        $html_table = get_html_translation_table(HTML_ENTITIES);
-        $change_back_table = array();
-        foreach ($html_table as $char => $html) {
-            $change_back_table[$html] = utf8_encode($char);
-        }
         foreach ($replacements as $search => $replace) {
-            $cleaned = strtr($replace, $change_back_table);
+            $cleaned = html_entity_decode($replace, ENT_QUOTES, 'UTF-8');
 
             $cleaned = utf8_decode($cleaned);
             $this->template = str_replace($search, $cleaned, $this->template);
