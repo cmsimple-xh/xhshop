@@ -403,11 +403,6 @@ class FrontEndController extends Controller
 
         $writer = new BillWriter();
         $rows   = '';
-        if (XHS_LANGUAGE == 'de') {
-            setlocale(LC_ALL, "de_DE", "ge", "de", "DE", "de_DE@euro", "deu_deu");
-        }
-        $datum = strftime('%A, %d. %B %Y');
-        //   var_dump(utf8_encode($datum));
 
         $writer->setCurrency($this->settings['default_currency']);
         $currency = ' ' . $writer->getCurrency();
@@ -444,7 +439,7 @@ class FrontEndController extends Controller
 
         $subtotal     = $_SESSION['xhsOrder']->getCartSum();
         $shipping     = $_SESSION['xhsOrder']->getShipping();
-        $replacements = array('%Datum%'          => utf8_encode(strftime('%A, %d. %B %Y')),
+        $replacements = array('%Datum%'          => date($this->settings['bill_dateformat']),
             '%Vorname%'        => $_SESSION['xhsCustomer']->first_name,
             '%Nachname%'       => $_SESSION['xhsCustomer']->last_name,
             '%Strasse%'        => $_SESSION['xhsCustomer']->street,
