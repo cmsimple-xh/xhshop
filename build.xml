@@ -94,7 +94,7 @@
         <delete dir="export"/>
         <copy file="dist/plugins/xhshop/config/config.php" tofile="dist/plugins/xhshop/config/defaultconfig.php"/>
         <copy file="dist/plugins/xhshop/languages/en.php" tofile="dist/plugins/xhshop/languages/default.php"/>
-        <zip destfile="XHShop-${version}.zip" basedir="dist" prefix="xhshop/"/>
+        <zip destfile="XHShop-${version}.zip" basedir="dist"/>
         <delete dir="dist"/>
     </target>
 
