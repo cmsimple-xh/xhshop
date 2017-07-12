@@ -81,7 +81,7 @@ if($xhsController instanceof FrontEndController
 }
 
 if ($f === 'xh_loggedout') {
-	$temp = XHS_BASE_PATH . 'data/catalog.bak.php';
+	$temp = XHS_CONTENT_PATH . 'xhshop/catalog.bak.php';
     if (copy(XHS_CATALOG, $temp)) {
 		$o .= XH_message('info', sprintf($plugin_tx['xhshop']['message_backup_created'], $temp));
 	}
