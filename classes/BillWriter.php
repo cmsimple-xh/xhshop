@@ -31,7 +31,7 @@ class BillWriter
 
     public function setCurrency($currency)
     {
-        if ($currency == '&euro;' || '€') {
+        if ($currency == '&euro;' || $currency == '€') {
             $currency = "\'80";
         }
         if ($currency == '&pound;') {
