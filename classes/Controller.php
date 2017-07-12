@@ -2,7 +2,8 @@
 
 namespace Xhshop;
 
-class Controller {
+class Controller
+{
     var $viewProvider;
     var $catalog;
     var $settings;
@@ -13,7 +14,8 @@ class Controller {
     var $bridge;
     var $errors = array();
 
-    function __construct(){
+    function __construct()
+    {
         global $pth, $plugin_cf, $plugin_tx;
 
         $this->settings = array();
@@ -41,8 +43,8 @@ class Controller {
          * TODO: eliminate need of that CMSimple-separator, leave it to the bridge
          */
 
-        if(!defined('XHS_URL') && isset($this->settings['url'])){
-            define('XHS_URL',$this->settings['url']);
+        if (!defined('XHS_URL') && isset($this->settings['url'])) {
+            define('XHS_URL', $this->settings['url']);
         }
         $this->bridge = new CmsBridge();
         $this->catalog = new Catalogue(XHS_URI_SEPARATOR);
@@ -52,43 +54,50 @@ class Controller {
         $this->viewProvider->setCurrency($this->settings['default_currency']);
     }
 
-    function render($template, $params = null){
-        if(!($this->viewProvider instanceof View)){
+    function render($template, $params = null)
+    {
+        if (!($this->viewProvider instanceof View)) {
             return "XHSController:render no view provider!";
         }
-        if(is_array($params)){
-            foreach($params as $key => $value){
+        if (is_array($params)) {
+            foreach ($params as $key => $value) {
                 $this->viewProvider->assignParam($key, $value);
             }
         }
         return $this->viewProvider->loadTemplate($template);
     }
 
-    function categories(){
-        if(!isset($this->catalog->categories[XHS_LANGUAGE])){
+    function categories()
+    {
+        if (!isset($this->catalog->categories[XHS_LANGUAGE])) {
             $this->catalog->categories[XHS_LANGUAGE] = array();
             $this->catalog->save();
         }
         return $this->catalog->categories[XHS_LANGUAGE];
     }
 
-    function categoryOptions(){
+    function categoryOptions()
+    {
         $options = array();
 
-        if($this->settings['allow_show_all'] == 'true' || $this instanceof BackEndController){
+        if ($this->settings['allow_show_all'] == 'true' || $this instanceof BackEndController) {
             $options[] = array('value' => '', 'label' => $this->viewProvider->labels['all_categories']);
         }
-        foreach($this->categories() as $category){
+        foreach ($this->categories() as $category) {
             $options[] = array('value' => $category, 'label' => $category);
         }
-        if($this->catalog->hasUncategorizedProducts()){
-            $options[] = array('value' => 'left_overs', 'label' => $this->catalog->category_for_the_left_overs[XHS_LANGUAGE]);
+        if ($this->catalog->hasUncategorizedProducts()) {
+            $options[] = array(
+                'value' => 'left_overs',
+                'label' => $this->catalog->category_for_the_left_overs[XHS_LANGUAGE]
+            );
         }
         return $options;
     }
 
-    function products($category = null, $collectAll = false){
-        if($category !== null){
+    function products($category = null, $collectAll = false)
+    {
+        if ($category !== null) {
             $category = $this->tidyPostString($category);
         }
 
@@ -96,12 +105,14 @@ class Controller {
         uasort($productList, array($this, 'compareProducts'));
         $products = array();
 
-        foreach($productList as $index => $product){
-            if($collectAll === false && $product->isAvailable() === false){continue;}
+        foreach ($productList as $index => $product) {
+            if ($collectAll === false && $product->isAvailable() === false) {
+                continue;
+            }
             $name = $product->getName(XHS_LANGUAGE);
             $detailLink = '';
             $page = $product->getDetailsLink(XHS_LANGUAGE);
-            if($page){
+            if ($page) {
                 $page = $this->bridge->translateUrl($page);
                 $name = $this->viewProvider->link($page, $name);
                 $detailLink = $this->viewProvider->link($page, $this->viewProvider->labels['product_info']);
@@ -120,12 +131,14 @@ class Controller {
             $image = $product->getBestPicture();
             $image = '';
             $pic = $product->getBestPicture();
-            if($pic){
+            if ($pic) {
                 $info = getimagesize($pic);
-                $image = '<a href="' . $pic . '" ' . $info[3] . ' title="' . $product->getName() . '" class="zoom"><img src="' . $pic . '" ' . $info[3] . ' title="' . $product->getName() . '"></a>';
+                $image = '<a href="' . $pic . '" ' . $info[3] . ' title="' . $product->getName()
+                    . '" class="zoom"><img src="' . $pic . '" ' . $info[3]
+                    . ' title="' . $product->getName() . '"></a>';
             }
             $products[$index]['image'] = $image;
-            if($product->hasVariants()){
+            if ($product->hasVariants()) {
                 $products[$index]['variants'] = $product->getVariants();
             }
             //  $products[$index]['variants'] = $product->hasVariants() ? $product->getVariants() : false;
@@ -134,13 +147,14 @@ class Controller {
         return $products;
     }
 
-    function getCurrentProduct(){
+    function getCurrentProduct()
+    {
         $xhs_page_name = $_SERVER['QUERY_STRING'];
         $productPages = array();
-        foreach($this->catalog->products as $product) {
-            foreach($product->productPages[XHS_LANGUAGE] as $page) {
+        foreach ($this->catalog->products as $product) {
+            foreach ($product->productPages[XHS_LANGUAGE] as $page) {
                 $productPages[] = $page;
-                if($page == $xhs_page_name){
+                if ($page == $xhs_page_name) {
                     return $product;
                 }
             }
@@ -148,19 +162,20 @@ class Controller {
         return false;
     }
 
-    function getPagesProducts(){
+    function getPagesProducts()
+    {
         $url = $this->bridge->getCurrentPage();
         $products = array();
-        foreach($this->catalog->products as $product) {
-            if(!isset($product->productPages[XHS_LANGUAGE])){
+        foreach ($this->catalog->products as $product) {
+            if (!isset($product->productPages[XHS_LANGUAGE])) {
                 continue;
             }
-            if(isset($product->stock_on_hand) && $product->stock_on_hand < 1){
+            if (isset($product->stock_on_hand) && $product->stock_on_hand < 1) {
                 continue;
             }
 
-            foreach($product->productPages[XHS_LANGUAGE] as $page) {
-                if($page == $this->bridge->translateUrl($url) || $page == $url){
+            foreach ($product->productPages[XHS_LANGUAGE] as $page) {
+                if ($page == $this->bridge->translateUrl($url) || $page == $url) {
                     $products[] = $product;
                 }
             }
@@ -169,29 +184,32 @@ class Controller {
         return $products;
     }
 
-    function handleRequest($request = null){
-        if(!$request){
+    function handleRequest($request = null)
+    {
+        if (!$request) {
             return "No request";
         }
-        if(!method_exists($this, $request)){
+        if (!method_exists($this, $request)) {
             return get_class($this) . ' does not understand: '. $request;
         }
         return $this->$request();
     }
-    function productList($collectAll = true){
+
+    function productList($collectAll = true)
+    {
         $category = $this->catalog->default_category[XHS_LANGUAGE];
-        if(isset($_GET['xhsCategory'])){
+        if (isset($_GET['xhsCategory'])) {
             $category = $_GET['xhsCategory'];
         }
-        if(isset($_POST['xhsCategory'])){
+        if (isset($_POST['xhsCategory'])) {
             $category = $_POST['xhsCategory'];
         }
         $showCats = true;
-        if(    $this->settings['use_categories'] === 'false'
+        if ($this->settings['use_categories'] === 'false'
             || $this->settings['use_categories'] === false
             || $this->settings['use_categories'] ===  '0'
-        )
-        { $showCats = false;
+        ) {
+            $showCats = false;
             $category = null;
         }
 
@@ -202,19 +220,21 @@ class Controller {
             case 'left_overs':
                 $params['categoryHeader'] = $this->catalog->category_for_the_left_overs[XHS_LANGUAGE];
                 break;
-            default:  $params['categoryHeader'] = $category;
+            default:
+                $params['categoryHeader'] = $category;
                 break;
         }
         return $params;
     }
 
-    function productSearchList($needle = ''){
+    function productSearchList($needle = '')
+    {
         $showCats = true;
-        if(    $this->settings['use_categories'] === 'false'
+        if ($this->settings['use_categories'] === 'false'
             || $this->settings['use_categories'] === false
             || $this->settings['use_categories'] ===  '0'
-        )
-        { $showCats = false;
+        ) {
+            $showCats = false;
         }
         $category = null;
         $products = array();
@@ -222,20 +242,19 @@ class Controller {
         $collectAll = $this instanceof BackendController;
         $temp = $this->products(null, $collectAll);
         $needles = explode(' ', trim($needle));
-        foreach($temp as $uid => $product){
+        foreach ($temp as $uid => $product) {
             $gotIt = true;
-            foreach($needles as $needle){
-                 if(
-                       stristr($product['name'], $needle)   == false
+            foreach ($needles as $needle) {
+                if (stristr($product['name'], $needle)   == false
                     && stristr($product['teaser'], $needle) == false
                     && stristr($product['description'], $needle) == false
                     && stristr(implode(' ', $product['categories']), $needle) == false
-                ){
+                ) {
                     $gotIt = false;
                     break;
                 }
             }
-            if($gotIt === false ){
+            if ($gotIt === false) {
                 continue;
             }
             $products[$uid] = $product;
@@ -248,16 +267,18 @@ class Controller {
         return $params;
     }
 
-    function tidyPostString($string, $writeEntities = true){
+    function tidyPostString($string, $writeEntities = true)
+    {
         $string = str_replace(array('./', '<?php', '<?', '?>'), '', $string);
-        if($writeEntities === true){
+        if ($writeEntities === true) {
             $string = htmlspecialchars($string);
         }
         return rtrim($string);
     }
 
-    function addPaymentModule($module){
-        if($module instanceof PaymentModule){
+    function addPaymentModule($module)
+    {
+        if ($module instanceof PaymentModule) {
             $this->paymentModules[$module->getName()] = $module;
             $module->setShopCurrency(html_entity_decode($this->settings['default_currency']));
             return true;
@@ -265,7 +286,8 @@ class Controller {
         return false;
     }
 
-    function loadPaymentModule($name){
+    function loadPaymentModule($name)
+    {
         global $xhsController;
 
         $classname = '\\Xhshop\\Payment\\' . str_replace(' ', '', ucwords(str_replace('_', ' ', $name)));
@@ -288,16 +310,19 @@ class Controller {
     }
 */
 
-    function getImageFiles($directory = null){
-        if($directory === null){
+    function getImageFiles($directory = null)
+    {
+        if ($directory === null) {
             $directory = $this->settings['image_folder'];
         }
-       $handle = opendir($directory);
+        $handle = opendir($directory);
         $files = array();
-        if($handle){
+        if ($handle) {
             while (false !== ($file = readdir($handle))) {
-                if ($file == '.' || $file == '..') {continue;}
-                if($this->isAllowedImageFile($file)){
+                if ($file == '.' || $file == '..') {
+                    continue;
+                }
+                if ($this->isAllowedImageFile($file)) {
                     $files[] = $file;
                 }
             }
@@ -306,55 +331,60 @@ class Controller {
         return $files;
     }
 
-    function isAllowedImageFile($file = ''){
+    function isAllowedImageFile($file = '')
+    {
         $extensions = array('jpeg', 'jpg', 'gif', 'png', 'svg', 'tif', 'tiff');
         $extension = pathinfo($file, PATHINFO_EXTENSION);
-        if($extension == $file){return false;}
-        if(in_array($extension, $extensions)){
+        if ($extension == $file) {
+            return false;
+        }
+        if (in_array($extension, $extensions)) {
             return true;
         }
         return false;
     }
 
-    function compareProducts($productA, $productB){
+    function compareProducts($productA, $productB)
+    {
         /**
          *  By default the products are sorted by asscendent sortIndex => newest first
          */
         $field =  isset($_POST['xhsProductSortField']) ? $_POST['xhsSortField'] : 'sortIndex';
-        $order =  isset($_POST['xhsProductSortOrder']) && $_POST['xhsProductSortOrder'] == 'DESC' ? $_POST['xhsProductSortOrder'] : 'ASC';
+        $order =  isset($_POST['xhsProductSortOrder'])
+            && $_POST['xhsProductSortOrder'] == 'DESC' ? $_POST['xhsProductSortOrder'] : 'ASC';
 
-        if(!($productA instanceof Product && $productB instanceof Product) ){
+        if (!($productA instanceof Product && $productB instanceof Product)) {
             trigger_error('Catalog::compareProducts() - expects 2 Product-Objects');
             return 0;
         }
-        if(!isset($productA->$field)){
+        if (!isset($productA->$field)) {
             trigger_error('Catalog:compareProducts - cannot compare products by ' . $field);
             return 0;
         }
-        if(is_array($productA->$field)){
+        if (is_array($productA->$field)) {
             $temp = $productA->$field;
             $propertyA = $temp[XHS_LANGUAGE];
             $temp = $productB->$field;
             $propertyB = $temp[XHS_LANGUAGE];
-        }
-        else{
+        } else {
             $propertyA = $productA->$field;
             $propertyB = $productB->$field;
         }
 
-        if($propertyA == $propertyB){
+        if ($propertyA == $propertyB) {
             return 0;
         }
-        if($order == 'DESC'){
+        if ($order == 'DESC') {
             return ($propertyA > $propertyB) ? -1 : 1;
         }
-        if($order == 'ASC'){
+        if ($order == 'ASC') {
             return ($propertyA < $propertyB) ? -1 : 1;
         }
         return 0;
     }
 
-    function getPaymentModules(){
+    function getPaymentModules()
+    {
         global $plugin_cf;
 
         $modules = preg_filter('/^([\w-]+)_is_active$/', '$1', array_keys($plugin_cf['xhshop']));
@@ -363,8 +393,8 @@ class Controller {
         })));
     }
 
-    function shopToc($level = 6){
+    function shopToc($level = 6)
+    {
         return '';
     }
 }
-?>

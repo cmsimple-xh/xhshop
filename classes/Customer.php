@@ -2,7 +2,8 @@
 
 namespace Xhshop;
 
-class Customer {
+class Customer
+{
     public $first_name;
     public $last_name;
     public $street;
@@ -15,4 +16,3 @@ class Customer {
     public $email;
     public $phone;
 }
-?>

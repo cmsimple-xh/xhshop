@@ -4,7 +4,8 @@ namespace Xhshop\Payment;
 
 use Xhshop\PaymentModule;
 
-class Paypal extends PaymentModule {
+class Paypal extends PaymentModule
+{
 
     var $name         = 'paypal';
     var $urls           = array(
@@ -12,33 +13,37 @@ class Paypal extends PaymentModule {
         'production'  => 'https://www.paypal.com/cgi-bin/webscr'
     );
 
-    function __construct() {
-		global $plugin_cf;
+    function __construct()
+    {
+        global $plugin_cf;
 
         $this->loadLanguage();
         $this->loadSettings();
-		$this->settings['currency_code'] = $plugin_cf['xhshop']['shop_currency_code'];
+        $this->settings['currency_code'] = $plugin_cf['xhshop']['shop_currency_code'];
     }
 
-    function isAvailable() {
+    function isAvailable()
+    {
         return strlen(trim($this->settings['currency_code'])) === 3 && strlen(trim($this->settings['email'])) > 5;
     }
 
-    function wantsCartItems() {
+    function wantsCartItems()
+    {
         return true;
     }
 
-    function getLabel() {
+    function getLabel()
+    {
         return '<img src="' . XHS_BASE_PATH . 'images/paypal-logo.png">
 ';
     }
 
-    function orderSubmitForm() {
+    function orderSubmitForm()
+    {
         $name = 'pp_' . session_id() . '.temp';
         //$name = 'test';
         $fh   = fopen(XHS_CONTENT_PATH . 'xhshop/tmp_orders/' . $name, "w");
-        if (!$fh)
-        {
+        if (!$fh) {
             die("could not open ");
         }
         $temp = serialize($_SESSION);
@@ -49,19 +54,18 @@ class Paypal extends PaymentModule {
         $form = '
 <form action="' . $this->urls[$this->settings['sandbox'] ? 'development' : 'production'] . '" method="post">
     <input type="hidden" name="cmd" value="_cart" />
-	<input type="hidden" name="upload" value="1" />
-	<input type="hidden" name="business" value="' . $this->settings['email'] . '">
-	<input type="hidden" name="currency_code" value="' . $this->settings['currency_code'] . '" />
+    <input type="hidden" name="upload" value="1" />
+    <input type="hidden" name="business" value="' . $this->settings['email'] . '">
+    <input type="hidden" name="currency_code" value="' . $this->settings['currency_code'] . '" />
     <input type="hidden" name="lc" value="' . strtoupper(XHS_LANGUAGE) . '" />
-	<input type="hidden" name="rm" value="2" />
+    <input type="hidden" name="rm" value="2" />
     <input type="hidden" name="custom" value="' . session_id() . '" />
-	<input type="hidden" name="handling_cart" value="' . ($this->settings['fee'] + $this->shipping) . '" />
+    <input type="hidden" name="handling_cart" value="' . ($this->settings['fee'] + $this->shipping) . '" />
     <input type="hidden" name="cancel_return" value="' . $_SERVER['HTTP_REFERER'] . '" />
           <input type="hidden" name="notify_url" value="' . $_SERVER['HTTP_REFERER'] . '" />
-	<input type="hidden" name="return" value="' . $_SERVER['HTTP_REFERER'] . '" />';
+    <input type="hidden" name="return" value="' . $_SERVER['HTTP_REFERER'] . '" />';
 
-        foreach ($this->cartItems as $item)
-        {
+        foreach ($this->cartItems as $item) {
             $name = strip_tags($item['name']);
             $name .= isset($item['variantName']) ? ', ' . $item['variantName'] : '';
             $form .= '
@@ -78,13 +82,13 @@ class Paypal extends PaymentModule {
         return $form;
     }
 
-    function ipn() {
+    function ipn()
+    {
         // read the post from PayPal system and add 'cmd'
         global $xhsController;
         $req = 'cmd=_notify-validate';
 
-        foreach ($_POST as $key => $value)
-        {
+        foreach ($_POST as $key => $value) {
             $value = urlencode($value);
             $req .= "&$key=$value";
         }
@@ -93,50 +97,38 @@ class Paypal extends PaymentModule {
 
         $header = "POST /cgi-bin/webscr HTTP/1.0\r\n";
 
-        if ($this->settings['sandbox'])
-        {
+        if ($this->settings['sandbox']) {
             $header .= "Host: www.sandbox.paypal.com:443\r\n";
-        } else
-        {
+        } else {
             $header .= "Host: www.paypal.com:443\r\n";
         }
         $header .= "Content-Type: application/x-www-form-urlencoded\r\n";
         $header .= "Content-Length: " . strlen($req) . "\r\n\r\n";
 
-        if ($this->settings['sandbox'])
-        {
+        if ($this->settings['sandbox']) {
             $fp = fsockopen('ssl://www.sandbox.paypal.com', 443, $errno, $errstr, 30);
-        } else
-        {
+        } else {
             $fp = fsockopen('ssl://www.paypal.com', 443, $errno, $errstr, 30);
         }
 
-        if (!$fp)
-        {
-
+        if (!$fp) {
             /*
              * HTTP-ERROR: Was tun?
              */
             return;
         }
 
-
         fputs($fp, $header . $req);
-        while (!feof($fp))
-        {
+        while (!feof($fp)) {
             $res = fgets($fp, 1024);
-            if (strcmp($res, "VERIFIED") == 0)
-            {
+            if (strcmp($res, "VERIFIED") == 0) {
                 /*
                  *  bei Bedarf pruefen, ob die Bestellung ausgefuehrt werden soll. (Stimmt die Haendler-E-Mail, ...?
                  */
               
                 $file = XHS_CONTENT_PATH . 'xhshop/tmp_orders/pp_' . $_POST['custom'];
-                if (file_exists($file . '.temp'))
-                {
-
-                    if (!(bool) session_id())
-                    {
+                if (file_exists($file . '.temp')) {
+                    if (!(bool) session_id()) {
                         session_id($_POST['custom']);
                         session_start();
                     }
@@ -147,12 +139,9 @@ class Paypal extends PaymentModule {
                     $_SESSION['xhsOrder']    = $temp['xhsOrder'];
                     rename($file . '.temp', $file . '.sent');
                     $xhsController->finishCheckout();
-                } else
-                {
-
+                } else {
                 }
-            } else if (strcmp($res, "INVALID") == 0)
-            {
+            } elseif (strcmp($res, "INVALID") == 0) {
                 /*
                  *  Fehlerbehandlung "ungueltig"
                  */
@@ -160,7 +149,4 @@ class Paypal extends PaymentModule {
         }
         fclose($fp);
     }
-
 }
-
-?>

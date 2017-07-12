@@ -2,6 +2,12 @@
 
 <project name="Xhshop" default="help">
 
+    <fileset id="php-sources" dir=".">
+        <include name="classes/**/*.php"/>
+        <include name="admin.php"/>
+        <include name="index.php"/>
+    </fileset>
+
     <fileset id="unit-tests" dir="tests/unit">
         <include name="*Test.php"/>
     </fileset>
@@ -23,6 +29,13 @@
                 <include name="**/*.jpg"/>
             </fileset>
         </copy>
+    </target>
+
+    <target name="sniff" description="checks adherence to coding standards">
+        <phpcodesniffer standard="PSR2" format="full">
+            <fileset refid="php-sources"/>
+            <fileset refid="unit-tests"/>
+        </phpcodesniffer>
     </target>
 
     <target name="compat"

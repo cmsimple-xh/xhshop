@@ -2,7 +2,8 @@
 
 namespace Xhshop;
 
-class Product {
+class Product
+{
 //    var $counter;
     public $names;
     public $descriptions;
@@ -22,7 +23,8 @@ class Product {
     private $imageFolder;
     private $previewFolder;
 
-    public function __construct() {
+    public function __construct()
+    {
         global $pth, $plugin_cf;
 
         $this->names = array();
@@ -36,234 +38,294 @@ class Product {
         $this->previewFolder = "{$pth['folder']['images']}{$plugin_cf['xhshop']['shop_preview_folder']}";
     }
 
-    public function getWeight(){
-        if(!isset($this->weight)){$this->weight = 0;}
+    public function getWeight()
+    {
+        if (!isset($this->weight)) {
+            $this->weight = 0;
+        }
         return (float)$this->weight;
     }
-    public function getNet($vatRate){
+
+    public function getNet($vatRate)
+    {
         $net = $this->price/(100 + $vatRate)*100;
         return (float)$net;
     }
 
-    public function getGross(){
+    public function getGross()
+    {
         return (float)$this->price;
     }
 
-    public function getName($language = null, $variant = null) {
-        if($language === null){ $language = XHS_LANGUAGE; }
+    public function getName($language = null, $variant = null)
+    {
+        if ($language === null) {
+            $language = XHS_LANGUAGE;
+        }
         $variantName = '';
         //     var_dump($this);
-        if(isset($this->variants[$language][$variant])){
+        if (isset($this->variants[$language][$variant])) {
             $variantName = ' ('.$this->variants[$language][$variant]. ')';
         }
-        if(!isset($this->names[$language])) {
+        if (!isset($this->names[$language])) {
             $langs = array_keys($this->names);
             $language = $langs[0];
         }
 
         return $this->names[$language]. $variantName;
     }
-    public function getVariantName($variant = 0){
-        if(array_key_exists($variant, $this->variants[XHS_LANGUAGE])){
+
+    public function getVariantName($variant = 0)
+    {
+        if (array_key_exists($variant, $this->variants[XHS_LANGUAGE])) {
             return $this->variants[XHS_LANGUAGE][$variant];
         }
-     }
+    }
 
-    public function getBestPicture(){
-         if(isset($this->image) && strlen($this->image) > 0 && file_exists($this->imageFolder . $this->image)){
-             return $this->imageFolder . $this->image;
-         }
-         if(isset(   $this->previewPicture)
-                  && strlen($this->previewPicture) > 0
-                  && file_exists($this->imageFolder . $this->previewPicture)){
-
-
-             return $this->imageFolder . $this->previewPicture;
-         }
+    public function getBestPicture()
+    {
+        if (isset($this->image) && strlen($this->image) > 0 && file_exists($this->imageFolder . $this->image)) {
+            return $this->imageFolder . $this->image;
+        }
+        if (isset($this->previewPicture)
+                 && strlen($this->previewPicture) > 0
+                 && file_exists($this->imageFolder . $this->previewPicture)) {
+            return $this->imageFolder . $this->previewPicture;
+        }
         return  false;
-     }
+    }
 
-
-     public function getImage(){
-         if((isset($this->image)) && strlen($this->image) > 0 && ($this->image <> '')) {
-
-            $image = '<a href="' . $this->imageFolder.$this->image . '" title="'.$this->getName(XHS_LANGUAGE). '" class="zoom"><img src="' . $this->imageFolder.$this->image . '" alt="' .$this->getName(XHS_LANGUAGE) . '"  title="'.$this->getName(XHS_LANGUAGE). '"></a>';
+    public function getImage()
+    {
+        if ((isset($this->image)) && strlen($this->image) > 0 && ($this->image <> '')) {
+            $image = '<a href="' . $this->imageFolder . $this->image . '" title="'
+                . $this->getName(XHS_LANGUAGE) . '" class="zoom"><img src="'
+                . $this->imageFolder . $this->image . '" alt="' . $this->getName(XHS_LANGUAGE)
+                . '"  title="'.$this->getName(XHS_LANGUAGE) . '"></a>';
             return $image;
         }
         return '';
-     }
+    }
     
-    public function getDescription($language = null) {
+    public function getDescription($language = null)
+    {
         $language = ($language === null) ? XHS_LANGUAGE : $language;
         return isset($this->descriptions[$language]) ? $this->descriptions[$language] : '' ;
     }
-    public function getTeaser($language = null) {
+
+    public function getTeaser($language = null)
+    {
         $language = ($language === null) ? XHS_LANGUAGE : $language;
        
         return isset($this->teasers[$language]) ? $this->teasers[$language] : '' ;
     }
 
     // appears to be unused
-    private function getPageLink($language, $label = null){
-        if(!$label){$label = $this->getName($language);}
-        if($this->getPage($language)) {
+    private function getPageLink($language, $label = null)
+    {
+        if (!$label) {
+            $label = $this->getName($language);
+        }
+        if ($this->getPage($language)) {
             $label = "<a href=\"" . $this->productPages[$language][0] . "\">$label</a>";
         }
         return $label;
     }
 
-    public function getDetailsLink($language = null){
+    public function getDetailsLink($language = null)
+    {
         $lang = ($language === null) ? XHS_LANGUAGE : $language;
-         if(isset($this->descriptions[$lang]) && trim($this->descriptions[$lang]) != ''){
+        if (isset($this->descriptions[$lang]) && trim($this->descriptions[$lang]) != '') {
             return XHS_URL . '&xhsProduct=' . $this->uid;
         }
         return $this->getPage($language);
     }
-    
-    public function getPage($language = null){
-        if($language == null){
+
+    public function getPage($language = null)
+    {
+        if ($language == null) {
             $language = XHS_LANGUAGE;
         }
 
-        if(isset($this->productPages[$language][0]) && trim($this->productPages[$language][0]) <> ''){
+        if (isset($this->productPages[$language][0]) && trim($this->productPages[$language][0]) <> '') {
             return $this->productPages[$language][0];
         }
         return false;
     }
 
-    public function getPreviewPicture(){
-        if((isset($this->previewPicture)) && ($this->previewPicture <> '')) {
-            
-            $image = '<a href="' . $this->imageFolder.$this->image . '" title="' . $this->getName(XHS_LANGUAGE) . '" class="zoom"><img src="'. $this->previewFolder . $this->previewPicture. '" alt="' .$this->getName(XHS_LANGUAGE) .' - Preview"  title="'.$this->getName(XHS_LANGUAGE). '"></a>';
+    public function getPreviewPicture()
+    {
+        if ((isset($this->previewPicture)) && ($this->previewPicture <> '')) {
+            $image = '<a href="' . $this->imageFolder.$this->image . '" title="'
+                . $this->getName(XHS_LANGUAGE) . '" class="zoom"><img src="'
+                . $this->previewFolder . $this->previewPicture . '" alt="' . $this->getName(XHS_LANGUAGE)
+                . ' - Preview"  title="'.$this->getName(XHS_LANGUAGE). '"></a>';
             return $image;
         }
         return '';
     }
 
-    public function getPreviewPictureName(){
-        if((isset($this->previewPicture))) {
+    public function getPreviewPictureName()
+    {
+        if ((isset($this->previewPicture))) {
             return $this->previewPicture;
         }
         return '';
     }
 
-    public function getImageName(){
-        if((isset($this->image))) {
+    public function getImageName()
+    {
+        if (isset($this->image)) {
             return $this->image;
         }
         return '';
     }
     
-    public function getVariants($language = null){
-        if($language === null){ $language = XHS_LANGUAGE; }
+    public function getVariants($language = null)
+    {
+        if ($language === null) {
+            $language = XHS_LANGUAGE;
+        }
         return isset($this->variants[XHS_LANGUAGE]) ? $this->variants[XHS_LANGUAGE] : array();
     }
 
-    public function getCategories($language = null){
-        if($language === null){ $language = XHS_LANGUAGE; }
+    public function getCategories($language = null)
+    {
+        if ($language === null) {
+            $language = XHS_LANGUAGE;
+        }
         return isset($this->categories[$language]) ? $this->categories[$language] : array();
     }
 
-    public function getProductPages($language = null){
-        if($language === null){ $language = XHS_LANGUAGE; }
-        if(isset($this->productPages[$language])){
+    public function getProductPages($language = null)
+    {
+        if ($language === null) {
+            $language = XHS_LANGUAGE;
+        }
+        if (isset($this->productPages[$language])) {
             return $this->productPages[$language];
         }
         return array();
     }
-    public function hasVariants(){
+
+    public function hasVariants()
+    {
         // return true;
-        return (isset($this->variants[XHS_LANGUAGE]) && is_array($this->variants[XHS_LANGUAGE])) 
-                ?  count($this->variants[XHS_LANGUAGE]) > 0
-                : null;
+        return (isset($this->variants[XHS_LANGUAGE]) && is_array($this->variants[XHS_LANGUAGE]))
+            ? count($this->variants[XHS_LANGUAGE]) > 0
+            : null;
     }
 
-    public function setName($name = 'No Name!', $language = null){
-        if($language === null){ $language = XHS_LANGUAGE; }
+    public function setName($name = 'No Name!', $language = null)
+    {
+        if ($language === null) {
+            $language = XHS_LANGUAGE;
+        }
         $this->names[$language] = $name;
         return;
     }
 
-    public function setDescription($description = '', $language = null){
-        if($language === null){ $language = XHS_LANGUAGE; }
+    public function setDescription($description = '', $language = null)
+    {
+        if ($language === null) {
+            $language = XHS_LANGUAGE;
+        }
         $this->descriptions[$language] = $description;
         return;
     }
 
-    public function setTeaser($description = '', $language = null){
-        if($language === null){ $language = XHS_LANGUAGE; }
+    public function setTeaser($description = '', $language = null)
+    {
+        if ($language === null) {
+            $language = XHS_LANGUAGE;
+        }
         $this->teasers[$language] = $description;
         return;
     }
 
-    public function setPrice($price = 0.00){
+    public function setPrice($price = 0.00)
+    {
         $price = str_replace(',', '.', $price);
         $this->price = (float)$price;
         return;
     }
 
-    public function setWeight($weight = 0.00){
+    public function setWeight($weight = 0.00)
+    {
         $weight = str_replace(',', '.', $weight);
         $this->weight = (float)$weight;
         return;
     }
 
-    public function setStockOnHand($quantity = 1){
+    public function setStockOnHand($quantity = 1)
+    {
         $this->stock_on_hand = (int)$quantity;
         return;
     }
 
-    public function setVat($rate = 'full'){
+    public function setVat($rate = 'full')
+    {
         $this->vat = (string)$rate;
         return;
     }
 
-    public function setVariants($variants = array(), $language = null){
-         if($language === null){ $language = XHS_LANGUAGE; }
-         if(is_array($variants)){
-             if(count(($variants)) == 1){
-                 trigger_error('Product:setVariants() only 1 variant has been passed - and ignored.');
-                 $this->variants[$language] = array();
-                 return;
-             }
-             $this->variants[$language] = $variants;
-             return;
-         }
-         trigger_error('Product:setVariants() expects an array as first argument.');
-         return;
+    public function setVariants($variants = array(), $language = null)
+    {
+        if ($language === null) {
+            $language = XHS_LANGUAGE;
+        }
+        if (is_array($variants)) {
+            if (count(($variants)) == 1) {
+                trigger_error('Product:setVariants() only 1 variant has been passed - and ignored.');
+                $this->variants[$language] = array();
+                return;
+            }
+            $this->variants[$language] = $variants;
+            return;
+        }
+        trigger_error('Product:setVariants() expects an array as first argument.');
+        return;
     }
 
-    public function setProductPages($pages = array(), $language = null){
-         if($language === null){ $language = XHS_LANGUAGE; }
-         if(is_array($pages)){
-             $this->productPages[$language] = $pages;
-             return;
-         }
-         trigger_error('Product::setProductPages() expects an array as first argument.');
-         return;
+    public function setProductPages($pages = array(), $language = null)
+    {
+        if ($language === null) {
+            $language = XHS_LANGUAGE;
+        }
+        if (is_array($pages)) {
+            $this->productPages[$language] = $pages;
+            return;
+        }
+        trigger_error('Product::setProductPages() expects an array as first argument.');
+        return;
     }
 
-    public function setCategories($categories = array(), $language = null){
-         if($language === null){ $language = XHS_LANGUAGE; }
+    public function setCategories($categories = array(), $language = null)
+    {
+        if ($language === null) {
+            $language = XHS_LANGUAGE;
+        }
          
-         if(is_array($categories)){
-             $this->categories[$language] = $categories;
-             return;
-         }
-         trigger_error('Product:setCategories() expects an array as first argument.');
-         return;
+        if (is_array($categories)) {
+            $this->categories[$language] = $categories;
+            return;
+        }
+        trigger_error('Product:setCategories() expects an array as first argument.');
+        return;
     }
 
-    public function setPreviewPic($pic = ''){
+    public function setPreviewPic($pic = '')
+    {
         $this->previewPicture = (string)$pic;
     }
 
-    public function setImage($pic = ''){
+    public function setImage($pic = '')
+    {
         $this->image = (string)$pic;
     }
 
-    public function isAvailable(){
+    public function isAvailable()
+    {
         return isset($this->stock_on_hand) ? $this->stock_on_hand > 0 : true;
     }
 }
-?>

@@ -19,13 +19,10 @@ class CmsBridge
 
     function getHeadings($level = 0)
     {
-        if ($level > 0)
-        {
+        if ($level > 0) {
             $array = array();
-            foreach ($this->headings as $key => $heading)
-            {
-                if ($this->levels[$key] <= $level)
-                {
+            foreach ($this->headings as $key => $heading) {
+                if ($this->levels[$key] <= $level) {
                     $array[$key] = $heading;
                 }
             }
@@ -36,8 +33,7 @@ class CmsBridge
 
     function getHeadingOfUrl($url = '- nope -')
     {
-        if (array_search($url, $this->urls) === false)
-        {
+        if (array_search($url, $this->urls) === false) {
             trigger_error('XHS_CMSimple_Bridge::getHeadingOfUrl($url) - ' . $url . ' does not exist.');
         }
         return $this->headings[array_search($url, $this->urls)];
@@ -45,13 +41,10 @@ class CmsBridge
 
     function getUrls($level = 0)
     {
-        if ($level > 0)
-        {
+        if ($level > 0) {
             $array = array();
-            foreach ($this->urls as $key => $link)
-            {
-                if ($this->levels[$key] <= $level)
-                {
+            foreach ($this->urls as $key => $link) {
+                if ($this->levels[$key] <= $level) {
                     $array[$key] = $link;
                 }
             }
@@ -62,8 +55,7 @@ class CmsBridge
 
     function getLevelOfUrl($url)
     {
-        if (array_search($url, $this->urls) === false)
-        {
+        if (array_search($url, $this->urls) === false) {
             trigger_error('XHS_CMSimple_Bridge::getLevelOfUrl($url) - ' . $url . ' does not exist.');
         }
         return $this->levels[array_search($url, $this->urls)];
@@ -86,13 +78,10 @@ class CmsBridge
 
     function getLevels($level = 0)
     {
-        if ($level > 0)
-        {
+        if ($level > 0) {
             $array = array();
-            foreach ($this->levels as $mylevel)
-            {
-                if ($myLevel <= $level)
-                {
+            foreach ($this->levels as $mylevel) {
+                if ($myLevel <= $level) {
                     $array[$key] = $myLevel;
                 }
             }
@@ -114,10 +103,8 @@ class CmsBridge
         $shopLevel = $this->levels[$index];
         $index++;
         $i         = 0;
-        while ($index < count($this->urls) && $this->levels[$index] > $shopLevel)
-        {
-            if ($this->levels[$index] > $level)
-            {
+        while ($index < count($this->urls) && $this->levels[$index] > $shopLevel) {
+            if ($this->levels[$index] > $level) {
                 $index++;
                 continue;
             }
@@ -134,7 +121,7 @@ class CmsBridge
     {
         global $bjs;
         // init_editor(); [cmb]
-		include_editor();
+        include_editor();
 
         $bjs .= '<script>'
                 . editor_replace('xhsTeaser', 'minimal')
@@ -148,14 +135,15 @@ class CmsBridge
         return $url[0];
     }
 
-    function setTitle($strTitle){
+    function setTitle($strTitle)
+    {
         global $title;
         $title = strip_tags($strTitle);
     }
 
-    function setMeta($strName, $strContent){
+    function setMeta($strName, $strContent)
+    {
         global $cf;
         $cf['meta'][$strName] = strip_tags($strContent);
     }
 }
-?>
