@@ -476,6 +476,8 @@ class FrontEndController extends Controller
 
     function sendEmails($bill)
     {
+        global $plugin_tx;
+
         require_once(XHS_BASE_PATH . 'phpmailer/class.phpmailer.php');
         $mail = new PHPMailer();
         $mail->WordWrap = 60;
@@ -495,10 +497,7 @@ class FrontEndController extends Controller
         $mail->Body = $this->htmlConfirmation();
         $mail->AltBody = $this->textConfirmation();
         if (!$mail->Send()) {
-            $error = "<p>Sorry! Your message could not be sent. <p>";
-            $error .= '<p>Please inform us by email: <a href="mailto:' . $this->settings['order_email'] . '">' . $this->settings['order_email'] . '</a></p>';
-            $error .= "<p>Mailer Error: " . $mail->ErrorInfo . '</p>';
-            return $error;
+            return sprintf($plugin_tx['xhshop']['mail_confirmation_error'], $this->settings['order_email'], $mail->ErrorInfo);
         }
 
         $mail->ClearAddresses();
@@ -508,6 +507,7 @@ class FrontEndController extends Controller
         $mail->Body = $this->htmlConfirmation();
         $mail->AltBody = $this->textConfirmation();
         if (!$mail->Send()) {
+            return sprintf($plugin_tx['xhshop']['mail_notify_error'], $this->settings['order_email'], $mail->ErrorInfo);
             $error = "<p>Sorry! Although an email confirmation has been sent to you, your order was not transmitted to our shop! <p>";
             $error .= '<p>Please inform us by email: <a href="mailto:' . $this->settings['order_email']
                 . '">' . $this->settings['order_email'] . '</a></p>';
