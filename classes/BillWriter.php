@@ -4,10 +4,10 @@ namespace Xhshop;
 
 class BillWriter
 {
-    var $template;
-    var $currency;
+    private $template;
+    private $currency;
 
-    function loadTemplate($template)
+    public function loadTemplate($template)
     {
         $fh = fopen($template, "r");
         if (!$fh) {
@@ -18,7 +18,7 @@ class BillWriter
         return true;
     }
 
-    function replace($replacements)
+    public function replace($replacements)
     {
         foreach ($replacements as $search => $replace) {
             $cleaned = html_entity_decode($replace, ENT_QUOTES, 'UTF-8');
@@ -29,7 +29,7 @@ class BillWriter
         return $this->template;
     }
 
-    function setCurrency($currency)
+    public function setCurrency($currency)
     {
         if ($currency == '&euro;' || '€') {
             $currency = "\'80";
@@ -43,12 +43,12 @@ class BillWriter
         $this->currency = $currency;
     }
 
-    function getCurrency()
+    public function getCurrency()
     {
         return $this->currency;
     }
 
-    function writeProductRow($name, $amount, $price, $sum, $vatRate)
+    public function writeProductRow($name, $amount, $price, $sum, $vatRate)
     {
         $row = '\trowd\trql\trleft-20\trpaddft3\trpaddt0\trpaddfl3\trpaddl10\trpaddfb3\trpaddb0\trpaddfr3\trpaddr10\clbrdrl\brdrs\brdrw1\brdrcf1\clbrdrb\brdrs\brdrw1\brdrcf1\clvertalb\cellx724\clbrdrl\brdrs\brdrw1\brdrcf1\clbrdrb\brdrs\brdrw1\brdrcf1\cellx5036\clbrdrl\brdrs\brdrw1\brdrcf1\clbrdrb\brdrs\brdrw1\brdrcf1\clvertalb\cellx6481\clbrdrl\brdrs\brdrw1\brdrcf1\clbrdrb\brdrs\brdrw1\brdrcf1\clbrdrr\brdrs\brdrw1\brdrcf1\clvertalb\cellx8640
 \pard\intbl\pard\plain \intbl\ltrpar\s1\cf0\qr{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\rtlch\af1\afs24\lang255\ltrch\dbch\af1\langfe255\hich\f1\fs24\lang1031\loch\f1\fs24\lang1031 {\rtlch \ltrch\loch\f1\fs24\lang1031\i0\b0 '.$amount.'}
