@@ -159,8 +159,6 @@ class BackEndController extends Controller
         $params['categories'] =  parent::categories();
         $params['leftOverCat'] = $this->catalog->category_for_the_left_overs[XHS_LANGUAGE];
         $params['xhsDefaultCat'] = $this->catalog->default_category[XHS_LANGUAGE];
-        $params['xhsUseCats'] = $this->settings['use_categories'];
-        $params['xhsAllowShowAll'] = $this->settings['allow_show_all'];
 
         return $this->render('categories', $params);
     }
