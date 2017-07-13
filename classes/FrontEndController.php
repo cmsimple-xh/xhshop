@@ -404,8 +404,7 @@ class FrontEndController extends Controller
         $writer = new BillWriter();
         $rows   = '';
 
-        $writer->setCurrency($this->settings['default_currency']);
-        $currency = ' ' . $writer->getCurrency();
+        $currency = ' ' . $this->settings['default_currency'];
         foreach ($this->collectCartItems() as $product) {
             $name    = strip_tags($product['name']) . ' ' . $product['variantName'];
             $price   = $this->viewProvider->formatFloat($product['price']) . $currency;
@@ -428,7 +427,6 @@ class FrontEndController extends Controller
         if ($this->settings['dont_deal_with_taxes']) {
             $vat_hint = $this->viewProvider->hints['price_info_no_vat'];
         } else {
-            $currency = ' ' . $writer->getCurrency();
             $vat_hint = $this->viewProvider->labels['included_vat'] . ' '
                 . $this->viewProvider->formatFloat($_SESSION['xhsOrder']->getVat()) . $currency;
             $vat_hint .= ' (' . $this->settings['vat_reduced'] . '%: '

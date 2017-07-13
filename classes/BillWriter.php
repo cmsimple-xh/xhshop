@@ -5,7 +5,6 @@ namespace Xhshop;
 class BillWriter
 {
     private $template;
-    private $currency;
 
     public function loadTemplate($template)
     {
@@ -22,30 +21,48 @@ class BillWriter
     {
         foreach ($replacements as $search => $replace) {
             $cleaned = html_entity_decode($replace, ENT_QUOTES, 'UTF-8');
-
-            $cleaned = utf8_decode($cleaned);
+            $cleaned = $this->convertToRtf($cleaned);
             $this->template = str_replace($search, $cleaned, $this->template);
         }
         return $this->template;
     }
 
-    public function setCurrency($currency)
+    /**
+     * Convert a UTF-8 encoded text to RTF format
+     *
+     * ASCII characters are not converted, but for compatibility with different
+     * code pages *all* non ASCII characters are converted to Unicode escapes
+     * without alternative representation. To avoid issues with templates
+     * defining a \ucN, all Unicode escapes are grouped in an {\uc0}.
+     */
+    private function convertToRtf($text)
     {
-        if ($currency == '&euro;' || $currency == '€') {
-            $currency = "\'80";
+        ob_start();
+        $isAscii = true;
+        $utf16 = mb_convert_encoding($text, 'UTF-16LE', 'UTF-8');
+        $codepoints = unpack('v*', $utf16);
+        foreach ($codepoints as $codepoint) {
+            if ($codepoint < 0x80) {
+                if (!$isAscii) {
+                    echo '}';
+                    $isAscii = true;
+                }
+                echo chr($codepoint);
+            } else {
+                if ($codepoint >= 0x8000) {
+                    $codepoint -= 0x10000;
+                }
+                if ($isAscii) {
+                    echo '{\uc0';
+                    $isAscii = false;
+                }
+                echo "\\u$codepoint";
+            }
         }
-        if ($currency == '&pound;') {
-            $currency = "{\'a3}";
+        if (!$isAscii) {
+            echo '}';
         }
-        if ($currency == '&yen;') {
-            $currency = "\'a5";
-        }
-        $this->currency = $currency;
-    }
-
-    public function getCurrency()
-    {
-        return $this->currency;
+        return ob_get_clean();
     }
 
     public function writeProductRow($name, $amount, $price, $sum, $vatRate)
