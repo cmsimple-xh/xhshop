@@ -413,7 +413,7 @@ class FrontEndController extends Controller
             $price   = $this->viewProvider->formatFloat($product['price']) . $currency;
             $sum     = $this->viewProvider->formatFloat($product['sum']) . $currency;
             $amount  = $product['amount'] . ' ';
-            $vatRate = '(' . $this->viewProvider->labels['get_vat'] . $product['vatRate'] . ' %)';
+            $vatRate = $this->viewProvider->labels['get_vat'] . $product['vatRate'] . ' %';
             if ($this->settings['dont_deal_with_taxes']) {
                 $vatRate = '';
             }
