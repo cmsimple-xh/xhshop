@@ -522,7 +522,7 @@ class FrontEndController extends Controller
     function productList($collectAll = true)
     {
         $params                       = parent::productList(false);
-        $params['showCategorySelect'] = $this->settings['use_categories'] !== 'false';
+        $params['showCategorySelect'] = (bool) $this->settings['use_categories'];
 
         return $this->render('catalog', $params);
     }
@@ -535,7 +535,7 @@ class FrontEndController extends Controller
     function productSearchList($needle = '')
     {
         $params                       = parent::productSearchList($needle);
-        $params['showCategorySelect'] = $this->settings['use_categories'] !== 'false';
+        $params['showCategorySelect'] = (bool) $this->settings['use_categories'];
 
         return $this->render('catalog', $params);
     }
@@ -578,7 +578,7 @@ class FrontEndController extends Controller
 
     function shopToc($level = 6)
     {
-        if ($this->settings['use_categories'] == 'false') {
+        if (!$this->settings['use_categories']) {
             return;
         }
         $params = array();
@@ -586,7 +586,7 @@ class FrontEndController extends Controller
         $params['shopUrl']     = $url;
         $params['shopHeading'] = $this->bridge->getHeadingOfUrl(XHS_URL);
         $params['categories']  = array();
-        if ($this->settings['allow_show_all'] == 'true') {
+        if ($this->settings['allow_show_all']) {
             $params['categories'][0]['url']  = urlencode($this->viewProvider->labels['all_categories']);
             $params['categories'][0]['name'] = $this->viewProvider->labels['all_categories'];
         }

@@ -81,7 +81,7 @@ class Controller
     {
         $options = array();
 
-        if ($this->settings['allow_show_all'] == 'true' || $this instanceof BackEndController) {
+        if ($this->settings['allow_show_all'] || $this instanceof BackEndController) {
             $options[] = array('value' => '', 'label' => $this->viewProvider->labels['all_categories']);
         }
         foreach ($this->categories() as $category) {
@@ -206,10 +206,7 @@ class Controller
             $category = $_POST['xhsCategory'];
         }
         $showCats = true;
-        if ($this->settings['use_categories'] === 'false'
-            || $this->settings['use_categories'] === false
-            || $this->settings['use_categories'] ===  '0'
-        ) {
+        if (!$this->settings['use_categories']) {
             $showCats = false;
             $category = null;
         }
@@ -231,10 +228,7 @@ class Controller
     function productSearchList($needle = '')
     {
         $showCats = true;
-        if ($this->settings['use_categories'] === 'false'
-            || $this->settings['use_categories'] === false
-            || $this->settings['use_categories'] ===  '0'
-        ) {
+        if (!$this->settings['use_categories']) {
             $showCats = false;
         }
         $category = null;
