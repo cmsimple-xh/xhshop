@@ -450,12 +450,12 @@ class FrontEndController extends Controller
             '%COMPANY_STREET%' => $this->settings['street'],
             '%COMPANY_ZIP%'    => $this->settings['zip_code'],
             '%COMPANY_CITY%'   => $this->settings['city'],
-            '%SUMME%'          => $this->viewProvider->formatFloat($subtotal) . ' ' . $currency,
-            '%SHIPPING%'       => $this->viewProvider->formatFloat($shipping) . ' ' . $currency,
+            '%SUMME%'          => $this->viewProvider->formatFloat($subtotal) . $currency,
+            '%SHIPPING%'       => $this->viewProvider->formatFloat($shipping) . $currency,
             '%rows%'           => $rows,
             '%FEE_LABEL%'      => $feeLabel,
-            '%FEE%'            => $this->viewProvider->formatFloat($fee) . ' ' . $currency,
-            '%ENDSUMME%'       => $this->viewProvider->formatFloat($subtotal + $shipping + $fee) . ' ' . $currency,
+            '%FEE%'            => $this->viewProvider->formatFloat($fee) . $currency,
+            '%ENDSUMME%'       => $this->viewProvider->formatFloat($subtotal + $shipping + $fee) . $currency,
             '%MWST_HINWEIS%'   => $vat_hint
         );
 
