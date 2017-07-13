@@ -402,6 +402,9 @@ class FrontEndController extends Controller
         global $plugin_tx;
 
         $writer = new BillWriter();
+        if (!$writer->loadTemplate(XHS_BILLS_PATH . 'template.rtf')) {
+            return $plugin_tx['xhshop']['error_no_bill'];
+        }
         $rows   = '';
 
         $currency = ' ' . $this->settings['default_currency'];
@@ -456,9 +459,6 @@ class FrontEndController extends Controller
             '%MWST_HINWEIS%'   => $vat_hint
         );
 
-        if (!$writer->loadTemplate(XHS_BILLS_PATH . 'template.rtf')) {
-            return $plugin_tx['xhshop']['error_no_bill'];
-        }
         return $writer->replace($replacements);
     }
 

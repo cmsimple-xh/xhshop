@@ -5,6 +5,7 @@ namespace Xhshop;
 class BillWriter
 {
     private $template;
+    private $rowTemplate;
 
     public function loadTemplate($template)
     {
@@ -67,11 +68,21 @@ class BillWriter
 
     public function writeProductRow($name, $amount, $price, $sum, $vatRate)
     {
-        $row = '\trowd\trql\trleft-20\trpaddft3\trpaddt0\trpaddfl3\trpaddl10\trpaddfb3\trpaddb0\trpaddfr3\trpaddr10\clbrdrl\brdrs\brdrw1\brdrcf1\clbrdrb\brdrs\brdrw1\brdrcf1\clvertalb\cellx724\clbrdrl\brdrs\brdrw1\brdrcf1\clbrdrb\brdrs\brdrw1\brdrcf1\cellx5036\clbrdrl\brdrs\brdrw1\brdrcf1\clbrdrb\brdrs\brdrw1\brdrcf1\clvertalb\cellx6481\clbrdrl\brdrs\brdrw1\brdrcf1\clbrdrb\brdrs\brdrw1\brdrcf1\clbrdrr\brdrs\brdrw1\brdrcf1\clvertalb\cellx8640
-\pard\intbl\pard\plain \intbl\ltrpar\s1\cf0\qr{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\rtlch\af1\afs24\lang255\ltrch\dbch\af1\langfe255\hich\f1\fs24\lang1031\loch\f1\fs24\lang1031 {\rtlch \ltrch\loch\f1\fs24\lang1031\i0\b0 '.$amount.'}
-\cell\pard\plain \intbl\ltrpar\s1\cf0{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\rtlch\af1\afs24\lang255\ltrch\dbch\af1\langfe255\hich\f1\fs24\lang1031\loch\f1\fs24\lang1031 {\rtlch \ltrch\loch\f1\fs24\lang1031\i0\b0 '.$name."\t".$vatRate.'}
-\cell\pard\plain \intbl\ltrpar\s1\cf0\qr{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\rtlch\af1\afs24\lang255\ltrch\dbch\af1\langfe255\hich\f1\fs24\lang1031\loch\f1\fs24\lang1031 {\rtlch \ltrch\loch\f1\fs24\lang1031\i0\b0 '.$price.' }
-\cell\pard\plain \intbl\ltrpar\s1\cf0\qr{\*\hyphen2\hyphlead2\hyphtrail2\hyphmax0}\rtlch\af1\afs24\lang255\ltrch\dbch\af1\langfe255\hich\f1\fs24\lang1031\loch\f1\fs24\lang1031 {\rtlch \ltrch\loch\f1\fs24\lang1031\i0\b0 '.$sum. ' }\cell\row';
-        return $row;
+        if (!isset($this->rowTemplate)) {
+            if (preg_match_all('/\\\\trowd.*?\\\\row/s', $this->template, $matches, PREG_OFFSET_CAPTURE)) {
+                foreach ($matches[0] as $match) {
+                    if (strpos($match[0], '%pname%') !== false) {
+                        $this->rowTemplate = $match[0];
+                        $this->template = substr($this->template, 0, $match[1]) . '%rows%' . substr($this->template, $match[1] + strlen($this->rowTemplate));
+                        break;
+                    }
+                }
+            }
+        }
+        return str_replace(
+            array('%pa%', '%pname%', '%pvat%', '%pprice%', '%psum%'),
+            array($amount, $name, $vatRate, $price, $sum),
+            $this->rowTemplate
+        );
     }
 }
