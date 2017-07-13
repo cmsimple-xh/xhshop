@@ -97,6 +97,7 @@ $plugin_tx['xhshop']['hints_product_teaser'] = 'Will be displayed in the product
 $plugin_tx['xhshop']['labels_product_description']='Description';
 $plugin_tx['xhshop']['hints_product_description'] = 'If you write a description, a detailed product page will be available.';
 $plugin_tx['xhshop']['labels_internal_link']='Product pages';
+$plugin_tx['xhshop']['hints_multi_selection']="(Multiselection allowed)";
 $plugin_tx['xhshop']['labels_preview_picture']='Preview picture';
 $plugin_tx['xhshop']['labels_product_picture']='Image';
 $plugin_tx['xhshop']['labels_vat_rate']='Tax rate';

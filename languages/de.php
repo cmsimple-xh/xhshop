@@ -97,6 +97,7 @@ $plugin_tx['xhshop']['hints_product_teaser'] = 'Wird auf den "Katalogseiten" ver
 $plugin_tx['xhshop']['labels_product_description']='Beschreibung';
 $plugin_tx['xhshop']['hints_product_description'] = 'Ausführliche Beschreibung für die Detailseite.<br>Detailseiten werden nur angelegt, wenn es diese ausführliche Beschreibung gibt. ';
 $plugin_tx['xhshop']['labels_internal_link']='Bestell-Button anlegen auf';
+$plugin_tx['xhshop']['hints_multi_selection']="(Mehrfachauswahl möglich)";
 $plugin_tx['xhshop']['labels_preview_picture']='Vorschaubild';
 $plugin_tx['xhshop']['labels_product_picture']='Bild';
 $plugin_tx['xhshop']['labels_vat_rate']='Steuersatz';

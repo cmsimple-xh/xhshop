@@ -37,11 +37,11 @@
 				<td class="xhsTdTop">%IMAGE_SELECTOR% <span id="xhsImage">%IMAGE%</span></td>
 			</tr>
 			<tr>
-				<td class="xhsTdTop"><strong><?php $this->label('internal_link'); ?>:</strong></td>
+				<td class="xhsTdTop"><strong><?php $this->label('internal_link'); ?>:</strong><br><?php echo $this->hint('multi_selection'); ?></td>
 				<td class="xhsTdTop"><?php echo $this->productPageSelector(); ?></td>
 			</tr>
 			<tr>
-				<td class="xhsTdTop"><strong><?php $this->label('product_categories'); ?>:</strong></td>
+				<td class="xhsTdTop"><strong><?php $this->label('product_categories'); ?>:</strong><br><?php echo $this->hint('multi_selection'); ?></td>
 				<td class="xhsTdTop"><?php echo $this->productCategorySelector(); ?></td>
 			</tr>
 			<tr>
