@@ -481,7 +481,10 @@ class FrontEndController extends Controller
         $mail->AddAddress($customer, $customerName);
         $mail->Subject = sprintf($this->viewProvider->mail['email_subject'], $this->settings['company_name']);
 
-        //     $mail->AddStringAttachment($bill, "bill.rtf");
+        $filename = XHS_TEMPLATES_PATH . "frontend/confirmation_email/{$this->settings['email_attachment']}";
+        if ($this->settings['email_attachment'] !== '' && is_readable($filename)) {
+            $mail->addAttachment($filename);
+        }
         $mail->Body = $this->htmlConfirmation();
         $mail->AltBody = $this->textConfirmation();
         if (!$mail->Send()) {
@@ -489,6 +492,7 @@ class FrontEndController extends Controller
         }
 
         $mail->ClearAddresses();
+        $mail->clearAttachments();
         $mail->AddAddress($this->settings['order_email'], $this->settings['company_name']);
         $mail->Subject = sprintf($this->viewProvider->mail['notify'], $customerName, $this->settings['company_name']);
         $mail->AddStringAttachment($bill, "bill.rtf");

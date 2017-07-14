@@ -38,6 +38,7 @@ abstract class Controller
         $this->settings['cos_page'] = $plugin_tx['xhshop']['config_cos_page'];
         $this->settings['shipping_unit'] = $plugin_tx['xhshop']['config_shipping_unit'];
         $this->settings['bill_dateformat'] = $plugin_tx['xhshop']['config_bill_dateformat'];
+        $this->settings['email_attachment'] = $plugin_tx['xhshop']['config_email_attachment'];
         $this->paymentModules = array();
         $this->payments = $this->getPaymentModules();
         /**

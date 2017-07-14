@@ -5,6 +5,7 @@ $plugin_tx['xhshop']['config_decimal_separator']=",";
 $plugin_tx['xhshop']['config_thousands_separator']=".";
 $plugin_tx['xhshop']['config_shipping_unit']="kg";
 $plugin_tx['xhshop']['config_bill_dateformat']="d.m.Y";
+$plugin_tx['xhshop']['config_email_attachment']="";
 ####### Mail ################
 $plugin_tx['xhshop']['mail_email_subject']="Ihre Bestellung bei %s";
 $plugin_tx['xhshop']['mail_salutation'] = "Sehr geehrte(r)";
