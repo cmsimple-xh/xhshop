@@ -500,11 +500,6 @@ class FrontEndController extends Controller
         $mail->AltBody = $this->textConfirmation();
         if (!$mail->Send()) {
             return sprintf($plugin_tx['xhshop']['mail_notify_error'], $this->settings['order_email'], $mail->ErrorInfo);
-            $error = "<p>Sorry! Although an email confirmation has been sent to you, your order was not transmitted to our shop! <p>";
-            $error .= '<p>Please inform us by email: <a href="mailto:' . $this->settings['order_email']
-                . '">' . $this->settings['order_email'] . '</a></p>';
-            $error .= "Mailer Error: " . $mail->ErrorInfo;
-            return $error;
         }
 
         //  echo "Message has been sent";
