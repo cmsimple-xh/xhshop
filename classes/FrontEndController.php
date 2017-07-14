@@ -303,7 +303,7 @@ class FrontEndController extends Controller
         $params['vatTotal']   = $_SESSION['xhsOrder']->getVat();
         $params['vatFull']    = $_SESSION['xhsOrder']->getVatFull();
         $params['vatReduced'] = $_SESSION['xhsOrder']->getVatReduced();
-        $params['company']    = $this->settings['company_name'];
+        $params['contact_name']    = $this->settings['name'];
         $params['payment']    = $this->paymentModules[$_SESSION['xhsCustomer']->payment_mode]->getLabelString();
         if ($this->settings['dont_deal_with_taxes']) {
             $params['hideVat'] = true;
@@ -328,7 +328,7 @@ class FrontEndController extends Controller
         $params['vatTotal']   = $_SESSION['xhsOrder']->getVat();
         $params['vatFull']    = $_SESSION['xhsOrder']->getVatFull();
         $params['vatReduced'] = $_SESSION['xhsOrder']->getVatReduced();
-        $params['company']    = $this->settings['company_name'];
+        $params['contact_name']    = $this->settings['name'];
         $params['payment']    = $this->paymentModules[$_SESSION['xhsCustomer']->payment_mode]->getLabelString();
         if ($this->settings['dont_deal_with_taxes']) {
             $params['hideVat'] = true;

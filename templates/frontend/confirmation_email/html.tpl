@@ -111,7 +111,7 @@ if($this->fee < 0){
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p><?php echo $this->mail['greetings']; ?><br>
-%COMPANY%</p>
+%CONTACT_NAME%</p>
 </div>
 </body>
 </html>

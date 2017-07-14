@@ -42,4 +42,4 @@ foreach($this->cartItems as $product){
 <?php endif?>
 
  
-<?php echo $this->mail['greetings']; ?>%COMPANY%
+<?php echo $this->mail['greetings']; ?>%CONTACT_NAME%
