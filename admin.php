@@ -11,14 +11,12 @@ if (function_exists('XH_wantsPluginAdministration') && XH_wantsPluginAdministrat
     setcookie('xhsMode', 'edit');
 
     if ($admin == 'plugin_stylesheet') {
-        $o .= '<p><a href="?&' . $plugin . '" />setting</a></p>';
         $hint = array();
         $o .= plugin_admin_common($action, $admin, $plugin, $hint);
     } elseif (in_array($admin, array('plugin_config', 'plugin_language'), true)) {
         $o .= plugin_admin_common($action, $admin, $plugin);
     } else {
         $xhsController = new BackEndController();
-        $o .= '<p><a href="?&' . $plugin . '&admin=plugin_stylesheet&action=plugin_text" />stylesheet</a></p>';
         $o .= $xhsController->handleRequest();
     }
 }
