@@ -1,7 +1,4 @@
 <?php ?>
-<div class="appNmVrs">
-<p><span class="fa fa-shopping-cart fa-2x"></span>&nbsp;&nbsp;%APP_NAME%, Version %VERSION%</p>
-</div>
 <?php $this->editProductLabel = isset($this->editProductLabel) ? $this->editProductLabel : 'new_product'; ?>
 <ul id="xhsTaskTabs">
     <li class="%PRODUCT_TASKS%">

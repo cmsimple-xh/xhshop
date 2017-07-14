@@ -340,24 +340,6 @@ h1.xhsCatHeader {
 	/* table-layout: fixed !important; */
 	width:100%;
 }
-div.appNmVrs {
-	background: rgba(255,255,255,.25);
-	display: inline-block;
-	line-height: normal !important;
-	margin: 0 0 1em !important;
-	padding: 0.25em 0.5em !important;
-	font-size: .8em !important;
-	color: #999;
-	border: 1px solid #ccc;
-}
-div.appNmVrs p {
-	line-height: normal !important;
-	margin: 0 !important;
-	padding: 0 !important;
-}
-div.appNmVrs span {
-	color: #f60;
-}
 form.catSelectBox {
 	clear: both;
 }
