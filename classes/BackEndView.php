@@ -10,7 +10,7 @@ class BackEndView extends View
         $this->templatePath = XHS_TEMPLATES_PATH. '/backend/';
     }
 
-    public function picSelector($path = 'no path', $imageArray = array(), $selectedPic = '', $element = null)
+    public function picSelector($path = 'no path', array $imageArray = array(), $selectedPic = '', $element = null)
     {
         if (count($imageArray) == 0) {
             return '<p class="xhsWarn">Sorry, no pictures found in '. $path .'!</p>';
@@ -61,7 +61,7 @@ class BackEndView extends View
         return $html;
     }
 
-    protected function productErrors($errors = array())
+    protected function productErrors(array $errors = array())
     {
         if (count($errors) === 0) {
             return '';
@@ -74,7 +74,7 @@ class BackEndView extends View
         return $html;
     }
 
-    protected function productHints($caveats = array())
+    protected function productHints(array $caveats = array())
     {
         if (count($caveats) === 0) {
             return '';

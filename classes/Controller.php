@@ -55,12 +55,12 @@ abstract class Controller
         $this->viewProvider->setCurrency($this->settings['default_currency']);
     }
 
-    protected function render($template, $params = null)
+    protected function render($template, array $params = null)
     {
         if (!($this->viewProvider instanceof View)) {
             return "XHSController:render no view provider!";
         }
-        if (is_array($params)) {
+        if (isset($params)) {
             foreach ($params as $key => $value) {
                 $this->viewProvider->assignParam($key, $value);
             }
@@ -272,14 +272,11 @@ abstract class Controller
         return rtrim($string);
     }
 
-    private function addPaymentModule($module)
+    private function addPaymentModule(PaymentModule $module)
     {
-        if ($module instanceof PaymentModule) {
-            $this->paymentModules[$module->getName()] = $module;
-            $module->setShopCurrency(html_entity_decode($this->settings['default_currency']));
-            return true;
-        }
-        return false;
+        $this->paymentModules[$module->getName()] = $module;
+        $module->setShopCurrency(html_entity_decode($this->settings['default_currency']));
+        return true;
     }
 
     protected function loadPaymentModule($name)
@@ -341,7 +338,7 @@ abstract class Controller
     }
 
     // apparently unused
-    private function compareProducts($productA, $productB)
+    private function compareProducts(Product $productA, Product $productB)
     {
         /**
          *  By default the products are sorted by asscendent sortIndex => newest first
@@ -350,10 +347,6 @@ abstract class Controller
         $order =  isset($_POST['xhsProductSortOrder'])
             && $_POST['xhsProductSortOrder'] == 'DESC' ? $_POST['xhsProductSortOrder'] : 'ASC';
 
-        if (!($productA instanceof Product && $productB instanceof Product)) {
-            trigger_error('Catalog::compareProducts() - expects 2 Product-Objects');
-            return 0;
-        }
         if (!isset($productA->$field)) {
             trigger_error('Catalog:compareProducts - cannot compare products by ' . $field);
             return 0;

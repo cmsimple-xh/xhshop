@@ -46,7 +46,7 @@ class FrontEndController extends Controller
         return $info;
     }
 
-    public function addToCartButton($product)
+    public function addToCartButton(Product $product)
     {
         $params = array('productName' => $product->getName(XHS_LANGUAGE),
             'product'     => $product,
@@ -221,7 +221,7 @@ class FrontEndController extends Controller
         return false;
     }
 
-    private function customersData($missingData = array())
+    private function customersData(array $missingData = array())
     {
 
         if (!isset($_SESSION['xhsCustomer'])) {

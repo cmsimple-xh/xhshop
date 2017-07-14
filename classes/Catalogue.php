@@ -313,14 +313,8 @@ class Catalogue
         }
         return $this->products;
     }
-
-    public function swapSortIndex($productA, $productB)
+    public function swapSortIndex(Product $productA, Product $productB)
     {
-        if (!($productA instanceof Product && $productB instanceof Product)) {
-            trigger_error('Catalogue::swapSortIndex() expects two Products  as parameter');
-            return;
-        }
-        //     echo $productA->getName() . ' (' . $productA->sortIndex . ') tauscht mit ' . $productB->getName() . ' (' . $productB->sortIndex . ')';
         $swap = $productA->sortIndex;
 
         $productA->sortIndex = $productB->sortIndex;
@@ -386,12 +380,8 @@ class Catalogue
         return addcslashes($string, '\'\\');
     }
 
-    public function addProduct($product)
+    public function addProduct(Product $product)
     {
-        if (!($product instanceof Product)) {
-            trigger_error('Catalog::addProduct() - attempt to save some "No-Product" as Product.');
-            return;
-        }
         $product->sortIndex = 0;
         $this->products[] = $product;
         $this->save();

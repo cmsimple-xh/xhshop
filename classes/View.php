@@ -282,7 +282,7 @@ abstract class View
     }
 
     // apparently unused
-    private function mapProduct($product, $buffer)
+    private function mapProduct(Product $product, $buffer)
     {
         foreach ($product as $field => $value) {
             $placeHolder = '%'.strtoupper($field). '%';

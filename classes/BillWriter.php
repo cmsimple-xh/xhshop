@@ -18,7 +18,7 @@ class BillWriter
         return true;
     }
 
-    public function replace($replacements)
+    public function replace(array $replacements)
     {
         foreach ($replacements as $search => $replace) {
             $cleaned = html_entity_decode($replace, ENT_QUOTES, 'UTF-8');

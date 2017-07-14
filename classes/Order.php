@@ -25,7 +25,7 @@ class Order
         $this->vatReducedRate = (float)$vatReducedRate;
     }
 
-    public function addItem($product, $amount, $variant = null)
+    public function addItem(Product $product, $amount, $variant = null)
     {
         $index = $product->uid;
         if (isset($variant)) {
@@ -40,7 +40,7 @@ class Order
         $this->refresh();
     }
 
-    public function removeItem($product, $variant = null)
+    public function removeItem(Product $product, $variant = null)
     {
         $index = $product->uid;
         if (isset($variant)) {
@@ -50,7 +50,7 @@ class Order
         $this->refresh();
     }
 
-    private function getProductNet($product)
+    private function getProductNet(Product $product)
     {
         $rate = 0;
         if ($product->vat == 'full') {

@@ -62,7 +62,7 @@ abstract class PaymentModule
         false;
     }
 
-    public function setCartItems($cartItems)
+    public function setCartItems(array $cartItems)
     {
         $this->cartItems = $cartItems;
     }

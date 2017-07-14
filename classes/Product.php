@@ -287,31 +287,21 @@ class Product
         return;
     }
 
-    public function setProductPages($pages = array(), $language = null)
+    public function setProductPages(array $pages = array(), $language = null)
     {
         if ($language === null) {
             $language = XHS_LANGUAGE;
         }
-        if (is_array($pages)) {
-            $this->productPages[$language] = $pages;
-            return;
-        }
-        trigger_error('Product::setProductPages() expects an array as first argument.');
-        return;
+        $this->productPages[$language] = $pages;
     }
 
-    public function setCategories($categories = array(), $language = null)
+    public function setCategories(array $categories = array(), $language = null)
     {
         if ($language === null) {
             $language = XHS_LANGUAGE;
         }
          
-        if (is_array($categories)) {
-            $this->categories[$language] = $categories;
-            return;
-        }
-        trigger_error('Product:setCategories() expects an array as first argument.');
-        return;
+        $this->categories[$language] = $categories;
     }
 
     public function setPreviewPic($pic = '')
