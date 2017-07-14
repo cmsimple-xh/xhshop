@@ -4,11 +4,11 @@ namespace Xhshop;
 
 class CmsBridge
 {
-    var $headings = array();
-    var $levels = array();
-    var $urls = array();
+    private $headings = array();
+    private $levels = array();
+    private $urls = array();
 
-    function __construct()
+    public function __construct()
     {
         global $h, $l, $u;
         $this->headings = $h;
@@ -17,7 +17,7 @@ class CmsBridge
         $this->urls = $u;
     }
 
-    function getHeadings($level = 0)
+    public function getHeadings($level = 0)
     {
         if ($level > 0) {
             $array = array();
@@ -31,7 +31,7 @@ class CmsBridge
         return $this->headings;
     }
 
-    function getHeadingOfUrl($url = '- nope -')
+    public function getHeadingOfUrl($url = '- nope -')
     {
         if (array_search($url, $this->urls) === false) {
             trigger_error('XHS_CMSimple_Bridge::getHeadingOfUrl($url) - ' . $url . ' does not exist.');
@@ -39,7 +39,7 @@ class CmsBridge
         return $this->headings[array_search($url, $this->urls)];
     }
 
-    function getUrls($level = 0)
+    public function getUrls($level = 0)
     {
         if ($level > 0) {
             $array = array();
@@ -53,7 +53,8 @@ class CmsBridge
         return $this->urls;
     }
 
-    function getLevelOfUrl($url)
+    // apparently unused
+    private function getLevelOfUrl($url)
     {
         if (array_search($url, $this->urls) === false) {
             trigger_error('XHS_CMSimple_Bridge::getLevelOfUrl($url) - ' . $url . ' does not exist.');
@@ -61,22 +62,23 @@ class CmsBridge
         return $this->levels[array_search($url, $this->urls)];
     }
 
-    function pageExists($link = '')
+    public function pageExists($link = '')
     {
         return in_array($link, $this->urls);
     }
 
-    function translateStringToUrl($string = '')
+    // apparently unused
+    private function translateStringToUrl($string = '')
     {
         return '?' . uenc($string);
     }
 
-    function translateUrl($url)
+    public function translateUrl($url)
     {
         return '?' . $url;
     }
 
-    function getLevels($level = 0)
+    public function getLevels($level = 0)
     {
         if ($level > 0) {
             $array = array();
@@ -90,13 +92,15 @@ class CmsBridge
         return $this->levels;
     }
 
-    function addToHeader($string)
+    // apparently unused
+    private function addToHeader($string)
     {
         global $hjs;
         $hjs .= $string;
     }
 
-    function shopSubpages($level = 6)
+    // apparently unused
+    private function shopSubpages($level = 6)
     {
         $pages = array();
         $index     = array_search(XHS_URL, $this->urls);
@@ -117,7 +121,7 @@ class CmsBridge
         return $pages;
     }
 
-    function initProductDescriptionEditor()
+    public function initProductDescriptionEditor()
     {
         global $bjs;
         // init_editor(); [cmb]
@@ -129,19 +133,19 @@ class CmsBridge
                 . '</script>';
     }
 
-    function getCurrentPage()
+    public function getCurrentPage()
     {
         $url = explode('&', $_SERVER['QUERY_STRING']);
         return $url[0];
     }
 
-    function setTitle($strTitle)
+    public function setTitle($strTitle)
     {
         global $title;
         $title = strip_tags($strTitle);
     }
 
-    function setMeta($strName, $strContent)
+    public function setMeta($strName, $strContent)
     {
         global $cf;
         $cf['meta'][$strName] = strip_tags($strContent);

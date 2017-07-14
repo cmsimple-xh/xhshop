@@ -2,19 +2,19 @@
 
 namespace Xhshop;
 
-class Controller
+abstract class Controller
 {
-    var $viewProvider;
-    var $catalog;
-    var $settings;
-    var $appName = 'XH-Shop';
-    var $version = '1alpha-preview';
-    var $payments ;
-    var $paymentModules;
-    var $bridge;
-    var $errors = array();
+    protected $viewProvider;
+    protected $catalog;
+    public $settings;
+    protected $appName = 'XH-Shop';
+    protected $version = '1alpha-preview';
+    protected $payments;
+    protected $paymentModules;
+    protected $bridge;
+    private $errors = array(); // apparently unused
 
-    function __construct()
+    public function __construct()
     {
         global $pth, $plugin_cf, $plugin_tx;
 
@@ -55,7 +55,7 @@ class Controller
         $this->viewProvider->setCurrency($this->settings['default_currency']);
     }
 
-    function render($template, $params = null)
+    protected function render($template, $params = null)
     {
         if (!($this->viewProvider instanceof View)) {
             return "XHSController:render no view provider!";
@@ -68,7 +68,7 @@ class Controller
         return $this->viewProvider->loadTemplate($template);
     }
 
-    function categories()
+    protected function categories()
     {
         if (!isset($this->catalog->categories[XHS_LANGUAGE])) {
             $this->catalog->categories[XHS_LANGUAGE] = array();
@@ -77,7 +77,7 @@ class Controller
         return $this->catalog->categories[XHS_LANGUAGE];
     }
 
-    function categoryOptions()
+    private function categoryOptions()
     {
         $options = array();
 
@@ -96,7 +96,7 @@ class Controller
         return $options;
     }
 
-    function products($category = null, $collectAll = false)
+    private function products($category = null, $collectAll = false)
     {
         if ($category !== null) {
             $category = $this->tidyPostString($category);
@@ -148,7 +148,8 @@ class Controller
         return $products;
     }
 
-    function getCurrentProduct()
+    // apparently unused
+    private function getCurrentProduct()
     {
         $xhs_page_name = $_SERVER['QUERY_STRING'];
         $productPages = array();
@@ -163,7 +164,7 @@ class Controller
         return false;
     }
 
-    function getPagesProducts()
+    public function getPagesProducts()
     {
         $url = $this->bridge->getCurrentPage();
         $products = array();
@@ -185,7 +186,7 @@ class Controller
         return $products;
     }
 
-    function handleRequest($request = null)
+    public function handleRequest($request = null)
     {
         if (!$request) {
             return "No request";
@@ -196,7 +197,7 @@ class Controller
         return $this->$request();
     }
 
-    function productList($collectAll = true)
+    protected function productList($collectAll = true)
     {
         $category = $this->catalog->default_category[XHS_LANGUAGE];
         if (isset($_GET['xhsCategory'])) {
@@ -225,7 +226,7 @@ class Controller
         return $params;
     }
 
-    function productSearchList($needle = '')
+    protected function productSearchList($needle = '')
     {
         $showCats = true;
         if (!$this->settings['use_categories']) {
@@ -262,7 +263,7 @@ class Controller
         return $params;
     }
 
-    function tidyPostString($string, $writeEntities = true)
+    protected function tidyPostString($string, $writeEntities = true)
     {
         $string = str_replace(array('./', '<?php', '<?', '?>'), '', $string);
         if ($writeEntities === true) {
@@ -271,7 +272,7 @@ class Controller
         return rtrim($string);
     }
 
-    function addPaymentModule($module)
+    private function addPaymentModule($module)
     {
         if ($module instanceof PaymentModule) {
             $this->paymentModules[$module->getName()] = $module;
@@ -281,7 +282,7 @@ class Controller
         return false;
     }
 
-    function loadPaymentModule($name)
+    protected function loadPaymentModule($name)
     {
         global $xhsController;
 
@@ -305,7 +306,7 @@ class Controller
     }
 */
 
-    function getImageFiles($directory = null)
+    protected function getImageFiles($directory = null)
     {
         if ($directory === null) {
             $directory = $this->settings['image_folder'];
@@ -326,7 +327,7 @@ class Controller
         return $files;
     }
 
-    function isAllowedImageFile($file = '')
+    protected function isAllowedImageFile($file = '')
     {
         $extensions = array('jpeg', 'jpg', 'gif', 'png', 'svg', 'tif', 'tiff');
         $extension = pathinfo($file, PATHINFO_EXTENSION);
@@ -339,7 +340,8 @@ class Controller
         return false;
     }
 
-    function compareProducts($productA, $productB)
+    // apparently unused
+    private function compareProducts($productA, $productB)
     {
         /**
          *  By default the products are sorted by asscendent sortIndex => newest first
@@ -378,7 +380,7 @@ class Controller
         return 0;
     }
 
-    function getPaymentModules()
+    private function getPaymentModules()
     {
         global $plugin_cf;
 
@@ -388,7 +390,7 @@ class Controller
         })));
     }
 
-    function shopToc($level = 6)
+    protected function shopToc($level = 6)
     {
         return '';
     }

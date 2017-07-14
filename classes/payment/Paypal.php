@@ -7,13 +7,13 @@ use Xhshop\PaymentModule;
 class Paypal extends PaymentModule
 {
 
-    var $name         = 'paypal';
-    var $urls           = array(
+    protected $name = 'paypal';
+    private $urls = array(
         'development' => 'https://www.sandbox.paypal.com/cgi-bin/webscr',
         'production'  => 'https://www.paypal.com/cgi-bin/webscr'
     );
 
-    function __construct()
+    public function __construct()
     {
         global $plugin_cf;
 
@@ -22,23 +22,23 @@ class Paypal extends PaymentModule
         $this->settings['currency_code'] = $plugin_cf['xhshop']['shop_currency_code'];
     }
 
-    function isAvailable()
+    private function isAvailable()
     {
         return strlen(trim($this->settings['currency_code'])) === 3 && strlen(trim($this->settings['email'])) > 5;
     }
 
-    function wantsCartItems()
+    public function wantsCartItems()
     {
         return true;
     }
 
-    function getLabel()
+    public function getLabel()
     {
         return '<img src="' . XHS_BASE_PATH . 'images/paypal-logo.png">
 ';
     }
 
-    function orderSubmitForm()
+    public function orderSubmitForm()
     {
         $name = 'pp_' . session_id() . '.temp';
         //$name = 'test';
@@ -82,7 +82,7 @@ class Paypal extends PaymentModule
         return $form;
     }
 
-    function ipn()
+    public function ipn()
     {
         // read the post from PayPal system and add 'cmd'
         global $xhsController;

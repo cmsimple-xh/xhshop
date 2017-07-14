@@ -4,16 +4,16 @@ namespace Xhshop;
 
 class Catalogue
 {
-    var $products;
-    var $cf;
-    var $separator;
-    var $categories;
-    var $category_for_the_left_overs;
-    var $default_category;
-    var $version;
-    var $cms;
+    public $products;
+    private $cf; // apparently unused
+    private $separator;
+    public $categories;
+    public $category_for_the_left_overs;
+    public $default_category;
+    private $version;
+    private $cms; // apparently unused
 
-    function __construct($separator)
+    public function __construct($separator)
     {
         $this->version = '1alpha-preview';
         $this->cms = 'CMSimple_XH';
@@ -24,7 +24,7 @@ class Catalogue
         $this->loadArray();
     }
 
-    function loadArray()
+    private function loadArray()
     {
         include XHS_CATALOG;
 
@@ -70,7 +70,7 @@ class Catalogue
         }
     }
 
-    function saveCatalogArray()
+    private function saveCatalogArray()
     {
         $string = "<?php \n";
         //      $string .= '$separator = \'' . $this->separator . "';\n\n";
@@ -189,7 +189,7 @@ class Catalogue
         return true;
     }
 
-    function save()
+    public function save()
     {
         $sortOrder = array();
         $products = array();
@@ -222,7 +222,7 @@ class Catalogue
         return;
     }
 
-    function renameCategory($name = null, $index = null)
+    public function renameCategory($name = null, $index = null)
     {
         if (!isset($index) || !isset($name)) {
             return;
@@ -242,7 +242,7 @@ class Catalogue
         $this->save();
     }
 
-    function deleteCategory($index = null)
+    public function deleteCategory($index = null)
     {
         if (!isset($index)) {
             return;
@@ -254,19 +254,19 @@ class Catalogue
         $this->save();
     }
 
-    function setLeftOverCategory($name)
+    public function setLeftOverCategory($name)
     {
         $this->category_for_the_left_overs[XHS_LANGUAGE] = $name;
         $this->save();
     }
 
-    function setDefaultCategory($name)
+    public function setDefaultCategory($name)
     {
         $this->default_category[XHS_LANGUAGE] = $name;
         $this->save();
     }
 
-    function hasUncategorizedProducts()
+    public function hasUncategorizedProducts()
     {
         foreach ($this->products as $product) {
             if (!isset($product->categories[XHS_LANGUAGE]) || count($product->categories[XHS_LANGUAGE]) == 0) {
@@ -276,7 +276,7 @@ class Catalogue
         return false;
     }
 
-    function getUncategorizedProducts()
+    private function getUncategorizedProducts()
     {
         $products = array();
         foreach ($this->products as $index => $product) {
@@ -287,12 +287,12 @@ class Catalogue
         return $products;
     }
 
-    function getFallbackCategory()
+    public function getFallbackCategory()
     {
         return isset($this->category_for_the_left_overs[XHS_LANGUAGE]) ? $this->category_for_the_left_overs[XHS_LANGUAGE] : 'N.N.';
     }
 
-    function getProducts($category = null)
+    public function getProducts($category = null)
     {
         if (isset($category)) {
             if (in_array($category, $this->categories[XHS_LANGUAGE])) {
@@ -313,7 +313,8 @@ class Catalogue
         }
         return $this->products;
     }
-    function swapSortIndex($productA, $productB)
+
+    public function swapSortIndex($productA, $productB)
     {
         if (!($productA instanceof Product && $productB instanceof Product)) {
             trigger_error('Catalogue::swapSortIndex() expects two Products  as parameter');
@@ -327,7 +328,7 @@ class Catalogue
         $this->save();
     }
 
-    function getProduct($id)
+    public function getProduct($id)
     {
         if (!key_exists($id, $this->products)) {
             trigger_error('Catalogue::getProduct($id): No product with this id.');
@@ -337,7 +338,7 @@ class Catalogue
         }
     }
 
-    function getCategories($language = null)
+    public function getCategories($language = null)
     {
         if ($language === null) {
             $language = XHS_LANGUAGE;
@@ -345,7 +346,7 @@ class Catalogue
         return $this->categories[$language];
     }
 
-    function moveCategory($direction = null, $index = null)
+    public function moveCategory($direction = null, $index = null)
     {
         if (!isset($index)) {
             return;
@@ -366,7 +367,7 @@ class Catalogue
         $this->save();
     }
 
-    function addCategory($name = null)
+    public function addCategory($name = null)
     {
         if (!isset($name)) {
             return;
@@ -375,7 +376,7 @@ class Catalogue
         $this->save();
     }
 
-    function cleanString($string, $writeEntities = false)
+    private function cleanString($string, $writeEntities = false)
     {
         $string = str_replace(array('./', '<?php', '<?', '?>'), '', $string);
         if ($writeEntities === true) {
@@ -385,7 +386,7 @@ class Catalogue
         return addcslashes($string, '\'\\');
     }
 
-    function addProduct($product)
+    public function addProduct($product)
     {
         if (!($product instanceof Product)) {
             trigger_error('Catalog::addProduct() - attempt to save some "No-Product" as Product.');
@@ -404,7 +405,7 @@ class Catalogue
      *
      * @TODO: Why do we have to pass the changed product on live server? On local xampp it is not necessary
      */
-    function updateProduct($uid = null, $product = null)
+    public function updateProduct($uid = null, $product = null)
     {
         if (!key_exists($uid, $this->products)) {
             trigger_error('Catalogue::updateProduct($uid, $product) - no Product with this $uid');
@@ -418,7 +419,7 @@ class Catalogue
         $this->save();
     }
 
-    function deleteProduct($id = null)
+    public function deleteProduct($id = null)
     {
         if (!key_exists($id, $this->products)) {
             trigger_error('Catalogue::deleteProduct($id): No product with this id.');

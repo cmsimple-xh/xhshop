@@ -7,7 +7,7 @@ use Xhshop\PaymentModule;
 class OnAccount extends PaymentModule
 {
     
-    function __construct()
+    public function __construct()
     {
         $this->name = 'on_account';
         $this->loadLanguage();

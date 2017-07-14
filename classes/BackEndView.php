@@ -4,13 +4,13 @@ namespace Xhshop;
 
 class BackEndView extends View
 {
-    function __construct()
+    public function __construct()
     {
         parent::__construct();
         $this->templatePath = XHS_TEMPLATES_PATH. '/backend/';
     }
 
-    function picSelector($path = 'no path', $imageArray = array(), $selectedPic = '', $element = null)
+    public function picSelector($path = 'no path', $imageArray = array(), $selectedPic = '', $element = null)
     {
         if (count($imageArray) == 0) {
             return '<p class="xhsWarn">Sorry, no pictures found in '. $path .'!</p>';
@@ -31,7 +31,7 @@ class BackEndView extends View
         return $html;
     }
 
-    function productPageSelector()
+    protected function productPageSelector()
     {
         $html =  '<select name="xhsProductPages[]" multiple size="5">';
       
@@ -47,7 +47,7 @@ class BackEndView extends View
         return $html;
     }
 
-    function productCategorySelector()
+    protected function productCategorySelector()
     {
         if (count($this->categories) === 0) {
             return $this->hint('no_categories');
@@ -61,7 +61,7 @@ class BackEndView extends View
         return $html;
     }
 
-    function productErrors($errors = array())
+    protected function productErrors($errors = array())
     {
         if (count($errors) === 0) {
             return '';
@@ -74,7 +74,7 @@ class BackEndView extends View
         return $html;
     }
 
-    function productHints($caveats = array())
+    protected function productHints($caveats = array())
     {
         if (count($caveats) === 0) {
             return '';

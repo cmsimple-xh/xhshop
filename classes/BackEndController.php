@@ -4,7 +4,7 @@ namespace Xhshop;
 
 class BackEndController extends Controller
 {
-    function handleRequest($request = null)
+    public function handleRequest($request = null)
     {
         $html = $this->tabs();
         $request = 'productList';
@@ -23,7 +23,7 @@ class BackEndController extends Controller
         return $html;
     }
 
-    function productList($collectAll = true)
+    protected function productList($collectAll = true)
     {
         if (isset($_POST['xhsProductSwapID']) && isset($_POST['xhsProductID'])) {
             $myself = $this->catalog->getProduct($_POST['xhsProductID']);
@@ -70,7 +70,7 @@ class BackEndController extends Controller
         return $this->render('catalog', $params);
     }
 
-    function editProduct($id = null)
+    private function editProduct($id = null)
     {
         if (!isset($id)) {
             $id = isset($_POST['xhsProductID']) ? $_POST['xhsProductID'] : 'new';
@@ -145,7 +145,7 @@ class BackEndController extends Controller
         return $this->render('productEdit', $params);
     }
 
-    function deleteProduct()
+    private function deleteProduct()
     {
         if (!isset($_POST['xhsProductID'])) {
             return false;
@@ -154,7 +154,7 @@ class BackEndController extends Controller
         return $this->productList();
     }
 
-    function productCategories()
+    private function productCategories()
     {
         $params['categories'] =  parent::categories();
         $params['leftOverCat'] = $this->catalog->category_for_the_left_overs[XHS_LANGUAGE];
@@ -163,7 +163,7 @@ class BackEndController extends Controller
         return $this->render('categories', $params);
     }
 
-    function tabs()
+    private function tabs()
     {
         $params['SHOP_URL'] = $this->settings['url'];
         $params['app_name'] = $this->appName;
@@ -190,7 +190,7 @@ class BackEndController extends Controller
         return $this->render('tabs', $params);
     }
 
-    function saveProductCategories()
+    private function saveProductCategories()
     {
         if (isset($_POST['xhsMoveCat'])) {
             $this->catalog->moveCategory($_POST['xhsMoveDirection'], $_POST['xhsMoveCat']);
@@ -223,7 +223,7 @@ class BackEndController extends Controller
         return $this->productCategories();
     }
 
-    function saveProduct()
+    private function saveProduct()
     {
         $id = isset($_POST['xhsProductID']) ? $_POST['xhsProductID'] : 'new';
         if (key_exists($id, $this->catalog->products)) {
@@ -308,7 +308,7 @@ class BackEndController extends Controller
         return $this->editProduct($id);
     }
 
-    function helpAbout()
+    private function helpAbout()
     {
         $params['appName'] = $this->appName;
         $params['version'] = $this->version;

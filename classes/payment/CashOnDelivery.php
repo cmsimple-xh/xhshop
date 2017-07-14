@@ -6,7 +6,7 @@ use Xhshop\PaymentModule;
 
 class CashOnDelivery extends PaymentModule
 {
-    function __construct()
+    public function __construct()
     {
         $this->name = 'cash_on_delivery';
         $this->loadLanguage();

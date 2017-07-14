@@ -7,9 +7,9 @@ use PHPMailer;
 class FrontEndController extends Controller
 {
 
-    var $requiredCustomerData = array();
+    private $requiredCustomerData = array();
 
-    function __construct()
+    public function __construct()
     {
         parent::__construct();
         $this->splitForwardingExpenses();
@@ -36,7 +36,7 @@ class FrontEndController extends Controller
      * @return string returns info string about handling v.a.t
      *
      */
-    function vatInfo()
+    private function vatInfo()
     {
         if ($this->settings['dont_deal_with_taxes']) {
             $info = 'price_info_no_vat';
@@ -46,7 +46,7 @@ class FrontEndController extends Controller
         return $info;
     }
 
-    function addToCartButton($product)
+    public function addToCartButton($product)
     {
         $params = array('productName' => $product->getName(XHS_LANGUAGE),
             'product'     => $product,
@@ -58,7 +58,7 @@ class FrontEndController extends Controller
         return $this->render('addToCartButton', $params);
     }
 
-    function updateCart()
+    public function updateCart()
     {
         $variant = null;
 
@@ -82,7 +82,7 @@ class FrontEndController extends Controller
         $_SESSION['xhsOrder']->setShipping($this->calculateShipping());
     }
 
-    function calculateShipping()
+    private function calculateShipping()
     {
         if (!$this->settings['charge_for_shipping']) {
             return 0;
@@ -106,7 +106,7 @@ class FrontEndController extends Controller
         return (float) $this->settings['shipping_max'];
     }
 
-    function calculatePaymentFee()
+    private function calculatePaymentFee()
     {
         if (isset($_SESSION['xhsCustomer']->payment_mode)) {
             if ($this->loadPaymentModule($_SESSION['xhsCustomer']->payment_mode)) {
@@ -116,7 +116,7 @@ class FrontEndController extends Controller
         return $fee;
     }
 
-    function cartPreview()
+    public function cartPreview()
     {
         $cartItems = $this->collectCartItems();
         if ($cartItems) {
@@ -133,7 +133,7 @@ class FrontEndController extends Controller
      *
      * @return array|bool either an array of products or false if cart is empty
      */
-    function collectCartItems()
+    private function collectCartItems()
     {
         $cartItems = array();
         if (isset($_SESSION['xhsOrder']) && $_SESSION['xhsOrder']->hasItems()) {
@@ -189,7 +189,7 @@ class FrontEndController extends Controller
         return false;
     }
 
-    function cart()
+    private function cart()
     {
         $cartItems = $this->collectCartItems();
         if (!$cartItems) {
@@ -221,7 +221,7 @@ class FrontEndController extends Controller
         return false;
     }
 
-    function customersData($missingData = array())
+    private function customersData($missingData = array())
     {
 
         if (!isset($_SESSION['xhsCustomer'])) {
@@ -246,7 +246,7 @@ class FrontEndController extends Controller
         return $this->render('customersData', $params);
     }
 
-    function checkCustomersData()
+    private function checkCustomersData()
     {
         $missingData = array();
         $postArray = array();
@@ -287,7 +287,7 @@ class FrontEndController extends Controller
         }
     }
 
-    function htmlConfirmation()
+    private function htmlConfirmation()
     {
         foreach ($_SESSION['xhsCustomer'] as $field => $value) {
             $params[$field]       = $value;
@@ -315,7 +315,7 @@ class FrontEndController extends Controller
         return $this->render('confirmation_email/html', $params);
     }
 
-    function textConfirmation()
+    private function textConfirmation()
     {
         foreach ($_SESSION['xhsCustomer'] as $field => $value) {
             $params[$field]       = $value;
@@ -340,7 +340,7 @@ class FrontEndController extends Controller
         return $this->render('confirmation_email/text', $params);
     }
 
-    function finalConfirmation()
+    private function finalConfirmation()
     {
 
         $fee           = $this->calculatePaymentFee();
@@ -381,7 +381,7 @@ class FrontEndController extends Controller
      *
      * @return <string>
      */
-    function finishCheckOut()
+    private function finishCheckOut()
     {
         if (!isset($_SESSION['xhsCustomer']) || !isset($_SESSION['xhsOrder'])) {
             return '';
@@ -397,7 +397,7 @@ class FrontEndController extends Controller
         }
     }
 
-    function writeBill()
+    private function writeBill()
     {
         global $plugin_tx;
 
@@ -462,7 +462,7 @@ class FrontEndController extends Controller
         return $writer->replace($replacements);
     }
 
-    function sendEmails($bill)
+    private function sendEmails($bill)
     {
         global $plugin_tx;
 
@@ -507,7 +507,7 @@ class FrontEndController extends Controller
         return true;
     }
 
-    function thankYou()
+    private function thankYou()
     {
         $params['name'] = $_SESSION['xhsCustomer']->first_name . ' ' . $_SESSION['xhsCustomer']->last_name;
 
@@ -519,7 +519,7 @@ class FrontEndController extends Controller
         return $this->render('thankYou', $params);
     }
 
-    function productList($collectAll = true)
+    protected function productList($collectAll = true)
     {
         $params                       = parent::productList(false);
         $params['showCategorySelect'] = (bool) $this->settings['use_categories'];
@@ -532,7 +532,7 @@ class FrontEndController extends Controller
      * @param <string> $needle
      * @return <string> the product list rendered in catalog.tpl
      */
-    function productSearchList($needle = '')
+    protected function productSearchList($needle = '')
     {
         $params                       = parent::productSearchList($needle);
         $params['showCategorySelect'] = (bool) $this->settings['use_categories'];
@@ -540,7 +540,7 @@ class FrontEndController extends Controller
         return $this->render('catalog', $params);
     }
 
-    function productDetails()
+    private function productDetails()
     {
         $product = $this->catalog->getProduct($_GET['xhsProduct']);
         if (!$product) {
@@ -569,14 +569,14 @@ class FrontEndController extends Controller
         return $this->render('productDetails', $params);
     }
 
-    function closed()
+    private function closed()
     {
         $params = array();
 
         return $this->render('closed', $params);
     }
 
-    function shopToc($level = 6)
+    protected function shopToc($level = 6)
     {
         if (!$this->settings['use_categories']) {
             return;
@@ -607,7 +607,7 @@ class FrontEndController extends Controller
         return $this->render('shopToc', $params);
     }
 
-    function handleRequest($request = null)
+    public function handleRequest($request = null)
     {
         if (isset($_POST['ipn_track_id'])) {
             $this->loadPaymentModule('paypal');

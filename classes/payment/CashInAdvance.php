@@ -6,7 +6,7 @@ use Xhshop\PaymentModule;
 
 class CashInAdvance extends PaymentModule
 {
-    function __construct()
+    public function __construct()
     {
         $this->name = 'cash_in_advance';
         $this->loadLanguage();

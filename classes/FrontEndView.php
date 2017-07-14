@@ -4,16 +4,16 @@ namespace Xhshop;
 
 class FrontEndView extends View
 {
-    var $paymentHint;
+    private $paymentHint; // apparently unused
 
-    function __construct()
+    public function __construct()
     {
         parent::__construct();
         $this->templatePath = XHS_TEMPLATES_PATH. 'frontend/';
         $this->themePath = XHS_BASE_PATH . 'theme/frontend/';
     }
 
-    function paymentHint()
+    protected function paymentHint()
     {
         if (count($this->payments) == 1) {
             $hint = '';
@@ -26,7 +26,7 @@ class FrontEndView extends View
         return $hint;
     }
 
-    function contactInput($field)
+    protected function contactInput($field)
     {
         $html = '';
         $value = '';
@@ -62,7 +62,7 @@ class FrontEndView extends View
         return $html;
     }
 
-    function countriesSelectbox()
+    protected function countriesSelectbox()
     {
         $countries = array();
         if (file_exists(XHS_COUNTRIES_FILE)) {
@@ -97,7 +97,7 @@ class FrontEndView extends View
      *
      * TODO: leave url preparation to cms_bridge
      */
-    function cosHint()
+    protected function cosHint()
     {
         $cos_url = $this->cosUrl;
         $hint = $this->hints['cos_confirmation'];
@@ -113,7 +113,8 @@ class FrontEndView extends View
         return $hint;
     }
 
-    function defaultOrderSubmitForm()
+    // apparently unused
+    private function defaultOrderSubmitForm()
     {
 //just for fun
         printf(<<< STOP_FORM

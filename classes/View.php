@@ -2,20 +2,20 @@
 
 namespace Xhshop;
 
-class View
+abstract class View
 {
-    var $docType;
-    var $endTag = ' />';
-    var $templatePath;
-    var $themePath = null;
-    var $imagePath;
-    var $currency;
-    var $params = array();
-    var $hints = array();
-    var $labels = array();
-    var $lang = array();
+    private $docType; // apparently unused
+    private $endTag = ' />';
+    protected $templatePath;
+    protected $themePath = null;
+    private $imagePath; // apparently unused
+    private $currency;
+    private $params = array();
+    protected $hints = array();
+    public $labels = array();
+    private $lang = array(); // apparently unused
 
-    function __construct()
+    public function __construct()
     {
         global $plugin_tx;
 
@@ -33,12 +33,12 @@ class View
         }
     }
 
-    function setCurrency($currency)
+    public function setCurrency($currency)
     {
         $this->currency = $currency;
     }
 
-    function assignParam($key, $param)
+    public function assignParam($key, $param)
     {
         if (is_string($param)) {
             $this->params[$key] = $param;
@@ -46,7 +46,7 @@ class View
         $this->$key = $param;
     }
 
-    function loadTemplate($template)
+    public function loadTemplate($template)
     {
         $template = str_replace(array('.',  '\\', '<', ' '), '', $template);
       
@@ -68,7 +68,7 @@ class View
         return $html;
     }
 
-    function injectParams($params)
+    private function injectParams($params)
     {
         if (is_string($params)) {
             return  ' ' . $params;
@@ -80,7 +80,7 @@ class View
         return $html;
     }
 
-    function radioNameValueLabel($name = null, $value = '', $label = null, $params = null)
+    private function radioNameValueLabel($name = null, $value = '', $label = null, $params = null)
     {
         $html = '';
         if (isset($label)) {
@@ -101,7 +101,8 @@ class View
         return $html;
     }
 
-    function checkboxNameKeyValueOnLabel($name = '', $key = '', $value = '', $setting = '', $label = '', $params = array())
+    // apparently unused
+    private function checkboxNameKeyValueOnLabel($name = '', $key = '', $value = '', $setting = '', $label = '', $params = array())
     {
         if (!isset($setting)) {
             $setting = 'on';
@@ -119,7 +120,8 @@ class View
         return $html . '</label>';
     }
 
-    function checkboxNameValueLabel($name = '', $value = null, $label = null, $params = array())
+    // apparently unsused
+    private function checkboxNameValueLabel($name = '', $value = null, $label = null, $params = array())
     {
         if (!isset($value)) {
             $value = '';
@@ -140,7 +142,7 @@ class View
         return $html;
     }
 
-    function textinputNameValueLabel($name = '', $value = '', $label = '', $params = array(), $isFloat = false)
+    protected function textinputNameValueLabel($name = '', $value = '', $label = '', $params = array(), $isFloat = false)
     {
         $type = $isFloat ? 'number' : 'text';
         $html = '<input type="' . $type . '" name="'.$name.'" value="'. $value . '" step="0.01"'; // steps!
@@ -151,7 +153,7 @@ class View
         return $html;
     }
 
-    function floatInputNameValueLabel($name, $value = 0, $label = null, $params = null)
+    private function floatInputNameValueLabel($name, $value = 0, $label = null, $params = null)
     {
         $value = (float)$value;
         if (is_array($params)) {
@@ -171,17 +173,18 @@ class View
         return $this->textinputNameValueLabel($name, $value, $label, $params, true);
     }
 
-    function moneyInputNameValueLabel($name, $value = 0, $label = '', $params = array())
+    private function moneyInputNameValueLabel($name, $value = 0, $label = '', $params = array())
     {
         return $this->floatinputNameValueLabel($name, $value, $label, $params) . " ". $this->currency;
     }
 
-    function hiddeninputNameValue($name, $value)
+    // apparently unused
+    private function hiddeninputNameValue($name, $value)
     {
         return '<input type="hidden" name="'. $name . '" value="'. $value .'"'. $this->endTag;
     }
 
-    function formatFloat($sum)
+    public function formatFloat($sum)
     {
         global $plugin_tx;
 
@@ -190,12 +193,12 @@ class View
         return number_format($sum, 2, $dec_sep, $thousands_sep);
     }
 
-    function formatCurrency($sum)
+    private function formatCurrency($sum)
     {
         return $this->formatFloat($sum)  . ' ' . $this->currency;
     }
 
-    function hint($key)
+    private function hint($key)
     {
         if (isset($this->hints[$key])) {
             echo($this->hints[$key]);
@@ -204,7 +207,7 @@ class View
         echo $key . ' - missing in language file ([\'hints\'])';
     }
 
-    function label($key)
+    private function label($key)
     {
         $key = str_replace("'", "", $key);
         if (isset($this->labels[$key])) {
@@ -214,29 +217,31 @@ class View
         echo $key . ' - missing in language file ([\'labels\'])';
     }
 
-    function syscheck($label, $stateLabel)
+    private function syscheck($label, $stateLabel)
     {
         global $plugin_tx;
 
         return sprintf($plugin_tx['xhshop']['syscheck_message'], $label, $stateLabel);
     }
 
-    function submitButton($value)
+    // apparently unused
+    private function submitButton($value)
     {
         echo '<input type="submit" class="xhsShopButton" value="'.$this->buttons[$value].'"'. $this->endTag;
     }
 
-    function link($href, $text)
+    public function link($href, $text)
     {
         return '<a href="'.$href.'">'.$text.'</a>';
     }
 
-    function br()
+    // apparently unused
+    private function br()
     {
         echo '<br'.$this->endTag;
     }
 
-    function categorySelect()
+    private function categorySelect()
     {
         if (($this->showCategorySelect == false && !($this instanceof BackendView))
             || !isset($this->categoryOptions)
@@ -261,7 +266,7 @@ class View
         return $html;
     }
 
-    function productCategorySelector()
+    protected function productCategorySelector()
     {
         if (count($this->categories) === 0) {
             return $this->hint('no_categories');
@@ -276,7 +281,8 @@ class View
         return $html;
     }
 
-    function mapProduct($product, $buffer)
+    // apparently unused
+    private function mapProduct($product, $buffer)
     {
         foreach ($product as $field => $value) {
             $placeHolder = '%'.strtoupper($field). '%';

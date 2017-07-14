@@ -2,27 +2,28 @@
 
 namespace Xhshop;
 
-class PaymentModule
+abstract class PaymentModule
 {
-    var $name = null;
-    var $language = array();
-    var $settings = array();
-    var $cartItems = array();
-    var $shopCurrency;
-    var $shipping = 0.0;
+    protected $name = null;
+    protected $language = array();
+    protected $settings = array();
+    protected $cartItems = array();
+    private $shopCurrency; // unused?
+    protected $shipping = 0.0;
 
-    function __construct()
+    public function __construct()
     {
         $this->loadLanguage();
         $this->loadSettings();
     }
 
-    function isAvailable()
+    // apparently unused
+    private function isAvailable()
     {
         return true;
     }
 
-    function getLabel()
+    public function getLabel()
     {
         return isset($this->language['label']) ? $this->language['label'] : '* ' . $this->getName() . ' *';
     }
@@ -33,12 +34,12 @@ class PaymentModule
      *
      * Do not overwrite this in subclasses - or at least return a short <string> that can be used in text emails
      */
-    function getLabelString()
+    public function getLabelString()
     {
         return isset($this->language['label']) ? $this->language['label'] : '* ' . $this->getName() . ' *';
     }
 
-    function getName()
+    public function getName()
     {
         if (isset($this->name)) {
             return $this->name;
@@ -46,31 +47,32 @@ class PaymentModule
         return 'Error: *' . get_class($this) . '* has to provide a name.';
     }
 
-    function getFee()
+    public function getFee()
     {
         return isset($this->settings['fee']) ? (float)$this->settings['fee'] : 0.00;
     }
 
-    function orderSubmitForm()
+    public function orderSubmitForm()
     {
         return false;
     }
 
-    function wantsCartItems()
+    public function wantsCartItems()
     {
         false;
     }
 
-    function setCartItems($cartItems)
+    public function setCartItems($cartItems)
     {
         $this->cartItems = $cartItems;
     }
 
-    function choosePaymentRadio()
+    // apparently unused
+    private function choosePaymentRadio()
     {
     }
 
-    function loadLanguage()
+    protected function loadLanguage()
     {
         global $plugin_tx;
 
@@ -85,7 +87,7 @@ class PaymentModule
         return false;
     }
 
-    function loadSettings()
+    protected function loadSettings()
     {
         global $plugin_cf;
 
@@ -100,12 +102,12 @@ class PaymentModule
         return false;
     }
 
-    function setShopCurrency($currency = null)
+    public function setShopCurrency($currency = null)
     {
         $this->shopCurrency = $currency;
     }
 
-    function setShipping($shipping = 0.0)
+    public function setShipping($shipping = 0.0)
     {
         $this->shipping = $shipping;
     }
