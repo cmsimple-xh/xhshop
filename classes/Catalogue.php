@@ -13,9 +13,9 @@ class Catalogue
     private $version;
     private $cms; // apparently unused
 
-    public function __construct($separator)
+    public function __construct($separator, $version)
     {
-        $this->version = '1alpha-preview';
+        $this->version = $version;
         $this->cms = 'CMSimple_XH';
         $this->separator = $separator;
         $this->products = array();

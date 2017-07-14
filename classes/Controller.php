@@ -49,7 +49,7 @@ abstract class Controller
             define('XHS_URL', $this->settings['url']);
         }
         $this->bridge = new CmsBridge();
-        $this->catalog = new Catalogue(XHS_URI_SEPARATOR);
+        $this->catalog = new Catalogue(XHS_URI_SEPARATOR, $this->version);
 
         $viewProvider = preg_replace('/Controller$/', 'View', get_class($this));
         $this->viewProvider = new $viewProvider();
