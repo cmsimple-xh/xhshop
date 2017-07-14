@@ -23,7 +23,7 @@ if (function_exists('XH_startSession')) {
 
 $xhsCartPreview = false;
 
-if ($adm == true) {
+if (defined('XH_ADM') && XH_ADM) {
     if (isset($_GET['xhsMode'])) {
         setcookie('xhsMode', $_GET['xhsMode']);
     }
@@ -96,7 +96,7 @@ function display_shop()
 {
     global $xhsController, $adm, $su, $sn, $plugin_tx;
     $html = '';
-    if ($adm) {
+    if (defined('XH_ADM') && XH_ADM) {
         if ($xhsController instanceof FrontEndController) {
             $html .= '<a href="' . $sn . '?' . $su
                 . '&xhsMode=edit" class="xhsToggleBtn"><span class="fa fa-edit fa-fw fa-lg"></span> '
