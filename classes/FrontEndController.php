@@ -402,7 +402,7 @@ class FrontEndController extends Controller
         global $plugin_tx;
 
         $writer = new BillWriter();
-        if (!$writer->loadTemplate(XHS_BILLS_PATH . 'template.rtf')) {
+        if (!$writer->loadTemplate(XHS_TEMPLATES_PATH . 'frontend/confirmation_email/bill.rtf')) {
             return $plugin_tx['xhshop']['error_no_bill'];
         }
         $rows   = '';
