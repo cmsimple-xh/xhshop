@@ -167,6 +167,7 @@ $plugin_tx['xhshop']['on-account_label']="Rechnung";
 $plugin_tx['xhshop']['paypal_label']="Paypal";
 $plugin_tx['xhshop']['paypal_go_to_paypal']="mit Paypal bezahlen";
 
+$plugin_tx['xhshop']['syscheck_email']="eine E-Mail-Adresse hinterlegt wurde";
 $plugin_tx['xhshop']['syscheck_extension']="die PHP-Erweiterung '%s' geladen ist";
 $plugin_tx['xhshop']['syscheck_fail']="Fehler";
 $plugin_tx['xhshop']['syscheck_message']="Prüfe, dass %1\$s … %2\$s";

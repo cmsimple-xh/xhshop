@@ -50,6 +50,7 @@ class SystemCheckService
             $this->checkWritability("$this->pluginFolder/languages/"),
             $this->checkWritability(XHS_CATALOG),
             $this->checkWritability(XHS_CONTENT_PATH . 'xhshop/tmp_orders/'),
+            $this->checkEmailAddress(),
             $this->checkPageExists($this->lang['config_shop_page']),
             $this->checkPageExists($this->lang['config_cos_page'], false),
             $this->checkForwardingExpenses()
@@ -113,6 +114,14 @@ class SystemCheckService
     {
         $state = is_writable($folder) ? 'success' : 'warning';
         $label = sprintf($this->lang['syscheck_writable'], $folder);
+        $stateLabel = $this->lang["syscheck_$state"];
+        return (object) compact('state', 'label', 'stateLabel');
+    }
+
+    private function checkEmailAddress()
+    {
+        $state = (trim($this->config['contact_order_email']) !== '') ? 'success' : 'failure';
+        $label = $this->lang['syscheck_email'];
         $stateLabel = $this->lang["syscheck_$state"];
         return (object) compact('state', 'label', 'stateLabel');
     }
