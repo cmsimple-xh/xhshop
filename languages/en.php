@@ -152,8 +152,6 @@ $plugin_tx['xhshop']['hints_no_products_found'] = 'Sorry! No products with "%s" 
 $plugin_tx['xhshop']['hints_price_info_vat']="incl. taxes";
 $plugin_tx['xhshop']['hints_price_info_shipping']="plus shipping";
 $plugin_tx['xhshop']['hints_price_info_no_vat']="no taxes";
-$plugin_tx['xhshop']['hints_no_vat_export']="Abzgl. USt. (Steuerfreie Lieferung von Deutschland ins nicht-EU-Ausland (&sect; 4 Nr. 1a i. V. m. &sect; 6 UStG))";
-$plugin_tx['xhshop']['hints_no_vat_export_bill']="Ausfuhrumsatzsteuer: 0%";
 $plugin_tx['xhshop']['hints_on_netto']=" % auf Nettobetrag ";
 
 ##### NEW (fhs) ########
