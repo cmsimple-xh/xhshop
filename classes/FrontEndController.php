@@ -580,7 +580,7 @@ class FrontEndController extends Controller
         return $this->render('closed', $params);
     }
 
-    protected function shopToc($level = 6)
+    public function shopToc($level = 6)
     {
         if (!$this->settings['use_categories']) {
             return;

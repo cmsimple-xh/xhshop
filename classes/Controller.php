@@ -384,7 +384,7 @@ abstract class Controller
         })));
     }
 
-    protected function shopToc($level = 6)
+    public function shopToc($level = 6)
     {
         return '';
     }
