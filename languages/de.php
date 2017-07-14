@@ -22,7 +22,11 @@ $plugin_tx['xhshop']['mail_cos'] = "AGB-BESTÄTIGUNG:";
 $plugin_tx['xhshop']['mail_annotation'] = "IHRE ANMERKUNG ZUR BESTELLUNG:";
 $plugin_tx['xhshop']['mail_notify'] = "Bestellung von %1\$s bei %2\$s eingegangen!";
 $plugin_tx['xhshop']['mail_confirmation_error']="<p>Pardon! Ihre Nachricht konnte nicht versendet werden.<p><p>Bitte informieren Sie uns per E-Mail: <a href=\"mailto:%s\">%1\$s</a></p><p>Fehlermeldung: %2\$s</p>";
-$plugin_tx['xhshop']['mail_notify_error']="<p>Pardon! Obgleich eine E-Mail-Bestätigung an Sie versandt wurde, wurde Ihre Bestellung nicht an unseren Shop übermittelt!<p><p>Bitte informieren Sie uns per E-Mail: <a href=\"mailto:%s\">%1\$s</a></p><p>Fehlermeldung: %2\$s</p>";
+$plugin_tx['xhshop']['mail_notify_error']="<p>Pardon! Obgleich eine E-Mail-Bestätigung an Sie versandt wurde, wurde Ihre Bestellung nicht an unseren Shop übermittelt!<p><p>Bitte informieren Sie uns per E-Mail: <a href=\"mailto:%s\">%1\$s</a></p>";
+$plugin_tx['xhshop']['mail_confirmation_log']="Bestätigung versendet an %s";
+$plugin_tx['xhshop']['mail_notification_log']="Benachrichtigung über Bestellung von %s versendet";
+$plugin_tx['xhshop']['mail_confirmation_error_log']="Bestätigung konnte nicht an %1\$s versendet werden (%2\$s)";
+$plugin_tx['xhshop']['mail_notification_error_log']="Benachrichtigung über Bestellung von %1\$s konnte nicht versendet werden (%2\$s)";
 ##### GENERAL ########
 $plugin_tx['xhshop']['labels_yes']='ja';
 $plugin_tx['xhshop']['labels_no']='nein';

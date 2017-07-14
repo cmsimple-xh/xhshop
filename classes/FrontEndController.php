@@ -488,7 +488,12 @@ class FrontEndController extends Controller
         $mail->Body = $this->htmlConfirmation();
         $mail->AltBody = $this->textConfirmation();
         if (!$mail->Send()) {
-            return sprintf($plugin_tx['xhshop']['mail_confirmation_error'], $this->settings['order_email'], $mail->ErrorInfo);
+            $message = sprintf($this->viewProvider->mail['confirmation_error_log'], $customer, $mail->ErrorInfo);
+            XH_logMessage('error', 'xhshop', 'mail', $message);
+            return sprintf($plugin_tx['xhshop']['mail_confirmation_error'], $this->settings['order_email']);
+        } else {
+            $message = sprintf($this->viewProvider->mail['confirmation_log'], $customer);
+            XH_logMessage('info', 'xhshop', 'mail', $message);
         }
 
         $mail->ClearAddresses();
@@ -499,7 +504,12 @@ class FrontEndController extends Controller
         $mail->Body = $this->htmlConfirmation();
         $mail->AltBody = $this->textConfirmation();
         if (!$mail->Send()) {
-            return sprintf($plugin_tx['xhshop']['mail_notify_error'], $this->settings['order_email'], $mail->ErrorInfo);
+            $message = sprintf($this->viewProvider->mail['notification_error_log'], $customer, $mail->ErrorInfo);
+            XH_logMessage('error', 'xhshop', 'mail', $message);
+            return sprintf($plugin_tx['xhshop']['mail_notify_error'], $this->settings['order_email']);
+        } else {
+            $message = sprintf($this->viewProvider->mail['notification_log'], $customer);
+            XH_logMessage('info', 'xhshop', 'mail', $message);
         }
 
         //  echo "Message has been sent";

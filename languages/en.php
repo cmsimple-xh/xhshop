@@ -21,8 +21,12 @@ $plugin_tx['xhshop']['mail_total'] = "TOTAL:";
 $plugin_tx['xhshop']['mail_cos'] = "COS CONFIRMED:";
 $plugin_tx['xhshop']['mail_annotation'] = "YOUR ANNOTATION:";
 $plugin_tx['xhshop']['mail_notify'] = "Order from %1\$s received at %2\$s!";
-$plugin_tx['xhshop']['mail_confirmation_error']="<p>Sorry! Your message could not be sent.<p><p>Please inform us via email: <a href=\"mailto:%s\">%1\$s</a></p><p>Mailer Error: %2\$s</p>";
+$plugin_tx['xhshop']['mail_confirmation_error']="<p>Sorry! Your message could not be sent.<p><p>Please inform us via email: <a href=\"mailto:%s\">%1\$s</a></p>";
 $plugin_tx['xhshop']['mail_notify_error']="<p>Sorry! Although an email confirmation has been sent to you, your order was not transmitted to our shop!<p><p>Please inform us via email: <a href=\"mailto:%s\">%1\$s</a></p><p>Mailer Error: %2\$s</p>";
+$plugin_tx['xhshop']['mail_confirmation_log']="Confirmation sent to %s";
+$plugin_tx['xhshop']['mail_notification_log']="Notification about order from %s sent";
+$plugin_tx['xhshop']['mail_confirmation_error_log']="Confirmation couldn't be sent to %1\$s (%2\$)";
+$plugin_tx['xhshop']['mail_notification_error_log']="Notification about order from %1\$s couldn't be sent (%2\$s)";
 ##### GENERAL ########
 $plugin_tx['xhshop']['labels_yes']='yes';
 $plugin_tx['xhshop']['labels_no']='no';
