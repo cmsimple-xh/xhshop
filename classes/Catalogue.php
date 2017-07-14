@@ -400,21 +400,13 @@ class Catalogue
     /**
      *
      * @param <type> $uid
-     * @param <type> $product
      * @return <type>
-     *
-     * @TODO: Why do we have to pass the changed product on live server? On local xampp it is not necessary
      */
-    public function updateProduct($uid = null, $product = null)
+    public function updateProduct($uid = null)
     {
         if (!key_exists($uid, $this->products)) {
-            trigger_error('Catalogue::updateProduct($uid, $product) - no Product with this $uid');
+            trigger_error('Catalogue::updateProduct($uid) - no Product with this $uid');
             return;
-        }
-        if ($product instanceof Product) {
-            $this->products[$uid] = $product;
-        } else {
-            trigger_error('Catalogue::updateProduct($uid, $product) - It\'s better to pass the changed "Product", otherwise the changes may get lost. (But why? - Something has to be changed');
         }
         $this->save();
     }
