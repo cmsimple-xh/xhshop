@@ -1,27 +1,3 @@
-function submitXHSForm(name) {
-	window.document.forms[name].submit();
-	return true;
-}
-
-function xhsDisableShipping() {
-	var inputs;
-	inputs = window.document.getElementById('xhsShippingDetails').getElementsByTagName('input');
-	var i;
-	for (i = 0; i < inputs.length; i++) {
-		inputs[i].disabled = true;
-	}
-
-}
-
-function xhsEnableShipping() {
-	var inputs;
-	inputs = window.document.getElementById('xhsShippingDetails').getElementsByTagName('input');
-	var i;
-	for (i = 0; i < inputs.length; i++) {
-		inputs[i].disabled = false;
-	}
-}
-
 function xhsChangePic(pic, path, elementID) {
 	var test = pic.split('.');
 	var html = '';
@@ -38,10 +14,6 @@ function xhsChangePic(pic, path, elementID) {
 function xhsAssureDelete(string) {
 
 	return confirm('Really delete "' + string + '"?');
-}
-
-function test(test) {
-	alert(test);
 }
 
 if ("visibilityState" in document) {
