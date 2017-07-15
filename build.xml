@@ -74,6 +74,11 @@
                 </replacetokens>
             </filterchain>
         </move>
+        <jsMin targetDir="dist/plugins/xhshop/js" suffix="" failOnError="false">
+            <fileset dir="export/js">
+                <include name="*.min.js"/>
+            </fileset>
+        </jsMin>
         <!-- for some unknown reason copying catalog.php doesn't work here, so we take two steps -->
         <move todir="dist">
             <fileset dir="export/demo">

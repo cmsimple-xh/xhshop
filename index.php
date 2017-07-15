@@ -48,7 +48,7 @@ if (defined('XH_ADM') && XH_ADM) {
 }
 
 if ($xhsController->settings['url'] == $su && $xhsController instanceof BackEndController) {
-    $hjs .= '<script src="'.$pth['folder']['plugins'].'/xhshop/js/xhsbackend.js"></script>';
+    $hjs .= '<script src="'.$pth['folder']['plugins'].'/xhshop/js/xhsbackend.min.js"></script>';
 }
 
 if ($xhsController instanceof FrontEndController
