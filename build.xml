@@ -63,11 +63,14 @@
         <delete file="export.tar"/>
         <move todir="dist/plugins/xhshop">
             <fileset dir="export">
+                <include name="version.nfo"/>
+                <include name="classes/Controller.php"/>
                 <include name="config/config.php"/>
             </fileset>
             <filterchain>
                 <replacetokens>
                     <token key="PUBLISHED" value=""/>
+                    <token key="VERSION" value="${version}"/>
                 </replacetokens>
             </filterchain>
         </move>

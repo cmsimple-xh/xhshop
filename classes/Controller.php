@@ -8,7 +8,7 @@ abstract class Controller
     protected $catalog;
     public $settings;
     protected $appName = 'XH-Shop';
-    protected $version = '1alpha-preview';
+    protected $version = '@VERSION@';
     protected $payments;
     protected $paymentModules;
     protected $bridge;
