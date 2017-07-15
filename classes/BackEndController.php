@@ -11,10 +11,6 @@ class BackEndController extends Controller
         if (isset($_POST['xhsTask'])) {
             $request = $_POST['xhsTask'];
         }
-        if (isset($_POST['xhsEPayment']) && in_array($_POST['xhsEPayment'], $this->payments)) {
-            $this->loadPaymentModule($_POST['xhsEPayment']);
-            $this->paymentModules[$_POST['xhsEPayment']]->saveConfig();
-        }
         if (method_exists($this, $request)) {
             $html .=  $this->$request();
         } else {
