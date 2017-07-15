@@ -5,10 +5,19 @@ function xhsChangePic(pic, path, elementID) {
 	if (test.length == 2) {
 		var extensions = new Array('jpg', 'jpeg', 'png', 'tif', 'gif', 'tiff', 'svg');
 		var index = extensions.indexOf(test[1]);
-		if (index > -1)
-			html = '<img src="' + path + pic + '" />';
+		if (index > -1) {
+			var anchors = document.getElementById(elementID).getElementsByTagName("a");
+			if (anchors.length) {
+				var anchor = anchors[0];
+				var images = anchor.getElementsByTagName("img");
+				if (images.length) {
+					var image = images[0];
+					anchor.href = image.src = path + pic;
+					
+				}
+			}
+		}
 	}
-	window.document.getElementById(elementID).innerHTML = html;
 }
 
 function xhsAssureDelete(string) {
