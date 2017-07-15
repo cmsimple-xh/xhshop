@@ -292,18 +292,6 @@ abstract class Controller
         return false;
     }
 
-/*
-    function changed(){
-        if(isset($_POST['xhsPage']) && method_exists($this, $_POST['xhsPage'])){
-            var_dump($_POST);
-            unset($_POST['xhsTask']);
-            var_dump($_POST);
-            return  $this->$_POST['xhsPage']();
-        }
-        return;
-    }
-*/
-
     protected function getImageFiles($directory = null)
     {
         if ($directory === null) {

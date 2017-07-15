@@ -173,11 +173,6 @@ class BackEndController extends Controller
         $params['editProduct'] = 'xhsTaskTab';
         $params['productCategories'] = 'xhsTaskTab';
         $params['helpAbout'] = 'xhsTaskTab';
-        //if (isset($_POST['xhsTaskCat'])) {
-        //    $params[$_POST['xhsTaskCat']] = 'xhsTaskTabActive';
-        //} else {
-        //    $params['product_tasks'] = 'xhsTaskTabActive';
-        //}
 
         $screen = isset($_POST['xhsTask']) ? $_POST['xhsTask'] : 'productList';
 
