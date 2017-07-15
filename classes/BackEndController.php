@@ -6,10 +6,15 @@ class BackEndController extends Controller
 {
     public function handleRequest($request = null)
     {
-        $html = $this->tabs();
-        $request = 'productList';
-        if (isset($_POST['xhsTask'])) {
-            $request = $_POST['xhsTask'];
+        global $su;
+
+        $html = '';
+        if (isset($_REQUEST['xhsTask'])) {
+            $request = $_REQUEST['xhsTask'];
+        } elseif ($su !== $this->settings['url']) {
+            $request = 'helpAbout';
+        } else {
+            $request = 'productList';
         }
         if (isset($_POST['xhsEPayment']) && in_array($_POST['xhsEPayment'], $this->payments)) {
             $this->loadPaymentModule($_POST['xhsEPayment']);
@@ -161,30 +166,6 @@ class BackEndController extends Controller
         $params['xhsDefaultCat'] = $this->catalog->default_category[XHS_LANGUAGE];
 
         return $this->render('categories', $params);
-    }
-
-    private function tabs()
-    {
-        $params['SHOP_URL'] = $this->settings['url'];
-        $params['app_name'] = $this->appName;
-        $params['version'] = $this->version;
-        $params['product_tasks'] = 'xhsTaskTab';
-        $params['productList'] = 'xhsTaskTab';
-        $params['editProduct'] = 'xhsTaskTab';
-        $params['productCategories'] = 'xhsTaskTab';
-        $params['helpAbout'] = 'xhsTaskTab';
-
-        $screen = isset($_POST['xhsTask']) ? $_POST['xhsTask'] : 'productList';
-
-        switch ($screen) {
-            case 'editProduct':
-                $params['editProduct'] = 'xhsTaskTabActive';
-                $params['editProductLabel'] = isset($_POST['xhsProductID']) ? 'edit_product' : 'new_product';
-                break;
-            default:
-                $params[$screen] = 'xhsTaskTabActive';
-        }
-        return $this->render('tabs', $params);
     }
 
     private function saveProductCategories()

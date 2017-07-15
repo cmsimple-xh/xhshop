@@ -1,4 +1,5 @@
 <?php ?>
+<a class="xhsShopButton" href="?<?php echo XHS_URL;?>"><span class="fa fa-list fa-lg fa-fw"></span> <?php echo $this->labels['products_list']; ?></a>
 <section class="xhsMain xhsClearB">
 	<h1><?php echo $this->labels['edit_product']; ?></h1>
 	<form method = "post">
