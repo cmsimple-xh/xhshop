@@ -13,7 +13,6 @@
 					<input type="hidden" name="xhsMoveCat" value="<?php echo $index; ?>">
 					<input type="hidden" name="xhsMoveDirection" value="up">
 					<input type="hidden" name="xhsTask" value="saveProductCategories">
-					<input type="hidden" name="xhsTaskCat" value="product_tasks">
 					<button class="xhsProdUp" title="move category up"><span class="fa fa-chevron-up"></span></button>
 				</form><?php } ?>
 				 <?php if($index < count($this->categories)-1){ ?>
@@ -21,7 +20,6 @@
 					<input type="hidden" name="xhsMoveCat" value="<?php echo $index; ?>">
 					<input type="hidden" name="xhsMoveDirection" value="down">
 					<input type="hidden" name = "xhsTask" value = "saveProductCategories">
-					<input type="hidden" name = "xhsTaskCat" value = "product_tasks">
 					<button class="xhsProdDown" title="move category down"><span class="fa fa-chevron-down"></span></button>
 				</form><?php } ?>
 			</td>
@@ -30,7 +28,6 @@
 					<input type="text" name="xhsCatName" value="<?php echo $category; ?>" size ="30">&nbsp;
 					<input type="hidden" name="xhsTask" value="saveProductCategories">
 					<input type="hidden" name="xhsRenameCat">
-					<input type="hidden" name="xhsTaskCat" value="product_tasks">
 					<input type="hidden" name="xhsCatIndex" value="<?php echo $index; ?>">
 					<button class="xhsShopButton"><span class="fa fa-save fa-fw"></span> OK</button>
 				</form>
@@ -43,7 +40,6 @@
 	<form action = "" method = "post">
 		<input type="text" name="xhsAddCat" size="30">&nbsp;
 		<input type="hidden" name="xhsTask" value="saveProductCategories">
-		<input type="hidden" name="xhsTaskCat" value="product_tasks">
 		<button class="xhsShopButton"><span class="fa fa-save fa-fw"></span> OK</button>
 	</form>
 	</p>
@@ -51,7 +47,6 @@
 	<form method = "post">
 		<input type="text" name="xhsLeftOverCat" value="<?php echo $this->leftOverCat;?>" size="30">&nbsp;
 		<input type="hidden" name="xhsTask" value="saveProductCategories">
-		<input type="hidden" name="xhsTaskCat" value="product_tasks">
 		<button class="xhsShopButton"><span class="fa fa-save fa-fw"></span> OK</button>
 	</form>
 	</p>
@@ -64,7 +59,6 @@
 		<?php echo $this->radioNameValueLabel('xhsDefaultCat', $category);?>&nbsp;<?php echo $category; ?><br>
         <?php } ?></p>
 		<div class="">
-			<input type="hidden" name="xhsTaskCat" value="product_tasks">
 			<input type="hidden" name="xhsTask" value="saveProductCategories">
 			<button class="xhsShopButton"><span class="fa fa-save fa-fw"></span> OK</button>
 		</div>

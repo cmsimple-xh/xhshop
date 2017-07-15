@@ -168,24 +168,26 @@ class BackEndController extends Controller
         $params['SHOP_URL'] = $this->settings['url'];
         $params['app_name'] = $this->appName;
         $params['version'] = $this->version;
-        $params['setting_tasks'] = 'xhsTaskTab';
         $params['product_tasks'] = 'xhsTaskTab';
-        $params['help_tasks'] = 'xhsTaskTab';
-        if (isset($_POST['xhsTaskCat'])) {
-            $params[$_POST['xhsTaskCat']] = 'xhsTaskTabActive';
-        } else {
-            $params['product_tasks'] = 'xhsTaskTabActive';
-        }
+        $params['productList'] = 'xhsTaskTab';
+        $params['editProduct'] = 'xhsTaskTab';
+        $params['productCategories'] = 'xhsTaskTab';
+        $params['helpAbout'] = 'xhsTaskTab';
+        //if (isset($_POST['xhsTaskCat'])) {
+        //    $params[$_POST['xhsTaskCat']] = 'xhsTaskTabActive';
+        //} else {
+        //    $params['product_tasks'] = 'xhsTaskTabActive';
+        //}
 
         $screen = isset($_POST['xhsTask']) ? $_POST['xhsTask'] : 'productList';
 
         switch ($screen) {
             case 'editProduct':
-                $params['editProduct'] = 'xhsActiveSubtab';
+                $params['editProduct'] = 'xhsTaskTabActive';
                 $params['editProductLabel'] = isset($_POST['xhsProductID']) ? 'edit_product' : 'new_product';
                 break;
             default:
-                $params[$screen] = 'xhsActiveSubtab';
+                $params[$screen] = 'xhsTaskTabActive';
         }
         return $this->render('tabs', $params);
     }
