@@ -54,7 +54,7 @@
 						<button class="xhsProdDown" title="edit product"><span class="fa fa-edit fa-lg"></span></button>
 					</form>
 					&nbsp;
-					<form method="post" class="xhsInl" onsubmit="return xhsAssureDelete('<?php echo addslashes(strip_tags($product['name'])); ?>');">
+					<form method="post" class="xhsInl xhsDeleteProduct" data-name="<?php echo XH_hsc(strip_tags($product['name'])) ;?>">
 						<input type="hidden" name="xhsProductID" value="<?php echo $index; ?>">
 						<input type="hidden" name="xhsTask" value="deleteProduct">
 						<button class="xhsProdDown" title="delete product"><span class="fa fa-remove fa-lg"></span></button>

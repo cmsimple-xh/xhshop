@@ -2,7 +2,7 @@
 <a class="xhsShopButton" href="?<?php echo XHS_URL;?>"><span class="fa fa-list fa-lg fa-fw"></span> <?php echo $this->labels['products_list']; ?></a>
 <section class="xhsMain xhsClearB">
 	<h1><?php echo $this->labels['edit_product']; ?></h1>
-	<form method = "post">
+	<form method = "post" class="xhsProductForm">
 		<p><strong><?php $this->label('product_name'); ?>:</strong><br>
 		<?php echo $this->textInputNameValueLabel('xhsName', '%NAME%', null, array('size' => 60)); ?></p>
         <p><strong><?php $this->label('product_variants'); ?>:</strong><br>
