@@ -2,14 +2,15 @@
 
 use Xhshop\BackEndController;
 
-$temp = substr($plugin_tx['xhshop']['config_shop_page'], 1);
-$temp = $su === $temp ? $temp : 'xhshop';
-$temp = array(
-    $plugin_tx['xhshop']['labels_products_list'] => "?{$temp}&xhsTask=productList",
-    $plugin_tx['xhshop']['labels_new_product'] => "?{$temp}&xhsTask=editProduct",
-    $plugin_tx['xhshop']['labels_product_categories'] => "?{$temp}&xhsTask=productCategories",
-    $plugin_tx['xhshop']['labels_about'] => "?{$temp}&xhsTask=helpAbout"
-);
+$i = substr($plugin_tx['xhshop']['config_shop_page'], 1);
+$i = $su === $i ? $i : 'xhshop';
+$temp = array();
+$temp[$plugin_tx['xhshop']['labels_products_list']] = "?{$i}&xhsTask=productList";
+$temp[$plugin_tx['xhshop']['labels_new_product']] = "?{$i}&xhsTask=editProduct";
+if ($plugin_cf['xhshop']['categories_use_categories']) {
+    $temp[$plugin_tx['xhshop']['labels_product_categories']] = "?{$i}&xhsTask=productCategories";
+}
+$temp[$plugin_tx['xhshop']['labels_about']] = "?{$i}&xhsTask=helpAbout";
 
 foreach ($temp as $i => $j) {
     XH_registerPluginMenuItem('xhshop', $i, $j);

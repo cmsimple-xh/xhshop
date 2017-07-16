@@ -41,7 +41,7 @@
 				<td class="xhsTdTop"><strong><?php $this->label('internal_link'); ?>:</strong><br><?php echo $this->hint('multi_selection'); ?></td>
 				<td class="xhsTdTop"><?php echo $this->productPageSelector(); ?></td>
 			</tr>
-			<tr>
+			<tr <?php if (!$this->use_categories) echo 'style="display:none"'; ?>>
 				<td class="xhsTdTop"><strong><?php $this->label('product_categories'); ?>:</strong><br><?php echo $this->hint('multi_selection'); ?></td>
 				<td class="xhsTdTop"><?php echo $this->productCategorySelector(); ?></td>
 			</tr>

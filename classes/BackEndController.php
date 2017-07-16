@@ -136,6 +136,7 @@ class BackEndController extends Controller
             $params['productCats']    = array();
         }
         $params['shipping_unit']    = $this->settings['shipping_unit'];
+        $params['use_categories']   = $this->settings['use_categories'];
         $params['categories']       = $this->catalog->getCategories();
 
         $level = 0;
