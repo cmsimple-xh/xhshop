@@ -1,4 +1,5 @@
 <?php ?>
+<a class="xhsShopButton" href="?<?php echo XHS_URL;?>"><span class="fa fa-list fa-lg fa-fw"></span> <?php echo $this->labels['products_list']; ?></a>
 <section class="xhsMain xhsClearB">
 	<h1><?php echo $this->labels['edit_product']; ?></h1>
 	<form method = "post">
@@ -56,7 +57,6 @@
 		<textarea name="xhsDescription" id="xhsDescription" class="xhsDescription" cols="50" rows="15">%DESCRIPTION%</textarea>
 		<p>&nbsp;</p>
 			<input type="hidden" name="xhsProductID" value="<?php echo $this->product_ID; ?>">
-			<input type="hidden" name="xhsTaskCat" value="product_tasks">
 			<input type="hidden" name="xhsTask" value="saveProduct">
 			<button class="xhsShopButton xhsRght"><span class="fa fa-save fa-fw"></span> <?php $this->label('save_settings'); ?></button>
 	</form>
