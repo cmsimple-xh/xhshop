@@ -1,7 +1,8 @@
 <?php ?>
 <section class="xhsMain xhsClearB">
 	<div class="xhsCatSel">
-		<form class="catSelectBox" method="post">
+		<form class="catSelectBox" method="get">
+			<input name="selected" value="<?php echo $this->page_url; ?>" type="hidden">
 			<span class="fa fa-list fa-lg fa-fw"></span> <?php echo $this->categorySelect(); ?>
 			<input name="xhsTask" value="productList" type="hidden" >
 		</form>

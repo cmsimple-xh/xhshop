@@ -634,8 +634,8 @@ class FrontEndController extends Controller
         if (isset($_GET['xhsProduct'])) {
             return $this->productDetails();
         }
-        if (isset($_POST['xhsProductSearch'])) {
-            return $this->productSearchList($_POST['xhsProductSearch']);
+        if (isset($_GET['xhsProductSearch'])) {
+            return $this->productSearchList($_GET['xhsProductSearch']);
         }
         $checkOut = '';
         if (isset($_POST['xhsCheckout'])) {

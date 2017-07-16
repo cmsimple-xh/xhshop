@@ -224,6 +224,7 @@ abstract class Controller
                 $params['categoryHeader'] = $category;
                 break;
         }
+        $params['page_url'] = $this->bridge->getCurrentPage();
         return $params;
     }
 
@@ -260,6 +261,7 @@ abstract class Controller
         $params['selectedCategory'] = null;
         $params['categoryOptions'] = $this->categoryOptions();
         $params['categoryHeader'] = '';
+        $params['page_url'] = $this->bridge->getCurrentPage();
 
         return $params;
     }

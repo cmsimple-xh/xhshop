@@ -2,14 +2,16 @@
 <div class="xhsCatSelSearch">
 	<div class="xhsCatSel">
 		<?php if($this->showCategorySelect !== false){ ?>
-		<form method="post" class="catSelectBox">
+		<form method="get" class="catSelectBox">
+			<input name="selected" value="<?php echo $this->page_url; ?>" type="hidden">
 			<span class="fa fa-list fa-lg fa-fw"></span> <?php echo $this->categorySelect(); ?>
 			<input name="xhsTask" value="productList" type="hidden">
 		</form>
 		<?php } ?>
 	</div>
 	<div class="xhsSearch">
-		<form method="post">
+		<form method="get">
+			<input name="selected" value="<?php echo $this->page_url; ?>" type="hidden">
 			<span class="fa fa-search fa-lg fa-fw"></span>
 			<input name="xhsProductSearch" value="<?php echo $xhsSearch; ?>" type="text" placeholder="<?php $this->label('product_search'); ?>">
 		</form>
