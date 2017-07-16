@@ -1,0 +1,10 @@
+﻿Anzahl;Artikel;Steuersatz;Einzelpreis;Summe
+%pa%;%pname%;%pvat%;%pprice%;%psum%
+
+Warenwert;;;;%SUMME%
+Versandkosten;;;;%SHIPPING%
+Rechnungssumme;;;;%ENDSUMME%
+
+Kunde;;;;%Vorname% %Nachname%
+Straße;;;;%Strasse%
+Ort;;;;"%PLZ% %Ort%"

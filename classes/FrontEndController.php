@@ -401,8 +401,8 @@ class FrontEndController extends Controller
     {
         global $plugin_tx;
 
-        $writer = new BillWriter();
-        if (!$writer->loadTemplate(XHS_TEMPLATES_PATH . 'frontend/confirmation_email/billtemplate.rtf')) {
+        $writer = new CsvBillWriter();
+        if (!$writer->loadTemplate(XHS_TEMPLATES_PATH . 'frontend/confirmation_email/billtemplate.csv')) {
             return $plugin_tx['xhshop']['error_no_bill'];
         }
         $rows   = '';
@@ -500,7 +500,7 @@ class FrontEndController extends Controller
         $mail->clearAttachments();
         $mail->AddAddress($this->settings['order_email'], $this->settings['company_name']);
         $mail->Subject = sprintf($this->viewProvider->mail['notify'], $customerName, $this->settings['company_name']);
-        $mail->AddStringAttachment($bill, "bill.rtf");
+        $mail->AddStringAttachment($bill, "bill.csv");
         $mail->Body = $this->htmlConfirmation();
         $mail->AltBody = $this->textConfirmation();
         if (!$mail->Send()) {
