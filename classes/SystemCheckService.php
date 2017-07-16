@@ -120,7 +120,7 @@ class SystemCheckService
 
     private function checkEmailAddress()
     {
-        $state = (trim($this->config['contact_order_email']) !== '') ? 'success' : 'failure';
+        $state = (trim($this->config['contact_order_email']) !== '') ? 'success' : 'fail';
         $label = $this->lang['syscheck_email'];
         $stateLabel = $this->lang["syscheck_$state"];
         return (object) compact('state', 'label', 'stateLabel');
