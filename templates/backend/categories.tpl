@@ -10,6 +10,7 @@
 		<tr>
 			<td><?php if($index > 0){ ?>
 				<form method="post">
+					%CSRF_TOKEN_INPUT%
 					<input type="hidden" name="xhsMoveCat" value="<?php echo $index; ?>">
 					<input type="hidden" name="xhsMoveDirection" value="up">
 					<input type="hidden" name="xhsTask" value="saveProductCategories">
@@ -17,6 +18,7 @@
 				</form><?php } ?>
 				 <?php if($index < count($this->categories)-1){ ?>
 				<form method="post">
+					%CSRF_TOKEN_INPUT%
 					<input type="hidden" name="xhsMoveCat" value="<?php echo $index; ?>">
 					<input type="hidden" name="xhsMoveDirection" value="down">
 					<input type="hidden" name = "xhsTask" value = "saveProductCategories">
@@ -25,6 +27,7 @@
 			</td>
 			<td>
 				<form action = "" method = "post">
+					%CSRF_TOKEN_INPUT%
 					<input type="text" name="xhsCatName" value="<?php echo $category; ?>" size ="30">&nbsp;
 					<input type="hidden" name="xhsTask" value="saveProductCategories">
 					<input type="hidden" name="xhsRenameCat">
@@ -38,6 +41,7 @@
 	<hr>
 	<p><strong><?php echo $this->label('new_category'); ?></strong>
 	<form action = "" method = "post">
+		%CSRF_TOKEN_INPUT%
 		<input type="text" name="xhsAddCat" size="30">&nbsp;
 		<input type="hidden" name="xhsTask" value="saveProductCategories">
 		<button class="xhsShopButton"><span class="fa fa-save fa-fw"></span> OK</button>
@@ -45,6 +49,7 @@
 	</p>
 	<p><strong><?php $this->label('left_over_category'); ?></strong>
 	<form method = "post">
+		%CSRF_TOKEN_INPUT%
 		<input type="text" name="xhsLeftOverCat" value="<?php echo $this->leftOverCat;?>" size="30">&nbsp;
 		<input type="hidden" name="xhsTask" value="saveProductCategories">
 		<button class="xhsShopButton"><span class="fa fa-save fa-fw"></span> OK</button>
@@ -54,6 +59,7 @@
 	<p><strong><?php $this->label('default_product_category'); ?></strong><br>
 	<?php $this->hint('default_product_category'); ?></p>
 	<form method="post">
+		%CSRF_TOKEN_INPUT%
 		<p><?php echo $this->radioNameValueLabel('xhsDefaultCat', $this->labels['all_categories']);?>&nbsp;<?php echo $this->label('all_categories') ?><br>
 		<?php foreach($this->categories as $category){ ?>
 		<?php echo $this->radioNameValueLabel('xhsDefaultCat', $category);?>&nbsp;<?php echo $category; ?><br>

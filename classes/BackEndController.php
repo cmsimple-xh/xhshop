@@ -4,6 +4,19 @@ namespace Xhshop;
 
 class BackEndController extends Controller
 {
+    /**
+     * @var CsrfProtection
+     */
+    private $csrfProtector;
+
+    public function __construct()
+    {
+        global $_XH_csrfProtection;
+
+        parent::__construct();
+        $this->csrfProtector = $_XH_csrfProtection;
+    }
+
     public function handleRequest($request = null)
     {
         global $su;
@@ -27,6 +40,7 @@ class BackEndController extends Controller
     protected function productList($collectAll = true)
     {
         if (isset($_POST['xhsProductSwapID']) && isset($_POST['xhsProductID'])) {
+            $this->csrfProtector->check();
             $myself = $this->catalog->getProduct($_POST['xhsProductID']);
             $swap = $this->catalog->getProduct($_POST['xhsProductSwapID']);
             $this->catalog->swapSortIndex($myself, $swap);
@@ -68,6 +82,7 @@ class BackEndController extends Controller
         $params['caveats'] = $hints;
         $params['errors']  = $errors;
         $params['showCategorySelect'] = true;
+        $params['csrf_token_input'] = $this->csrfProtector->tokenInput();
         return $this->render('catalog', $params);
     }
 
@@ -143,12 +158,14 @@ class BackEndController extends Controller
         $params['pageLinks']     = $this->bridge->getUrls($level);
         $params['pageNames']     = $this->bridge->getHeadings($level);
         $params['pageLevels']    = $this->bridge->getLevels($level);
+        $params['csrf_token_input'] = $this->csrfProtector->tokenInput();
 
         return $this->render('productEdit', $params);
     }
 
     private function deleteProduct()
     {
+        $this->csrfProtector->check();
         if (!isset($_POST['xhsProductID'])) {
             return false;
         }
@@ -161,12 +178,14 @@ class BackEndController extends Controller
         $params['categories'] =  parent::categories();
         $params['leftOverCat'] = $this->catalog->category_for_the_left_overs[XHS_LANGUAGE];
         $params['xhsDefaultCat'] = $this->catalog->default_category[XHS_LANGUAGE];
+        $params['csrf_token_input'] = $this->csrfProtector->tokenInput();
 
         return $this->render('categories', $params);
     }
 
     private function saveProductCategories()
     {
+        $this->csrfProtector->check();
         if (isset($_POST['xhsMoveCat'])) {
             $this->catalog->moveCategory($_POST['xhsMoveDirection'], $_POST['xhsMoveCat']);
         }
@@ -200,6 +219,7 @@ class BackEndController extends Controller
 
     private function saveProduct()
     {
+        $this->csrfProtector->check();
         $id = isset($_POST['xhsProductID']) ? $_POST['xhsProductID'] : 'new';
         if (key_exists($id, $this->catalog->products)) {
             $product = $this->catalog->getProduct($id);

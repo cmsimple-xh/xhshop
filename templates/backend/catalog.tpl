@@ -21,6 +21,7 @@
 			<tr>
 				<td class="">
 					<form method="post" class="xhsMoveUp" <?php if (!isset($previous)) echo 'style="display: none"'?>>
+						%CSRF_TOKEN_INPUT%
 						<input type="hidden" name="xhsProductID" value="<?php echo $index; ?>">
 						<input type="hidden" name="xhsProductSwapID" value="<?php echo $previous; ?>">
 						<input type="hidden" name="xhsTask" value="productList">
@@ -28,6 +29,7 @@
 						<button class="xhsProdUp" title="<?php echo $this->hint('move_product_up') ;?>"><span class="fa fa-chevron-up"></span></button>
 					</form>
 					<form method="post" class="xhsInl xhsMoveDown" <?php if (!isset($next)) echo 'style="display: none"'?>>
+						%CSRF_TOKEN_INPUT%
 						<input type="hidden" name="xhsProductID" value="<?php echo $index; ?>">
 						<input type="hidden" name="xhsProductSwapID" value="<?php echo $next; ?>">
 						<input type="hidden" name="xhsTask" value="productList">
@@ -56,6 +58,7 @@
 					</form>
 					&nbsp;
 					<form method="post" class="xhsInl xhsDeleteProduct" data-name="<?php echo XH_hsc(strip_tags($product['name'])) ;?>">
+						%CSRF_TOKEN_INPUT%
 						<input type="hidden" name="xhsProductID" value="<?php echo $index; ?>">
 						<input type="hidden" name="xhsTask" value="deleteProduct">
 						<button class="xhsProdDown" title="<?php echo $this->hint('delete_product') ;?>"><span class="fa fa-remove fa-lg"></span></button>
