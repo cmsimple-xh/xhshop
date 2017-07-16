@@ -536,8 +536,6 @@ class FrontEndController extends Controller
     {
         $params['name'] = $_SESSION['xhsCustomer']->first_name . ' ' . $_SESSION['xhsCustomer']->last_name;
 
-        $_SESSION['xhsCustomer'] = false;
-        $_SESSION['xhsOrder'] = false;
         unset($_SESSION['xhsCustomer']);
         unset($_SESSION['xhsOrder']);
 
