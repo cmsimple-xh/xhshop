@@ -55,11 +55,14 @@ class FrontEndController extends Controller
         if ($product->hasVariants()) {
             $params['variants'] = $product->getVariants(XHS_LANGUAGE);
         }
+        $params['csrf_token_input'] = $this->csrfProtector->tokenInput();
+        $this->csrfProtector->store();
         return $this->render('addToCartButton', $params);
     }
 
     public function updateCart()
     {
+        $this->csrfProtector->check();
         $variant = null;
 
         if ($this->catalog->products[$_POST['cartItem']]->hasVariants()) {
@@ -124,6 +127,8 @@ class FrontEndController extends Controller
             $params['xhs_url']   = $this->bridge->translateUrl(XHS_URL);
             $params['cartItems'] = $cartItems;
             $params['cartSum']   = $_SESSION['xhsOrder']->cartGross;
+            $params['csrf_token_input'] = $this->csrfProtector->tokenInput();
+            $this->csrfProtector->store();
             return $this->render('cartPreview', $params);
         }
         return false;
@@ -191,6 +196,7 @@ class FrontEndController extends Controller
 
     private function cart()
     {
+        $this->csrfProtector->check();
         $cartItems = $this->collectCartItems();
         if (!$cartItems) {
             return $this->productList();
@@ -215,6 +221,8 @@ class FrontEndController extends Controller
             $params['minimum_order']    = $this->settings['minimum_order'];
             $params['no_shipping_from'] = $this->settings['forwarding_expenses_up_to'];
             $params['canOrder']         = (float) $this->settings['minimum_order'] <= $_SESSION['xhsOrder']->getTotal();
+            $params['csrf_token_input'] = $this->csrfProtector->tokenInput();
+            $this->csrfProtector->store();
 
             return $this->render('cart', $params);
         }
@@ -242,12 +250,15 @@ class FrontEndController extends Controller
         $params['missingData'] = $missingData;
 
         $params['cosUrl'] = ($this->settings['cos_page']);
+        $params['csrf_token_input'] = $this->csrfProtector->tokenInput();
+        $this->csrfProtector->store();
 
         return $this->render('customersData', $params);
     }
 
     private function checkCustomersData()
     {
+        $this->csrfProtector->check();
         $missingData = array();
         $postArray = array();
         foreach ($_POST as $key => $value) {
@@ -373,6 +384,8 @@ class FrontEndController extends Controller
             $params['fullRate']    = $this->settings['vat_full'];
             $params['reducedRate'] = $this->settings['vat_reduced'];
         }
+        $params['csrf_token_input'] = $this->csrfProtector->tokenInput();
+        $this->csrfProtector->store();
 
         return $this->render('finalConfirmation', $params);
     }
@@ -383,6 +396,7 @@ class FrontEndController extends Controller
      */
     private function finishCheckOut()
     {
+        $this->csrfProtector->check();
         if (!isset($_SESSION['xhsCustomer']) || !isset($_SESSION['xhsOrder'])) {
             return '';
         }
