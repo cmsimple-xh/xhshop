@@ -2,7 +2,7 @@
 
 namespace Xhshop;
 
-class CsvBillWriter
+class CsvBillWriter implements BillWriter
 {
     const BOM = "\xEF\xBB\xBF";
 

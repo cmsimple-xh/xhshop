@@ -2,7 +2,7 @@
 
 namespace Xhshop;
 
-class RtfBillWriter
+class RtfBillWriter implements BillWriter
 {
     private $template;
     private $rowTemplate;
