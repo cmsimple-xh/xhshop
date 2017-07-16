@@ -51,7 +51,8 @@
 					</p>
 				</td>
 				<td>
-					<form method="post" class="xhsInl">
+					<form method="get" class="xhsInl">
+						<input name="selected" value="%PAGE_URL%" type="hidden">
 						<input type="hidden" name="xhsProductID" value="<?php echo $index; ?>">
 						<input type="hidden" name="xhsTask" value="editProduct">
 						<button class="xhsProdDown" title="<?php echo $this->hint('edit_product'); ?>"><span class="fa fa-edit fa-lg"></span></button>

@@ -89,7 +89,7 @@ class BackEndController extends Controller
     private function editProduct($id = null)
     {
         if (!isset($id)) {
-            $id = isset($_POST['xhsProductID']) ? $_POST['xhsProductID'] : 'new';
+            $id = isset($_GET['xhsProductID']) ? $_GET['xhsProductID'] : 'new';
         }
 
         $params = array();
