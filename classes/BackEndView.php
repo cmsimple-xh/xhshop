@@ -17,11 +17,10 @@ class BackEndView extends View
         }
         $js = '';
         if (isset($element)) {
-            $js = ' onchange="var pic = this.options[this.selectedIndex].value ; xhsChangePic(pic, \''
-                . $path . '\', \'' . $element . '\');"';
+            $js = ' data-xhs="' . XH_hsc(json_encode(compact('path', 'element'))) . '"';
         }
                           
-        $html = "\n" . '<select name="' . $element .'"' . $js . '>';
+        $html = "\n" . '<select class="xhsPicSelector" name="' . $element .'"' . $js . '>';
         $html .= "\n\t" . '<option>' . $this->labels['no_pic'] . '</option>';
         foreach ($imageArray as $pic) {
             $selected = ($pic == $selectedPic) ? ' selected="selected"' : '';

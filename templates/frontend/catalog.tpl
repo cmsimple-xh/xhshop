@@ -2,7 +2,7 @@
 <div class="xhsCatSelSearch">
 	<div class="xhsCatSel">
 		<?php if($this->showCategorySelect !== false){ ?>
-		<form method="post">
+		<form method="post" class="catSelectBox">
 			<span class="fa fa-list fa-lg fa-fw"></span> <?php echo $this->categorySelect(); ?>
 			<input name="xhsTask" value="productList" type="hidden">
 		</form>

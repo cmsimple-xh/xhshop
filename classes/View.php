@@ -250,7 +250,7 @@ abstract class View
         }
         
         $html =    "\n\t" . '<select title="' . $this->labels['cat_select']
-            . '" name="xhsCategory" onchange="this.parentNode.submit();">';
+            . '" name="xhsCategory">';
         foreach ($this->categoryOptions as $category) {
             $selected = (html_entity_decode($category['value']) == html_entity_decode($this->selectedCategory))
                 ? ' selected="selected"'
