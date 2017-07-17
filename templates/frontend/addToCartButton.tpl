@@ -9,9 +9,9 @@
 			<br></span>
 		</div>
 		<form method="post">
-			%CSRF_TOKEN_INPUT%
 			<input type="hidden" name="xhsTask" value="updateCart">
 			<input type="hidden" name="cartItem" value="<?php echo $this->product->uid ; ?>">
+			<input type="hidden" name="<?php echo session_name(); ?>" value="<?php echo session_id(); ?>">
 			<?php if(isset($this->variants)){ ?>
 			<select name="xhsVariant">
 				<?php  foreach($this->variants as $index => $variant){ ?>

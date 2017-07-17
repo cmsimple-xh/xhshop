@@ -28,7 +28,6 @@ foreach($this->cartItems as $product){
 <td>&nbsp;</td>
 <td class="xhsMoneyCell">
 <form method="post" class="xhsInl">
-%CSRF_TOKEN_INPUT%
 <!--<input class="xhsInpAmount" type="number" min="1" step="1" name="xhsAmount" value="<?php echo $product['amount']; ?>" onChange="this.parentNode.submit()">-->
 <input class="xhsInpAmount" type="number" min="1" step="1" name="xhsAmount" value="<?php echo $product['amount']; ?>"> x <?php echo $this->formatCurrency($product['price']) ;?><br>
 <input type="hidden" name="xhsTask" value="updateCart">
@@ -37,7 +36,6 @@ foreach($this->cartItems as $product){
 <input type="hidden" name="cartItem" value="<?php echo $product['key'];?>">
 <button class="xhsUpdBtn" title="<?php $this->label('update'); ?>"><span class="fa fa-refresh fa-lg"></span></button>
 </form> <form method="post" class="xhsInl">
-%CSRF_TOKEN_INPUT%
 <input type="hidden" name="xhsAmount" value="0" />
 <input type="hidden" name="xhsTask" value="updateCart" />
 <input type="hidden" name="xhsCheckout" value="cart" />

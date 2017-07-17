@@ -53,7 +53,6 @@ if(in_array('cos_confirmed', $this->missingData)){
 <!-- End annotation -->
 <p> </p>
 <input type="hidden" name="xhsCheckout" value="checkCustomersData">
-%CSRF_TOKEN_INPUT%
 <button class="xhsShopButton xhsRght xhsInl"><?php $this->label('next'); ?> <span class="fa fa-arrow-circle-right fa-fw"></span></button>
 </form>
 <form method="post" class="xhsLft">

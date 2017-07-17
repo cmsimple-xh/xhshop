@@ -4,6 +4,19 @@ namespace Xhshop;
 
 class BackEndController extends Controller
 {
+    /**
+     * @var CsrfProtection
+     */
+    private $csrfProtector;
+
+    public function __construct()
+    {
+        global $_XH_csrfProtection;
+
+        parent::__construct();
+        $this->csrfProtector = $_XH_csrfProtection;
+    }
+
     public function handleRequest($request = null)
     {
         global $su;
