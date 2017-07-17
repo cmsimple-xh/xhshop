@@ -14,6 +14,7 @@ abstract class View
     protected $hints = array();
     public $labels = array();
     private $lang = array(); // apparently unused
+    protected $shippingCountries = array();
 
     public function __construct()
     {
@@ -31,6 +32,11 @@ abstract class View
                 $this->mail[substr($key, 5)] = $value;
             }
         }
+    }
+
+    public function setShippingCountries(array $countries)
+    {
+        $this->shippingCountries = $countries;
     }
 
     public function setCurrency($currency)

@@ -44,7 +44,7 @@ abstract class Controller
         $this->settings['url'] = ltrim($plugin_tx['xhshop']['config_shop_page'], '?');
         $this->settings['cos_page'] = $plugin_tx['xhshop']['config_cos_page'];
         $this->settings['shipping_unit'] = $plugin_tx['xhshop']['config_shipping_unit'];
-        $this->settings['shipping_countries'] = $plugin_tx['xhshop']['config_shipping_countries'];
+        $this->settings['shipping_countries'] = $this->getShippingCountries();
         $this->settings['bill_dateformat'] = $plugin_tx['xhshop']['config_bill_dateformat'];
         $this->settings['email_attachment'] = $plugin_tx['xhshop']['config_email_attachment'];
         $this->paymentModules = array();
@@ -66,6 +66,19 @@ abstract class Controller
         $viewProvider = preg_replace('/Controller$/', 'View', get_class($this));
         $this->viewProvider = new $viewProvider();
         $this->viewProvider->setCurrency($this->settings['default_currency']);
+        $this->viewProvider->setShippingCountries($this->settings['shipping_countries']);
+    }
+
+    protected function getShippingCountries()
+    {
+        global $plugin_tx;
+
+        $countries = array();
+        $entries = explode(';', $plugin_tx['xhshop']['config_shipping_countries']);
+        foreach ($entries as $country) {
+            $countries[] = trim($country);
+        }
+        return $countries;
     }
 
     protected function render($template, array $params = null)

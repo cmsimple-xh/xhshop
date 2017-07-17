@@ -94,7 +94,7 @@ class FrontEndController extends Controller
                 $_SESSION['xhsOrder']->cartGross >= (float) $this->settings['forwarding_expenses_up_to']) {
             return 0;
         }
-        if (!isset($this->settings['weightRange']) || !count($this->settings['weightRange']) > 0) {
+        if (empty($this->settings['weightRange'])) {
             return (float) $this->settings['shipping_max'];
         }
         $weight = $_SESSION['xhsOrder']->units;
@@ -279,14 +279,7 @@ class FrontEndController extends Controller
         if (!isset($_SESSION['xhsCustomer']->payment_mode)) {
             $missingData[] = 'payment_mode';
         }
-        $countries = array();
-        $temp = explode(';', $this->settings['shipping_countries']);
-        foreach ($temp as $country) {
-            if (($country = trim($country)) !== '') {
-                $countries[] = $country;
-            }
-        }
-        if (!in_array($_SESSION['xhsCustomer']->country, $countries, true)) {
+        if (!in_array($_SESSION['xhsCustomer']->country, $this->settings['shipping_countries'], true)) {
             $missingData[] = 'country';
         }
         if (count($missingData) > 0) {
