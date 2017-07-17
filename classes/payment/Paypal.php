@@ -15,8 +15,7 @@ class Paypal extends PaymentModule
     {
         global $plugin_cf;
 
-        $this->loadLanguage();
-        $this->loadSettings();
+        parent::__construct();
         $this->settings['currency_code'] = $plugin_cf['xhshop']['shop_currency_code'];
     }
 

@@ -6,12 +6,6 @@ use Xhshop\PaymentModule;
 
 class OnAccount extends PaymentModule
 {
-    
-    public function __construct()
-    {
-        $this->loadLanguage();
-        $this->loadSettings();
-    }
 
     public function getName()
     {
