@@ -548,8 +548,6 @@ class FrontEndController extends Controller
     {
         $params                       = parent::productList(false);
         $params['showCategorySelect'] = (bool) $this->settings['use_categories'];
-        $params['csrf_token_input'] = $this->csrfProtector->tokenInput();
-        $this->csrfProtector->store();
 
         return $this->render('catalog', $params);
     }
