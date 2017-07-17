@@ -30,7 +30,6 @@ namespace Xhshop;
  */
 abstract class PaymentModule
 {
-    protected $name = null;
     protected $language = array();
     protected $settings = array();
     protected $cartItems = array();
