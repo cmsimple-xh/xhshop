@@ -57,6 +57,7 @@ if(in_array('cos_confirmed', $this->missingData)){
 <button class="xhsShopButton xhsRght xhsInl"><?php $this->label('next'); ?> <span class="fa fa-arrow-circle-right fa-fw"></span></button>
 </form>
 <form method="post" class="xhsLft">
+%CSRF_TOKEN_INPUT%
 <input type="hidden" name="xhsCheckout" value="cart">
 <button class="xhsShopButton xhsInl"><span class="fa fa-arrow-circle-left fa-fw"></span> <?php $this->label('previous'); ?></button>
 </form>
