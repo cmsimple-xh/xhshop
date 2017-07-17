@@ -98,6 +98,7 @@ $plugin_tx['xhshop']['hints_move_product_up']="Vertausche Sortierreihenfolge mit
 $plugin_tx['xhshop']['hints_move_product_down']="Vertausche Sortierreihenfolge mit den nächsten Artikel";
 $plugin_tx['xhshop']['hints_edit_product']="Artikel bearbeiten";
 $plugin_tx['xhshop']['hints_delete_product']="Artikel löschen";
+$plugin_tx['xhshop']['hints_confirm_delete']="Soll \"%s\" wirklich gelöscht werden?";
 $plugin_tx['xhshop']['labels_product_name']='Bezeichnung';
 $plugin_tx['xhshop']['labels_product_variants']='verfügbare Varianten';
 $plugin_tx['xhshop']['hints_product_variants'] = '(Semikolon als Trenner. Beispiel: <i>"rot; grün; blau"</i>)';

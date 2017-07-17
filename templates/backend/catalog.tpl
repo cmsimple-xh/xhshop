@@ -11,7 +11,7 @@
 	<?php if(count($this->products) == 0){ ?>
 	<p><?php printf($this->hints['sold_out'], strip_tags($this->categoryHeader)); ?></p>
 	<?php return;} ?>
-	<table id="xhsProductsTable">
+	<table id="xhsProductsTable" data-delete="<?php echo XH_hsc($this->hints['confirm_delete']) ;?>">
 		<tbody>
 		<?php
 		$i = 0;

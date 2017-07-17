@@ -98,6 +98,7 @@ $plugin_tx['xhshop']['hints_move_product_up']="Swap sort index with previous pro
 $plugin_tx['xhshop']['hints_move_product_down']="Swap sort index with next product";
 $plugin_tx['xhshop']['hints_edit_product']="Edit product";
 $plugin_tx['xhshop']['hints_delete_product']="Delete product";
+$plugin_tx['xhshop']['hints_confirm_delete']="Really delete \"%s\"?";
 $plugin_tx['xhshop']['labels_product_name']='Name';
 $plugin_tx['xhshop']['labels_product_variants']='Variants';
 $plugin_tx['xhshop']['hints_product_variants'] = '(Use semicolon as separator, e. g.: <i>&laquo;red; green; blue&raquo;</i>)';
