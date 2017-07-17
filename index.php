@@ -11,7 +11,6 @@ define(
 );
 define('XHS_CATALOG', XHS_CONTENT_PATH . 'xhshop/catalog.php');
 
-define('XHS_COUNTRIES_FILE', XHS_BASE_PATH . 'lang/countries_' . XHS_LANGUAGE . '.txt');
 define('XHS_TEMPLATES_PATH', XHS_BASE_PATH . 'templates/');
 define('XHS_URI_SEPARATOR', $cf['uri']['seperator']);
 

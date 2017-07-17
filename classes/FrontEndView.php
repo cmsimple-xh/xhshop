@@ -64,16 +64,14 @@ class FrontEndView extends View
 
     protected function countriesSelectbox()
     {
+        global $plugin_tx;
+
         $countries = array();
-        if (file_exists(XHS_COUNTRIES_FILE)) {
-            $temp = file(XHS_COUNTRIES_FILE);
-            foreach ($temp as $country) {
-                if (trim($country) !== '') {
-                    $countries[] = $country;
-                }
+        $temp = explode(';', $plugin_tx['xhshop']['config_shipping_countries']);
+        foreach ($temp as $country) {
+            if (trim($country) !== '') {
+                $countries[] = $country;
             }
-        } else {
-            return '';
         }
         if (count($countries) === 0) {
             return '';

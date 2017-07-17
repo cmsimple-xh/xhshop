@@ -4,6 +4,7 @@ $plugin_tx['xhshop']['config_cos_page']="?Shop/AGB";
 $plugin_tx['xhshop']['config_decimal_separator']=",";
 $plugin_tx['xhshop']['config_thousands_separator']=".";
 $plugin_tx['xhshop']['config_shipping_unit']="kg";
+$plugin_tx['xhshop']['config_shipping_countries']="Deutschland;Österreich;Schweiz;Frankreich";
 $plugin_tx['xhshop']['config_bill_dateformat']="d.m.Y";
 $plugin_tx['xhshop']['config_email_attachment']="";
 ####### Mail ################

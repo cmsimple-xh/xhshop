@@ -280,12 +280,10 @@ class FrontEndController extends Controller
             $missingData[] = 'payment_mode';
         }
         $countries = array();
-        if (file_exists(XHS_COUNTRIES_FILE)) {
-            $temp = file(XHS_COUNTRIES_FILE);
-            foreach ($temp as $country) {
-                if (($country = trim($country)) !== '') {
-                    $countries[] = $country;
-                }
+        $temp = explode(';', $this->settings['shipping_countries']);
+        foreach ($temp as $country) {
+            if (($country = trim($country)) !== '') {
+                $countries[] = $country;
             }
         }
         if (!in_array($_SESSION['xhsCustomer']->country, $countries, true)) {
