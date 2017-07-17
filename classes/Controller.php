@@ -212,10 +212,10 @@ abstract class Controller
     protected function productList($collectAll = true)
     {
         $category = $this->catalog->default_category[XHS_LANGUAGE];
-        if (isset($_GET['xhsCategory'])) {
+        if (!empty($_GET['xhsCategory'])) {
             $category = $_GET['xhsCategory'];
         }
-        if (isset($_POST['xhsCategory'])) {
+        if (!empty($_POST['xhsCategory'])) {
             $category = $_POST['xhsCategory'];
         }
         $showCats = true;
