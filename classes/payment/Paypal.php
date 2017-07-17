@@ -6,8 +6,6 @@ use Xhshop\PaymentModule;
 
 class Paypal extends PaymentModule
 {
-
-    protected $name = 'paypal';
     private $urls = array(
         'development' => 'https://www.sandbox.paypal.com/cgi-bin/webscr',
         'production'  => 'https://www.paypal.com/cgi-bin/webscr'
@@ -36,6 +34,11 @@ class Paypal extends PaymentModule
     {
         return '<img src="' . XHS_BASE_PATH . 'images/paypal-logo.png">
 ';
+    }
+
+    public function getName()
+    {
+        return 'paypal';
     }
 
     public function orderSubmitForm()

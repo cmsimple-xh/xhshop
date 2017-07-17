@@ -39,13 +39,14 @@ abstract class PaymentModule
         return isset($this->language['label']) ? $this->language['label'] : '* ' . $this->getName() . ' *';
     }
 
-    public function getName()
-    {
-        if (isset($this->name)) {
-            return $this->name;
-        }
-        return 'Error: *' . get_class($this) . '* has to provide a name.';
-    }
+    /**
+     * Returns the name of the payment module
+     *
+     * The name is used as prefix for configuration and language keys.
+     *
+     * @return string
+     */
+    abstract public function getName();
 
     public function getFee()
     {
@@ -77,7 +78,7 @@ abstract class PaymentModule
         global $plugin_tx;
 
         $lang = array();
-        $prefix = str_replace('_', '-', $this->name) . '_';
+        $prefix = str_replace('_', '-', $this->getName()) . '_';
         foreach ($plugin_tx['xhshop'] as $key => $value) {
             if (strpos($key, $prefix) === 0) {
                 $lang[substr($key, strlen($prefix))] = $value;
@@ -92,7 +93,7 @@ abstract class PaymentModule
         global $plugin_cf;
 
         $config = array();
-        $prefix = str_replace('_', '-', $this->name) . '_';
+        $prefix = str_replace('_', '-', $this->getName()) . '_';
         foreach ($plugin_cf['xhshop'] as $key => $value) {
             if (strpos($key, $prefix) === 0) {
                 $config[substr($key, strlen($prefix))] = $value;

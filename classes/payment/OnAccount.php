@@ -9,8 +9,12 @@ class OnAccount extends PaymentModule
     
     public function __construct()
     {
-        $this->name = 'on_account';
         $this->loadLanguage();
         $this->loadSettings();
+    }
+
+    public function getName()
+    {
+        return 'on_account';
     }
 }
