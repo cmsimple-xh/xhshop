@@ -101,6 +101,7 @@ if($this->fee < 0){
 <div class="xhsRght">
 <?php if($this->payment->orderSubmitForm() === false){ ?>
 <form method="post">
+%CSRF_TOKEN_INPUT%
 <input type="hidden" name="xhsCheckout" value="finish">
 <button class="xhsShopButton xhsRght"><?php $this->label('send_order'); ?></button>
 </form>

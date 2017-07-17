@@ -14,9 +14,14 @@ abstract class Controller
     protected $bridge;
     private $errors = array(); // apparently unused
 
+    /**
+     * @var CsrfProtection
+     */
+    protected $csrfProtector;
+
     public function __construct()
     {
-        global $pth, $plugin_cf, $plugin_tx;
+        global $pth, $plugin_cf, $plugin_tx, $_XH_csrfProtection;
 
         $this->settings = array();
         foreach ($plugin_cf['xhshop'] as $key => $value) {
@@ -50,6 +55,10 @@ abstract class Controller
         }
         $this->bridge = new CmsBridge();
         $this->catalog = new Catalogue(XHS_URI_SEPARATOR, $this->version);
+        if (!class_exists('XH_CSRFProtection')) {
+            include_once "{$pth['folder']['classes']}CsrfProtection.php";
+        }
+        $this->csrfProtector = isset($_XH_csrfProtection) ? $_XH_csrfProtection : new XH_CSRFProtection('xhs_csrf_token');
 
         $viewProvider = preg_replace('/Controller$/', 'View', get_class($this));
         $this->viewProvider = new $viewProvider();

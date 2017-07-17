@@ -7,9 +7,9 @@
 	<div class="xhsProdDescript">%DESCRIPTION%</div>
 	<div class="xhsInfoBlock">
 		<form method="post">
+			%CSRF_TOKEN_INPUT%
 			<input type="hidden" name="xhsTask" value="updateCart">
 			<input type="hidden" name="cartItem" value="<?php echo $this->uid ; ?>">
-			<input type="hidden" name="<?php echo session_name(); ?>" value="<?php echo session_id(); ?>">
 			<?php if($this->variants){ ?>
 			<div class="xhsVariantsSelect"><span class="xhsPrdPriceLabel"><?php echo $this->labels['product_variants'];?></span>
 				<select name="xhsVariant">

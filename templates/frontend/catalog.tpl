@@ -59,6 +59,7 @@
 				x
 				<input type="hidden" name="cartItem" value="<?php echo $index; ?>" />
 				<button class="xhsShopButton xhsAddCart"><span class="fa fa-cart-plus fa-lg fa-fw"></span> <?php echo $this->label('add_to_cart'); ?></button>
+				%CSRF_TOKEN_INPUT%
 			</form>
 		</div>
 	</article>
