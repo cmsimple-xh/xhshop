@@ -95,7 +95,7 @@ abstract class Controller
         $options = array();
 
         if ($this->settings['allow_show_all'] || $this instanceof BackEndController) {
-            $options[] = array('value' => '', 'label' => $this->viewProvider->labels['all_categories']);
+            $options[] = array('value' => $this->viewProvider->labels['all_categories'], 'label' => $this->viewProvider->labels['all_categories']);
         }
         foreach ($this->categories() as $category) {
             $options[] = array('value' => $category, 'label' => $category);
