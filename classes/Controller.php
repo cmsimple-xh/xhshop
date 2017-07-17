@@ -2,6 +2,8 @@
 
 namespace Xhshop;
 
+use XH_CSRFProtection;
+
 abstract class Controller
 {
     protected $viewProvider;
