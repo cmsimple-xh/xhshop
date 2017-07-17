@@ -32,7 +32,7 @@
     target="_blank">http://www.gnu.org/licenses/</a>.
 </p>
 <p>
-    Copyright &copy; 2010 Martin Damken, <a href="http://www.zeichenkombinat.de" target="_blank">zeichenkombinat.de</a><br>
+    Copyright &copy; 2010-2012 Martin Damken, <a href="http://www.zeichenkombinat.de" target="_blank">zeichenkombinat.de</a><br>
     Copyright &copy; 2017 The XH-Shop developers
 </p>
 </div>
