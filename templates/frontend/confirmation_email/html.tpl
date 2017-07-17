@@ -52,7 +52,7 @@ tr.brdT2 td {
 <td><?php echo date('d.m.Y [H:i]'); ?></td>
 </tr>
 <tr>
-<td><?php echo $this->labels['delivery_adress']; ?>:&nbsp;&nbsp;</td>
+<td><?php echo $this->labels['billing_address']; ?>:&nbsp;&nbsp;</td>
 <td>%FIRST_NAME% %LAST_NAME%<br>
 %STREET%<br>
 %ZIP_CODE% %CITY%<br>
@@ -60,6 +60,15 @@ tr.brdT2 td {
 %EMAIL%<br>
 %PHONE%</td>
 </tr>
+<tr>
+<?php if ($this->hasDifferingDeliveryAddress):?>
+<td><?php echo $this->labels['delivery_address']; ?>:&nbsp;&nbsp;</td>
+<td>%DELIVERY_FIRST_NAME% %DELIVERY_LAST_NAME%<br>
+%DELIVERY_STREET%<br>
+%DELIVERY_ZIP_CODE% %DELIVERY_CITY%<br>
+%DELIVERY_OUNTRY%<br>
+</tr>
+<?php endif?>
 <tr>
 <td><?php $this->label('payment_mode') ?>:&nbsp;&nbsp;</td>
 <td><?php echo $this->payment; ?></td>

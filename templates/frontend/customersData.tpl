@@ -14,11 +14,17 @@
 <?php echo $this->contactInput('last_name'); ?>
 <?php echo $this->contactInput('street'); ?>
 <?php echo $this->contactInput('email'); ?>
-<?php echo$this->contactInput('phone'); ?>
+<?php echo $this->contactInput('phone'); ?>
 <?php echo $this->contactInput('zip_code'); ?>
 <?php echo $this->contactInput('city'); ?>
-<?php echo $this->countriesSelectbox(XHS_LANGUAGE); ?>
-<p> </p>
+<?php echo $this->countriesSelectbox(); ?>
+<h2><?php $this->label('delivery_address');?></h2>
+<?php echo $this->contactInput('delivery_first_name'); ?>
+<?php echo $this->contactInput('delivery_last_name'); ?>
+<?php echo $this->contactInput('delivery_street'); ?>
+<?php echo $this->contactInput('delivery_zip_code'); ?>
+<?php echo $this->contactInput('delivery_city'); ?>
+<?php echo $this->countriesSelectbox(true); ?>
 <!-- start payment modes -->
 <h2><?php echo $this->paymentHint(); ?></h2>
 <?php foreach($this->payments as $module){

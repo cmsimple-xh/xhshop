@@ -294,6 +294,7 @@ class FrontEndController extends Controller
         foreach ($_SESSION['xhsCustomer'] as $field => $value) {
             $params[$field]       = $value;
         }
+        $params['hasDifferingDeliveryAddress'] = $_SESSION['xhsCustomer']->hasDifferingDeliveryAddress();
         if (isset($params['annotation'])) {
             $params['annotation'] = nl2br($params['annotation']);
         }
@@ -322,6 +323,7 @@ class FrontEndController extends Controller
         foreach ($_SESSION['xhsCustomer'] as $field => $value) {
             $params[$field]       = $value;
         }
+        $params['hasDifferingDeliveryAddress'] = $_SESSION['xhsCustomer']->hasDifferingDeliveryAddress();
         $params['fee']        = $this->calculatePaymentFee();
         $params['cartItems']  = $this->collectCartItems();
         $params['cartSum']    = $_SESSION['xhsOrder']->getCartSum();
@@ -355,6 +357,7 @@ class FrontEndController extends Controller
         foreach ($_SESSION['xhsCustomer'] as $field => $value) {
             $params[$field]       = isset($value) ? $value : '';
         }
+        $params['hasDifferingDeliveryAddress'] = $_SESSION['xhsCustomer']->hasDifferingDeliveryAddress();
         if (isset($params['annotation'])) {
             $params['annotation'] = nl2br($params['annotation']);
         }
@@ -452,6 +455,12 @@ class FrontEndController extends Controller
             '%Nachname%'       => $_SESSION['xhsCustomer']->last_name,
             '%Strasse%'        => $_SESSION['xhsCustomer']->street,
             '%PLZ%'            => $_SESSION['xhsCustomer']->zip_code,
+            '%Ort%'            => $_SESSION['xhsCustomer']->city,
+            '%DELIVERY_FIRST_NAME%' => $_SESSION['xhsCustomer']->delivery_first_name,
+            '%DELIVERY_LAST_NAME%'  => $_SESSION['xhsCustomer']->delivery_last_name,
+            '%DELIVERY_STREET%'     => $_SESSION['xhsCustomer']->delivery_street,
+            '%DELIVERY_ZIP%'        => $_SESSION['xhsCustomer']->delivery_zip_code,
+            '%DELIVERY_COUNTRY%'    => $_SESSION['xhsCustomer']->delivery_country,
             '%Ort%'            => $_SESSION['xhsCustomer']->city,
             '%COMPANY_NAME%'   => $this->settings['company_name'],
             '%COMPANY_STREET%' => $this->settings['street'],

@@ -62,13 +62,13 @@ class FrontEndView extends View
         return $html;
     }
 
-    protected function countriesSelectbox()
+    protected function countriesSelectbox($delivery = false)
     {
         if (empty($this->shippingCountries)) {
             return '';
         }
         $html = '<label for="xhsCountries" class="xhsFormLabel">' . $this->labels['country'] . ':</label>'
-        . '<select name="country" id="xhsCountries">';
+        . '<select name="' . ($delivery ? 'delivery_' : '') . 'country" id="xhsCountries">';
         foreach ($this->shippingCountries as $country) {
             $html .= "\n\t".'<option';
             if ($_SESSION['xhsCustomer']->country == trim($country)) {

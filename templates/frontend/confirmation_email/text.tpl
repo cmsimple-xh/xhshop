@@ -7,7 +7,7 @@
 
 <?php $this->label('date_of_order'); ?>: <?php echo date('d.m.Y [H:i]'); ?>
 
-<?php $this->label('delivery_adress'); ?>:
+<?php $this->label('billing_address'); ?>:
 %FIRST_NAME% %LAST_NAME%
 %STREET%
 %ZIP_CODE% %CITY%
@@ -15,6 +15,15 @@
 %EMAIL%
 %PHONE%
 
+<?php if ($this->hasDifferingDeliveryAddress):?>
+
+<?php $this->label('delivery_address'); ?>:
+%DELIVERY_FIRST_NAME% %DELIVERY_LAST_NAME%
+%DELIVERY_STREET%
+%DELIVERY_ZIP_CODE% %DELIVERY_CITY%
+%DELIVERY_COUNTRY%
+
+<?php endif?>
 
 <?php $this->label('payment_mode');?>: %PAYMENT%
 

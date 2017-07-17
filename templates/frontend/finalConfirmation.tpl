@@ -12,13 +12,20 @@
 <dl class="xhsDl">
 <dt><?php $this->label('date_of_order'); ?></dt>
 <dd><?php echo date('d.m.Y [H:i]'); ?></dd>
-<dt><?php echo $this->label('delivery_adress'); ?>:</dt>
+<dt><?php echo $this->label('billing_address'); ?>:</dt>
 <dd>%FIRST_NAME% %LAST_NAME%</dd>
 <dd>%STREET%</dd>
 <dd>%ZIP_CODE% %CITY%</dd>
 <dd>%COUNTRY%</dd>
 <dd>%EMAIL%</dd>
 <dd>%PHONE%</dd>
+<?php if ($this->hasDifferingDeliveryAddress):?>
+<dt><?php echo $this->label('delivery_address'); ?>:</dt>
+<dd>%DELIVERY_FIRST_NAME% %DELIVERY_LAST_NAME%</dd>
+<dd>%DELIVERY_STREET%</dd>
+<dd>%DELIVERY_ZIP_CODE% %DELIVERY_CITY%</dd>
+<dd>%DELIVERY_COUNTRY%</dd>
+<?php endif?>
 <dt><?php $this->label('payment_mode') ?></dt>
 <dd><?php echo $this->payment->getLabelString(); ?></dd>
 <dt><?php $this->label('annotation') ?></dt>
