@@ -25,20 +25,20 @@ function xhshop_pluginMenu()
 {
     global $su, $plugin_cf, $plugin_tx;
 
-    $url = substr($plugin_tx['xhshop']['config_shop_page'], 1);
-    $url = $su === $url ? $url : 'xhshop';
+    $baseurl = substr($plugin_tx['xhshop']['config_shop_page'], 1);
+    $baseurl = $su === $baseurl ? $baseurl : 'xhshop';
     $items = array();
-    $items[$plugin_tx['xhshop']['labels_products_list']] = "?{$url}&xhsTask=productList";
-    $items[$plugin_tx['xhshop']['labels_new_product']] = "?{$url}&xhsTask=editProduct";
+    $items[$plugin_tx['xhshop']['labels_products_list']] = "?{$baseurl}&xhsTask=productList";
+    $items[$plugin_tx['xhshop']['labels_new_product']] = "?{$baseurl}&xhsTask=editProduct";
     if ($plugin_cf['xhshop']['categories_use_categories']) {
-        $items[$plugin_tx['xhshop']['labels_product_categories']] = "?{$url}&xhsTask=productCategories";
+        $items[$plugin_tx['xhshop']['labels_product_categories']] = "?{$baseurl}&xhsTask=productCategories";
     }
     foreach ($items as $label => $url) {
         XH_registerPluginMenuItem('xhshop', $label, $url);
     }
     XH_registerStandardPluginMenuItems(false);
     $label = $plugin_tx['xhshop']['labels_about'];
-    $url = "?{$url}&xhsTask=helpAbout";
+    $url = "?{$baseurl}&xhsTask=helpAbout";
     XH_registerPluginMenuItem('xhshop', $label, $url);
     $items[$label] = $url;
     return $items;
