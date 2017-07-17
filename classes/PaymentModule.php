@@ -2,6 +2,32 @@
 
 namespace Xhshop;
 
+/**
+ * The abstract base class of all payment modules
+ *
+ * Payment modules implement different payment methods.  In the simplest case
+ * a payment method is a rather abstract concept and doesn't require special
+ * implementation, such as the `CashInAdvance` and `OnAccount` payment modules.
+ * Such simple payment modules just have to define the `::getName()` method,
+ * which is supposed to return the snake-cased name of the payment module which
+ * is used, converted to lisp-case, as prefix of the required configuration and
+ * language keys.
+ *
+ * For example, the payment module `FooBar`'s `::getName()` method usually
+ * returns `foo_bar`, and so there have to be the configuration options
+ * `foo-bar_is_active` (to enable/disable the module) and `foo-bar_fee` (to
+ * determine the fee for this payment method). Furthermore, there has to be a
+ * language text for `foo-bar_label` (what is used as label of the payment
+ * method during checkout).  If there is no need for the fee and/or the label
+ * to be configurable, `::getFee()` and `::getLabel()` can be overriden in the
+ * child class.
+ *
+ * However, there may be the need for further automation so other methods
+ * may need to be overriden as well.  See `Paypal` for an example.
+ *
+ * Anyhow, all PHP files in the `payment/` subfolder are supposed to extend
+ * `PaymentModule` and all payment modules have to be placed in this folder.
+ */
 abstract class PaymentModule
 {
     protected $name = null;
