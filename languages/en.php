@@ -211,7 +211,7 @@ $plugin_tx['xhshop']['cf_taxes_vat_default_full']="Whether the tax rate defaults
 $plugin_tx['xhshop']['cf_taxes_dont_deal_with_taxes']='Do not handle taxes.';
 $plugin_tx['xhshop']['cf_shipping_charge_for_shipping']="Charge for shipping?";
 $plugin_tx['xhshop']['cf_shipping_forwarding_expenses_up_to']="No shipping costs from – enter with decimal point";
-$plugin_tx['xhshop']['cf_shipping_forwarding_expenses']="The forwarding expenses. For this rather complex setting see …";
+$plugin_tx['xhshop']['cf_shipping_forwarding_expenses']="The forwarding expenses. For this rather complex setting see the <a href=\"https://github.com/cmsimple-xh/xhshop/wiki/Konfiguration#abschnitt-shipping\" target=\"_blank\">Wiki</a>";
 $plugin_tx['xhshop']['cf_cash-in-advance_is_active']="Offer cash in advance payment?";
 $plugin_tx['xhshop']['cf_cash-in-advance_fee']="Fee for cash in advance – negative values mean discount. Enter with decimal point";
 $plugin_tx['xhshop']['cf_cash-on-delivery_is_active']="Offer cash on delivery payment?";

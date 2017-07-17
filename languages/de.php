@@ -211,7 +211,7 @@ $plugin_tx['xhshop']['cf_taxes_vat_default_full']="Soll der volle Umsatzsteuersa
 $plugin_tx['xhshop']['cf_taxes_dont_deal_with_taxes']='Als Kleinunternehmer berechne ich nach Par. 19 Abs. 1 UStG. keine Umsatzsteuer.';
 $plugin_tx['xhshop']['cf_shipping_charge_for_shipping']="Versandkosten berechnen?";
 $plugin_tx['xhshop']['cf_shipping_forwarding_expenses_up_to']="Versandkostenfrei ab – Eingabe mit Dezimalpunkt";
-$plugin_tx['xhshop']['cf_shipping_forwarding_expenses']="Die Versandkosten. Diese recht komplexe Einstellung wird in … erklärt.";
+$plugin_tx['xhshop']['cf_shipping_forwarding_expenses']="Die Versandkosten. Diese recht komplexe Einstellung wird im <a href=\"https://github.com/cmsimple-xh/xhshop/wiki/Konfiguration#abschnitt-shipping\" target=\"_blank\">Wiki</a> erklärt.";
 $plugin_tx['xhshop']['cf_cash-in-advance_is_active']="Soll Zahlung per Vorkasse angeboten werden?";
 $plugin_tx['xhshop']['cf_cash-in-advance_fee']="Gebühr bei Vorkasse – negative Werte bedeuten Nachlass.  Eingabe mit Dezimalpunkt";
 $plugin_tx['xhshop']['cf_cash-on-delivery_is_active']="Soll Zahlung per Nachnahme angeboten werden?";
