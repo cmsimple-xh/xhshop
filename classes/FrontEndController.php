@@ -408,7 +408,7 @@ class FrontEndController extends Controller
 
         $class = 'Xhshop\\' . ucfirst($this->settings['bill_format']) . 'BillWriter';
         $writer = new $class();
-        $template = XHS_TEMPLATES_PATH . 'frontend/confirmation_email/billtemplate.' . $this->settings['bill_format'];;
+        $template = XHS_TEMPLATES_PATH . 'frontend/confirmation_email/billtemplate.' . $this->settings['bill_format'];
         if (!$writer->loadTemplate($template)) {
             return $plugin_tx['xhshop']['error_no_bill'];
         }

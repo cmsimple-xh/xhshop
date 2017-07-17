@@ -45,7 +45,7 @@ interface BillWriter
      *
      * This method is called for each product, and can be used to replace the
      * order line placeholders in the template.
-     * 
+     *
      * @param string $name The product name
      * @param string $amount The ordered amount
      * @param string $price The price of a single product
