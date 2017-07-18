@@ -26,7 +26,7 @@
 						<input type="hidden" name="xhsProductSwapID" value="<?php echo $previous; ?>">
 						<input type="hidden" name="xhsTask" value="productList">
 						<input type="hidden" name="xhsCategory" value="<?php echo $this->category; ?>">
-						<button class="xhsProdUp" title="<?php echo $this->hint('move_product_up') ;?>"><span class="fa fa-chevron-up"></span></button>
+						<button class="xhsProdUp" title="<?php echo $this->hints['move_up'] ;?>"><span class="fa fa-chevron-up"></span></button>
 					</form>
 					<form method="post" class="xhsInl xhsMoveDown" <?php if (!isset($next)) echo 'style="display: none"'?>>
 						%CSRF_TOKEN_INPUT%
@@ -34,7 +34,7 @@
 						<input type="hidden" name="xhsProductSwapID" value="<?php echo $next; ?>">
 						<input type="hidden" name="xhsTask" value="productList">
 						<input type="hidden" name="xhsCategory" value="<?php echo $this->category; ?>">
-						<button class="xhsProdDown" title="<?php echo $this->hint('move_product_down') ;?>"><span class="fa fa-chevron-down"></span></button>
+						<button class="xhsProdDown" title="<?php echo $this->hints['move_down'] ;?>"><span class="fa fa-chevron-down"></span></button>
 					</form>
 				</td>
 				<td class="xhsTdTop"><strong><?php echo strip_tags($product['name']); ?></strong>
