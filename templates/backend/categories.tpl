@@ -14,7 +14,7 @@
 					<input type="hidden" name="xhsMoveCat" value="<?php echo $index; ?>">
 					<input type="hidden" name="xhsMoveDirection" value="up">
 					<input type="hidden" name="xhsTask" value="saveProductCategories">
-					<button class="xhsProdUp" title="move category up"><span class="fa fa-chevron-up"></span></button>
+					<button class="xhsProdUp" title="<?php echo $this->hints['category_up'] ;?>"><span class="fa fa-chevron-up"></span></button>
 				</form><?php } ?>
 				 <?php if($index < count($this->categories)-1){ ?>
 				<form method="post">
@@ -22,7 +22,7 @@
 					<input type="hidden" name="xhsMoveCat" value="<?php echo $index; ?>">
 					<input type="hidden" name="xhsMoveDirection" value="down">
 					<input type="hidden" name = "xhsTask" value = "saveProductCategories">
-					<button class="xhsProdDown" title="move category down"><span class="fa fa-chevron-down"></span></button>
+					<button class="xhsProdDown" title="<?php echo $this->hints['category_down'] ;?>"><span class="fa fa-chevron-down"></span></button>
 				</form><?php } ?>
 			</td>
 			<td>
