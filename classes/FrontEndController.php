@@ -83,6 +83,10 @@ class FrontEndController extends Controller
             $_SESSION['xhsOrder']->removeItem($this->catalog->products[$_POST['cartItem']], $variant);
         }
         $_SESSION['xhsOrder']->setShipping($this->calculateShipping());
+
+        $url = CMSIMPLE_URL . '?' . $_SERVER['QUERY_STRING'];
+        header("Location: $url", true, 303);
+        exit;
     }
 
     private function calculateShipping()
