@@ -1,6 +1,3 @@
-<?php
-$xhsChk = "";
-?>
 <section class="xhsMain">
 <h1><?php $this->label('checkout_overview'); ?></h1>
 <div id="xhsSteps">
@@ -81,13 +78,12 @@ foreach($this->cartItems as $product){
 </td>
 </tr>
 <?php } ?>
-<?php if($this->canOrder === false) { ?>
+<?php if (!$this->canOrder) { ?>
 <td colspan="3" class="xhsHint">
 <p><?php $this->hint('order_minimum_warn_1'); ?><?php echo $this->formatCurrency($this->minimum_order); ?><?php $this->hint('order_minimum_warn_2'); ?></p>
 </td>
 </tr>
-<?php } else {
-$xhsChk = "ok";} ?>
+<?php } ?>
 <tr>
 <td colspan="3">&nbsp;</td>
 </tr>
@@ -96,7 +92,7 @@ $xhsChk = "ok";} ?>
 <form method = "post" class="xhsLft">
 <button class="xhsShopButton"><span class="fa fa-arrow-circle-left fa-fw"></span> <?php $this->label('continue_shopping');?></button>
 </form>
-<?php if($xhsChk == "ok") { ?>
+<?php if($this->canOrder) { ?>
 <form method = "post" class="xhsRght">
 <input type="hidden" name="xhsCheckout" value="customersData">
 <button class="xhsShopButton"><?php $this->label('order_now');?> <span class="fa fa-arrow-circle-right fa-fw"></span></button>
