@@ -127,6 +127,7 @@ class FrontEndController extends Controller
             $params['xhs_url']   = $this->bridge->translateUrl(XHS_URL);
             $params['cartItems'] = $cartItems;
             $params['cartSum']   = $_SESSION['xhsOrder']->cartGross;
+            $params['count']     = count($cartItems);
             $params['csrf_token_input'] = $this->csrfProtector->tokenInput();
             $this->csrfProtector->store();
             return $this->render('cartPreview', $params);
