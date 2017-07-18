@@ -178,6 +178,7 @@ $plugin_tx['xhshop']['cash-on-delivery_label']="Nachnahme";
 $plugin_tx['xhshop']['on-account_label']="Rechnung";
 $plugin_tx['xhshop']['paypal_label']="Paypal";
 $plugin_tx['xhshop']['paypal_go_to_paypal']="mit Paypal bezahlen";
+$plugin_tx['xhshop']['paypal-ec_label']="Paypal EC";
 
 $plugin_tx['xhshop']['syscheck_email']="eine E-Mail-Adresse hinterlegt wurde";
 $plugin_tx['xhshop']['syscheck_extension']="die PHP-Erweiterung '%s' geladen ist";

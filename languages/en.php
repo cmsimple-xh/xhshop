@@ -178,7 +178,7 @@ $plugin_tx['xhshop']['cash-on-delivery_label']="Cash on Delivery";
 $plugin_tx['xhshop']['on-account_label']="On Account";
 $plugin_tx['xhshop']['paypal_label']="Paypal";
 $plugin_tx['xhshop']['paypal_go_to_paypal']="go to paypal";
-
+$plugin_tx['xhshop']['paypal-ec_label']="Paypal EC";
 $plugin_tx['xhshop']['error_no_bill']="Template for bill not found!";
 
 $plugin_tx['xhshop']['syscheck_email']="an email address has been provided";

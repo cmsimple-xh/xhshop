@@ -101,15 +101,19 @@ if ($this->fee->isLessThan(Xhshop\Decimal::zero())){
 </form>
 </div>
 <div class="xhsRght">
-<?php if($this->payment->orderSubmitForm() === false){ ?>
+<?php if($this->payment->orderSubmitForm() === false): ?>
 <form action="%XHS_CHECKOUT_URL%" method="post">
 %CSRF_TOKEN_INPUT%
 <button class="xhsShopButton xhsRght"><?php $this->label('send_order'); ?></button>
 </form>
-<?php
-} else {
-	echo $this->payment->orderSubmitForm();
-} ?>
+<?php else:?>
+	<?php echo $this->payment->orderSubmitForm(); ?>
+<script id="xhsFinishData" type="text/x-template">
+<form id="xhsFinishForm" action="%XHS_CHECKOUT_URL%" method="post">
+%CSRF_TOKEN_INPUT%
+</form>
+</script>
+<?php endif?>
 </div>
 </div>
 <p>&nbsp;</p>
