@@ -14,7 +14,7 @@ class FrontEndController extends Controller
         parent::__construct();
         $this->splitForwardingExpenses();
         $this->requiredCustomerData = array('first_name', 'last_name',
-            'street', 'zip_code', 'city', 'cos_confirmed',
+            'street', 'zip_code', 'city', 'country', 'cos_confirmed',
             'email', 'payment_mode');
     }
 
@@ -301,6 +301,23 @@ class FrontEndController extends Controller
         }
     }
 
+    private function isValidCustomer()
+    {
+        if (!isset($_SESSION['xhsCustomer'])) {
+            return false;
+        }
+        $customer = $_SESSION['xhsCustomer'];
+        foreach ($this->requiredCustomerData as $field) {
+            if (!isset($customer->$field) || $customer->$field == '') {
+                return false;
+            }
+        }
+        if (!in_array($_SESSION['xhsCustomer']->country, $this->settings['shipping_countries'], true)) {
+            return false;
+        }
+        return true;
+    }
+
     private function htmlConfirmation()
     {
         foreach ($_SESSION['xhsCustomer'] as $field => $value) {
@@ -356,7 +373,9 @@ class FrontEndController extends Controller
 
     private function finalConfirmation()
     {
-
+        if (!isset($_SESSION['xhsOrder']) || !$this->isValidCustomer()) {
+            return $this->customersData();
+        }
         $fee           = $this->calculatePaymentFee();
         $paymentModule = $this->paymentModules[$_SESSION['xhsCustomer']->payment_mode];
         if ($paymentModule->wantsCartItems() !== false) {
@@ -401,6 +420,9 @@ class FrontEndController extends Controller
     {
         if (!$this->canOrder()) {
             return $this->cart();
+        }
+        if (!isset($_SESSION['xhsOrder']) || !$this->isValidCustomer()) {
+            return $this->customersData();
         }
         $this->csrfProtector->check();
         if (!isset($_SESSION['xhsCustomer']) || !isset($_SESSION['xhsOrder'])) {
