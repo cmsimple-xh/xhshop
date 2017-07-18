@@ -101,17 +101,4 @@ class FrontEndView extends View
         }
         return $hint;
     }
-
-    // apparently unused
-    private function defaultOrderSubmitForm()
-    {
-//just for fun
-        printf(<<< STOP_FORM
-<form method="post" style="display: inline;">
-    <input type="hidden" name="xhsCheckout" value="finish" />
-    <input type="submit" class="shopButton"  value="%s" />
-</form>
-STOP_FORM
-            , $this->buttons['send_order']);
-    }
 }
