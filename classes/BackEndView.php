@@ -13,7 +13,7 @@ class BackEndView extends View
     public function picSelector($path, array $imageArray, $selectedPic, $element)
     {
         if (empty($imageArray)) {
-            return '<p class="xhsWarn">Sorry, no pictures found in '. $path .'!</p>';
+            return '<p class="xhsWarn">' . sprintf($this->labels['no_pictures_found'], $path) . '</p>';
         }
         $js = ' data-xhs="' . XH_hsc(json_encode(compact('path', 'element'))) . '"';
                           

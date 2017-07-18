@@ -102,6 +102,7 @@ $plugin_tx['xhshop']['labels_internal_link']='Bestell-Button anlegen auf';
 $plugin_tx['xhshop']['hints_multi_selection']="(Mehrfachauswahl möglich)";
 $plugin_tx['xhshop']['labels_preview_picture']='Vorschaubild';
 $plugin_tx['xhshop']['labels_product_picture']='Bild';
+$plugin_tx['xhshop']['labels_no_pictures_found']="Keine Bilder gefunden in %s!";
 $plugin_tx['xhshop']['labels_vat_rate']='Steuersatz';
 $plugin_tx['xhshop']['labels_current_categories'] ='Bisher angelegte Kategorien';
 $plugin_tx['xhshop']['hints_current_categories'] = 'Kategorie entfernen: einfach den Text löschen.';

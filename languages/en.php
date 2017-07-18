@@ -102,6 +102,7 @@ $plugin_tx['xhshop']['labels_internal_link']='Product pages';
 $plugin_tx['xhshop']['hints_multi_selection']="(Multiselection allowed)";
 $plugin_tx['xhshop']['labels_preview_picture']='Preview picture';
 $plugin_tx['xhshop']['labels_product_picture']='Image';
+$plugin_tx['xhshop']['labels_no_pictures_found']="No pictures found in %s!";
 $plugin_tx['xhshop']['labels_vat_rate']='Tax rate';
 $plugin_tx['xhshop']['labels_current_categories'] ='Current product categories';
 $plugin_tx['xhshop']['hints_current_categories'] = 'To remove a category, just delete the text.';
