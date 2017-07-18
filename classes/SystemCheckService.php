@@ -53,7 +53,7 @@ class SystemCheckService
             $this->checkWritability(XHS_CONTENT_PATH . 'xhshop/tmp_orders/'),
             $this->checkEmailAddress(),
             $this->checkPageExists($this->lang['config_shop_page']),
-            $this->checkPageExists($this->lang['config_cos_page'], false),
+            $this->checkPageExists($this->lang['config_gtc_page'], false),
             $this->checkForwardingExpenses()
         );
     }

@@ -39,9 +39,9 @@ if((float)$module->getFee() !== 0.00){
 <!--Start C.O.S-confirmation -->
 <?php
 if(in_array('cos_confirmed', $this->missingData)){
-    $cosLabel = '<span class="xhsRequired">' . $this->labels['confirm_cos'] . '</span>';
+    $cosLabel = '<span class="xhsRequired">' . $this->labels['confirm_gtc'] . '</span>';
 } else {
-    $cosLabel = $this->labels['confirm_cos'];}
+    $cosLabel = $this->labels['confirm_gtc'];}
 ?>
 <h2><?php echo $cosLabel; ?></h2>
 <p><input type="checkbox" name="cos_confirmed" <?php if($_SESSION['xhsCustomer']->cos_confirmed =='on') {echo 'checked="checked"';} ?>> <?php echo $this->cosHint();?></p>

@@ -42,7 +42,7 @@ abstract class Controller
         $this->settings['image_folder'] = "{$pth['folder']['images']}{$this->settings['image_folder']}";
         $this->settings['preview_folder'] = "{$pth['folder']['images']}{$this->settings['preview_folder']}";
         $this->settings['url'] = ltrim($plugin_tx['xhshop']['config_shop_page'], '?');
-        $this->settings['cos_page'] = $plugin_tx['xhshop']['config_cos_page'];
+        $this->settings['gtc_page'] = $plugin_tx['xhshop']['config_gtc_page'];
         $this->settings['shipping_unit'] = $plugin_tx['xhshop']['config_shipping_unit'];
         $this->settings['shipping_countries'] = $this->getShippingCountries();
         $this->settings['bill_dateformat'] = $plugin_tx['xhshop']['config_bill_dateformat'];

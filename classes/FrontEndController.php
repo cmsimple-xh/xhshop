@@ -260,7 +260,7 @@ class FrontEndController extends Controller
 
         $params['xhs_url'] = XHS_URL;
         $params['xhs_checkout_url'] = '?' . XHS_URL . '&xhsCheckout=checkCustomersData';
-        $params['cosUrl'] = ($this->settings['cos_page']);
+        $params['gtcUrl'] = ($this->settings['gtc_page']);
         $params['csrf_token_input'] = $this->csrfProtector->tokenInput();
         $this->csrfProtector->store();
 

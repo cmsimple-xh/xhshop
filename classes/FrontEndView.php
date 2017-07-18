@@ -88,9 +88,9 @@ class FrontEndView extends View
      */
     protected function cosHint()
     {
-        $cos_url = $this->cosUrl;
-        $hint = $this->hints['cos_confirmation'];
-        $name = $this->labels['cos_name'];
+        $cos_url = $this->gtcUrl;
+        $hint = $this->hints['gtc_confirmation'];
+        $name = $this->labels['gtc_name'];
         if (strlen($cos_url) > 0) {
 // COS-Link in new window
 //            $link = "<a href=\"$cos_url\" target=\"_blank\">$name</a>";
