@@ -9,12 +9,12 @@
 <div class="xhsClearB"></div>
 <div class="xhsStepHint"><span class="fa fa-question-circle fa-fw"></span> <?php $this->label('ask_for_contact_data'); ?></div>
 <h2><?php $this->label('ask_for_destination');?></h2>
-<form method="post" class="xhs100">
+<form action="%XHS_CHECKOUT_URL%" method="post" class="xhs100">
 <?php echo $this->contactInput('first_name'); ?>
 <?php echo $this->contactInput('last_name'); ?>
 <?php echo $this->contactInput('street'); ?>
 <?php echo $this->contactInput('email'); ?>
-<?php echo$this->contactInput('phone'); ?>
+<?php echo $this->contactInput('phone'); ?>
 <?php echo $this->contactInput('zip_code'); ?>
 <?php echo $this->contactInput('city'); ?>
 <?php echo $this->countriesSelectbox(XHS_LANGUAGE); ?>
@@ -52,12 +52,11 @@ if(in_array('cos_confirmed', $this->missingData)){
 <textarea name="annotation"><?php echo $_SESSION['xhsCustomer']->annotation; ?></textarea>
 <!-- End annotation -->
 <p> </p>
-<input type="hidden" name="xhsCheckout" value="checkCustomersData">
 %CSRF_TOKEN_INPUT%
 <button class="xhsShopButton xhsRght xhsInl"><?php $this->label('next'); ?> <span class="fa fa-arrow-circle-right fa-fw"></span></button>
 </form>
-<form method="post" class="xhsLft">
-%CSRF_TOKEN_INPUT%
+<form method="get" class="xhsLft">
+<input type="hidden" name="selected" value="%XHS_URL%">
 <input type="hidden" name="xhsCheckout" value="cart">
 <button class="xhsShopButton xhsInl"><span class="fa fa-arrow-circle-left fa-fw"></span> <?php $this->label('previous'); ?></button>
 </form>

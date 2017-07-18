@@ -93,16 +93,16 @@ if($this->fee < 0){
 <p> </p>
 <div>
 <div class="xhsLft">	
-<form method="post">
+<form method="get">
+<input type="hidden" name="selected" value="%XHS_URL%">
 <input type="hidden" name="xhsCheckout" value="customersData">
 <button class="xhsShopButton"><span class="fa fa-arrow-circle-left fa-fw"></span> <?php $this->label('previous'); ?></button>
 </form>
 </div>
 <div class="xhsRght">
 <?php if($this->payment->orderSubmitForm() === false){ ?>
-<form method="post">
+<form action="%XHS_CHECKOUT_URL%" method="post">
 %CSRF_TOKEN_INPUT%
-<input type="hidden" name="xhsCheckout" value="finish">
 <button class="xhsShopButton xhsRght"><?php $this->label('send_order'); ?></button>
 </form>
 <?php

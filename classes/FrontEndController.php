@@ -124,12 +124,10 @@ class FrontEndController extends Controller
         $cartItems = $this->collectCartItems();
         if ($cartItems) {
             $params = array();
-            $params['xhs_url']   = $this->bridge->translateUrl(XHS_URL);
+            $params['xhs_url']   = XHS_URL;
             $params['cartItems'] = $cartItems;
             $params['cartSum']   = $_SESSION['xhsOrder']->cartGross;
             $params['count']     = count($cartItems);
-            $params['csrf_token_input'] = $this->csrfProtector->tokenInput();
-            $this->csrfProtector->store();
             return $this->render('cartPreview', $params);
         }
         return false;
@@ -197,10 +195,9 @@ class FrontEndController extends Controller
 
     private function cart()
     {
-        $this->csrfProtector->check();
         $cartItems = $this->collectCartItems();
         if (!$cartItems) {
-            return $this->productList();
+            $this->relocateToCheckout(null, 302);
         }
         foreach ($cartItems as $key => $item) {
             if (strlen(trim($item['variantName'])) > 0) {
@@ -222,6 +219,8 @@ class FrontEndController extends Controller
             $params['minimum_order']    = $this->settings['minimum_order'];
             $params['no_shipping_from'] = $this->settings['forwarding_expenses_up_to'];
             $params['canOrder']         = $this->canOrder();
+            $params['xhs_url']          = XHS_URL;
+            $params['xhs_checkout_url'] = '?' . XHS_URL . '&xhsCheckout=cart';
             $params['csrf_token_input'] = $this->csrfProtector->tokenInput();
             $this->csrfProtector->store();
 
@@ -232,13 +231,14 @@ class FrontEndController extends Controller
 
     private function canOrder()
     {
-        return (float) $this->settings['minimum_order'] <= $_SESSION['xhsOrder']->getTotal();
+        return isset($_SESSION['xhsOrder']) && $_SESSION['xhsOrder']->hasItems()
+            && (float) $this->settings['minimum_order'] <= $_SESSION['xhsOrder']->getTotal();
     }
 
     private function customersData(array $missingData = array())
     {
         if (!$this->canOrder()) {
-            return $this->cart();
+            $this->relocateToCheckout('cart', 302);
         }
 
         if (!isset($_SESSION['xhsCustomer'])) {
@@ -258,6 +258,8 @@ class FrontEndController extends Controller
         $params['payments']    = $this->paymentModules;
         $params['missingData'] = $missingData;
 
+        $params['xhs_url'] = XHS_URL;
+        $params['xhs_checkout_url'] = '?' . XHS_URL . '&xhsCheckout=checkCustomersData';
         $params['cosUrl'] = ($this->settings['cos_page']);
         $params['csrf_token_input'] = $this->csrfProtector->tokenInput();
         $this->csrfProtector->store();
@@ -268,7 +270,7 @@ class FrontEndController extends Controller
     private function checkCustomersData()
     {
         if (!$this->canOrder()) {
-            return $this->cart();
+            $this->relocateToCheckout('cart', 302);
         }
         $this->csrfProtector->check();
         $missingData = array();
@@ -297,7 +299,7 @@ class FrontEndController extends Controller
         if (count($missingData) > 0) {
             return $this->customersData($missingData);
         } else {
-            return $this->finalConfirmation();
+            $this->relocateToCheckout('finalConfirmation', 303);
         }
     }
 
@@ -373,8 +375,10 @@ class FrontEndController extends Controller
 
     private function finalConfirmation()
     {
-        if (!isset($_SESSION['xhsOrder']) || !$this->isValidCustomer()) {
-            return $this->customersData();
+        if (!$this->canOrder()) {
+            $this->relocateToCheckout('cart', 302);
+        } elseif (!$this->isValidCustomer()) {
+            $this->relocateToCheckout('customersData', 302);
         }
         $fee           = $this->calculatePaymentFee();
         $paymentModule = $this->paymentModules[$_SESSION['xhsCustomer']->payment_mode];
@@ -390,6 +394,8 @@ class FrontEndController extends Controller
             $params['annotation'] = nl2br($params['annotation']);
         }
         $_SESSION['xhsOrder']->setFee($fee);
+        $params['xhs_url']    = XHS_URL;
+        $params['xhs_checkout_url'] = '?' . XHS_URL . '&xhsCheckout=finish';
         $params['payment']    = $paymentModule;
         $params['fee']        = $fee;
         $params['cartItems']  = $this->collectCartItems();
@@ -419,10 +425,9 @@ class FrontEndController extends Controller
     private function finishCheckOut()
     {
         if (!$this->canOrder()) {
-            return $this->cart();
-        }
-        if (!isset($_SESSION['xhsOrder']) || !$this->isValidCustomer()) {
-            return $this->customersData();
+            $this->relocateToCheckout('cart', 302);
+        } elseif (!$this->isValidCustomer()) {
+            $this->relocateToCheckout('customersData', 302);
         }
         $this->csrfProtector->check();
         if (!isset($_SESSION['xhsCustomer']) || !isset($_SESSION['xhsOrder'])) {
@@ -433,7 +438,7 @@ class FrontEndController extends Controller
         $sent = $this->sendEmails($bill);
 
         if ($sent === true) {
-            return $this->thankYou();
+            $this->relocateToCheckout('thankYou', 303);
         } else {
             return $sent;
         }
@@ -562,6 +567,12 @@ class FrontEndController extends Controller
 
     private function thankYou()
     {
+        if (!$this->canOrder()) {
+            $this->relocateToCheckout('cart', 302);
+        } elseif (!$this->isValidCustomer()) {
+            $this->relocateToCheckout('customersData', 302);
+        }
+
         $params['name'] = $_SESSION['xhsCustomer']->first_name . ' ' . $_SESSION['xhsCustomer']->last_name;
 
         unset($_SESSION['xhsCustomer']);
@@ -680,8 +691,8 @@ class FrontEndController extends Controller
             return $this->productSearchList($_GET['xhsProductSearch']);
         }
         $checkOut = '';
-        if (isset($_POST['xhsCheckout'])) {
-            $checkOut = $_POST['xhsCheckout'];
+        if (isset($_GET['xhsCheckout'])) {
+            $checkOut = $_GET['xhsCheckout'];
         }
 
         switch ($checkOut) {
@@ -691,12 +702,26 @@ class FrontEndController extends Controller
                 return $this->customersData();
             case 'checkCustomersData':
                 return $this->checkCustomersData();
+            case 'finalConfirmation':
+                return $this->finalConfirmation();
             case 'finish':
                 return $this->finishCheckOut();
+            case 'thankYou':
+                return $this->thankYou();
             default:
                 return $this->productList();
         }
 
         return;
+    }
+
+    private function relocateToCheckout($step, $status)
+    {
+        $url = CMSIMPLE_URL . '?' . XHS_URL;
+        if (isset($step)) {
+            $url .= "&xhsCheckout=$step";
+        }
+        header("Location: $url" , true, $status);
+        exit;
     }
 }

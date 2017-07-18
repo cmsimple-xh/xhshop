@@ -24,20 +24,18 @@ foreach($this->cartItems as $product){
 <tr>
 <td>&nbsp;</td>
 <td class="xhsMoneyCell">
-<form method="post" class="xhsInl">
+<form action="%XHS_CHECKOUT_URL%" method="post" class="xhsInl">
 %CSRF_TOKEN_INPUT%
 <!--<input class="xhsInpAmount" type="number" min="1" step="1" name="xhsAmount" value="<?php echo $product['amount']; ?>" onChange="this.parentNode.submit()">-->
 <input class="xhsInpAmount" type="number" min="1" step="1" name="xhsAmount" value="<?php echo $product['amount']; ?>"> x <?php echo $this->formatCurrency($product['price']) ;?><br>
 <input type="hidden" name="xhsTask" value="updateCart">
-<input type="hidden" name="xhsCheckout" value="cart" />
 <input type="hidden" name="xhsVariant" value="<?php echo $product['variantKey']; ?>">
 <input type="hidden" name="cartItem" value="<?php echo $product['key'];?>">
 <button class="xhsUpdBtn" title="<?php $this->label('update'); ?>"><span class="fa fa-refresh fa-lg"></span></button>
-</form> <form method="post" class="xhsInl">
+</form> <form action="%XHS_CHECKOUT_URL%" method="post" class="xhsInl">
 %CSRF_TOKEN_INPUT%
 <input type="hidden" name="xhsAmount" value="0" />
 <input type="hidden" name="xhsTask" value="updateCart" />
-<input type="hidden" name="xhsCheckout" value="cart" />
 <input type="hidden" name="xhsVariant" value="<?php echo $product['variantKey']; ?>" />
 <input type="hidden" name="cartItem" value="<?php echo $product['key'];?>" />
 <button class="xhsDelBtn" title="<?php $this->label('delete'); ?>"><span class="fa fa-remove fa-lg"></span></button>
@@ -89,11 +87,13 @@ foreach($this->cartItems as $product){
 </tr>
 <tr>
 <td colspan="3">
-<form method = "post" class="xhsLft">
+<form method="get" class="xhsLft">
+<input type="hidden" name="selected" value="%XHS_URL%">
 <button class="xhsShopButton"><span class="fa fa-arrow-circle-left fa-fw"></span> <?php $this->label('continue_shopping');?></button>
 </form>
 <?php if($this->canOrder) { ?>
-<form method = "post" class="xhsRght">
+<form method="get" class="xhsRght">
+<input type="hidden" name="selected" value="%XHS_URL%">
 <input type="hidden" name="xhsCheckout" value="customersData">
 <button class="xhsShopButton"><?php $this->label('order_now');?> <span class="fa fa-arrow-circle-right fa-fw"></span></button>
 </form>

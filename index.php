@@ -57,9 +57,8 @@ if ($xhsController instanceof FrontEndController
         }
     }
 
-// cmb    if(!isset($_POST['xhsCheckout']) && (int)$s > -1){
-// disable cartPreview (Button) in print view (or fancybox)
-    if (!isset($_POST['xhsCheckout']) && (int)$s > -1 && !$print) {
+    // disable cartPreview (Button) also in print view (or fancybox)
+    if (!isset($_GET['xhsCheckout']) && (int)$s > -1 && !$print) {
         $xhsCartPreview = $xhsController->cartPreview();
 
         if (!strpos(file_get_contents($pth['file']['template']), '$xhsCartPreview')) {
