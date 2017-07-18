@@ -96,7 +96,6 @@ foreach($this->cartItems as $product){
 <form method = "post" class="xhsRght">
 <input type="hidden" name="xhsCheckout" value="customersData">
 <button class="xhsShopButton"><?php $this->label('order_now');?> <span class="fa fa-arrow-circle-right fa-fw"></span></button>
-<input name="shipping" value="<?php echo $this->shipping ?>" type="hidden">
 </form>
 <?php } ?>
 </td>
