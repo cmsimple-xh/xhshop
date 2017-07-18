@@ -109,6 +109,8 @@ if($this->fee < 0){
 <p><?php echo $this->hints['price_info_no_vat']?></p>
 <?php endif?>
 <p>&nbsp;</p>
+<?php echo $this->mail['cos']?>
+<p>&nbsp;</p>
 <p>&nbsp;</p>
 <p><?php echo $this->mail['greetings']; ?><br>
 %CONTACT_NAME%</p>

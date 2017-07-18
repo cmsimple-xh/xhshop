@@ -41,5 +41,7 @@ foreach($this->cartItems as $product){
 <?php echo $this->hints['price_info_no_vat']?>
 <?php endif?>
 
- 
+<?php echo $this->mail['cos']?>
+
+
 <?php echo $this->mail['greetings']; ?>%CONTACT_NAME%
