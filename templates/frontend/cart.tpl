@@ -96,13 +96,13 @@ $xhsChk = "ok";} ?>
 <form method = "post" class="xhsLft">
 <button class="xhsShopButton"><span class="fa fa-arrow-circle-left fa-fw"></span> <?php $this->label('continue_shopping');?></button>
 </form>
+<?php if($xhsChk == "ok") { ?>
 <form method = "post" class="xhsRght">
 <input type="hidden" name="xhsCheckout" value="customersData">
-<?php if($xhsChk == "ok") { ?>
 <button class="xhsShopButton"><?php $this->label('order_now');?> <span class="fa fa-arrow-circle-right fa-fw"></span></button>
-<?php } ?>
 <input name="shipping" value="<?php echo $this->shipping ?>" type="hidden">
 </form>
+<?php } ?>
 </td>
 </tr>
 </table>
