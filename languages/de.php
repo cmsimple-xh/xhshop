@@ -19,7 +19,7 @@ $plugin_tx['xhshop']['mail_your_order'] = "IHRE BESTELLUNG:";
 $plugin_tx['xhshop']['mail_sub_total'] = "WARENWERT:";
 $plugin_tx['xhshop']['mail_shipping'] = "VERSANDKOSTEN:";
 $plugin_tx['xhshop']['mail_total'] = "ENDSUMME:";
-$plugin_tx['xhshop']['mail_gtc'] = "Sie haben bestätigt die AGB und den in ihnen enthaltenen Hinweis auf Ihr Widerrufsrecht gelesen zu haben, und damit einverstanden zu sein.";
+$plugin_tx['xhshop']['mail_gtc'] = "Die AGB wurden zur Kenntnis genommen und akzeptiert.";
 $plugin_tx['xhshop']['mail_annotation'] = "IHRE ANMERKUNG ZUR BESTELLUNG:";
 $plugin_tx['xhshop']['mail_notify'] = "Bestellung von %1\$s bei %2\$s eingegangen!";
 $plugin_tx['xhshop']['mail_confirmation_error']="<p>Pardon! Ihre Nachricht konnte nicht versendet werden.<p><p>Bitte informieren Sie uns per E-Mail: <a href=\"mailto:%1\$s\">%1\$s</a></p>";

@@ -19,7 +19,7 @@ $plugin_tx['xhshop']['mail_your_order'] = "YOUR ORDER:";
 $plugin_tx['xhshop']['mail_sub_total'] = "VALUE OF GOODS:";
 $plugin_tx['xhshop']['mail_shipping'] = "FORWARDING EXPENSES:";
 $plugin_tx['xhshop']['mail_total'] = "TOTAL:";
-$plugin_tx['xhshop']['mail_gtc'] = "You have agreed to our C.O.S.";
+$plugin_tx['xhshop']['mail_gtc'] = "The GTC have been acknoledged and approved.";
 $plugin_tx['xhshop']['mail_annotation'] = "YOUR ANNOTATION:";
 $plugin_tx['xhshop']['mail_notify'] = "Order from %1\$s received at %2\$s!";
 $plugin_tx['xhshop']['mail_confirmation_error']="<p>Sorry! Your message could not be sent.<p><p>Please inform us via email: <a href=\"mailto:%1\$s\">%1\$s</a></p>";
