@@ -10,15 +10,12 @@ class BackEndView extends View
         $this->templatePath = XHS_TEMPLATES_PATH. '/backend/';
     }
 
-    public function picSelector($path = 'no path', array $imageArray = array(), $selectedPic = '', $element = null)
+    public function picSelector($path, array $imageArray, $selectedPic, $element)
     {
-        if (count($imageArray) == 0) {
+        if (empty($imageArray)) {
             return '<p class="xhsWarn">Sorry, no pictures found in '. $path .'!</p>';
         }
-        $js = '';
-        if (isset($element)) {
-            $js = ' data-xhs="' . XH_hsc(json_encode(compact('path', 'element'))) . '"';
-        }
+        $js = ' data-xhs="' . XH_hsc(json_encode(compact('path', 'element'))) . '"';
                           
         $html = "\n" . '<select class="xhsPicSelector" name="' . $element .'"' . $js . '>';
         $html .= "\n\t" . '<option>' . $this->labels['no_pic'] . '</option>';
