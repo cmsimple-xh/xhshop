@@ -32,7 +32,7 @@
 					<input type="hidden" name="xhsTask" value="saveProductCategories">
 					<input type="hidden" name="xhsRenameCat">
 					<input type="hidden" name="xhsCatIndex" value="<?php echo $index; ?>">
-					<button class="xhsShopButton"><span class="fa fa-save fa-fw"></span> OK</button>
+					<button class="xhsShopButton"><span class="fa fa-save fa-fw"></span> <?php echo $this->labels['save_settings'] ;?></button>
 				</form>
 			</td>
 		</tr><?php } ?>
@@ -44,7 +44,7 @@
 		%CSRF_TOKEN_INPUT%
 		<input type="text" name="xhsAddCat" size="30">&nbsp;
 		<input type="hidden" name="xhsTask" value="saveProductCategories">
-		<button class="xhsShopButton"><span class="fa fa-save fa-fw"></span> OK</button>
+		<button class="xhsShopButton"><span class="fa fa-save fa-fw"></span> <?php echo $this->labels['save_settings'] ;?></button>
 	</form>
 	</p>
 	<p><strong><?php $this->label('left_over_category'); ?></strong>
@@ -52,7 +52,7 @@
 		%CSRF_TOKEN_INPUT%
 		<input type="text" name="xhsLeftOverCat" value="<?php echo $this->leftOverCat;?>" size="30">&nbsp;
 		<input type="hidden" name="xhsTask" value="saveProductCategories">
-		<button class="xhsShopButton"><span class="fa fa-save fa-fw"></span> OK</button>
+		<button class="xhsShopButton"><span class="fa fa-save fa-fw"></span> <?php echo $this->labels['save_settings'] ;?></button>
 	</form>
 	</p>
 	<?php if(count($this->categories) > 0){ ?>
@@ -66,7 +66,7 @@
         <?php } ?></p>
 		<div class="">
 			<input type="hidden" name="xhsTask" value="saveProductCategories">
-			<button class="xhsShopButton"><span class="fa fa-save fa-fw"></span> OK</button>
+			<button class="xhsShopButton"><span class="fa fa-save fa-fw"></span> <?php echo $this->labels['save_settings'] ;?></button>
 		</div>
 	</form>
 	<?php } ?>
