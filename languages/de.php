@@ -77,7 +77,6 @@ $plugin_tx['xhshop']['labels_shop_status']='Status des Shops:';
 $plugin_tx['xhshop']['labels_is_published']='veröffentlicht';
 $plugin_tx['xhshop']['labels_is_hidden']='in Bearbeitung';
 $plugin_tx['xhshop']['labels_cos_page']='AGB-Seite';
-$plugin_tx['xhshop']['labels_warn_missing_cos']='Sie haben noch keine AGB-Seite verlinkt!';
 $plugin_tx['xhshop']['labels_order_email'] = 'E-Mail Bestellungen an';
 $plugin_tx['xhshop']['labels_minimum_order']='Mindestbestellwert';
 $plugin_tx['xhshop']['hints_minimum_order']="( Mindestbestellwert = Warenwert + Versandkosten )";

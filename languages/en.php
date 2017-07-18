@@ -77,7 +77,6 @@ $plugin_tx['xhshop']['labels_shop_status']='Status of the Shop';
 $plugin_tx['xhshop']['labels_is_published']='published';
 $plugin_tx['xhshop']['labels_is_hidden']='under construction';
 $plugin_tx['xhshop']['labels_cos_page']='Page of C.O.S.';
-$plugin_tx['xhshop']['labels_warn_missing_cos']='You have not linked to your C.O.S.!';
 $plugin_tx['xhshop']['labels_order_email'] = 'Sent orders to (email)';
 $plugin_tx['xhshop']['labels_minimum_order']='Order minimum';
 $plugin_tx['xhshop']['hints_minimum_order']="(incl. shipping and fees)";
