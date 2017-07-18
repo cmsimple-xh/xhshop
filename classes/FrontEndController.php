@@ -220,7 +220,7 @@ class FrontEndController extends Controller
             $params['vatReduced']       = $_SESSION['xhsOrder']->getVatReduced();
             $params['minimum_order']    = $this->settings['minimum_order'];
             $params['no_shipping_from'] = $this->settings['forwarding_expenses_up_to'];
-            $params['canOrder']         = (float) $this->settings['minimum_order'] <= $_SESSION['xhsOrder']->getTotal();
+            $params['canOrder']         = $this->canOrder();
             $params['csrf_token_input'] = $this->csrfProtector->tokenInput();
             $this->csrfProtector->store();
 
@@ -229,8 +229,16 @@ class FrontEndController extends Controller
         return false;
     }
 
+    private function canOrder()
+    {
+        return (float) $this->settings['minimum_order'] <= $_SESSION['xhsOrder']->getTotal();
+    }
+
     private function customersData(array $missingData = array())
     {
+        if (!$this->canOrder()) {
+            return $this->cart();
+        }
 
         if (!isset($_SESSION['xhsCustomer'])) {
             $customer                = new Customer();
@@ -258,6 +266,9 @@ class FrontEndController extends Controller
 
     private function checkCustomersData()
     {
+        if (!$this->canOrder()) {
+            return $this->cart();
+        }
         $this->csrfProtector->check();
         $missingData = array();
         $postArray = array();
@@ -387,6 +398,9 @@ class FrontEndController extends Controller
      */
     private function finishCheckOut()
     {
+        if (!$this->canOrder()) {
+            return $this->cart();
+        }
         $this->csrfProtector->check();
         if (!isset($_SESSION['xhsCustomer']) || !isset($_SESSION['xhsOrder'])) {
             return '';
