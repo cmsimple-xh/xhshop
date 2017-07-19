@@ -134,7 +134,7 @@ $plugin_tx['xhshop']['labels_ask_for_contact_data']='Please fill in the followin
 $plugin_tx['xhshop']['labels_choose_payment_mode']='Choose a payment method';
 $plugin_tx['xhshop']['labels_confirm_gtc']='Have you read our GTC?';
 $plugin_tx['xhshop']['labels_gtc_name'] = 'GTC';
-$plugin_tx['xhshop']['hints_gtc_confirmation']='I agree to the GTC';
+$plugin_tx['xhshop']['hints_gtc_confirmation']='I agree to the %sGTC%s';
 $plugin_tx['xhshop']['labels_ask_for_destination']='Your address';
 $plugin_tx['xhshop']['labels_ask_for_annotation']='Any annotations?';
 $plugin_tx['xhshop']['hints_ask_for_annotation'] = '';
@@ -156,7 +156,7 @@ $plugin_tx['xhshop']['hints_sold_out'] = 'Sorry! No products of category &laquo;
 $plugin_tx['xhshop']['labels_product_search'] = 'Search for articles';
 $plugin_tx['xhshop']['hints_no_products_found'] = 'Sorry! No products with "%s" found!';
 $plugin_tx['xhshop']['hints_price_info_vat']="incl. taxes";
-$plugin_tx['xhshop']['hints_price_info_shipping']="plus %s";
+$plugin_tx['xhshop']['hints_price_info_shipping']="plus %sforwarding expenses%s";
 $plugin_tx['xhshop']['hints_price_info_no_vat']="no taxes";
 $plugin_tx['xhshop']['hints_on_netto']=" % auf Nettobetrag ";
 

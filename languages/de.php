@@ -134,7 +134,7 @@ $plugin_tx['xhshop']['labels_ask_for_contact_data']='Um die Bestellung zu bearbe
 $plugin_tx['xhshop']['labels_choose_payment_mode']='Welche Zahlweise bevorzugen Sie?';
 $plugin_tx['xhshop']['labels_confirm_gtc']='Kennen Sie Ihr Widerrufsrecht im Fernhandel?';
 $plugin_tx['xhshop']['labels_gtc_name'] = 'AGB';
-$plugin_tx['xhshop']['hints_gtc_confirmation']='Ich habe die AGB und den in ihnen enthaltenen Hinweis auf mein Widerrufsrecht gelesen und bin einverstanden.';
+$plugin_tx['xhshop']['hints_gtc_confirmation']='Ich habe die %sAGB%s und den in ihnen enthaltenen Hinweis auf mein Widerrufsrecht gelesen und bin einverstanden.';
 $plugin_tx['xhshop']['labels_ask_for_destination']='Wohin sollen wir liefern?';
 $plugin_tx['xhshop']['labels_ask_for_annotation']='Haben Sie eine Anmerkung zur Bestellung?';
 $plugin_tx['xhshop']['hints_ask_for_annotation'] = '(z.B.: abweichende Lieferadresse, gewünschter Liefertermin &hellip;)';
@@ -156,7 +156,7 @@ $plugin_tx['xhshop']['hints_sold_out'] = 'Wir bitten um Entschuldigung!<br><br>L
 $plugin_tx['xhshop']['labels_product_search'] = 'Artikel suchen';
 $plugin_tx['xhshop']['hints_no_products_found'] = 'Es wurden leider keine Artikel mit dem Suchbegriff <span class="srchTrm">%s</span> gefunden.';
 $plugin_tx['xhshop']['hints_price_info_vat']="inkl. USt";
-$plugin_tx['xhshop']['hints_price_info_shipping']="zzgl. %s";
+$plugin_tx['xhshop']['hints_price_info_shipping']="zzgl. %sVersandkosten%s";
 $plugin_tx['xhshop']['hints_price_info_no_vat']="MwSt. wird nach § 19 UStG. nicht erhoben.";
 $plugin_tx['xhshop']['hints_on_netto']=" % auf Nettobetrag ";
 

@@ -91,27 +91,22 @@ class FrontEndView extends View
      */
     protected function cosHint()
     {
-        $cos_url = $this->gtcUrl;
-        $hint = $this->hints['gtc_confirmation'];
-        $name = $this->labels['gtc_name'];
-        if (strlen($cos_url) > 0) {
-// COS-Link in new window
-//            $link = "<a href=\"$cos_url\" target=\"_blank\">$name</a>";
-// COS-Link in fancybox
-//            $link = "<a href=\"$cos_url\" class=\"zoom_i\">$name</a>";
-            $link = "<a href=\"$cos_url&print\" class=\"zoom_i xhsCosLnk\" target=\"_blank\">$name</a>"; //cmb
-            $hint = str_replace($name, $link, $hint);
-        }
-        return $hint;
+        return $this->linkedPageHint($this->gtcUrl, $this->hints['gtc_confirmation']);
     }
 
     protected function shippingCostsHint()
     {
-        $url = $this->shippingCostsUrl;
-        $label = $this->labels['forwarding_expenses'];
+        return $this->linkedPageHint($this->shippingCostsUrl, $this->hints['price_info_shipping']);
+    }
+
+    private function linkedPageHint($url, $text)
+    {
         if ($url) {
-            $label = sprintf('<a class="zoom_i" target="_blank" href="%s&print">%s</a>', $url, $label);
+            $starttag = sprintf('<a href="%s&print" class="zoom_i xhsCosLnk" target="_blank">', $url);
+            $endtag = '</a>';
+        } else {
+            $starttag = $endtag = '';
         }
-        return sprintf($this->hints['price_info_shipping'], $label);
+        return sprintf($text, $starttag, $endtag);
     }
 }
