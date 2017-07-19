@@ -366,6 +366,7 @@ span.xhsPrdPriceLabel {
 	padding: 0.25em;
 	font-size: 0.9em;
 	color: #999;
+	vertical-align: middle;
 }
 span.xhsPrdPriceNum {
 	font-size: 1.5em;
@@ -375,6 +376,7 @@ span.xhsPrdPriceNum {
 	border-radius: .25em;
 	border: 1px solid #ddd;
 	white-space: nowrap;
+	vertical-align: middle;
 }
 input.xhsInpAmount {
 	width: 1.5em;
