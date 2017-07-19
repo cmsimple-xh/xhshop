@@ -157,7 +157,8 @@ abstract class Controller
             $products[$index]['previewPicture'] = $this->viewProvider->linkedImage(
                 $product->getPreviewPicturePath(),
                 $this->bridge->translateUrl($product->getDetailsLink(XHS_LANGUAGE)),
-                $product->getName()
+                $product->getName(),
+                ''
             );
             $products[$index]['categories'] = $product->getCategories();
             if ($product->hasVariants()) {
