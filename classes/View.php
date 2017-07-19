@@ -242,6 +242,18 @@ abstract class View
         return '<a href="'.$href.'">'.$text.'</a>';
     }
 
+    public function linkedImage($src, $href, $alt, $class = 'zoom')
+    {
+        if (!$src) {
+            return '';
+        }
+        $html = sprintf('<img src="%s" alt="%s">', $src, $alt);
+        if ($href) {
+            $html = sprintf('<a href="%s" title="%s" class="%s">%s</a>', $href, $alt, $class, $html);
+        }
+        return $html;
+    }
+
     // apparently unused
     private function br()
     {

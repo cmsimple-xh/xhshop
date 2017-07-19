@@ -82,31 +82,6 @@ class Product
         }
     }
 
-    public function getBestPicture()
-    {
-        if (isset($this->image) && strlen($this->image) > 0 && file_exists($this->imageFolder . $this->image)) {
-            return $this->imageFolder . $this->image;
-        }
-        if (isset($this->previewPicture)
-                 && strlen($this->previewPicture) > 0
-                 && file_exists($this->imageFolder . $this->previewPicture)) {
-            return $this->imageFolder . $this->previewPicture;
-        }
-        return  false;
-    }
-
-    public function getImage()
-    {
-        if ((isset($this->image)) && strlen($this->image) > 0 && ($this->image <> '')) {
-            $image = '<a href="' . $this->imageFolder . $this->image . '" title="'
-                . $this->getName(XHS_LANGUAGE) . '" class="zoom"><img src="'
-                . $this->imageFolder . $this->image . '" alt="' . $this->getName(XHS_LANGUAGE)
-                . '"  title="'.$this->getName(XHS_LANGUAGE) . '"></a>';
-            return $image;
-        }
-        return '';
-    }
-    
     public function getDescription($language = null)
     {
         $language = ($language === null) ? XHS_LANGUAGE : $language;
@@ -153,22 +128,19 @@ class Product
         return false;
     }
 
-    public function getPreviewPicture()
-    {
-        if ((isset($this->previewPicture)) && ($this->previewPicture <> '')) {
-            $image = '<a href="' . $this->imageFolder.$this->image . '" title="'
-                . $this->getName(XHS_LANGUAGE) . '" class="zoom"><img src="'
-                . $this->previewFolder . $this->previewPicture . '" alt="' . $this->getName(XHS_LANGUAGE)
-                . ' - Preview"  title="'.$this->getName(XHS_LANGUAGE). '"></a>';
-            return $image;
-        }
-        return '';
-    }
 
     public function getPreviewPictureName()
     {
         if ((isset($this->previewPicture))) {
             return $this->previewPicture;
+        }
+        return '';
+    }
+
+    public function getPreviewPicturePath()
+    {
+        if (isset($this->previewPicture)) {
+            return $this->previewFolder . $this->previewPicture;
         }
         return '';
     }
@@ -180,7 +152,15 @@ class Product
         }
         return '';
     }
-    
+
+    public function getImagePath()
+    {
+        if (isset($this->image)) {
+            return $this->imageFolder . $this->image;
+        }
+        return '';
+    }
+
     public function getVariants($language = null)
     {
         if ($language === null) {

@@ -627,13 +627,12 @@ class FrontEndController extends Controller
         $params['hideVat']     = (bool) $this->settings['dont_deal_with_taxes'];
         $params['vatRate']     = $this->settings['vat_' . $product->vat];
         $params['vatInfo']     = $this->vatInfo();
-        $params['image'] = '';
-        $pic             = $product->getBestPicture();
-        if ($pic) {
-            $info            = getimagesize($pic);
-            $params['image'] = '<a href="' . $pic . '" ' . $info[3] . ' class="zoom_g"><img src="'
-                . $pic . '" ' . $info[3] . '></a>';
-        }
+        $params['image']       = $this->viewProvider->linkedImage(
+            $product->getPreviewPicturePath(),
+            $product->getImagePath(),
+            $product->getName(XHS_LANGUAGE),
+            'zoom_g'
+        );
         $this->bridge->setTitle($params['name']);
         $this->bridge->setMeta('description', $params['teaser']);
         return $this->render('productDetails', $params);

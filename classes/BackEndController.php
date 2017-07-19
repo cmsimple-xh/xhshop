@@ -105,8 +105,16 @@ class BackEndController extends Controller
             $params['price']       = $product->getGross();
             $params['weight']      = $product->getWeight();
             $params['stockOnHand'] = is_int($product->stock_on_hand) ? $product->stock_on_hand : 1;
-            $params['preview']     = $product->getPreviewPicture();
-            $params['image']       = $product->getImage();
+            $params['preview']     = $this->viewProvider->linkedImage(
+                $product->getPreviewPicturePath(),
+                $product->getPreviewPicturePath(),
+                $product->getName(XHS_LANGUAGE)
+            );
+            $params['image']       = $this->viewProvider->linkedImage(
+                $product->getImagePath(),
+                $product->getImagePath(),
+                $product->getName(XHS_LANGUAGE)
+            );
             $params['vat']         = $product->vat;
             $params['pages']       = $product->getProductPages();
             $params['productCats'] = $product->getCategories();
