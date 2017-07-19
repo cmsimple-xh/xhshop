@@ -55,6 +55,7 @@ class FrontEndController extends Controller
         if ($product->hasVariants()) {
             $params['variants'] = $product->getVariants(XHS_LANGUAGE);
         }
+        $params['shippingCostsUrl'] = $this->settings['shipping_costs_page'];
         $params['csrf_token_input'] = $this->csrfProtector->tokenInput();
         $this->csrfProtector->store();
         return $this->render('addToCartButton', $params);
@@ -633,6 +634,7 @@ class FrontEndController extends Controller
             $product->getName(XHS_LANGUAGE),
             'zoom_g'
         );
+        $params['shippingCostsUrl'] = $this->settings['shipping_costs_page'];
         $this->bridge->setTitle($params['name']);
         $this->bridge->setMeta('description', $params['teaser']);
         return $this->render('productDetails', $params);

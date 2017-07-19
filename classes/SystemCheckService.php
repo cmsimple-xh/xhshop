@@ -54,6 +54,7 @@ class SystemCheckService
             $this->checkEmailAddress(),
             $this->checkPageExists($this->lang['config_shop_page']),
             $this->checkPageExists($this->lang['config_gtc_page'], false),
+            $this->checkPageExists($this->lang['config_shipping_costs_page'], false),
             $this->checkForwardingExpenses()
         );
     }

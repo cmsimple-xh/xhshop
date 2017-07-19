@@ -1,6 +1,7 @@
 <?php
 $plugin_tx['xhshop']['config_shop_page']="?Shop";
 $plugin_tx['xhshop']['config_gtc_page']="?Shop/AGB";
+$plugin_tx['xhshop']['config_shipping_costs_page']="?Shop/Versandkosten";
 $plugin_tx['xhshop']['config_decimal_separator']=",";
 $plugin_tx['xhshop']['config_thousands_separator']=".";
 $plugin_tx['xhshop']['config_shipping_unit']="kg";
@@ -155,7 +156,7 @@ $plugin_tx['xhshop']['hints_sold_out'] = 'Wir bitten um Entschuldigung!<br><br>L
 $plugin_tx['xhshop']['labels_product_search'] = 'Artikel suchen';
 $plugin_tx['xhshop']['hints_no_products_found'] = 'Es wurden leider keine Artikel mit dem Suchbegriff <span class="srchTrm">%s</span> gefunden.';
 $plugin_tx['xhshop']['hints_price_info_vat']="inkl. USt";
-$plugin_tx['xhshop']['hints_price_info_shipping']="zzgl. Versandkosten";
+$plugin_tx['xhshop']['hints_price_info_shipping']="zzgl. %s";
 $plugin_tx['xhshop']['hints_price_info_no_vat']="MwSt. wird nach § 19 UStG. nicht erhoben.";
 $plugin_tx['xhshop']['hints_on_netto']=" % auf Nettobetrag ";
 

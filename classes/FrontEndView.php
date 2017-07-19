@@ -104,4 +104,14 @@ class FrontEndView extends View
         }
         return $hint;
     }
+
+    protected function shippingCostsHint()
+    {
+        $url = $this->shippingCostsUrl;
+        $label = $this->labels['forwarding_expenses'];
+        if ($url) {
+            $label = sprintf('<a class="zoom_i" target="_blank" href="%s&print">%s</a>', $url, $label);
+        }
+        return sprintf($this->hints['price_info_shipping'], $label);
+    }
 }

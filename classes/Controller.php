@@ -43,6 +43,7 @@ abstract class Controller
         $this->settings['preview_folder'] = "{$pth['folder']['images']}{$this->settings['preview_folder']}";
         $this->settings['url'] = ltrim($plugin_tx['xhshop']['config_shop_page'], '?');
         $this->settings['gtc_page'] = $plugin_tx['xhshop']['config_gtc_page'];
+        $this->settings['shipping_costs_page'] = $plugin_tx['xhshop']['config_shipping_costs_page'];
         $this->settings['shipping_unit'] = $plugin_tx['xhshop']['config_shipping_unit'];
         $this->settings['shipping_countries'] = $this->getShippingCountries();
         $this->settings['bill_dateformat'] = $plugin_tx['xhshop']['config_bill_dateformat'];

@@ -5,7 +5,7 @@
 		<div class="xhsPrdPrice"><span class="xhsPrdPriceLabel"><?php echo $this->labels['price'];?></span> <span class="xhsPrdPriceNum"><?php echo $this->formatCurrency($this->product->price); ?></span></div>
 		<div class="price_info"><span class="xhsPrdPriceLabel">
 			 <?php $this->hint($this->vatInfo); ?> (<?php echo $this->formatFloat($this->vatRate) ?> %)<br>
-            <?php $this->hint('price_info_shipping'); ?>  
+            <?php echo $this->shippingCostsHint(); ?>  
 			<br></span>
 		</div>
 		<form method="post">

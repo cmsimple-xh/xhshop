@@ -1,6 +1,7 @@
 <?php
 $plugin_tx['xhshop']['config_shop_page']="?Shop";
 $plugin_tx['xhshop']['config_gtc_page']="?Shop/GTC";
+$plugin_tx['xhshop']['config_shipping_costs_page']="?Shop/Shipping-Costs";
 $plugin_tx['xhshop']['config_decimal_separator']=".";
 $plugin_tx['xhshop']['config_thousands_separator']=",";
 $plugin_tx['xhshop']['config_shipping_unit']="kg";
@@ -155,7 +156,7 @@ $plugin_tx['xhshop']['hints_sold_out'] = 'Sorry! No products of category &laquo;
 $plugin_tx['xhshop']['labels_product_search'] = 'Search for articles';
 $plugin_tx['xhshop']['hints_no_products_found'] = 'Sorry! No products with "%s" found!';
 $plugin_tx['xhshop']['hints_price_info_vat']="incl. taxes";
-$plugin_tx['xhshop']['hints_price_info_shipping']="plus shipping";
+$plugin_tx['xhshop']['hints_price_info_shipping']="plus %s";
 $plugin_tx['xhshop']['hints_price_info_no_vat']="no taxes";
 $plugin_tx['xhshop']['hints_on_netto']=" % auf Nettobetrag ";
 
