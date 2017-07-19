@@ -40,7 +40,7 @@ $plugin_tx['xhshop']['labels_price']='Einzelpreis';
 $plugin_tx['xhshop']['labels_available'] = 'Lieferbar';
 $plugin_tx['xhshop']['labels_cart'] = 'Ihr Warenkorb';
 $plugin_tx['xhshop']['labels_next']='weiter';
-$plugin_tx['xhshop']['labels_previous']='zurück';
+$plugin_tx['xhshop']['labels_back']='zurück';
 $plugin_tx['xhshop']['labels_cancel']='abbrechen';
 ##### CONTACT DATA #######
 $plugin_tx['xhshop']['labels_contact']='Kontakt';
@@ -128,7 +128,6 @@ $plugin_tx['xhshop']['labels_subtotal']='Warenwert';
 $plugin_tx['xhshop']['hints_no_shipping_from']='<br>Der Versand ist kostenfrei ab einem Warenwert von';
 $plugin_tx['xhshop']['hints_order_minimum_warn_1']="Bestellungen mit einem Wert unter ";
 $plugin_tx['xhshop']['hints_order_minimum_warn_2']=" (Mindestbestellwert) können wir leider nicht entgegennehmen!";
-$plugin_tx['xhshop']['labels_order_now']='weiter';
 $plugin_tx['xhshop']['labels_continue_shopping']='zurück zum Shop';
 $plugin_tx['xhshop']['labels_ask_for_contact_data']='Um die Bestellung zu bearbeiten, benötigen wir noch folgende Angaben:';
 $plugin_tx['xhshop']['labels_choose_payment_mode']='Welche Zahlweise bevorzugen Sie?';

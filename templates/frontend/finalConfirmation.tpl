@@ -96,7 +96,7 @@ if($this->fee < 0){
 <form method="get">
 <input type="hidden" name="selected" value="%XHS_URL%">
 <input type="hidden" name="xhsCheckout" value="customersData">
-<button class="xhsShopButton"><span class="fa fa-arrow-circle-left fa-fw"></span> <?php $this->label('previous'); ?></button>
+<button class="xhsShopButton"><span class="fa fa-arrow-circle-left fa-fw"></span> <?php $this->label('back'); ?></button>
 </form>
 </div>
 <div class="xhsRght">

@@ -58,7 +58,7 @@ if(in_array('cos_confirmed', $this->missingData)){
 <form method="get" class="xhsLft">
 <input type="hidden" name="selected" value="%XHS_URL%">
 <input type="hidden" name="xhsCheckout" value="cart">
-<button class="xhsShopButton xhsInl"><span class="fa fa-arrow-circle-left fa-fw"></span> <?php $this->label('previous'); ?></button>
+<button class="xhsShopButton xhsInl"><span class="fa fa-arrow-circle-left fa-fw"></span> <?php $this->label('back'); ?></button>
 </form>
 <p>&nbsp;</p>
 </section>
