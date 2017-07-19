@@ -39,7 +39,7 @@ class SystemCheckService
      */
     public function getChecks()
     {
-        return array(
+        $checks = array(
             $this->checkPhpVersion('5.3.0'),
             $this->checkExtension('json'),
             $this->checkExtension('mbstring'),
@@ -53,10 +53,13 @@ class SystemCheckService
             $this->checkWritability(XHS_CONTENT_PATH . 'xhshop/tmp_orders/'),
             $this->checkEmailAddress(),
             $this->checkPageExists($this->lang['config_shop_page']),
-            $this->checkPageExists($this->lang['config_gtc_page'], false),
-            $this->checkPageExists($this->lang['config_shipping_costs_page'], false),
-            $this->checkForwardingExpenses()
+            $this->checkPageExists($this->lang['config_gtc_page'], false)
         );
+        if ($this->config['shipping_charge_for_shipping']) {
+            $checks[] = $this->checkPageExists($this->lang['config_shipping_costs_page'], false);
+        }
+        $checks[] = $this->checkForwardingExpenses();
+        return $checks;
     }
 
     /**
