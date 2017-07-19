@@ -51,6 +51,9 @@ class FrontEndView extends View
 //            case 'city':
 //                $params['class'] = 'xhsContInp';
 //                break;
+            case 'email':
+                $params['type'] = 'email';
+                /* fall through */
             default:
                 $params['class'] = 'xhsContInp';
 //                $params['placeholder'] = $this->labels[$field];

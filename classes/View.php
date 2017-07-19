@@ -148,13 +148,13 @@ abstract class View
         return $html;
     }
 
-    protected function textinputNameValueLabel($name = '', $value = '', $label = '', $params = array(), $isFloat = false)
+    protected function textinputNameValueLabel($name = '', $value = '', $label = '', $params = array())
     {
-        $type = $isFloat ? 'number' : 'text';
-        $html = '<input type="' . $type . '" name="'.$name.'" value="'. $value . '" step="0.01"'; // steps!
-        if (isset($params)) {
-            $html .= $this->injectParams($params);
+        $html = '<input name="'.$name.'" value="'. $value . '" step="0.01"'; // steps!
+        if (!isset($params['type'])) {
+            $params['type'] = 'text';
         }
+        $html .= $this->injectParams($params);
         $html .= $this->endTag;
         return $html;
     }
@@ -175,8 +175,9 @@ abstract class View
             $params = array('style'=> 'text-align: right;', 'size'=>'5');
         }
 
+        $params['type'] = 'number';
         $value = number_format($value, 2);
-        return $this->textinputNameValueLabel($name, $value, $label, $params, true);
+        return $this->textinputNameValueLabel($name, $value, $label, $params);
     }
 
     private function moneyInputNameValueLabel($name, $value = 0, $label = '', $params = array())
