@@ -248,7 +248,7 @@ abstract class View
             return '';
         }
         $html = sprintf('<img src="%s" alt="%s">', $src, $alt);
-        if ($href) {
+        if ($href && $href !== '?') {
             $html = sprintf('<a href="%s" title="%s" class="%s">%s</a>', $href, $alt, $class, $html);
         }
         return $html;

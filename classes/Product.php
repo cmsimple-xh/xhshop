@@ -139,7 +139,7 @@ class Product
 
     public function getPreviewPicturePath()
     {
-        if (isset($this->previewPicture)) {
+        if (!empty($this->previewPicture)) {
             return $this->previewFolder . $this->previewPicture;
         }
         return '';
@@ -155,7 +155,7 @@ class Product
 
     public function getImagePath()
     {
-        if (isset($this->image)) {
+        if (!empty($this->image)) {
             return $this->imageFolder . $this->image;
         }
         return '';
