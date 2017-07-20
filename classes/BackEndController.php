@@ -82,8 +82,8 @@ class BackEndController extends Controller
         $params = array();
 
         $this->bridge->initProductDescriptionEditor();
-        if (key_exists($id, $this->catalog->products)) {
-            $product = $this->catalog->products[$id];
+        if (key_exists($id, $this->catalog->getProducts())) {
+            $product = $this->catalog->getProduct($id);
 
             $params['product_ID']     = $id;
             $params['preview_selector'] = $this->viewProvider->picSelector(
@@ -173,8 +173,8 @@ class BackEndController extends Controller
     private function productCategories()
     {
         $params['categories'] =  parent::categories();
-        $params['leftOverCat'] = $this->catalog->category_for_the_left_overs[XHS_LANGUAGE];
-        $params['xhsDefaultCat'] = $this->catalog->default_category[XHS_LANGUAGE];
+        $params['leftOverCat'] = $this->catalog->getFallbackCategory();
+        $params['xhsDefaultCat'] = $this->catalog->getDefaultCategory();
         $params['csrf_token_input'] = $this->csrfProtector->tokenInput();
 
         return $this->render('categories', $params);
@@ -224,7 +224,7 @@ class BackEndController extends Controller
     {
         $this->csrfProtector->check();
         $id = isset($_POST['xhsProductID']) ? $_POST['xhsProductID'] : 'new';
-        if (key_exists($id, $this->catalog->products)) {
+        if (key_exists($id, $this->catalog->getProducts())) {
             $product = $this->catalog->getProduct($id);
         } else {
             $product = new Product();
@@ -298,7 +298,7 @@ class BackEndController extends Controller
 
         if ($id === 'new') {
             $this->catalog->addProduct($product);
-            $id = end($this->catalog->products)->uid;
+            $id = $this->catalog->getLastProductId();
         } else {
             $this->catalog->updateProduct($id, $product);
         }

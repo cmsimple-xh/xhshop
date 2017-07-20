@@ -4,11 +4,11 @@ namespace Xhshop;
 
 class Catalogue
 {
-    public $products;
+    private $products;
     private $separator;
     private $categories;
-    public $category_for_the_left_overs;
-    public $default_category;
+    private $category_for_the_left_overs;
+    private $default_category;
     private $version;
 
     public function __construct($separator, $version)
@@ -257,6 +257,11 @@ class Catalogue
         $this->save();
     }
 
+    public function getDefaultCategory()
+    {
+        return $this->default_category[XHS_LANGUAGE];
+    }
+
     public function setDefaultCategory($name)
     {
         $this->default_category[XHS_LANGUAGE] = $name;
@@ -327,6 +332,11 @@ class Catalogue
         } else {
             return $this->products[$id];
         }
+    }
+
+    public function getLastProductId()
+    {
+        return end($this->catalog->products)->uid;
     }
 
     public function getCategories($language = XHS_LANGUAGE)

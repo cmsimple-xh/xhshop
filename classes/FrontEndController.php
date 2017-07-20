@@ -66,7 +66,7 @@ class FrontEndController extends Controller
         $this->csrfProtector->check();
         $variant = null;
 
-        if ($this->catalog->products[$_POST['cartItem']]->hasVariants()) {
+        if ($this->catalog->getProduct($_POST['cartItem'])->hasVariants()) {
             if (isset($_POST['xhsVariant'])) {
                 $variant = (string) $_POST['xhsVariant'];
             } else {
@@ -79,9 +79,9 @@ class FrontEndController extends Controller
         }
 
         if ((int) $_POST['xhsAmount'] > 0) {
-            $_SESSION['xhsOrder']->addItem($this->catalog->products[$_POST['cartItem']], $_POST['xhsAmount'], $variant);
+            $_SESSION['xhsOrder']->addItem($this->catalog->getProduct($_POST['cartItem']), $_POST['xhsAmount'], $variant);
         } else {
-            $_SESSION['xhsOrder']->removeItem($this->catalog->products[$_POST['cartItem']], $variant);
+            $_SESSION['xhsOrder']->removeItem($this->catalog->getProduct($_POST['cartItem']), $variant);
         }
         $_SESSION['xhsOrder']->setShipping($this->calculateShipping());
 
@@ -149,7 +149,7 @@ class FrontEndController extends Controller
             $i = 1;
             foreach ($_SESSION['xhsOrder']->items as $index => $product) {
                 $test = explode('_', $index);  // variants are marked as uid_variant
-                if (!key_exists($test[0], $this->catalog->products)) {
+                if (!key_exists($test[0], $this->catalog->getProducts())) {
                     continue;
                 } // if someone comes from another xhshopShop
                 $cartItems[$index]['itemCounter'] = $i;
@@ -162,32 +162,32 @@ class FrontEndController extends Controller
                     $array       = explode('_', $index);
                     $productKey  = $array[0];
                     $variantKey  = $array[1];
-                    $variantName = $this->catalog->products[$productKey]->getVariantName($variantKey);
+                    $variantName = $this->catalog->getProduct($productKey)->getVariantName($variantKey);
                 }
 
-                $name       = $this->catalog->products[$productKey]->getName(XHS_LANGUAGE);
+                $name       = $this->catalog->getProduct($productKey)->getName(XHS_LANGUAGE);
                 $detailLink = '';
-                $page       = $this->catalog->products[$productKey]->getDetailsLink(XHS_LANGUAGE);
+                $page       = $this->catalog->getProduct($productKey)->getDetailsLink(XHS_LANGUAGE);
                 if ($page) {
                     $page       = $this->bridge->translateUrl($page);
                     $name       = $this->viewProvider->link($page, $name);
                     $detailLink = $this->viewProvider->link($page, $this->viewProvider->labels['product_info']);
                 }
-                $vatRate                          = 'vat_' . $this->catalog->products[$productKey]->vat;
+                $vatRate                          = 'vat_' . $this->catalog->getProduct($productKey)->vat;
                 $vatRate                          = $this->settings[$vatRate];
                 $cartItems[$index]['name']        = $name;
                 $cartItems[$index]['key']         = $productKey;
                 $cartItems[$index]['variantName'] = $variantName;
                 $cartItems[$index]['variantKey']  = $variantKey;
-                $cartItems[$index]['productPage'] = $this->catalog->products[$productKey]->getPage(XHS_LANGUAGE);
-                $cartItems[$index]['description'] = $this->catalog->products[$productKey]->getTeaser(XHS_LANGUAGE);
+                $cartItems[$index]['productPage'] = $this->catalog->getProduct($productKey)->getPage(XHS_LANGUAGE);
+                $cartItems[$index]['description'] = $this->catalog->getProduct($productKey)->getTeaser(XHS_LANGUAGE);
                 $cartItems[$index]['detailLink']  = $detailLink;
                 $cartItems[$index]['price']       = $product['gross'];
                 $cartItems[$index]['vatRate']     = $vatRate;
                 $cartItems[$index]['sum']         = $product['gross'] * $product['amount'];
-                if ($this->catalog->products[$productKey]->previewPicture) {
+                if ($this->catalog->getProduct($productKey)->previewPicture) {
                     $cartItems[$index]['previewPicture'] = $this->settings['image_folder']
-                        . $this->catalog->products[$productKey]->previewPicture;
+                        . $this->catalog->getProduct($productKey)->previewPicture;
                 }
 
                 $i++;

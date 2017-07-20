@@ -112,7 +112,7 @@ abstract class Controller
         if ($this->catalog->hasUncategorizedProducts()) {
             $options[] = array(
                 'value' => 'left_overs',
-                'label' => $this->catalog->category_for_the_left_overs[XHS_LANGUAGE]
+                'label' => $this->catalog->getFallbackCategory()
             );
         }
         return $options;
@@ -169,7 +169,7 @@ abstract class Controller
     {
         $url = $this->bridge->getCurrentPage();
         $products = array();
-        foreach ($this->catalog->products as $product) {
+        foreach ($this->catalog->getProducts() as $product) {
             if (!isset($product->productPages[XHS_LANGUAGE])) {
                 continue;
             }
@@ -200,7 +200,7 @@ abstract class Controller
 
     protected function productList($collectAll = true)
     {
-        $category = $this->catalog->default_category[XHS_LANGUAGE];
+        $category = $this->catalog->getDefaultCategory();
         if (!empty($_GET['xhsCategory'])) {
             $category = $_GET['xhsCategory'];
         }
@@ -218,7 +218,7 @@ abstract class Controller
         $params['categoryOptions'] = $this->categoryOptions();
         switch ($category) {
             case 'left_overs':
-                $params['categoryHeader'] = $this->catalog->category_for_the_left_overs[XHS_LANGUAGE];
+                $params['categoryHeader'] = $this->catalog->getFallbackCategory();
                 break;
             default:
                 $params['categoryHeader'] = $category;
