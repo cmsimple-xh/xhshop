@@ -382,6 +382,9 @@ abstract class Controller
         })));
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     */
     public function shopToc($level = 6)
     {
         return '';
