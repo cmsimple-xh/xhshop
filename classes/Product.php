@@ -4,7 +4,6 @@ namespace Xhshop;
 
 class Product
 {
-//    var $counter;
     public $names;
     public $descriptions;
     public $teasers;
@@ -60,7 +59,6 @@ class Product
     public function getName($language = XHS_LANGUAGE, $variant = null)
     {
         $variantName = '';
-        //     var_dump($this);
         if (isset($this->variants[$language][$variant])) {
             $variantName = ' ('.$this->variants[$language][$variant]. ')';
         }
@@ -158,7 +156,6 @@ class Product
 
     public function hasVariants()
     {
-        // return true;
         return (isset($this->variants[XHS_LANGUAGE]) && is_array($this->variants[XHS_LANGUAGE]))
             ? count($this->variants[XHS_LANGUAGE]) > 0
             : null;
