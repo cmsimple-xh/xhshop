@@ -105,47 +105,6 @@ abstract class View
         return $html;
     }
 
-    // apparently unused
-    private function checkboxNameKeyValueOnLabel($name = '', $key = '', $value = '', $setting = '', $label = '', $params = array())
-    {
-        if (!isset($setting)) {
-            $setting = 'on';
-        }
-        $html = '<label><input type="checkbox" name ="'.$name. '['.$key.']" value="'.$setting.'"';
-        if ($this->settings[$name][$key] == $setting) {
-            $html .= ' checked="checked"';
-        }
-        $html .= '>';
-        if (isset($this->labels[$label])) {
-            $html .= $this->labels[$label];
-        } else {
-            $html .= $label;
-        }
-        return $html . '</label>';
-    }
-
-    // apparently unsused
-    private function checkboxNameValueLabel($name = '', $value = null, $label = null, $params = array())
-    {
-        if (!isset($value)) {
-            $value = '';
-        }
-        $html = '';
-        if (isset($label)) {
-            $html .= '<label>' . $this->label($label) . ' ';
-        }
-        $html .= '<input type="checkbox" name ="'.$name. '" value="'.$value.'"';
-        
-        if ($this->$name == $value) {
-            $html .= ' checked="checked"';
-        }
-        $html .= '>';
-        if (isset($label)) {
-            $html .=  '</label>';
-        }
-        return $html;
-    }
-
     protected function textinputNameValueLabel($name = '', $value = '', $label = '', $params = array())
     {
         $html = '<input name="'.$name.'" value="'. $value . '" step="0.01"'; // steps!
@@ -181,12 +140,6 @@ abstract class View
     private function moneyInputNameValueLabel($name, $value = 0, $label = '', $params = array())
     {
         return $this->floatinputNameValueLabel($name, $value, $label, $params) . " ". $this->currency;
-    }
-
-    // apparently unused
-    private function hiddeninputNameValue($name, $value)
-    {
-        return '<input type="hidden" name="'. $name . '" value="'. $value .'">';
     }
 
     public function formatFloat($sum)
@@ -227,12 +180,6 @@ abstract class View
         global $plugin_tx;
 
         return sprintf($plugin_tx['xhshop']['syscheck_message'], $label, $stateLabel);
-    }
-
-    // apparently unused
-    private function submitButton($value)
-    {
-        echo '<input type="submit" class="xhsShopButton" value="'.$this->buttons[$value].'">';
     }
 
     public function link($href, $text)
