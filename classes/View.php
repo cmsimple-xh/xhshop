@@ -105,7 +105,7 @@ abstract class View
         return $html;
     }
 
-    protected function textinputNameValueLabel($name = '', $value = '', $label = '', $params = array())
+    protected function textinputNameValueLabel($name = '', $value = '', $params = array())
     {
         $html = '<input name="'.$name.'" value="'. $value . '" step="0.01"'; // steps!
         if (!isset($params['type'])) {
@@ -116,7 +116,7 @@ abstract class View
         return $html;
     }
 
-    private function floatInputNameValueLabel($name, $value = 0, $label = null, $params = null)
+    private function floatInputNameValueLabel($name, $value = 0, $params = null)
     {
         $value = (float)$value;
         if (is_array($params)) {
@@ -134,12 +134,12 @@ abstract class View
 
         $params['type'] = 'number';
         $value = number_format($value, 2);
-        return $this->textinputNameValueLabel($name, $value, $label, $params);
+        return $this->textinputNameValueLabel($name, $value, $params);
     }
 
-    protected function moneyInputNameValueLabel($name, $value = 0, $label = '', $params = array())
+    protected function moneyInputNameValueLabel($name, $value = 0, $params = array())
     {
-        return $this->floatinputNameValueLabel($name, $value, $label, $params) . " ". $this->currency;
+        return $this->floatinputNameValueLabel($name, $value, $params) . " ". $this->currency;
     }
 
     public function formatFloat($sum)

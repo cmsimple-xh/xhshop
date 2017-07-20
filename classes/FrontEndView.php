@@ -61,7 +61,7 @@ class FrontEndView extends View
         }
         $params['id'] = $field;
         $html .= $label;
-        $html .= $this->textinputNameValueLabel($field, $value, $field, $params);
+        $html .= $this->textinputNameValueLabel($field, $value, $params);
         return $html;
     }
 
