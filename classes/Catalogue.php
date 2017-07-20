@@ -6,7 +6,7 @@ class Catalogue
 {
     public $products;
     private $separator;
-    public $categories;
+    private $categories;
     public $category_for_the_left_overs;
     public $default_category;
     private $version;
@@ -329,10 +329,11 @@ class Catalogue
         }
     }
 
-    public function getCategories($language = null)
+    public function getCategories($language = XHS_LANGUAGE)
     {
-        if ($language === null) {
-            $language = XHS_LANGUAGE;
+        if (!isset($this->categories[$language])) {
+            $this->categories[$language] = array();
+            $this->save();
         }
         return $this->categories[$language];
     }

@@ -96,11 +96,7 @@ abstract class Controller
 
     protected function categories()
     {
-        if (!isset($this->catalog->categories[XHS_LANGUAGE])) {
-            $this->catalog->categories[XHS_LANGUAGE] = array();
-            $this->catalog->save();
-        }
-        return $this->catalog->categories[XHS_LANGUAGE];
+        return $this->catalog->getCategories();
     }
 
     private function categoryOptions()
