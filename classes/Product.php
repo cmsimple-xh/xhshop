@@ -164,45 +164,38 @@ class Product
     public function setName($name = 'No Name!', $language = XHS_LANGUAGE)
     {
         $this->names[$language] = $name;
-        return;
     }
 
     public function setDescription($description = '', $language = XHS_LANGUAGE)
     {
         $this->descriptions[$language] = $description;
-        return;
     }
 
     public function setTeaser($description = '', $language = XHS_LANGUAGE)
     {
         $this->teasers[$language] = $description;
-        return;
     }
 
     public function setPrice($price = 0.00)
     {
         $price = str_replace(',', '.', $price);
         $this->price = (float)$price;
-        return;
     }
 
     public function setWeight($weight = 0.00)
     {
         $weight = str_replace(',', '.', $weight);
         $this->weight = (float)$weight;
-        return;
     }
 
     public function setStockOnHand($quantity = 1)
     {
         $this->stock_on_hand = (int)$quantity;
-        return;
     }
 
     public function setVat($rate = 'full')
     {
         $this->vat = (string)$rate;
-        return;
     }
 
     public function setVariants($variants = array(), $language = XHS_LANGUAGE)
@@ -217,7 +210,6 @@ class Product
             return;
         }
         trigger_error('Product:setVariants() expects an array as first argument.');
-        return;
     }
 
     public function setProductPages(array $pages = array(), $language = XHS_LANGUAGE)
