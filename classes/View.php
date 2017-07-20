@@ -84,7 +84,7 @@ abstract class View
         return $html;
     }
 
-    private function radioNameValueLabel($name = null, $value = '', $label = null, $params = null)
+    protected function radioNameValueLabel($name = null, $value = '', $label = null, $params = null)
     {
         $html = '';
         if (isset($label)) {
@@ -137,7 +137,7 @@ abstract class View
         return $this->textinputNameValueLabel($name, $value, $label, $params);
     }
 
-    private function moneyInputNameValueLabel($name, $value = 0, $label = '', $params = array())
+    protected function moneyInputNameValueLabel($name, $value = 0, $label = '', $params = array())
     {
         return $this->floatinputNameValueLabel($name, $value, $label, $params) . " ". $this->currency;
     }
@@ -151,7 +151,7 @@ abstract class View
         return number_format($sum, 2, $dec_sep, $thousands_sep);
     }
 
-    private function formatCurrency($sum)
+    protected function formatCurrency($sum)
     {
         return $this->formatFloat($sum)  . ' ' . $this->currency;
     }
@@ -175,7 +175,7 @@ abstract class View
         echo $key . ' - missing in language file ([\'labels\'])';
     }
 
-    private function syscheck($label, $stateLabel)
+    protected function syscheck($label, $stateLabel)
     {
         global $plugin_tx;
 
@@ -199,7 +199,7 @@ abstract class View
         return $html;
     }
 
-    private function categorySelect()
+    protected function categorySelect()
     {
         if (($this->showCategorySelect == false && !($this instanceof BackendView))
             || !isset($this->categoryOptions)
