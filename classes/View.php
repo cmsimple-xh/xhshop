@@ -6,12 +6,10 @@ abstract class View
 {
     protected $templatePath;
     protected $themePath = null;
-    private $imagePath; // apparently unused
     private $currency;
     private $params = array();
     protected $hints = array();
     public $labels = array();
-    private $lang = array(); // apparently unused
     protected $shippingCountries = array();
 
     public function __construct()
