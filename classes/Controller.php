@@ -14,7 +14,6 @@ abstract class Controller
     protected $payments;
     protected $paymentModules;
     protected $bridge;
-    private $errors = array(); // apparently unused
 
     /**
      * @var CsrfProtection

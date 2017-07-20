@@ -5,18 +5,15 @@ namespace Xhshop;
 class Catalogue
 {
     public $products;
-    private $cf; // apparently unused
     private $separator;
     public $categories;
     public $category_for_the_left_overs;
     public $default_category;
     private $version;
-    private $cms; // apparently unused
 
     public function __construct($separator, $version)
     {
         $this->version = $version;
-        $this->cms = 'CMSimple_XH';
         $this->separator = $separator;
         $this->products = array();
         $this->categories = array();

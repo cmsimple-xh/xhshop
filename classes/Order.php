@@ -12,7 +12,6 @@ class Order
     private $vatReduced;
     public $units;
     public $shipping;
-    private $area; // unused?
     private $vatFullRate;
     private $vatReducedRate;
     private $total;

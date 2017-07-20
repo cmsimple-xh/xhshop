@@ -4,8 +4,6 @@ namespace Xhshop;
 
 class FrontEndView extends View
 {
-    private $paymentHint; // apparently unused
-
     public function __construct()
     {
         parent::__construct();
