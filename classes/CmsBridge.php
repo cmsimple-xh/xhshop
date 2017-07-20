@@ -17,17 +17,8 @@ class CmsBridge
         $this->urls = $u;
     }
 
-    public function getHeadings($level = 0)
+    public function getHeadings()
     {
-        if ($level > 0) {
-            $array = array();
-            foreach ($this->headings as $key => $heading) {
-                if ($this->levels[$key] <= $level) {
-                    $array[$key] = $heading;
-                }
-            }
-            return $array;
-        }
         return $this->headings;
     }
 
@@ -39,17 +30,8 @@ class CmsBridge
         return $this->headings[array_search($url, $this->urls)];
     }
 
-    public function getUrls($level = 0)
+    public function getUrls()
     {
-        if ($level > 0) {
-            $array = array();
-            foreach ($this->urls as $key => $link) {
-                if ($this->levels[$key] <= $level) {
-                    $array[$key] = $link;
-                }
-            }
-            return $array;
-        }
         return $this->urls;
     }
 
@@ -63,17 +45,8 @@ class CmsBridge
         return '?' . $url;
     }
 
-    public function getLevels($level = 0)
+    public function getLevels()
     {
-        if ($level > 0) {
-            $array = array();
-            foreach ($this->levels as $mylevel) {
-                if ($myLevel <= $level) {
-                    $array[$key] = $myLevel;
-                }
-            }
-            return $array;
-        }
         return $this->levels;
     }
 

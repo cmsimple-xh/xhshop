@@ -149,10 +149,9 @@ class BackEndController extends Controller
         $params['use_categories']   = $this->settings['use_categories'];
         $params['categories']       = $this->catalog->getCategories();
 
-        $level = 0;
-        $params['pageLinks']     = $this->bridge->getUrls($level);
-        $params['pageNames']     = $this->bridge->getHeadings($level);
-        $params['pageLevels']    = $this->bridge->getLevels($level);
+        $params['pageLinks']     = $this->bridge->getUrls();
+        $params['pageNames']     = $this->bridge->getHeadings();
+        $params['pageLevels']    = $this->bridge->getLevels();
         $params['csrf_token_input'] = $this->csrfProtector->tokenInput();
 
         return $this->render('productEdit', $params);
