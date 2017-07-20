@@ -90,7 +90,7 @@ if ($f === 'xh_loggedout') {
 
 function display_shop()
 {
-    global $xhsController, $adm, $su, $sn, $plugin_tx;
+    global $xhsController, $su, $sn, $plugin_tx;
     $html = '';
     if (defined('XH_ADM') && XH_ADM) {
         if ($xhsController instanceof FrontEndController) {

@@ -121,7 +121,7 @@ class FrontEndController extends Controller
                 return $this->paymentModules[$_SESSION['xhsCustomer']->payment_mode]->getFee();
             }
         }
-        return $fee;
+        return 0.0;
     }
 
     public function cartPreview()

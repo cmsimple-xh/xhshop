@@ -23,6 +23,7 @@ class Catalogue
 
     private function loadArray()
     {
+        $categories = $category_for_the_left_overs = $default_category = array();
         include XHS_CATALOG;
 
         $this->categories = $categories;
@@ -206,8 +207,7 @@ class Catalogue
 
 
         $i = 1;
-        foreach ($sortOrder as $key => $sort) {
-            //     $products[$key]->sortIndex = $sort;
+        foreach (array_keys($sortOrder) as $key) {
             $products[$key]->sortIndex = $i;
             $i++;
         }

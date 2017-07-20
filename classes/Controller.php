@@ -238,7 +238,6 @@ abstract class Controller
         if (!$this->settings['use_categories']) {
             $showCats = false;
         }
-        $category = null;
         $products = array();
         // do not collect not available products for visitor
         $collectAll = $this instanceof BackendController;
