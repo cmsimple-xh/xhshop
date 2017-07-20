@@ -57,11 +57,8 @@ class Product
         return (float)$this->price;
     }
 
-    public function getName($language = null, $variant = null)
+    public function getName($language = XHS_LANGUAGE, $variant = null)
     {
-        if ($language === null) {
-            $language = XHS_LANGUAGE;
-        }
         $variantName = '';
         //     var_dump($this);
         if (isset($this->variants[$language][$variant])) {
@@ -82,34 +79,26 @@ class Product
         }
     }
 
-    public function getDescription($language = null)
+    public function getDescription($language = XHS_LANGUAGE)
     {
-        $language = ($language === null) ? XHS_LANGUAGE : $language;
         return isset($this->descriptions[$language]) ? $this->descriptions[$language] : '' ;
     }
 
-    public function getTeaser($language = null)
+    public function getTeaser($language = XHS_LANGUAGE)
     {
-        $language = ($language === null) ? XHS_LANGUAGE : $language;
-       
         return isset($this->teasers[$language]) ? $this->teasers[$language] : '' ;
     }
 
-    public function getDetailsLink($language = null)
+    public function getDetailsLink($language = XHS_LANGUAGE)
     {
-        $lang = ($language === null) ? XHS_LANGUAGE : $language;
-        if (isset($this->descriptions[$lang]) && trim($this->descriptions[$lang]) != '') {
+        if (isset($this->descriptions[$language]) && trim($this->descriptions[$language]) != '') {
             return XHS_URL . '&xhsProduct=' . $this->uid;
         }
         return $this->getPage($language);
     }
 
-    public function getPage($language = null)
+    public function getPage($language = XHS_LANGUAGE)
     {
-        if ($language == null) {
-            $language = XHS_LANGUAGE;
-        }
-
         if (isset($this->productPages[$language][0]) && trim($this->productPages[$language][0]) <> '') {
             return $this->productPages[$language][0];
         }
@@ -149,27 +138,18 @@ class Product
         return '';
     }
 
-    public function getVariants($language = null)
+    public function getVariants($language = XHS_LANGUAGE)
     {
-        if ($language === null) {
-            $language = XHS_LANGUAGE;
-        }
-        return isset($this->variants[XHS_LANGUAGE]) ? $this->variants[XHS_LANGUAGE] : array();
+        return isset($this->variants[$language]) ? $this->variants[$language] : array();
     }
 
-    public function getCategories($language = null)
+    public function getCategories($language = XHS_LANGUAGE)
     {
-        if ($language === null) {
-            $language = XHS_LANGUAGE;
-        }
         return isset($this->categories[$language]) ? $this->categories[$language] : array();
     }
 
-    public function getProductPages($language = null)
+    public function getProductPages($language = XHS_LANGUAGE)
     {
-        if ($language === null) {
-            $language = XHS_LANGUAGE;
-        }
         if (isset($this->productPages[$language])) {
             return $this->productPages[$language];
         }
@@ -184,29 +164,20 @@ class Product
             : null;
     }
 
-    public function setName($name = 'No Name!', $language = null)
+    public function setName($name = 'No Name!', $language = XHS_LANGUAGE)
     {
-        if ($language === null) {
-            $language = XHS_LANGUAGE;
-        }
         $this->names[$language] = $name;
         return;
     }
 
-    public function setDescription($description = '', $language = null)
+    public function setDescription($description = '', $language = XHS_LANGUAGE)
     {
-        if ($language === null) {
-            $language = XHS_LANGUAGE;
-        }
         $this->descriptions[$language] = $description;
         return;
     }
 
-    public function setTeaser($description = '', $language = null)
+    public function setTeaser($description = '', $language = XHS_LANGUAGE)
     {
-        if ($language === null) {
-            $language = XHS_LANGUAGE;
-        }
         $this->teasers[$language] = $description;
         return;
     }
@@ -237,11 +208,8 @@ class Product
         return;
     }
 
-    public function setVariants($variants = array(), $language = null)
+    public function setVariants($variants = array(), $language = XHS_LANGUAGE)
     {
-        if ($language === null) {
-            $language = XHS_LANGUAGE;
-        }
         if (is_array($variants)) {
             if (count(($variants)) == 1) {
                 trigger_error('Product:setVariants() only 1 variant has been passed - and ignored.');
@@ -255,20 +223,13 @@ class Product
         return;
     }
 
-    public function setProductPages(array $pages = array(), $language = null)
+    public function setProductPages(array $pages = array(), $language = XHS_LANGUAGE)
     {
-        if ($language === null) {
-            $language = XHS_LANGUAGE;
-        }
         $this->productPages[$language] = $pages;
     }
 
-    public function setCategories(array $categories = array(), $language = null)
+    public function setCategories(array $categories = array(), $language = XHS_LANGUAGE)
     {
-        if ($language === null) {
-            $language = XHS_LANGUAGE;
-        }
-         
         $this->categories[$language] = $categories;
     }
 
