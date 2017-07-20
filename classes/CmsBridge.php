@@ -53,24 +53,9 @@ class CmsBridge
         return $this->urls;
     }
 
-    // apparently unused
-    private function getLevelOfUrl($url)
-    {
-        if (array_search($url, $this->urls) === false) {
-            trigger_error('XHS_CMSimple_Bridge::getLevelOfUrl($url) - ' . $url . ' does not exist.');
-        }
-        return $this->levels[array_search($url, $this->urls)];
-    }
-
     public function pageExists($link = '')
     {
         return in_array($link, $this->urls);
-    }
-
-    // apparently unused
-    private function translateStringToUrl($string = '')
-    {
-        return '?' . uenc($string);
     }
 
     public function translateUrl($url)
@@ -90,35 +75,6 @@ class CmsBridge
             return $array;
         }
         return $this->levels;
-    }
-
-    // apparently unused
-    private function addToHeader($string)
-    {
-        global $hjs;
-        $hjs .= $string;
-    }
-
-    // apparently unused
-    private function shopSubpages($level = 6)
-    {
-        $pages = array();
-        $index     = array_search(XHS_URL, $this->urls);
-        $shopLevel = $this->levels[$index];
-        $index++;
-        $i         = 0;
-        while ($index < count($this->urls) && $this->levels[$index] > $shopLevel) {
-            if ($this->levels[$index] > $level) {
-                $index++;
-                continue;
-            }
-            $pages[$i]['url']     = '?' . $this->urls[$index];
-            $pages[$i]['heading'] = $this->headings[$index];
-            $pages[$i]['level']   = $this->levels[$index];
-            $index++;
-            $i++;
-        }
-        return $pages;
     }
 
     public function initProductDescriptionEditor()

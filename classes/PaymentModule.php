@@ -42,12 +42,6 @@ abstract class PaymentModule
         $this->loadSettings();
     }
 
-    // apparently unused
-    private function isAvailable()
-    {
-        return true;
-    }
-
     public function getLabel()
     {
         return isset($this->language['label']) ? $this->language['label'] : '* ' . $this->getName() . ' *';
@@ -91,11 +85,6 @@ abstract class PaymentModule
     public function setCartItems(array $cartItems)
     {
         $this->cartItems = $cartItems;
-    }
-
-    // apparently unused
-    private function choosePaymentRadio()
-    {
     }
 
     protected function loadLanguage()

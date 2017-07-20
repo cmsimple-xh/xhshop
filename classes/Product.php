@@ -95,18 +95,6 @@ class Product
         return isset($this->teasers[$language]) ? $this->teasers[$language] : '' ;
     }
 
-    // appears to be unused
-    private function getPageLink($language, $label = null)
-    {
-        if (!$label) {
-            $label = $this->getName($language);
-        }
-        if ($this->getPage($language)) {
-            $label = "<a href=\"" . $this->productPages[$language][0] . "\">$label</a>";
-        }
-        return $label;
-    }
-
     public function getDetailsLink($language = null)
     {
         $lang = ($language === null) ? XHS_LANGUAGE : $language;

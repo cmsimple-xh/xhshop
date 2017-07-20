@@ -19,11 +19,6 @@ class Paypal extends PaymentModule
         $this->settings['currency_code'] = $plugin_cf['xhshop']['shop_currency_code'];
     }
 
-    private function isAvailable()
-    {
-        return strlen(trim($this->settings['currency_code'])) === 3 && strlen(trim($this->settings['email'])) > 5;
-    }
-
     public function wantsCartItems()
     {
         return true;

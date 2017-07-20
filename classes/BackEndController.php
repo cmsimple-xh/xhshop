@@ -158,6 +158,9 @@ class BackEndController extends Controller
         return $this->render('productEdit', $params);
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.UnusedPrivateMethod)
+     */
     private function deleteProduct()
     {
         $this->csrfProtector->check();
@@ -178,6 +181,9 @@ class BackEndController extends Controller
         return $this->render('categories', $params);
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.UnusedPrivateMethod)
+     */
     private function saveProductCategories()
     {
         $this->csrfProtector->check();
@@ -212,6 +218,9 @@ class BackEndController extends Controller
         return $this->productCategories();
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.UnusedPrivateMethod)
+     */
     private function saveProduct()
     {
         $this->csrfProtector->check();
@@ -298,6 +307,9 @@ class BackEndController extends Controller
         return $this->editProduct($id);
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.UnusedPrivateMethod)
+     */
     private function helpAbout()
     {
         $params['appName'] = $this->appName;

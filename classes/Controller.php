@@ -170,22 +170,6 @@ abstract class Controller
         return $products;
     }
 
-    // apparently unused
-    private function getCurrentProduct()
-    {
-        $xhs_page_name = $_SERVER['QUERY_STRING'];
-        $productPages = array();
-        foreach ($this->catalog->products as $product) {
-            foreach ($product->productPages[XHS_LANGUAGE] as $page) {
-                $productPages[] = $page;
-                if ($page == $xhs_page_name) {
-                    return $product;
-                }
-            }
-        }
-        return false;
-    }
-
     public function getPagesProducts()
     {
         $url = $this->bridge->getCurrentPage();
@@ -296,6 +280,9 @@ abstract class Controller
         return rtrim($string);
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.UnusedPrivateMethod)
+     */
     private function addPaymentModule(PaymentModule $module)
     {
         $this->paymentModules[$module->getName()] = $module;
@@ -349,7 +336,9 @@ abstract class Controller
         return false;
     }
 
-    // apparently unused
+    /**
+     * @SuppressWarnings(PHPMD.UnusedPrivateMethod)
+     */
     private function compareProducts(Product $productA, Product $productB)
     {
         /**
