@@ -55,26 +55,26 @@ class Paypal extends PaymentModule
 
         $form = '
 <form action="' . $this->urls[$this->settings['sandbox'] ? 'development' : 'production'] . '" method="post">
-    <input type="hidden" name="cmd" value="_cart" />
-    <input type="hidden" name="upload" value="1" />
+    <input type="hidden" name="cmd" value="_cart">
+    <input type="hidden" name="upload" value="1">
     <input type="hidden" name="business" value="' . $this->settings['email'] . '">
-    <input type="hidden" name="currency_code" value="' . $this->settings['currency_code'] . '" />
-    <input type="hidden" name="lc" value="' . strtoupper(XHS_LANGUAGE) . '" />
-    <input type="hidden" name="rm" value="2" />
-    <input type="hidden" name="custom" value="' . session_id() . '" />
-    <input type="hidden" name="handling_cart" value="' . ($this->settings['fee'] + $this->shipping) . '" />
-    <input type="hidden" name="cancel_return" value="' . $_SERVER['HTTP_REFERER'] . '" />
-          <input type="hidden" name="notify_url" value="' . $_SERVER['HTTP_REFERER'] . '" />
-    <input type="hidden" name="return" value="' . $_SERVER['HTTP_REFERER'] . '" />';
+    <input type="hidden" name="currency_code" value="' . $this->settings['currency_code'] . '">
+    <input type="hidden" name="lc" value="' . strtoupper(XHS_LANGUAGE) . '">
+    <input type="hidden" name="rm" value="2">
+    <input type="hidden" name="custom" value="' . session_id() . '">
+    <input type="hidden" name="handling_cart" value="' . ($this->settings['fee'] + $this->shipping) . '">
+    <input type="hidden" name="cancel_return" value="' . $_SERVER['HTTP_REFERER'] . '">
+          <input type="hidden" name="notify_url" value="' . $_SERVER['HTTP_REFERER'] . '">
+    <input type="hidden" name="return" value="' . $_SERVER['HTTP_REFERER'] . '">';
 
         foreach ($this->cartItems as $item) {
             $name = strip_tags($item['name']);
             $name .= isset($item['variantName']) ? ', ' . $item['variantName'] : '';
             $form .= '
-     <input type="hidden" name="item_name_' . $item['itemCounter'] . '" value="' . $name . '" />
-     <input type="hidden" name="quantity_' . $item['itemCounter'] . '" value="' . $item['amount'] . '" />
-     <input type="hidden" name="amount_' . $item['itemCounter'] . '" value="' . number_format((float) $item['price'], 2, '.', '') . '" />
-     <input type="hidden" name="item_number_' . $item['itemCounter'] . '" value="' . $item['itemCounter'] . '" />';
+     <input type="hidden" name="item_name_' . $item['itemCounter'] . '" value="' . $name . '">
+     <input type="hidden" name="quantity_' . $item['itemCounter'] . '" value="' . $item['amount'] . '">
+     <input type="hidden" name="amount_' . $item['itemCounter'] . '" value="' . number_format((float) $item['price'], 2, '.', '') . '">
+     <input type="hidden" name="item_number_' . $item['itemCounter'] . '" value="' . $item['itemCounter'] . '">';
         }
         $form .= '
      <button class="xhsShopButton"><span class="fa fa-paypal fa-fw"></span> ' . $this->language['go_to_paypal'] . '</button>

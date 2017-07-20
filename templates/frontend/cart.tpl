@@ -34,10 +34,10 @@ foreach($this->cartItems as $product){
 <button class="xhsUpdBtn" title="<?php $this->label('update'); ?>"><span class="fa fa-refresh fa-lg"></span></button>
 </form> <form action="%XHS_CHECKOUT_URL%" method="post" class="xhsInl">
 %CSRF_TOKEN_INPUT%
-<input type="hidden" name="xhsAmount" value="0" />
-<input type="hidden" name="xhsTask" value="updateCart" />
-<input type="hidden" name="xhsVariant" value="<?php echo $product['variantKey']; ?>" />
-<input type="hidden" name="cartItem" value="<?php echo $product['key'];?>" />
+<input type="hidden" name="xhsAmount" value="0">
+<input type="hidden" name="xhsTask" value="updateCart">
+<input type="hidden" name="xhsVariant" value="<?php echo $product['variantKey']; ?>">
+<input type="hidden" name="cartItem" value="<?php echo $product['key'];?>">
 <button class="xhsDelBtn" title="<?php $this->label('delete'); ?>"><span class="fa fa-remove fa-lg"></span></button>
 </form></td>
 <td class="xhsMoneyCell"><b><?php echo $this->formatCurrency($product['sum']); ?></b></td>

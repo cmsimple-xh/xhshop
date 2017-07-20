@@ -4,8 +4,6 @@ namespace Xhshop;
 
 abstract class View
 {
-    private $docType; // apparently unused
-    private $endTag = ' />';
     protected $templatePath;
     protected $themePath = null;
     private $imagePath; // apparently unused
@@ -100,7 +98,7 @@ abstract class View
         if (isset($params)) {
             $html .= $this->injectParams($params);
         }
-        $html .= $this->endTag;
+        $html .= '>';
         if (isset($label)) {
                $html .= ' ' . $this->label($label) . '</label>';
         }
@@ -117,7 +115,7 @@ abstract class View
         if ($this->settings[$name][$key] == $setting) {
             $html .= ' checked="checked"';
         }
-        $html .= $this->endTag;
+        $html .= '>';
         if (isset($this->labels[$label])) {
             $html .= $this->labels[$label];
         } else {
@@ -141,7 +139,7 @@ abstract class View
         if ($this->$name == $value) {
             $html .= ' checked="checked"';
         }
-        $html .= $this->endTag;
+        $html .= '>';
         if (isset($label)) {
             $html .=  '</label>';
         }
@@ -155,7 +153,7 @@ abstract class View
             $params['type'] = 'text';
         }
         $html .= $this->injectParams($params);
-        $html .= $this->endTag;
+        $html .= '>';
         return $html;
     }
 
@@ -188,7 +186,7 @@ abstract class View
     // apparently unused
     private function hiddeninputNameValue($name, $value)
     {
-        return '<input type="hidden" name="'. $name . '" value="'. $value .'"'. $this->endTag;
+        return '<input type="hidden" name="'. $name . '" value="'. $value .'">';
     }
 
     public function formatFloat($sum)
@@ -234,7 +232,7 @@ abstract class View
     // apparently unused
     private function submitButton($value)
     {
-        echo '<input type="submit" class="xhsShopButton" value="'.$this->buttons[$value].'"'. $this->endTag;
+        echo '<input type="submit" class="xhsShopButton" value="'.$this->buttons[$value].'">';
     }
 
     public function link($href, $text)
@@ -252,12 +250,6 @@ abstract class View
             $html = sprintf('<a href="%s" title="%s" class="%s">%s</a>', $href, $alt, $class, $html);
         }
         return $html;
-    }
-
-    // apparently unused
-    private function br()
-    {
-        echo '<br'.$this->endTag;
     }
 
     private function categorySelect()
@@ -280,7 +272,7 @@ abstract class View
 
         $html .= "\n\t" .'</select>';
         $html .= "\n\t" . '<noscript>'
-              . "\n\t" . '<input type="submit" class="xhsShopButton" value="'.$this->labels['select'] .'" />'
+              . "\n\t" . '<input type="submit" class="xhsShopButton" value="'.$this->labels['select'] .'">'
              . "\n\t</noscript>\n";
         return $html;
     }

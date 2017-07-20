@@ -54,10 +54,10 @@
 				<?php } ?>
 			<div class="xhsPrdPrice"><span class="xhsPrdPriceLabel"><?php echo $this->labels['price'];?></span> <span class="xhsPrdPriceNum"><?php echo $this->formatCurrency($product['price']); ?></span></div>
 				<input class="xhsInpAmount" type="number" min="1" step="1" name="xhsAmount" value="1">
-				<input type="hidden" name="xhsTask" value="updateCart" />
+				<input type="hidden" name="xhsTask" value="updateCart">
 				<input type="hidden" name="xhsCategory" value="<?php echo $this->selectedCategory; ?>">
 				x
-				<input type="hidden" name="cartItem" value="<?php echo $index; ?>" />
+				<input type="hidden" name="cartItem" value="<?php echo $index; ?>">
 				<button class="xhsShopButton xhsAddCart"><span class="fa fa-cart-plus fa-lg fa-fw"></span> <?php echo $this->label('add_to_cart'); ?></button>
 				%CSRF_TOKEN_INPUT%
 			</form>
