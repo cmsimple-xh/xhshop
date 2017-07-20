@@ -57,8 +57,8 @@ class SystemCheckService
         );
         if ($this->config['shipping_charge_for_shipping']) {
             $checks[] = $this->checkPageExists($this->lang['config_shipping_costs_page'], false);
+            $checks[] = $this->checkForwardingExpenses();
         }
-        $checks[] = $this->checkForwardingExpenses();
         return $checks;
     }
 
