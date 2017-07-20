@@ -299,15 +299,4 @@ abstract class View
         $html .= '</select>';
         return $html;
     }
-
-    // apparently unused
-    private function mapProduct(Product $product, $buffer)
-    {
-        foreach ($product as $field => $value) {
-            $placeHolder = '%'.strtoupper($field). '%';
-            str_replace($placeHolder, $value, $buffer);
-        }
-        ob_end_flush();
-        return $buffer;
-    }
 }
