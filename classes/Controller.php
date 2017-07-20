@@ -125,7 +125,9 @@ abstract class Controller
         }
 
         $productList = $this->catalog->getProducts($category);
-        uasort($productList, array($this, 'compareProducts'));
+        uasort($productList, function (Product $productA, Product $productB) {
+            return $productA->sortIndex - $productB->sortIndex;
+        });
         $products = array();
 
         foreach ($productList as $index => $product) {
@@ -328,44 +330,6 @@ abstract class Controller
             return true;
         }
         return false;
-    }
-
-    /**
-     * @SuppressWarnings(PHPMD.UnusedPrivateMethod)
-     */
-    private function compareProducts(Product $productA, Product $productB)
-    {
-        /**
-         *  By default the products are sorted by asscendent sortIndex => newest first
-         */
-        $field =  isset($_POST['xhsProductSortField']) ? $_POST['xhsSortField'] : 'sortIndex';
-        $order =  isset($_POST['xhsProductSortOrder'])
-            && $_POST['xhsProductSortOrder'] == 'DESC' ? $_POST['xhsProductSortOrder'] : 'ASC';
-
-        if (!isset($productA->$field)) {
-            trigger_error('Catalog:compareProducts - cannot compare products by ' . $field);
-            return 0;
-        }
-        if (is_array($productA->$field)) {
-            $temp = $productA->$field;
-            $propertyA = $temp[XHS_LANGUAGE];
-            $temp = $productB->$field;
-            $propertyB = $temp[XHS_LANGUAGE];
-        } else {
-            $propertyA = $productA->$field;
-            $propertyB = $productB->$field;
-        }
-
-        if ($propertyA == $propertyB) {
-            return 0;
-        }
-        if ($order == 'DESC') {
-            return ($propertyA > $propertyB) ? -1 : 1;
-        }
-        if ($order == 'ASC') {
-            return ($propertyA < $propertyB) ? -1 : 1;
-        }
-        return 0;
     }
 
     private function getPaymentModules()
