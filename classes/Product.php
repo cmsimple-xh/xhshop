@@ -22,7 +22,7 @@ class Product
     private $imageFolder;
     private $previewFolder;
 
-    public static function createFromRecord(array $record, $index, $separator)
+    public static function createFromRecord(array $record, $index, $nominalsep, $actualsep)
     {
         $result = new self;
         $result->names = $record['names'];
@@ -40,18 +40,18 @@ class Product
             ? $record['productPages']
             : array(XHS_LANGUAGE => array());
 
-        if ($record['separator'] != $separator) {
+        $actualsep = isset($record['separator']) ? $record['separator'] : $actualsep;
+        if ($actualsep !== $nominalsep) {
             $new_links = array();
             foreach ($record['productPages'][XHS_LANGUAGE] as $page) {
-                $new_links[] = str_replace($record['separator'], $separator, $page);
+                $new_links[] = str_replace($actualsep, $nominalsep, $page);
             }
             $result->productPages[XHS_LANGUAGE] = $new_links;
         }
 
-
         $result->sortIndex = isset($record['sortIndex']) ? $record['sortIndex'] : $index;
         $result->uid = isset($record['uid']) ? $record['uid'] : uniqid('p');
-        $result->separator = $separator;
+        $result->separator = $nominalsep;
         return $result;
     }
 

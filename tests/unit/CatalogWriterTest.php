@@ -76,6 +76,7 @@ class CatalogWriterTest extends TestCase
 <?php 
 ################### Catalog ###############################;
 $version = '1.0';
+$separator = '/';
 
 ################### Categories ###############################;
 $categories['en'][0] = 'cat1';
@@ -108,7 +109,6 @@ $products['p4bbf07812257f']['categories']['de'] = array('Trinken', );
 $products['p4bbf07812257f']['categories']['en'] = array('Beverages', );
 $products['p4bbf07812257f']['productPages']['de'] = array();
 $products['p4bbf07812257f']['productPages']['en'] = array();
-$products['p4bbf07812257f']['separator'] = '/';
 $products['p4bbf07812257f']['uid'] = 'p4bbf07812257f';
 
 #-----------------------------------------------------
@@ -131,7 +131,6 @@ $products['p4bbf078122572']['categories']['de'] = array('Essen', '– Backwaren'
 $products['p4bbf078122572']['categories']['en'] = array('Delicious things', '– fresh from the bakery', );
 $products['p4bbf078122572']['productPages']['de'] = array();
 $products['p4bbf078122572']['productPages']['en'] = array();
-$products['p4bbf078122572']['separator'] = '/';
 $products['p4bbf078122572']['uid'] = 'p4bbf078122572';
 
 #-----------------------------------------------------
@@ -152,6 +151,7 @@ EOT;
     {
         $catalog = (object) array(
             'version' => '1.0',
+            'separator' => '/',
             'categories' => array(
                 'en' => ['cat1', 'cat2'],
                 'de' => ['Kat1', 'Kat2']
@@ -159,8 +159,8 @@ EOT;
             'default_category' => ['en' => 'defcat', 'de' => 'DefKat'],
             'category_for_the_left_overs' => ['en' => 'this and that', 'de' => 'dies und das'],
             'products' => array(
-                'p4bbf07812257f' => Product::createFromRecord(self::PRODUCT_A, 1, '/'),
-                'p4bbf078122572' => Product::createFromRecord(self::PRODUCT_B, 2, '/')
+                'p4bbf07812257f' => Product::createFromRecord(self::PRODUCT_A, 1, '/', '/'),
+                'p4bbf078122572' => Product::createFromRecord(self::PRODUCT_B, 2, '/', '/')
             ),
         );
         $subject = new CatalogWriter($catalog);

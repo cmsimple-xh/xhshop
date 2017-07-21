@@ -23,6 +23,7 @@ class Catalogue
 
     private function loadArray()
     {
+        $separator = '/';
         $categories = $category_for_the_left_overs = $default_category = array();
         include XHS_CATALOG;
 
@@ -35,7 +36,7 @@ class Catalogue
         }
         $i = count($products);
         foreach ($products as $record) {
-            $product = Product::createFromRecord($record, $i, $this->separator);
+            $product = Product::createFromRecord($record, $i, $this->separator, $separator);
             $this->products[$product->getUid()] = $product;
             $i--;
         }

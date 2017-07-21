@@ -43,9 +43,9 @@ class CatalogWriter
     private function emitCatalog()
     {
         $string = "<?php \n";
-        //      $string .= '$separator = \'' . $this->separator . "';\n\n";
         $string .= '################### Catalog ###############################' . ";\n";
-        $string .= '$version = \'' . $this->catalog->version . "';\n\n";
+        $string .= '$version = \'' . $this->catalog->version . "';\n";
+        $string .= '$separator = \'' . $this->catalog->separator . "';\n\n";
         $string .= '################### Categories ###############################' . ";\n";
         foreach ($this->catalog->categories as $lang => $categories) {
             if (!is_array($categories)) {
@@ -100,8 +100,6 @@ class CatalogWriter
         $string .= $this->emitVariants($uid, $product);
         $string .= $this->emitCategories($uid, $product);
         $string .= $this->emitProductPages($uid, $product);
-        $string .= '$products[\'' . $uid . '\'][\'separator\'] = \''
-            . $this->cleanString($product->separator) . "';\n";
         $string .= '$products[\'' . $uid . '\'][\'uid\'] = \'' . $this->cleanString($uid) . "';\n";
         $string .= "\n#-----------------------------------------------------\n\n";
         return $string;

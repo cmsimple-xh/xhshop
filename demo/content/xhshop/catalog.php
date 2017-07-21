@@ -1,6 +1,7 @@
 <?php 
 ################### Catalog ###############################;
-$version = '1alpha-preview';
+$version = '@VERSION@';
+$separator = '/';
 
 ################### Categories ###############################;
 $categories['de'][0] = 'Trinken';
@@ -29,7 +30,7 @@ $products['p4bbf078122553']['vat'] = 'reduced';
 $products['p4bbf078122553']['sortIndex'] = 10;
 $products['p4bbf078122553']['previewPicture'] = 'preview_peas.jpg';
 $products['p4bbf078122553']['image'] = 'peas.jpg';
-$products['p4bbf078122553']['weight'] = 1.1;
+$products['p4bbf078122553']['weight'] = 1.10;
 $products['p4bbf078122553']['stock_on_hand'] = 1;
 $products['p4bbf078122553']['teasers']['de'] = '<p>Wisi aeterno argumentum mea.</p>';
 $products['p4bbf078122553']['descriptions']['de'] = '<p>Wisi aeterno argumentum mea. Mea ea decore volumus, tale veniam timeam sed in. Vim an ipsum quaestio <strong>consectetuer. </strong>Scaevola perfecto mea et, eu per dolorum verterem interesset, mei ut vivendo insolens. Vix facilisi disputando at, recteque accommodare est ei. Ad doming laoreet usu. Basta!</p>';
@@ -40,7 +41,6 @@ $products['p4bbf078122553']['categories']['de'] = array('Essen', '– Gemüse', 
 $products['p4bbf078122553']['categories']['en'] = array('Delicious things', '– vegetables', );
 $products['p4bbf078122553']['productPages']['de'] = array();
 $products['p4bbf078122553']['productPages']['en'] = array();
-$products['p4bbf078122553']['separator'] = '/';
 $products['p4bbf078122553']['uid'] = 'p4bbf078122553';
 
 #-----------------------------------------------------
@@ -63,7 +63,6 @@ $products['p4bbf07812255f']['categories']['de'] = array('Essen', '– Obst', );
 $products['p4bbf07812255f']['categories']['en'] = array('Delicious things', '– fruits', );
 $products['p4bbf07812255f']['productPages']['de'] = array();
 $products['p4bbf07812255f']['productPages']['en'] = array();
-$products['p4bbf07812255f']['separator'] = '/';
 $products['p4bbf07812255f']['uid'] = 'p4bbf07812255f';
 
 #-----------------------------------------------------
@@ -86,7 +85,6 @@ $products['p4bbf078122566']['categories']['de'] = array('Essen', '– Obst', );
 $products['p4bbf078122566']['categories']['en'] = array('Delicious things', '– fruits', );
 $products['p4bbf078122566']['productPages']['de'] = array();
 $products['p4bbf078122566']['productPages']['en'] = array();
-$products['p4bbf078122566']['separator'] = '/';
 $products['p4bbf078122566']['uid'] = 'p4bbf078122566';
 
 #-----------------------------------------------------
@@ -98,7 +96,7 @@ $products['p4bbf07812256c']['vat'] = 'reduced';
 $products['p4bbf07812256c']['sortIndex'] = 8;
 $products['p4bbf07812256c']['previewPicture'] = 'preview_pears.jpg';
 $products['p4bbf07812256c']['image'] = 'pears.jpg';
-$products['p4bbf07812256c']['weight'] = 0.8;
+$products['p4bbf07812256c']['weight'] = 0.80;
 $products['p4bbf07812256c']['stock_on_hand'] = 1;
 $products['p4bbf07812256c']['teasers']['de'] = '<p>No exerci audiam eam, et ius eros magna scripta.</p>';
 $products['p4bbf07812256c']['descriptions']['de'] = '<p>No exerci audiam eam, et ius eros magna scripta. Minim labitur argumentum te sed. Est eu kasd novum efficiantur. Ea vix sumo iudico voluptatum, usu elit mazim tantas ex. Pro wisi copiosae reprimique et, pri alia adolescens cu.</p>';
@@ -109,7 +107,6 @@ $products['p4bbf07812256c']['categories']['de'] = array('Essen', '– Obst', );
 $products['p4bbf07812256c']['categories']['en'] = array('Delicious things', '– fruits', );
 $products['p4bbf07812256c']['productPages']['de'] = array();
 $products['p4bbf07812256c']['productPages']['en'] = array();
-$products['p4bbf07812256c']['separator'] = '/';
 $products['p4bbf07812256c']['uid'] = 'p4bbf07812256c';
 
 #-----------------------------------------------------
@@ -133,7 +130,6 @@ $products['p4bbf078122572']['categories']['de'] = array('Essen', '– Backwaren'
 $products['p4bbf078122572']['categories']['en'] = array('Delicious things', '– fresh from the bakery', );
 $products['p4bbf078122572']['productPages']['de'] = array();
 $products['p4bbf078122572']['productPages']['en'] = array();
-$products['p4bbf078122572']['separator'] = '/';
 $products['p4bbf078122572']['uid'] = 'p4bbf078122572';
 
 #-----------------------------------------------------
@@ -156,7 +152,6 @@ $products['p4bbf078122579']['categories']['de'] = array('Essen', '– Backwaren'
 $products['p4bbf078122579']['categories']['en'] = array('Delicious things', '– fresh from the bakery', );
 $products['p4bbf078122579']['productPages']['de'] = array();
 $products['p4bbf078122579']['productPages']['en'] = array();
-$products['p4bbf078122579']['separator'] = '/';
 $products['p4bbf078122579']['uid'] = 'p4bbf078122579';
 
 #-----------------------------------------------------
@@ -168,7 +163,7 @@ $products['p4bbf07812257f']['vat'] = 'full';
 $products['p4bbf07812257f']['sortIndex'] = 5;
 $products['p4bbf07812257f']['previewPicture'] = 'preview_coffee.jpg';
 $products['p4bbf07812257f']['image'] = 'coffee.jpg';
-$products['p4bbf07812257f']['weight'] = 0.3;
+$products['p4bbf07812257f']['weight'] = 0.30;
 $products['p4bbf07812257f']['stock_on_hand'] = 1;
 $products['p4bbf07812257f']['teasers']['de'] = '<p>Coffee. Mediocrem erroribus forensibus ea mel, mea omnes eligendi eu. Sit sint eros ne.</p>';
 $products['p4bbf07812257f']['descriptions']['de'] = '<p>Coffee. Mediocrem erroribus forensibus ea mel, mea omnes eligendi eu. Sit sint eros ne.</p>';
@@ -179,7 +174,6 @@ $products['p4bbf07812257f']['categories']['de'] = array('Trinken', );
 $products['p4bbf07812257f']['categories']['en'] = array('Beverages', );
 $products['p4bbf07812257f']['productPages']['de'] = array();
 $products['p4bbf07812257f']['productPages']['en'] = array();
-$products['p4bbf07812257f']['separator'] = '/';
 $products['p4bbf07812257f']['uid'] = 'p4bbf07812257f';
 
 #-----------------------------------------------------
@@ -202,7 +196,6 @@ $products['p4bbf078122585']['categories']['de'] = array('Trinken', );
 $products['p4bbf078122585']['categories']['en'] = array('Beverages', );
 $products['p4bbf078122585']['productPages']['de'] = array();
 $products['p4bbf078122585']['productPages']['en'] = array();
-$products['p4bbf078122585']['separator'] = '/';
 $products['p4bbf078122585']['uid'] = 'p4bbf078122585';
 
 #-----------------------------------------------------
@@ -214,7 +207,7 @@ $products['p5948ea4f3940b']['vat'] = 'full';
 $products['p5948ea4f3940b']['sortIndex'] = 1;
 $products['p5948ea4f3940b']['previewPicture'] = 'preview_screwdriver_XH.jpg';
 $products['p5948ea4f3940b']['image'] = 'screwdriver_XH.jpg';
-$products['p5948ea4f3940b']['weight'] = 0.1;
+$products['p5948ea4f3940b']['weight'] = 0.10;
 $products['p5948ea4f3940b']['stock_on_hand'] = 1;
 $products['p5948ea4f3940b']['teasers']['de'] = '<p>Praktischer universell einsetzbarer XH-Schraubendreher mit Aufsatz-Bits für PHP, HTML, JavaScript, CSS und vielen weiteren Einsatzmöglichkeiten.</p>';
 $products['p5948ea4f3940b']['teasers']['en'] = '<p>Handy universally usable XH screwdriver with attachment bits for PHP, HTML, JavaScript, CSS and many other possible applications.</p>';
@@ -225,10 +218,9 @@ $products['p5948ea4f3940b']['descriptions']['en'] = '<p>With this allround XH sc
 $products['p5948ea4f3940b']['variants']['de'] = array();
 $products['p5948ea4f3940b']['variants']['en'] = array();
 $products['p5948ea4f3940b']['categories']['de'] = array('Das Besondere Etwas', );
-$products['p5948ea4f3940b']['categories']['en'] = array('Something Special');
+$products['p5948ea4f3940b']['categories']['en'] = array('Something Special', );
 $products['p5948ea4f3940b']['productPages']['de'] = array();
 $products['p5948ea4f3940b']['productPages']['en'] = array();
-$products['p5948ea4f3940b']['separator'] = '/';
 $products['p5948ea4f3940b']['uid'] = 'p5948ea4f3940b';
 
 #-----------------------------------------------------
@@ -254,7 +246,6 @@ $products['p595e69e48c4e4']['categories']['de'] = array('Das Besondere Etwas', )
 $products['p595e69e48c4e4']['categories']['en'] = array('Something Special', );
 $products['p595e69e48c4e4']['productPages']['de'] = array();
 $products['p595e69e48c4e4']['productPages']['en'] = array();
-$products['p595e69e48c4e4']['separator'] = '/';
 $products['p595e69e48c4e4']['uid'] = 'p595e69e48c4e4';
 
 #-----------------------------------------------------
