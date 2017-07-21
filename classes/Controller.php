@@ -241,10 +241,10 @@ abstract class Controller
         foreach ($temp as $uid => $product) {
             $gotIt = true;
             foreach ($needles as $needle) {
-                if (stristr($product['name'], $needle)   == false
-                    && stristr($product['teaser'], $needle) == false
-                    && stristr($product['description'], $needle) == false
-                    && stristr(implode(' ', $product['categories']), $needle) == false
+                if (utf8_stripos($product['name'], $needle) === false
+                    && utf8_stripos($product['teaser'], $needle) === false
+                    && utf8_stripos($product['description'], $needle) === false
+                    && utf8_stripos(implode(' ', $product['categories']), $needle) === false
                 ) {
                     $gotIt = false;
                     break;
