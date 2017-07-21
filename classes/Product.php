@@ -42,7 +42,7 @@ class Product
 
         if ($record['separator'] != $separator) {
             $new_links = array();
-            foreach ($temp['productPages'][XHS_LANGUAGE] as $page) {
+            foreach ($record['productPages'][XHS_LANGUAGE] as $page) {
                 $new_links[] = str_replace($record['separator'], $separator, $page);
             }
             $result->productPages[XHS_LANGUAGE] = $new_links;
