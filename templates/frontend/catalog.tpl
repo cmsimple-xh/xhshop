@@ -1,4 +1,4 @@
-<?php $xhsSearch = isset($_POST['xhsProductSearch']) ? $_POST['xhsProductSearch'] : ''; ?>
+<?php $xhsSearch = isset($_GET['xhsProductSearch']) ? $_GET['xhsProductSearch'] : ''; ?>
 <div class="xhsCatSelSearch">
 	<div class="xhsCatSel">
 		<?php if($this->showCategorySelect !== false){ ?>
@@ -27,8 +27,8 @@
 	<?php if(count($this->products) === 0){ ?>
 	<p>
 		<?php
-		if(isset($_POST['xhsProductSearch'])){
-			printf($this->hints['no_products_found'], $_POST['xhsProductSearch'] );
+		if(isset($_GET['xhsProductSearch'])){
+			printf($this->hints['no_products_found'], $_GET['xhsProductSearch'] );
 		} else {
 			printf($this->hints['sold_out'],$this->categoryHeader);
 		} ?>
