@@ -51,7 +51,7 @@ class FrontEndController extends Controller
         $params = array('productName' => $product->getName(XHS_LANGUAGE),
             'product'     => $product,
             'vatInfo'     => $this->vatInfo(),
-            'vatRate'     => $this->settings['vat_' . $product->vat]);
+            'vatRate'     => $this->settings['vat_' . $product->getVat()]);
         if ($product->hasVariants()) {
             $params['variants'] = $product->getVariants(XHS_LANGUAGE);
         }
@@ -173,7 +173,7 @@ class FrontEndController extends Controller
                     $name       = $this->viewProvider->link($page, $name);
                     $detailLink = $this->viewProvider->link($page, $this->viewProvider->labels['product_info']);
                 }
-                $vatRate                          = 'vat_' . $this->catalog->getProduct($productKey)->vat;
+                $vatRate                          = 'vat_' . $this->catalog->getProduct($productKey)->getVat();
                 $vatRate                          = $this->settings[$vatRate];
                 $cartItems[$index]['name']        = $name;
                 $cartItems[$index]['key']         = $productKey;
@@ -185,9 +185,9 @@ class FrontEndController extends Controller
                 $cartItems[$index]['price']       = $product['gross'];
                 $cartItems[$index]['vatRate']     = $vatRate;
                 $cartItems[$index]['sum']         = $product['gross'] * $product['amount'];
-                if ($this->catalog->getProduct($productKey)->previewPicture) {
-                    $cartItems[$index]['previewPicture'] = $this->settings['image_folder']
-                        . $this->catalog->getProduct($productKey)->previewPicture;
+                if ($this->catalog->getProduct($productKey)->getPreviewPictureName()) {
+                    $cartItems[$index]['previewPicture'] =
+                            $this->catalog->getProduct($productKey)->getPreviewPicturePath();
                 }
 
                 $i++;
@@ -623,10 +623,10 @@ class FrontEndController extends Controller
         $params['description'] = $product->getDescription();
         $params['button']      = $this->addToCartButton($product);
         $params['variants']    = count($product->getVariants() > 0) ? $product->getVariants() : false;
-        $params['price']       = $product->price;
-        $params['uid']         = $product->uid;
+        $params['price']       = $product->getGross();
+        $params['uid']         = $product->getUid();
         $params['hideVat']     = (bool) $this->settings['dont_deal_with_taxes'];
-        $params['vatRate']     = $this->settings['vat_' . $product->vat];
+        $params['vatRate']     = $this->settings['vat_' . $product->getVat()];
         $params['vatInfo']     = $this->vatInfo();
         $params['image']       = $this->viewProvider->linkedImage(
             $product->getPreviewPicturePath(),

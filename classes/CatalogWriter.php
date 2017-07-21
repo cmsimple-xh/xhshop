@@ -2,11 +2,13 @@
 
 namespace Xhshop;
 
+use stdClass;
+
 class CatalogWriter
 {
     private $catalog;
 
-    public function __construct(Catalogue $catalog)
+    public function __construct(stdClass $catalog)
     {
         $this->catalog = $catalog;
     }
@@ -16,9 +18,9 @@ class CatalogWriter
         $string = "<?php \n";
         //      $string .= '$separator = \'' . $this->separator . "';\n\n";
         $string .= '################### Catalog ###############################' . ";\n";
-        $string .= '$version = \'' . $this->catalog->getVersion() . "';\n\n";
+        $string .= '$version = \'' . $this->catalog->version . "';\n\n";
         $string .= '################### Categories ###############################' . ";\n";
-        foreach ($this->catalog->getAllCategories() as $lang => $categories) {
+        foreach ($this->catalog->categories as $lang => $categories) {
             if (!is_array($categories)) {
                 $string .= '$categories[\'' . $lang . '\'] = array();' . ";\n";
             } else {
@@ -28,14 +30,15 @@ class CatalogWriter
                 }
             }
         }
-        foreach ($this->catalog->getAllDefaultCategories() as $lang => $cat) {
+        foreach ($this->catalog->default_category as $lang => $cat) {
             $string .= '$default_category[\'' . $lang . '\'] = \'' . $this->cleanString($cat) . "';\n";
         }
-        foreach ($this->catalog->getAllLeftOverCategories() as $lang => $cat) {
+        foreach ($this->catalog->category_for_the_left_overs as $lang => $cat) {
             $string .= '$category_for_the_left_overs[\'' . $lang . '\'] = \'' . $this->cleanString($cat) . "';\n";
         }
         $string .= "\n\n" . '################### Products ######################' . ";\n";
-        foreach ($this->catalog->getProducts() as $uid => $product) {
+        foreach ($this->catalog->products as $uid => $product) {
+            $product = $product->getInternalState();
             foreach ($product->names as $lang => $name) {
                 $string .= '$products[\'' . $uid . '\'][\'names\'][\'' . $lang . '\'] = \''
                     . $this->cleanString($name) . "';\n";

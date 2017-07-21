@@ -26,22 +26,22 @@ class Order
 
     public function addItem(Product $product, $amount, $variant = null)
     {
-        $index = $product->uid;
+        $index = $product->getUid();
         if (isset($variant)) {
             $index .= '_'.$variant;
         }
         $this->items[$index]['amount'] = (int)$amount;
         $this->items[$index]['variant'] = $variant;
         $this->items[$index]['net'] = (float)$this->getProductNet($product);
-        $this->items[$index]['gross'] = (float)$product->price;
-        $this->items[$index]['vatRate'] = $product->vat;
+        $this->items[$index]['gross'] = $product->getGross();
+        $this->items[$index]['vatRate'] = $product->getVat();
         $this->items[$index]['units'] = (float)$product->getWeight();
         $this->refresh();
     }
 
     public function removeItem(Product $product, $variant = null)
     {
-        $index = $product->uid;
+        $index = $product->getUid();
         if (isset($variant)) {
             $index .= '_'.$variant;
         }
@@ -52,10 +52,9 @@ class Order
     private function getProductNet(Product $product)
     {
         $rate = 0;
-        if ($product->vat == 'full') {
+        if ($product->getVat() == 'full') {
             $rate = $this->vatFullRate;
-        }
-        if ($product->vat == 'reduced') {
+        } elseif ($product->getVat() == 'reduced') {
             $rate = $this->vatReducedRate;
         }
         return $product->getNet($rate);

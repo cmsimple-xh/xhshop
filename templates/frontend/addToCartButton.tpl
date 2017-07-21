@@ -2,7 +2,7 @@
 <section id="cartButton" class="xhsMain">
 	<h1 class="xhsInl xhsLft"><?php echo $this->productName; ?></h1>
 	<div class="xhsInfoBlock">
-		<div class="xhsPrdPrice"><span class="xhsPrdPriceLabel"><?php echo $this->labels['price'];?></span> <span class="xhsPrdPriceNum"><?php echo $this->formatCurrency($this->product->price); ?></span></div>
+		<div class="xhsPrdPrice"><span class="xhsPrdPriceLabel"><?php echo $this->labels['price'];?></span> <span class="xhsPrdPriceNum"><?php echo $this->formatCurrency($this->product->getGross()); ?></span></div>
 		<div class="price_info"><span class="xhsPrdPriceLabel">
 			 <?php $this->hint($this->vatInfo); ?> (<?php echo $this->formatFloat($this->vatRate) ?> %)<br>
             <?php echo $this->shippingCostsHint(); ?>  
@@ -11,7 +11,7 @@
 		<form method="post">
 			%CSRF_TOKEN_INPUT%
 			<input type="hidden" name="xhsTask" value="updateCart">
-			<input type="hidden" name="cartItem" value="<?php echo $this->product->uid ; ?>">
+			<input type="hidden" name="cartItem" value="<?php echo $this->product->getUid() ; ?>">
 			<?php if(isset($this->variants)){ ?>
 			<select name="xhsVariant">
 				<?php  foreach($this->variants as $index => $variant){ ?>

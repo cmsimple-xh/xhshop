@@ -99,12 +99,12 @@ class BackEndController extends Controller
                 'xhsImage'
             );
             $params['variants']    = $product->hasVariants() ? implode('; ', $product->getVariants(XHS_LANGUAGE)) : '';
-            $params['name']        = $product->names[XHS_LANGUAGE];
+            $params['name']        = $product->getName();
             $params['teaser']      = $product->getTeaser(XHS_LANGUAGE);
             $params['description'] = $product->getDescription(XHS_LANGUAGE);
             $params['price']       = $product->getGross();
             $params['weight']      = $product->getWeight();
-            $params['stockOnHand'] = is_int($product->stock_on_hand) ? $product->stock_on_hand : 1;
+            $params['stockOnHand'] = $product->isAvailable();
             $params['preview']     = $this->viewProvider->linkedImage(
                 $product->getPreviewPicturePath(),
                 $product->getPreviewPicturePath(),
@@ -115,7 +115,7 @@ class BackEndController extends Controller
                 $product->getImagePath(),
                 $product->getName(XHS_LANGUAGE)
             );
-            $params['vat']         = $product->vat;
+            $params['vat']         = $product->getVat();
             $params['pages']       = $product->getProductPages();
             $params['productCats'] = $product->getCategories();
         } else {

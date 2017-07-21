@@ -4,23 +4,56 @@ namespace Xhshop;
 
 class Product
 {
-    public $names;
-    public $descriptions;
-    public $teasers;
-    public $price;
-    public $productPages;
-    public $previewPicture;
-    public $vat;
-    public $separator;
-    public $categories;
-    public $stock_on_hand;
-    public $weight;
-    public $variants;
-    public $uid;
-    public $sortIndex;
-    public $image;
+    private $names;
+    private $descriptions;
+    private $teasers;
+    private $price;
+    private $productPages;
+    private $previewPicture;
+    private $vat;
+    private $separator;
+    private $categories;
+    private $stock_on_hand;
+    private $weight;
+    private $variants;
+    private $uid;
+    private $sortIndex;
+    private $image;
     private $imageFolder;
     private $previewFolder;
+
+    public static function createFromRecord(array $record, $index, $separator)
+    {
+        $result = new self;
+        $result->names = $record['names'];
+        $result->price = $record['price'];
+        $result->vat = $record['vat'];
+        $result->variants = isset($record['variants']) ? $record['variants'] : array(XHS_LANGUAGE => '');
+        $result->previewPicture = isset($record['previewPicture']) ? $record['previewPicture'] : '';
+        $result->image = isset($record['image']) ? $record['image'] : '';
+        $result->weight = $record['weight'];
+        $result->setStockOnHand(isset($record['stock_on_hand']) ? $record['stock_on_hand'] : 1);
+        $result->teasers = isset($record['teasers']) ? $record['teasers'] : array(XHS_LANGUAGE => '');
+        $result->descriptions = isset($record['descriptions']) ? $record['descriptions'] :array(XHS_LANGUAGE => '');
+        $result->categories = isset($record['categories']) ? $record['categories'] : array(XHS_LANGUAGE => '');
+        $result->productPages = isset($record['productPages'])
+            ? $record['productPages']
+            : array(XHS_LANGUAGE => array());
+
+        if ($record['separator'] != $separator) {
+            $new_links = array();
+            foreach ($temp['productPages'][XHS_LANGUAGE] as $page) {
+                $new_links[] = str_replace($record['separator'], $separator, $page);
+            }
+            $result->productPages[XHS_LANGUAGE] = $new_links;
+        }
+
+
+        $result->sortIndex = isset($record['sortIndex']) ? $record['sortIndex'] : $index;
+        $result->uid = isset($record['uid']) ? $record['uid'] : uniqid('p');
+        $result->separator = $separator;
+        return $result;
+    }
 
     public function __construct()
     {
@@ -35,6 +68,24 @@ class Product
         $this->uid = uniqid('p');
         $this->imageFolder = "{$pth['folder']['images']}{$plugin_cf['xhshop']['shop_image_folder']}";
         $this->previewFolder = "{$pth['folder']['images']}{$plugin_cf['xhshop']['shop_preview_folder']}";
+    }
+
+    /**
+     * For serialization only!
+     */
+    public function getInternalState()
+    {
+        return (object) get_object_vars($this);
+    }
+
+    public function getUid()
+    {
+        return $this->uid;
+    }
+
+    public function getSortIndex()
+    {
+        return $this->sortIndex;
     }
 
     public function getWeight()
@@ -120,6 +171,11 @@ class Product
         return '';
     }
 
+    public function getVat()
+    {
+        return $this->vat;
+    }
+
     public function getImageName()
     {
         if (isset($this->image)) {
@@ -159,6 +215,16 @@ class Product
         return (isset($this->variants[XHS_LANGUAGE]) && is_array($this->variants[XHS_LANGUAGE]))
             ? count($this->variants[XHS_LANGUAGE]) > 0
             : null;
+    }
+
+    public function setSortIndex($value)
+    {
+        $this->sortIndex = $value;
+    }
+
+    public function setSeparator($value)
+    {
+        $this->separator = $value;
     }
 
     public function setName($name = 'No Name!', $language = XHS_LANGUAGE)
@@ -220,6 +286,11 @@ class Product
     public function setCategories(array $categories = array(), $language = XHS_LANGUAGE)
     {
         $this->categories[$language] = $categories;
+    }
+
+    public function addCategory($key, $value)
+    {
+        $this->categories[XHS_LANGUAGE][$key] = $value;
     }
 
     public function setPreviewPic($pic = '')

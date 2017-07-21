@@ -126,7 +126,7 @@ abstract class Controller
 
         $productList = $this->catalog->getProducts($category);
         uasort($productList, function (Product $productA, Product $productB) {
-            return $productA->sortIndex - $productB->sortIndex;
+            return $productA->getSortIndex() - $productB->getSortIndex();
         });
         $products = array();
 
@@ -149,7 +149,7 @@ abstract class Controller
             $products[$index]['teaser'] = $product->getTeaser();
             $products[$index]['detailLink'] = $detailLink;
             $products[$index]['price'] = $product->getGross();
-            $products[$index]['sortIndex'] = $product->sortIndex;
+            $products[$index]['sortIndex'] = $product->getSortIndex();
             $products[$index]['isAvailable'] = $product->isAvailable();
             $products[$index]['previewPicture'] = $this->viewProvider->linkedImage(
                 $product->getPreviewPicturePath(),
@@ -172,14 +172,11 @@ abstract class Controller
         $url = $this->bridge->getCurrentPage();
         $products = array();
         foreach ($this->catalog->getProducts() as $product) {
-            if (!isset($product->productPages[XHS_LANGUAGE])) {
-                continue;
-            }
-            if (isset($product->stock_on_hand) && $product->stock_on_hand < 1) {
+            if (!$product->isAvailable()) {
                 continue;
             }
 
-            foreach ($product->productPages[XHS_LANGUAGE] as $page) {
+            foreach ($product->getProductPages() as $page) {
                 if ($page == $this->bridge->translateUrl($url) || $page == $url) {
                     $products[] = $product;
                 }

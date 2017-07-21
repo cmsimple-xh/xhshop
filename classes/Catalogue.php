@@ -21,11 +21,6 @@ class Catalogue
         $this->loadArray();
     }
 
-    public function getVersion()
-    {
-        return $this->version;
-    }
-
     private function loadArray()
     {
         $categories = $category_for_the_left_overs = $default_category = array();
@@ -39,37 +34,10 @@ class Catalogue
             $products = array();
         }
         $i = count($products);
-        foreach ($products as $temp) {
-            $product = new Product();
-            $product->names = $temp['names'];
-            $product->price = $temp['price'];
-            $product->vat = $temp['vat'];
-            $product->variants = isset($temp['variants']) ? $temp['variants'] : array(XHS_LANGUAGE => '');
-            $product->previewPicture = isset($temp['previewPicture']) ? $temp['previewPicture'] : '';
-            $product->image = isset($temp['image']) ? $temp['image'] : '';
-            $product->weight = $temp['weight'];
-            $product->setStockOnHand(isset($temp['stock_on_hand']) ? $temp['stock_on_hand'] : 1);
-            $product->teasers = isset($temp['teasers']) ? $temp['teasers'] : array(XHS_LANGUAGE => '');
-            $product->descriptions = isset($temp['descriptions']) ? $temp['descriptions'] :array(XHS_LANGUAGE => '');
-            $product->categories = isset($temp['categories']) ? $temp['categories'] : array(XHS_LANGUAGE => '');
-            $product->productPages = isset($temp['productPages'])
-                ? $temp['productPages']
-                : array(XHS_LANGUAGE => array());
-
-            if ($temp['separator'] <> $this->separator) {
-                $new_links = array();
-                foreach ($temp['productPages'][XHS_LANGUAGE] as $page) {
-                    $new_links[] = str_replace($temp['separator'], $this->separator, $page);
-                }
-                $product->productPages[XHS_LANGUAGE] = $new_links;
-            }
-
-
-            $product->sortIndex = isset($temp['sortIndex']) ? $temp['sortIndex'] : $i;
+        foreach ($products as $record) {
+            $product = Product::createFromRecord($record, $i, $this->separator);
+            $this->products[$product->getUid()] = $product;
             $i--;
-            $product->uid = isset($temp['uid']) ? $temp['uid'] :uniqid('p');
-            $product->separator = $this->separator;
-            $this->products[$product->uid] = $product;
         }
     }
 
@@ -80,12 +48,9 @@ class Catalogue
 
         foreach ($this->products as $product) {
             if ($product instanceof Product) {
-                $product->separator = $this->separator;
-                if (!isset($product->uid)) {
-                    $product->uid = uniqid('p');
-                }
-                $products[$product->uid] = $product;
-                $sortOrder[$product->uid] = $product->sortIndex;
+                $product->setSeparator($this->separator);
+                $products[$product->getUid()] = $product;
+                $sortOrder[$product->getUid()] = $product->getSortIndex();
             }
         }
 
@@ -94,13 +59,13 @@ class Catalogue
 
         $i = 1;
         foreach (array_keys($sortOrder) as $key) {
-            $products[$key]->sortIndex = $i;
+            $products[$key]->setSortIndex($i);
             $i++;
         }
 
         $this->products = isset($products) ? $products : array();
 
-        $writer = new CatalogWriter($this);
+        $writer = new CatalogWriter((object) get_object_vars($this));
         $writer->write();
         $this->loadArray();
         return;
@@ -113,9 +78,9 @@ class Catalogue
         }
         $products = $this->getProducts($this->categories[XHS_LANGUAGE][$index]);
         foreach ($products as $product) {
-            foreach ($product->categories[XHS_LANGUAGE] as $key => $value) {
+            foreach ($product->getCategories() as $key => $value) {
                 if ($value == $this->categories[XHS_LANGUAGE][$index]) {
-                    $product->categories[XHS_LANGUAGE][$key] = $name;
+                    $product->addCategory($key, $name);
                 }
             }
         }
@@ -158,7 +123,7 @@ class Catalogue
     public function hasUncategorizedProducts()
     {
         foreach ($this->products as $product) {
-            if (!isset($product->categories[XHS_LANGUAGE]) || count($product->categories[XHS_LANGUAGE]) == 0) {
+            if (count($product->getCategories()) == 0) {
                 return true;
             }
         }
@@ -169,7 +134,7 @@ class Catalogue
     {
         $products = array();
         foreach ($this->products as $index => $product) {
-            if (!isset($product->categories[XHS_LANGUAGE]) || !$product->categories[XHS_LANGUAGE]) {
+            if (count($product->getCategories()) > 0) {
                 $products[$index] = $product;
             }
         }
@@ -187,9 +152,7 @@ class Catalogue
             if (in_array($category, $this->categories[XHS_LANGUAGE])) {
                 $products = array();
                 foreach ($this->products as $index => $product) {
-                    if (isset($product->categories[XHS_LANGUAGE])
-                        && is_array($product->categories[XHS_LANGUAGE])
-                        && in_array($category, $product->categories[XHS_LANGUAGE])) {
+                    if (in_array($category, $product->getCategories())) {
                         $products[$index] = $product;
                     }
                 }
@@ -204,10 +167,10 @@ class Catalogue
     }
     public function swapSortIndex(Product $productA, Product $productB)
     {
-        $swap = $productA->sortIndex;
+        $swap = $productA->getSortIndex();
 
-        $productA->sortIndex = $productB->sortIndex;
-        $productB->sortIndex = $swap;
+        $productA->setSortIndex($productB->getSortIndex());
+        $productB->setSortIndex($swap);
         $this->save();
     }
 
@@ -223,7 +186,7 @@ class Catalogue
 
     public function getLastProductId()
     {
-        return end($this->catalog->products)->uid;
+        return end($this->products)->getUid();
     }
 
     public function getCategories($language = XHS_LANGUAGE)
@@ -233,21 +196,6 @@ class Catalogue
             $this->save();
         }
         return $this->categories[$language];
-    }
-
-    public function getAllCategories()
-    {
-        return $this->categories;
-    }
-
-    public function getAllDefaultCategories()
-    {
-        return $this->default_category;
-    }
-
-    public function getAllLeftOverCategories()
-    {
-        return $this->category_for_the_left_overs;
     }
 
     public function moveCategory($direction = null, $index = null)
@@ -282,7 +230,7 @@ class Catalogue
 
     public function addProduct(Product $product)
     {
-        $product->sortIndex = 0;
+        $product->setSortIndex(0);
         $this->products[] = $product;
         $this->save();
     }

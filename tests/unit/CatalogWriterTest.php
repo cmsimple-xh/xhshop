@@ -12,21 +12,23 @@ class CatalogWriterTest extends TestCase
 
     protected function setUp()
     {
-        uopz_redefine('XHS_LANGUAGE', 'en');
         $this->root = vfsStream::setup('root');
+        uopz_redefine('XHS_LANGUAGE', 'en');
         uopz_redefine('XHS_CATALOG', vfsStream::url('root/catalog.php'));
     }
 
     public function testWrite()
     {
-        $catalog = $this->createMock(Catalogue::class);
-        $catalog->method('getAllCategories')->willReturn(array(
-            'en' => ['cat1', 'cat2'],
-            'de' => ['Kat1', 'Kat2']
-        ));
-        $catalog->method('getAllDefaultCategories')->willReturn(['en' => 'defcat', 'de' => 'DefKat']);
-        $catalog->method('getAllLeftOverCategories')->willReturn(['en' => 'this and that', 'de' => 'dies und das']);
-        $catalog->method('getProducts')->willReturn([]);
+        $catalog = (object) array(
+            'version' => '1.0',
+            'categories' => array(
+                'en' => ['cat1', 'cat2'],
+                'de' => ['Kat1', 'Kat2']
+            ),
+            'default_category' => ['en' => 'defcat', 'de' => 'DefKat'],
+            'category_for_the_left_overs' => ['en' => 'this and that', 'de' => 'dies und das'],
+            'products' => []
+        );
         $subject = new CatalogWriter($catalog);
         $subject->write();
     }
