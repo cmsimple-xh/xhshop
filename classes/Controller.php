@@ -285,11 +285,9 @@ abstract class Controller
 
     protected function loadPaymentModule($name)
     {
-        global $xhsController;
-
         $classname = '\\Xhshop\\Payment\\' . str_replace(' ', '', ucwords(str_replace('_', ' ', $name)));
         if (class_exists($classname)) {
-            $xhsController->addPaymentModule(new $classname());
+            $this->addPaymentModule(new $classname());
             return true;
         }
         return false;
