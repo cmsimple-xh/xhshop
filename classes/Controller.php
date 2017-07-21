@@ -107,13 +107,17 @@ abstract class Controller
             $options[] = array('value' => $this->viewProvider->labels['all_categories'], 'label' => $this->viewProvider->labels['all_categories']);
         }
         foreach ($this->categories() as $category) {
-            $options[] = array('value' => $category, 'label' => $category);
+            if (!$this instanceof FrontEndController || $this->catalog->isAnyProductAvailable($category)) {
+                $options[] = array('value' => $category, 'label' => $category);
+            }
         }
         if ($this->catalog->hasUncategorizedProducts()) {
-            $options[] = array(
-                'value' => 'left_overs',
-                'label' => $this->catalog->getFallbackCategory()
-            );
+            if (!$this instanceof FrontEndController || $this->catalog->isAnyProductAvailable('left_overs')) {
+                $options[] = array(
+                    'value' => 'left_overs',
+                    'label' => $this->catalog->getFallbackCategory()
+                );
+            }
         }
         return $options;
     }

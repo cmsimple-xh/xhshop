@@ -664,15 +664,19 @@ class FrontEndController extends Controller
         $cats                            = $this->categories();
         $i                               = 1;
         foreach ($cats as $cat) {
-            $params['categories'][$i]['url']  = urlencode($cat);
-            $params['categories'][$i]['name'] = $cat;
-            $i++;
+            if ($this->catalog->isAnyProductAvailable($cat)) {
+                $params['categories'][$i]['url']  = urlencode($cat);
+                $params['categories'][$i]['name'] = $cat;
+                $i++;
+            }
         }
 
         if ($this->catalog->hasUncategorizedProducts()) {
-            $i++;
-            $params['categories'][$i]['url']  = 'left_overs';
-            $params['categories'][$i]['name'] = $this->catalog->getFallbackCategory();
+            if ($this->catalog->isAnyProductAvailable('left_overs')) {
+                $i++;
+                $params['categories'][$i]['url']  = 'left_overs';
+                $params['categories'][$i]['name'] = $this->catalog->getFallbackCategory();
+            }
         }
 
         return $this->render('shopToc', $params);

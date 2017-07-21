@@ -146,6 +146,16 @@ class Catalogue
         return isset($this->category_for_the_left_overs[XHS_LANGUAGE]) ? $this->category_for_the_left_overs[XHS_LANGUAGE] : 'N.N.';
     }
 
+    public function isAnyProductAvailable($category = null)
+    {
+        foreach ($this->getProducts($category) as $product) {
+            if ($product->isAvailable()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public function getProducts($category = null)
     {
         if (isset($category)) {
@@ -165,6 +175,7 @@ class Catalogue
         }
         return $this->products;
     }
+
     public function swapSortIndex(Product $productA, Product $productB)
     {
         $swap = $productA->getSortIndex();
