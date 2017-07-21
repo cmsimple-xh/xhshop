@@ -13,7 +13,7 @@
 		<form method="get">
 			<input name="selected" value="<?php echo $this->page_url; ?>" type="hidden">
 			<span class="fa fa-search fa-lg fa-fw"></span>
-			<input name="xhsProductSearch" value="<?php echo $xhsSearch; ?>" type="text" placeholder="<?php $this->label('product_search'); ?>">
+			<input name="xhsProductSearch" value="<?php echo XH_hsc($xhsSearch); ?>" type="text" placeholder="<?php $this->label('product_search'); ?>">
 		</form>
 	</div>
 	<div class="xhsClearB"></div>
@@ -28,7 +28,7 @@
 	<p>
 		<?php
 		if(isset($_GET['xhsProductSearch'])){
-			printf($this->hints['no_products_found'], $_GET['xhsProductSearch'] );
+			printf($this->hints['no_products_found'], XH_hsc($_GET['xhsProductSearch']) );
 		} else {
 			printf($this->hints['sold_out'],$this->categoryHeader);
 		} ?>
