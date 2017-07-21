@@ -134,7 +134,7 @@ class Catalogue
     {
         $products = array();
         foreach ($this->products as $index => $product) {
-            if (count($product->getCategories()) > 0) {
+            if (!count($product->getCategories())) {
                 $products[$index] = $product;
             }
         }
