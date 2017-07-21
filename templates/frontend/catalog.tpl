@@ -20,7 +20,7 @@
 </div>
 <section id="xhsOverview" class="xhsMain">
 	<?php if($this->categoryHeader != ''){ ?>
-	<h1 class="xhsCatHeader"><?php echo $this->categoryHeader; ?></h1>
+	<h1 class="xhsCatHeader"><?php echo XH_hsc($this->categoryHeader); ?></h1>
 	<?php } else { ?>
 	<h1 class="xhsCatHeader"><?php echo $this->label('all_categories'); ?></h1>
 	<?php }; ?>
@@ -30,7 +30,7 @@
 		if(isset($_GET['xhsProductSearch'])){
 			printf($this->hints['no_products_found'], XH_hsc($_GET['xhsProductSearch']) );
 		} else {
-			printf($this->hints['sold_out'],$this->categoryHeader);
+			printf($this->hints['sold_out'], XH_hsc($this->categoryHeader));
 		} ?>
 	</p>
 	<?php return;

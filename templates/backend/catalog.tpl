@@ -7,9 +7,9 @@
 			<input name="xhsTask" value="productList" type="hidden" >
 		</form>
 	</div>
-	<h1 class="xhsCatHeader"><?php echo $this->categoryHeader ?></h1>
+	<h1 class="xhsCatHeader"><?php echo XH_hsc($this->categoryHeader) ?></h1>
 	<?php if(count($this->products) == 0){ ?>
-	<p><?php printf($this->hints['sold_out_back'], strip_tags($this->categoryHeader)); ?></p>
+	<p><?php printf($this->hints['sold_out_back'], XH_hsc($this->categoryHeader)); ?></p>
 	<?php return;} ?>
 	<table id="xhsProductsTable" data-delete="<?php echo XH_hsc($this->hints['confirm_delete']) ;?>">
 		<tbody>
