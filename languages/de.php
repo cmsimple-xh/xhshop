@@ -151,7 +151,8 @@ $plugin_tx['xhshop']['hints_sorry_we_are_closed'] = '<p>Wir bitten um Entschuldi
 $plugin_tx['xhshop']['labels_save_settings'] = 'speichern';
 $plugin_tx['xhshop']['labels_get_vat']='vat.';
 $plugin_tx['xhshop']['hints_no_categories'] = 'Keine Kategorien angelegt.';
-$plugin_tx['xhshop']['hints_sold_out'] = 'Wir bitten um Entschuldigung!<br><br>Leider sind in der Kategorie <span class="srchTrm">%s</span> zurzeit keine Artikel verfügbar.';
+$plugin_tx['xhshop']['hints_sold_out'] = 'Pardon! Alle Artikel der Kategorie <span class="srchTrm">%s</span> sind zurzeit ausverkauft.';
+$plugin_tx['xhshop']['hints_sold_out_back']="Der Kategorie <span class=\"srchTrm\">%s</span> sind keine Artikel zugeordnet.";
 $plugin_tx['xhshop']['labels_product_search'] = 'Artikel suchen';
 $plugin_tx['xhshop']['hints_no_products_found'] = 'Es wurden leider keine Artikel mit dem Suchbegriff <span class="srchTrm">%s</span> gefunden.';
 $plugin_tx['xhshop']['hints_price_info_vat']="inkl. USt";

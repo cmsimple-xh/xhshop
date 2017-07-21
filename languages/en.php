@@ -151,7 +151,8 @@ $plugin_tx['xhshop']['hints_sorry_we_are_closed'] = "<b>We are really sorry!</b>
 $plugin_tx['xhshop']['labels_save_settings'] = 'save';
 $plugin_tx['xhshop']['labels_get_vat']='vat.';
 $plugin_tx['xhshop']['hints_no_categories'] = 'No product categories set';
-$plugin_tx['xhshop']['hints_sold_out'] = 'Sorry! No products of category &laquo;%s&raquo; available at the moment!';
+$plugin_tx['xhshop']['hints_sold_out'] = 'Sorry! All products of category <span class="srchTrm">%s</span> are currently sold out!';
+$plugin_tx['xhshop']['hints_sold_out_back'] = 'No products are assigned to category <span class="srchTrm">%s</span>.';
 $plugin_tx['xhshop']['labels_product_search'] = 'Search for articles';
 $plugin_tx['xhshop']['hints_no_products_found'] = 'Sorry! No products with "%s" found!';
 $plugin_tx['xhshop']['hints_price_info_vat']="incl. taxes";
