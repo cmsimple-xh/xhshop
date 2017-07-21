@@ -728,7 +728,7 @@ class FrontEndController extends Controller
         if (isset($step)) {
             $url .= "&xhsCheckout=$step";
         }
-        header("Location: $url" , true, $status);
+        header("Location: $url", true, $status);
         exit;
     }
 }

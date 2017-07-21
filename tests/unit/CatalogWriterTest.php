@@ -48,7 +48,7 @@ class CatalogWriterTest extends TestCase
         'descriptions' => array(
             'de' => '<p>Posse nostrum ne est, amet hinc intellegam et his. Cum tota modus exerci in, verterem aliquyam ei vix, nec id autem reprimique.</p><p>Posse nostrum ne est, amet hinc intellegam et his. Cum tota modus exerci in, verterem aliquyam ei vix, nec id autem reprimique.</p>',
             'en' => '<p>Posse nostrum ne est, amet hinc intellegam et his. Cum tota modus exerci in, verterem aliquyam ei vix, nec id autem reprimique.</p>'
-        ),      
+        ),
         'teasers' => ['de' => '<p>Ganz fantastische Brötchen!</p>'],
         'price' => 0.75,
         'productPages' => array('de' => [], 'en' => []),
