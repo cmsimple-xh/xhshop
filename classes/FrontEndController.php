@@ -96,13 +96,13 @@ class FrontEndController extends Controller
             return 0;
         }
         if ($this->settings['shipping_up_to'] == 'true' &&
-                $_SESSION['xhsOrder']->cartGross >= (float) $this->settings['forwarding_expenses_up_to']) {
+                $_SESSION['xhsOrder']->getCartSum() >= (float) $this->settings['forwarding_expenses_up_to']) {
             return 0;
         }
         if (empty($this->settings['weightRange'])) {
             return (float) $this->settings['shipping_max'];
         }
-        $weight = $_SESSION['xhsOrder']->units;
+        $weight = $_SESSION['xhsOrder']->getUnits();
 
         if (isset($this->settings['weightRange'])) {
             foreach ($this->settings['weightRange'] as $key => $value) {
@@ -131,7 +131,7 @@ class FrontEndController extends Controller
             $params = array();
             $params['xhs_url']   = XHS_URL;
             $params['cartItems'] = $cartItems;
-            $params['cartSum']   = $_SESSION['xhsOrder']->cartGross;
+            $params['cartSum']   = $_SESSION['xhsOrder']->getCartSum();
             $params['count']     = count($cartItems);
             return $this->render('cartPreview', $params);
         }
@@ -147,7 +147,7 @@ class FrontEndController extends Controller
         $cartItems = array();
         if (isset($_SESSION['xhsOrder']) && $_SESSION['xhsOrder']->hasItems()) {
             $i = 1;
-            foreach ($_SESSION['xhsOrder']->items as $index => $product) {
+            foreach ($_SESSION['xhsOrder']->getItems() as $index => $product) {
                 $test = explode('_', $index);  // variants are marked as uid_variant
                 if (!key_exists($test[0], $this->catalog->getProducts())) {
                     continue;
@@ -213,11 +213,11 @@ class FrontEndController extends Controller
             $params = array();
             $params['cartItems']        = $cartItems;
             $params['shipping_limit']   = $this->settings['shipping_up_to'];
-            $params['cartSum']          = $_SESSION['xhsOrder']->cartGross;
-            $params['units']            = $_SESSION['xhsOrder']->units;
+            $params['cartSum']          = $_SESSION['xhsOrder']->getCartSum();
+            $params['units']            = $_SESSION['xhsOrder']->getUnits();
             $params['unitName']         = $this->settings['shipping_unit'];
-            $params['shipping']         = $_SESSION['xhsOrder']->shipping;
-            $params['total']            = $_SESSION['xhsOrder']->shipping + $_SESSION['xhsOrder']->cartGross;
+            $params['shipping']         = $_SESSION['xhsOrder']->getShipping();
+            $params['total']            = $_SESSION['xhsOrder']->getShipping() + $_SESSION['xhsOrder']->getCartSum();
             $params['vatTotal']         = $_SESSION['xhsOrder']->getVat();
             $params['vatFull']          = $_SESSION['xhsOrder']->getVatFull();
             $params['vatReduced']       = $_SESSION['xhsOrder']->getVatReduced();

@@ -4,14 +4,13 @@ namespace Xhshop;
 
 class Order
 {
-    //put your code here
-    public $items = array();
-    public $cartGross;
+    private $items = array();
+    private $cartGross;
     private $cartNet;
     private $vatFull;
     private $vatReduced;
-    public $units;
-    public $shipping;
+    private $units;
+    private $shipping;
     private $vatFullRate;
     private $vatReducedRate;
     private $total;
@@ -110,6 +109,11 @@ class Order
         return count($this->items) > 0;
     }
 
+    public function getItems()
+    {
+        return $this->items;
+    }
+
     public function setShipping($shipping)
     {
         $this->shipping = $shipping;
@@ -125,6 +129,11 @@ class Order
     {
         $this->fee = $fee;
         $this->refresh();
+    }
+
+    public function getUnits()
+    {
+        return $this->units;
     }
 
     public function getCartSum()
