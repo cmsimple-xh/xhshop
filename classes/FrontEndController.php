@@ -200,6 +200,8 @@ class FrontEndController extends Controller
 
     private function cart()
     {
+        global $plugin_tx;
+
         $cartItems = $this->collectCartItems();
         if (!$cartItems) {
             $this->relocateToCheckout(null, 302);
@@ -209,6 +211,12 @@ class FrontEndController extends Controller
                 $cartItems[$key]['variantName'] = ', ' . $item['variantName'];
             }
         }
+        $suffix = (bool) $this->settings['dont_deal_with_taxes'] << 1
+            | (bool) $this->settings['charge_for_shipping'];
+        $price_info = $this->viewProvider->linkedPageHint(
+            $this->settings['shipping_costs_page'],
+            $plugin_tx['xhshop']["hints_prices_$suffix"]
+        );
         if ($cartItems) {
             $params = array();
             $params['cartItems']        = $cartItems;
@@ -224,6 +232,7 @@ class FrontEndController extends Controller
             $params['minimum_order']    = $this->settings['minimum_order'];
             $params['no_shipping_from'] = $this->settings['forwarding_expenses_up_to'];
             $params['canOrder']         = $this->canOrder();
+            $params['price_info']       = $price_info;
             $params['xhs_url']          = XHS_URL;
             $params['xhs_checkout_url'] = '?' . XHS_URL . '&xhsCheckout=cart';
             $params['csrf_token_input'] = $this->csrfProtector->tokenInput();

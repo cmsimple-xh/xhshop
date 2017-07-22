@@ -97,7 +97,7 @@ class FrontEndView extends View
         return $this->linkedPageHint($this->shippingCostsUrl, $this->hints['price_info_shipping']);
     }
 
-    private function linkedPageHint($url, $text)
+    public function linkedPageHint($url, $text)
     {
         if ($url) {
             $starttag = sprintf('<a href="%s&print" class="zoom_i xhsCosLnk" target="_blank">', $url);

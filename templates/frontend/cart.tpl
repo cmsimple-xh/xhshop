@@ -52,34 +52,26 @@ foreach($this->cartItems as $product){
 <td class="xhsMoneyCell"><?php echo $this->formatCurrency($this->cartSum); ?></td>
 </tr>
 <tr>
-<td>&nbsp;</td>
-<td class="xhsTdR"><?php echo $this->label('forwarding_expenses') ?> (<?php  echo $this->formatFloat($this->units) . ' '. $this->unitName ; ?>)</td>
-<td class="xhsMoneyCell"><?php echo $this->formatCurrency($this->shipping); ?></td>
-</tr>
-<tr>
-<td colspan="2">&nbsp;</td>
-<td><hr class="xhsHr1"></td>
-</tr>
-<tr class="xhsSum">
-<td>&nbsp;</td>
-<td class="xhsTdR"><b><?php $this->label('total') ?></b></td>
-<td class="xhsMoneyCell"><b><?php echo $this->formatCurrency($this->total); ?></b></td>
-</tr>
-<tr>
 <td colspan="2">&nbsp;</td>
 <td><hr class="xhsHr2"></td>
 </tr>
-<?php if( $this->shipping > 0 && $this->shipping_limit == 'true' && $this->canOrder !== false) { ?>
-<tr>
-<td colspan="3" class="xhsHint">
-<p><b><?php $this->label('hint'); ?>:</b> <?php $this->hint('no_shipping_from'); echo ' ' . $this->formatCurrency($this->no_shipping_from);?>.</p>
-</td>
-</tr>
-<?php } ?>
 <?php if (!$this->canOrder) { ?>
 <tr>
 <td colspan="3" class="xhsHint">
 <p><?php printf($this->hints['order_minimum_warn'], $this->formatCurrency($this->minimum_order)); ?></p>
+</td>
+</tr>
+<?php } else { ?>
+<tr>
+<td colspan="3" class="xhsHint">
+<p><?php echo $this->price_info; ?></p>
+</td>
+</tr>
+<?php } ?>
+<?php if( $this->shipping > 0 && $this->shipping_limit == 'true' && $this->canOrder) { ?>
+<tr>
+<td colspan="3" class="xhsHint">
+<p><b><?php $this->label('hint'); ?>:</b> <?php $this->hint('no_shipping_from'); echo ' ' . $this->formatCurrency($this->no_shipping_from);?>.</p>
 </td>
 </tr>
 <?php } ?>
