@@ -13,7 +13,7 @@
 <dt><?php $this->label('date_of_order'); ?></dt>
 <dd><?php echo date('d.m.Y [H:i]'); ?></dd>
 <dt><?php echo $this->label('delivery_adress'); ?>:</dt>
-<dd>%FIRST_NAME% %LAST_NAME%</dd>
+<dd>%SALUTATION% %FIRST_NAME% %LAST_NAME%</dd>
 <dd>%STREET%</dd>
 <dd>%ZIP_CODE% %CITY%</dd>
 <dd>%COUNTRY%</dd>

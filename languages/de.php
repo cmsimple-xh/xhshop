@@ -44,6 +44,10 @@ $plugin_tx['xhshop']['labels_back']='zurück';
 $plugin_tx['xhshop']['labels_cancel']='abbrechen';
 ##### CONTACT DATA #######
 $plugin_tx['xhshop']['labels_contact']='Kontakt';
+$plugin_tx['xhshop']['labels_salutation']="Anrede";
+$plugin_tx['xhshop']['labels_salutation_mister']="Herr";
+$plugin_tx['xhshop']['labels_salutation_misses']="Frau";
+$plugin_tx['xhshop']['labels_salutation_x']="X";
 $plugin_tx['xhshop']['labels_first_name'] = 'Vorname';
 $plugin_tx['xhshop']['labels_last_name'] = 'Nachname';
 $plugin_tx['xhshop']['labels_product_categories']='Kategorien';

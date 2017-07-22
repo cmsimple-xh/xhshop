@@ -4,6 +4,7 @@ namespace Xhshop;
 
 class Customer
 {
+    public $salutation;
     public $first_name;
     public $last_name;
     public $street;

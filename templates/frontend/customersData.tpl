@@ -10,6 +10,7 @@
 <div class="xhsStepHint"><span class="fa fa-question-circle fa-fw"></span> <?php $this->label('ask_for_contact_data'); ?></div>
 <h2><?php $this->label('ask_for_destination');?></h2>
 <form action="%XHS_CHECKOUT_URL%" method="post" class="xhs100">
+<?php echo $this->salutationSelectbox(); ?>
 <?php echo $this->contactInput('first_name'); ?>
 <?php echo $this->contactInput('last_name'); ?>
 <?php echo $this->contactInput('street'); ?>

@@ -13,7 +13,7 @@ class FrontEndController extends Controller
     {
         parent::__construct();
         $this->splitForwardingExpenses();
-        $this->requiredCustomerData = array('first_name', 'last_name',
+        $this->requiredCustomerData = array('salutation', 'first_name', 'last_name',
             'street', 'zip_code', 'city', 'country', 'cos_confirmed',
             'email', 'payment_mode');
         $this->viewProvider->setRequiredCustomerData($this->requiredCustomerData);
@@ -522,6 +522,7 @@ class FrontEndController extends Controller
         $paymentMethod = $plugin_tx['xhshop']["{$prefix}_label"];
         $replacements = array(
             '%DATE%'           => date($this->settings['bill_dateformat']),
+            '%SALUTATION%'     => $_SESSION['xhsCustomer']->salutation,
             '%FIRST_NAME%'     => $_SESSION['xhsCustomer']->first_name,
             '%LAST_NAME%'      => $_SESSION['xhsCustomer']->last_name,
             '%STREET%'         => $_SESSION['xhsCustomer']->street,

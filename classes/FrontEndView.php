@@ -73,6 +73,23 @@ class FrontEndView extends View
         return $html;
     }
 
+    protected function salutationSelectbox()
+    {
+        $html = '<label for="xhsSalutation" class="xhsFormLabel">' . $this->labels['salutation'] . ':</label>'
+            . '<select name="salutation" id="xhsSalutation" required>';
+        $salutations = array('', $this->labels['salutation_mister'],
+                $this->labels['salutation_misses'], $this->labels['salutation_x']);
+        foreach ($salutations as $salutation) {
+            $html .= '<option';
+            if ($_SESSION['xhsCustomer']->salutation === $salutation) {
+                $html .= ' selected';
+            }
+            $html .= '>' . $salutation . '</option>';
+        }
+        $html .= '</select>';
+        return $html;
+    }
+
     protected function countriesSelectbox()
     {
         if (empty($this->shippingCountries)) {
