@@ -69,14 +69,15 @@ foreach($this->cartItems as $product){
 <td colspan="2">&nbsp;</td>
 <td><hr class="xhsHr2"></td>
 </tr>
-<tr>
 <?php if( $this->shipping > 0 && $this->shipping_limit == 'true' && $this->canOrder !== false) { ?>
+<tr>
 <td colspan="3" class="xhsHint">
 <p><b><?php $this->label('hint'); ?>:</b> <?php $this->hint('no_shipping_from'); echo ' ' . $this->formatCurrency($this->no_shipping_from);?>.</p>
 </td>
 </tr>
 <?php } ?>
 <?php if (!$this->canOrder) { ?>
+<tr>
 <td colspan="3" class="xhsHint">
 <p><?php printf($this->hints['order_minimum_warn'], $this->formatCurrency($this->minimum_order)); ?></p>
 </td>
