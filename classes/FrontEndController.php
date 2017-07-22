@@ -494,17 +494,25 @@ class FrontEndController extends Controller
 
         $subtotal     = $_SESSION['xhsOrder']->getCartSum();
         $shipping     = $_SESSION['xhsOrder']->getShipping();
+        $prefix = str_replace('_', '-', $_SESSION['xhsCustomer']->payment_mode);
+        $paymentMethod = $plugin_tx['xhshop']["{$prefix}_label"];
         $replacements = array('%Datum%'          => date($this->settings['bill_dateformat']),
             '%Vorname%'        => $_SESSION['xhsCustomer']->first_name,
             '%Nachname%'       => $_SESSION['xhsCustomer']->last_name,
             '%Strasse%'        => $_SESSION['xhsCustomer']->street,
             '%PLZ%'            => $_SESSION['xhsCustomer']->zip_code,
             '%Ort%'            => $_SESSION['xhsCustomer']->city,
+            '%Country%'        => $_SESSION['xhsCustomer']->country,
+            '%Email%'          => $_SESSION['xhsCustomer']->email,
+            '%Phone%'          => $_SESSION['xhsCustomer']->phone,
+            '%Annotation%'     => $_SESSION['xhsCustomer']->annotation,
+            '%PaymentMethod%'  => $paymentMethod,
             '%COMPANY_NAME%'   => $this->settings['company_name'],
             '%COMPANY_STREET%' => $this->settings['street'],
             '%COMPANY_ZIP%'    => $this->settings['zip_code'],
             '%COMPANY_CITY%'   => $this->settings['city'],
             '%SUMME%'          => $this->viewProvider->formatFloat($subtotal) . $currency,
+            '%WEIGHT%'         => $this->viewProvider->formatFloat($_SESSION['xhsOrder']->getUnits()),
             '%SHIPPING%'       => $this->viewProvider->formatFloat($shipping) . $currency,
             '%rows%'           => $rows,
             '%FEE_LABEL%'      => $feeLabel,
