@@ -10,7 +10,7 @@ $plugin_tx['xhshop']['config_bill_dateformat']="d.m.Y";
 $plugin_tx['xhshop']['config_email_attachment']="";
 ####### Mail ################
 $plugin_tx['xhshop']['mail_email_subject']="Ihre Bestellung bei %s";
-$plugin_tx['xhshop']['mail_salutation'] = "Sehr geehrte(r)";
+$plugin_tx['xhshop']['mail_salutation'] = "Guten Tag,";
 $plugin_tx['xhshop']['mail_thank_you'] = "vielen Dank für Ihre Bestellung!";
 $plugin_tx['xhshop']['mail_email_sent'] = "In Kürze erhalten Sie eine E-Mail mit Ihren Bestelldaten.";
 $plugin_tx['xhshop']['mail_summary'] = "Hier noch einmal die die Bestelldaten, so wie sie bei uns angekommen sind:\n\n";
