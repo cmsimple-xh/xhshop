@@ -78,7 +78,7 @@ foreach($this->cartItems as $product){
 <?php } ?>
 <?php if (!$this->canOrder) { ?>
 <td colspan="3" class="xhsHint">
-<p><?php $this->hint('order_minimum_warn_1'); ?><?php echo $this->formatCurrency($this->minimum_order); ?><?php $this->hint('order_minimum_warn_2'); ?></p>
+<p><?php printf($this->hints['order_minimum_warn'], $this->formatCurrency($this->minimum_order)); ?></p>
 </td>
 </tr>
 <?php } ?>
