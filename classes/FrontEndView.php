@@ -4,11 +4,18 @@ namespace Xhshop;
 
 class FrontEndView extends View
 {
+    private $requiredCustomerData;
+
     public function __construct()
     {
         parent::__construct();
         $this->templatePath = XHS_TEMPLATES_PATH. 'frontend/';
         $this->themePath = XHS_BASE_PATH . 'theme/frontend/';
+    }
+
+    public function setRequiredCustomerData(array $value)
+    {
+        $this->requiredCustomerData = $value;
     }
 
     protected function paymentHint()
@@ -58,6 +65,9 @@ class FrontEndView extends View
                 break;
         }
         $params['id'] = $field;
+        if (in_array($field, $this->requiredCustomerData, true)) {
+            $params['required'] = 'required';
+        }
         $html .= $label;
         $html .= $this->textinputNameValueLabel($field, $value, $params);
         return $html;

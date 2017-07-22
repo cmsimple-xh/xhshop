@@ -16,6 +16,7 @@ class FrontEndController extends Controller
         $this->requiredCustomerData = array('first_name', 'last_name',
             'street', 'zip_code', 'city', 'country', 'cos_confirmed',
             'email', 'payment_mode');
+        $this->viewProvider->setRequiredCustomerData($this->requiredCustomerData);
     }
 
     private function splitForwardingExpenses()

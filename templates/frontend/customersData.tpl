@@ -44,7 +44,7 @@ if(in_array('cos_confirmed', $this->missingData)){
     $cosLabel = $this->labels['confirm_gtc'];}
 ?>
 <h2><?php echo $cosLabel; ?></h2>
-<p><input type="checkbox" name="cos_confirmed" <?php if($_SESSION['xhsCustomer']->cos_confirmed =='on') {echo 'checked="checked"';} ?>> <?php echo $this->cosHint();?></p>
+<p><input type="checkbox" name="cos_confirmed" required <?php if($_SESSION['xhsCustomer']->cos_confirmed =='on') {echo 'checked="checked"';} ?>> <?php echo $this->cosHint();?></p>
 <!-- End C.O.S. -->
 <!-- Start annotation -->
 <h2><?php $this->label('ask_for_annotation'); ?></h2>
