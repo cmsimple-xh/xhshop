@@ -158,15 +158,44 @@ class SystemCheckService
         return (object) compact('state', 'label', 'stateLabel');
     }
 
+    private function areForwardingExpensesValid()
+    {
+        $lines = preg_split('/\\r\\n|\\r|\\n/', trim($this->config['shipping_forwarding_expenses']));
+        $countryGrades = array();
+        foreach ($lines as $line) {
+            $parts = explode(':', $line);
+            if (count($parts) !== 2) {
+                return false;
+            }
+            $countryGrades[trim($parts[0])] = trim($parts[1]);
+        }
+
+        foreach ($countryGrades as $grades) {
+            if (!$this->isForwardingExpensesLineValid($grades)) {
+                return false;
+            }
+        }
+
+        $countries = array();
+        foreach (explode(';', $this->lang['config_shipping_countries']) as $pair) {
+            list($code) = explode('=', $pair);
+            if (!isset($countryGrades[trim($code)])) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     /**
      * @return bool
      */
-    private function areForwardingExpensesValid()
+    private function isForwardingExpensesLineValid($grades)
     {
         $weight = 0;
         $cost = 0;
         $finished = false;
-        foreach (explode(';', $this->config['shipping_forwarding_expenses']) as $expenses) {
+        foreach (explode(';', $grades) as $expenses) {
             if ($finished) {
                 return false;
             }

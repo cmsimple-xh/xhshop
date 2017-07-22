@@ -74,9 +74,10 @@ abstract class Controller
         global $plugin_tx;
 
         $countries = array();
-        $entries = explode(';', $plugin_tx['xhshop']['config_shipping_countries']);
-        foreach ($entries as $country) {
-            $countries[] = trim($country);
+        $pairs = explode(';', $plugin_tx['xhshop']['config_shipping_countries']);
+        foreach ($pairs as $pair) {
+            list($code, $country) = explode('=', $pair);
+            $countries[trim($code)] = trim($country);
         }
         return $countries;
     }

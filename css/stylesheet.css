@@ -622,3 +622,8 @@ ul.xhsCatMenu li:last-child a {
 ul.xhsCatMenu li.xhsActiveCat a, ul.xhsCatMenu li.xhsActiveCat:last-child a {
 	color: #f60 !important;
 }
+
+/* we really need a monospaced font for this textarea */
+#xh_config_form textarea.xh_setting[name="PL3bbeec384_shipping_forwarding_expenses"] {
+	font-family: monospace !important;
+}

@@ -21,7 +21,20 @@ class FrontEndController extends Controller
     private function splitForwardingExpenses()
     {
         $this->settings['weightRange'] = array();
-        foreach (explode(';', $this->settings['forwarding_expenses']) as $grade) {
+        $lines = preg_split('/\\r\\n|\\r|\\n/', trim($this->settings['forwarding_expenses']));
+        $countryGrades = array();
+        foreach ($lines as $line) {
+            list($country, $grades) = explode(':', $line);
+            $countryGrades[trim($country)] = trim($grades);
+        }
+        if (isset($_SESSION['xhsCustomer'])) {
+            $countries = array_flip($this->settings['shipping_countries']);
+            $country = $countries[$_SESSION['xhsCustomer']->country];
+            $grades = $countryGrades[$country];
+        } else {
+            $grades = reset($countryGrades);
+        }
+        foreach (explode(';', $grades) as $grade) {
             $parts = explode('=', trim($grade));
             if (count($parts) === 2) {
                 $this->settings['weightRange'][trim($parts[0])] = (float) $parts[1];
@@ -394,6 +407,7 @@ class FrontEndController extends Controller
         } elseif (!$this->isValidCustomer()) {
             $this->relocateToCheckout('customersData', 302);
         }
+        $_SESSION['xhsOrder']->setShipping($this->calculateShipping());
         $fee           = $this->calculatePaymentFee();
         $paymentModule = $this->paymentModules[$_SESSION['xhsCustomer']->payment_mode];
         if ($paymentModule->wantsCartItems() !== false) {

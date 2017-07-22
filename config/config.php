@@ -19,7 +19,7 @@ $plugin_cf['xhshop']['taxes_vat_default_full']="true";
 $plugin_cf['xhshop']['taxes_dont_deal_with_taxes']="";
 $plugin_cf['xhshop']['shipping_charge_for_shipping']="true";
 $plugin_cf['xhshop']['shipping_forwarding_expenses_up_to']="50.00";
-$plugin_cf['xhshop']['shipping_forwarding_expenses']="1=4.50; 3=6.25; 6=9.75; 24.00";
+$plugin_cf['xhshop']['shipping_forwarding_expenses']="DE: 1=4.50; 3= 6.25; 6= 9.75; 24.00\nAT: 1=9.00; 3=12.50; 6=19.50; 48.00\nCH: 1=9.00; 3=12.50; 6=19.50; 48.00\nFR: 1=9.00; 3=12.50; 6=19.50; 48.00\n";
 $plugin_cf['xhshop']['shipping_shipping_up_to']="true";
 $plugin_cf['xhshop']['cash-in-advance_is_active']="true";
 $plugin_cf['xhshop']['cash-in-advance_fee']="-3.00";
