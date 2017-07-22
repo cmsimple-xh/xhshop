@@ -26,7 +26,7 @@ class Paypal extends PaymentModule
 
     public function getLabel()
     {
-        return '<img src="' . XHS_BASE_PATH . 'images/paypal-logo.png">
+        return '<img src="' . XHS_BASE_PATH . 'images/paypal-logo.png" alt="PayPal">
 ';
     }
 

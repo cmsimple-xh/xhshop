@@ -27,7 +27,7 @@
 				<td><?php echo $this->radioNameValueLabel('stockOnHand', 1) . '&nbsp;'; $this->label('yes'); ?> <?php echo $this->radioNameValueLabel('stockOnHand', 0) . '&nbsp;'; $this->label('no'); ?></td>
 			</tr>
 			<tr>
-				<td colspan="3"><hr></td>
+				<td colspan="2"><hr></td>
 			</tr>
             <tr>
 				<td class="xhsTdTop"><strong><?php $this->label('preview_picture');?>:</strong></td>
@@ -46,7 +46,7 @@
 				<td class="xhsTdTop"><?php echo $this->productCategorySelector(); ?></td>
 			</tr>
 			<tr>
-				<td colspan="3"><hr></td>
+				<td colspan="2"><hr></td>
 			</tr>
 		</table>
 		<p><strong><?php $this->label('product_teaser'); ?>:</strong><br>

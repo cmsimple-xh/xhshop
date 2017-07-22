@@ -19,7 +19,7 @@ foreach($this->cartItems as $product){
 <tr>
 <td class="xhsCnt"><p><?php echo $xhsCnt; ?>.</p></td>
 <td colspan="2"><h3 class="xhsProdName"><?php echo $product['name']?><?php echo$product['variantName']; ?></h3>
-<span class="xhsProdDescription"><?php echo $product['description']; ?></span></td>
+<div class="xhsProdDescription"><?php echo $product['description']; ?></div></td>
 </tr>
 <tr>
 <td>&nbsp;</td>

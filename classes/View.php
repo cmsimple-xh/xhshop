@@ -105,7 +105,7 @@ abstract class View
 
     protected function textinputNameValueLabel($name = '', $value = '', $params = array())
     {
-        $html = '<input name="'.$name.'" value="'. $value . '" step="0.01"'; // steps!
+        $html = '<input name="'.$name.'" value="'. $value . '"';
         if (!isset($params['type'])) {
             $params['type'] = 'text';
         }
@@ -131,6 +131,7 @@ abstract class View
         }
 
         $params['type'] = 'number';
+        $params['step'] = '0.01';
         $value = number_format($value, 2);
         return $this->textinputNameValueLabel($name, $value, $params);
     }

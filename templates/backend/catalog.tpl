@@ -45,10 +45,10 @@
 					<?php echo implode('&nbsp;| ', $product['variants']); ?>
 					<?php } ?>
 					</p>
-					<p>
+					<div>
 					<?php if(isset($this->errors[$index])){ echo $this->productErrors($this->errors[$index]); }?>
 					<?php if(isset($this->caveats[$index])){ echo $this->productHints($this->caveats[$index]); }?>
-					</p>
+					</div>
 				</td>
 				<td>
 					<form method="get" class="xhsInl">

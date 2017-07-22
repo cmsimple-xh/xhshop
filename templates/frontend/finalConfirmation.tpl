@@ -28,17 +28,17 @@
 <h3><?php echo $this->labels['cart']; ?></h3>
 <table class="xhsCartTable">
 	<tr>
-		<td colspan="4"><hr class="xhsHr1"></td>
+		<td colspan="3"><hr class="xhsHr1"></td>
 	</tr>
 <?php foreach($this->cartItems as $product){
 	$rowCounter = $product['itemCounter'];
 	$xhsCnt++;?>
 	<tr>
 		<td class="xhsCnt"><?php echo $xhsCnt; ?>.</td>
-		<td colspan="3"><h3><?php echo $product['name'];?> <?php echo $product['variantName']; ?></h3></td>
+		<td colspan="2"><h3><?php echo $product['name'];?> <?php echo $product['variantName']; ?></h3></td>
 	</tr>
 	<tr>
-		<td class="xhsTdR" colspan="3"><?php echo $product['amount']; ?> x <?php echo $this->formatCurrency($product['price']); ?>
+		<td class="xhsTdR" colspan="2"><?php echo $product['amount']; ?> x <?php echo $this->formatCurrency($product['price']); ?>
 <?php if($this->hideVat === false):?>
 		<span class="xhsVatInf">[<?php echo $product['vatRate']; ?>%]</span>
 <?php endif?>
@@ -46,15 +46,15 @@
 		<td class="xhsMoneyCell"><strong><?php echo $this->formatCurrency($product['sum']); ?></strong></td>
 	</tr>
 	<tr>
-		<td colspan="4"><hr class="xhsHr1"></td>
+		<td colspan="3"><hr class="xhsHr1"></td>
 	</tr>
 <?php } ?>
 	<tr>
-		<td class="xhsTdR" colspan="3"><?php $this->label('subtotal'); ?></td>
+		<td class="xhsTdR" colspan="2"><?php $this->label('subtotal'); ?></td>
 		<td class="xhsMoneyCell"><?php echo $this->formatCurrency($this->cartSum); ?></td>
 	</tr>
 	<tr>
-		<td class="xhsTdR" colspan="3"><?php $this->label('forwarding_expenses'); ?></td>
+		<td class="xhsTdR" colspan="2"><?php $this->label('forwarding_expenses'); ?></td>
 		<td class="xhsMoneyCell"><?php echo $this->formatCurrency($this->shipping); ?></td>
 	</tr>
 <?php
@@ -64,19 +64,19 @@ if($this->fee < 0){
 	$feeLabel = $this->labels['fee'];
 } ?>
 	<tr>
-		<td class="xhsTdR" colspan="3"><?php echo $feeLabel; ?></td>
+		<td class="xhsTdR" colspan="2"><?php echo $feeLabel; ?></td>
 		<td class="xhsMoneyCell"><?php echo $this->formatCurrency($this->fee); ?></td>
 	</tr>
 <tr>
-<td colspan="3">&nbsp;</td>
+<td colspan="2">&nbsp;</td>
 <td><hr class="xhsHr1"></td>
 </tr>
 	<tr class="xhsSum">
-		<td class="xhsTdR" colspan="3"><?php $this->label('total'); ?></td>
+		<td class="xhsTdR" colspan="2"><?php $this->label('total'); ?></td>
 		<td class="xhsMoneyCell"><strong><?php echo $this->formatCurrency($this->total); ?></strong></td>
 	</tr>
 <tr>
-<td colspan="3">&nbsp;</td>
+<td colspan="2">&nbsp;</td>
 <td><hr class="xhsHr2"></td>
 </tr>
 </table>

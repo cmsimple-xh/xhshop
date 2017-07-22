@@ -26,7 +26,7 @@
 				</form><?php } ?>
 			</td>
 			<td>
-				<form action = "" method = "post">
+				<form method="post">
 					%CSRF_TOKEN_INPUT%
 					<input type="text" name="xhsCatName" value="<?php echo $category; ?>" size ="30">&nbsp;
 					<input type="hidden" name="xhsTask" value="saveProductCategories">
@@ -39,22 +39,20 @@
 	</table><?php } ?>
 	<p>&nbsp;</p>
 	<hr>
-	<p><strong><?php echo $this->label('new_category'); ?></strong>
-	<form action = "" method = "post">
+	<p><strong><?php echo $this->label('new_category'); ?></strong></p>
+	<form method="post">
 		%CSRF_TOKEN_INPUT%
 		<input type="text" name="xhsAddCat" size="30">&nbsp;
 		<input type="hidden" name="xhsTask" value="saveProductCategories">
 		<button class="xhsShopButton"><span class="fa fa-save fa-fw"></span> <?php echo $this->labels['save_settings'] ;?></button>
 	</form>
-	</p>
-	<p><strong><?php $this->label('left_over_category'); ?></strong>
+	<p><strong><?php $this->label('left_over_category'); ?></strong></p>
 	<form method = "post">
 		%CSRF_TOKEN_INPUT%
 		<input type="text" name="xhsLeftOverCat" value="<?php echo $this->leftOverCat;?>" size="30">&nbsp;
 		<input type="hidden" name="xhsTask" value="saveProductCategories">
 		<button class="xhsShopButton"><span class="fa fa-save fa-fw"></span> <?php echo $this->labels['save_settings'] ;?></button>
 	</form>
-	</p>
 	<?php if(count($this->categories) > 0){ ?>
 	<p><strong><?php $this->label('default_product_category'); ?></strong><br>
 	<?php $this->hint('default_product_category'); ?></p>
