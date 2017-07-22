@@ -1,5 +1,5 @@
 <?php $feeLabel = ($this->fee < 0) ? $this->labels['reduction'] : $this->labels['fee']; ?>
-<?php echo $this->mail['salutation'];?> %SALUTATION% %FIRST_NAME% %LAST_NAME%,
+<?php echo $this->mail['salutation'];?> %FIRST_NAME% %LAST_NAME%,
 
 <?php echo $this->mail['thank_you']; ?>
 
@@ -8,7 +8,7 @@
 <?php $this->label('date_of_order'); ?>: <?php echo date('d.m.Y [H:i]'); ?>
 
 <?php $this->label('delivery_adress'); ?>:
-%SALUTATION% %FIRST_NAME% %LAST_NAME%
+%FIRST_NAME% %LAST_NAME%
 %STREET%
 %ZIP_CODE% %CITY%
 %COUNTRY%

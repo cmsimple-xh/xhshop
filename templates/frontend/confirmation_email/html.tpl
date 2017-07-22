@@ -41,7 +41,7 @@ tr.brdT2 td {
 </head>
 <body>
 <div id="cartPreviews">
-<p><?php echo $this->mail['salutation'];?> %SALUTATION% %FIRST_NAME% %LAST_NAME%,</p>
+<p><?php echo $this->mail['salutation'];?> %FIRST_NAME% %LAST_NAME%,</p>
 <p><?php echo nl2br($this->mail['thank_you']) ;?></p>
 <p>&nbsp;</p>
 <p><?php echo $this->mail['summary'] ;?></p>
@@ -53,7 +53,7 @@ tr.brdT2 td {
 </tr>
 <tr>
 <td><?php echo $this->labels['delivery_adress']; ?>:&nbsp;&nbsp;</td>
-<td>%SALUTATION% %FIRST_NAME% %LAST_NAME%<br>
+<td>%FIRST_NAME% %LAST_NAME%<br>
 %STREET%<br>
 %ZIP_CODE% %CITY%<br>
 %COUNTRY%<br>

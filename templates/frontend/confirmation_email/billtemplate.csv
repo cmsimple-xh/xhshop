@@ -5,6 +5,6 @@ Warenwert;;;;%SUM%
 Versandkosten;;;;%SHIPPING%
 Rechnungssumme;;;;%TOTAL%
 
-Kunde;;;;%SALUTATION% %FIRST_NAME% %LAST_NAME%
+Kunde;;;;%FIRST_NAME% %LAST_NAME%
 Straße;;;;%STREET%
 Ort;;;;"%ZIP% %CITY%"
