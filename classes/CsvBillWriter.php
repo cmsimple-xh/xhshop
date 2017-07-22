@@ -35,7 +35,7 @@ class CsvBillWriter implements BillWriter
             $cleaned = html_entity_decode($replace, ENT_QUOTES, 'UTF-8');
             foreach ($this->records as &$record) {
                 foreach ($record as &$field) {
-                    $field = str_replace($search, $cleaned, $field);
+                    $field = str_ireplace($search, $cleaned, $field);
                 }
                 unset($field);
             }
@@ -59,7 +59,7 @@ class CsvBillWriter implements BillWriter
         if (!isset($this->rowRecordNum)) {
             foreach ($this->records as $i => $record) {
                 foreach ($record as $fields) {
-                    if (strpos($fields, '%pname%') !== false) {
+                    if (stripos($fields, '%PNAME%') !== false) {
                         $this->rowRecordNum = $i;
                         break 2;
                     }
@@ -68,8 +68,8 @@ class CsvBillWriter implements BillWriter
         }
         $record = $this->records[$this->rowRecordNum];
         foreach ($record as &$field) {
-            $field = str_replace(
-                array('%pa%', '%pname%', '%pvat%', '%pprice%', '%psum%'),
+            $field = str_ireplace(
+                array('%PA%', '%PNAME%', '%PVAT%', '%PPRICE%', '%PSUM%'),
                 array($amount, $name, $vatRate, $price, $sum),
                 $field
             );

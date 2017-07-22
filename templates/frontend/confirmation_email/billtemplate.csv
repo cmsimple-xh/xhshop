@@ -1,10 +1,10 @@
 ﻿Anzahl;Artikel;Steuersatz;Einzelpreis;Summe
 %pa%;%pname%;%pvat%;%pprice%;%psum%
 
-Warenwert;;;;%SUMME%
+Warenwert;;;;%SUM%
 Versandkosten;;;;%SHIPPING%
-Rechnungssumme;;;;%ENDSUMME%
+Rechnungssumme;;;;%TOTAL%
 
-Kunde;;;;%Vorname% %Nachname%
-Straße;;;;%Strasse%
-Ort;;;;"%PLZ% %Ort%"
+Kunde;;;;%FIRST_NAME% %LAST_NAME%
+Straße;;;;%STREET%
+Ort;;;;"%ZIP% %CITY%"

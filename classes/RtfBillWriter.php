@@ -23,7 +23,7 @@ class RtfBillWriter implements BillWriter
         foreach ($replacements as $search => $replace) {
             $cleaned = html_entity_decode($replace, ENT_QUOTES, 'UTF-8');
             $cleaned = $this->convertToRtf($cleaned);
-            $this->template = str_replace($search, $cleaned, $this->template);
+            $this->template = str_ireplace($search, $cleaned, $this->template);
         }
         return $this->template;
     }
@@ -71,16 +71,16 @@ class RtfBillWriter implements BillWriter
         if (!isset($this->rowTemplate)) {
             if (preg_match_all('/\\\\trowd.*?\\\\row/s', $this->template, $matches, PREG_OFFSET_CAPTURE)) {
                 foreach ($matches[0] as $match) {
-                    if (strpos($match[0], '%pname%') !== false) {
+                    if (stripos($match[0], '%PNAME%') !== false) {
                         $this->rowTemplate = $match[0];
-                        $this->template = substr($this->template, 0, $match[1]) . '%rows%' . substr($this->template, $match[1] + strlen($this->rowTemplate));
+                        $this->template = substr($this->template, 0, $match[1]) . '%ROWS%' . substr($this->template, $match[1] + strlen($this->rowTemplate));
                         break;
                     }
                 }
             }
         }
-        return str_replace(
-            array('%pa%', '%pname%', '%pvat%', '%pprice%', '%psum%'),
+        return str_ireplace(
+            array('%PA%', '%PNAME%', '%PVAT%', '%PPRICE%', '%PSUM%'),
             array($amount, $name, $vatRate, $price, $sum),
             $this->rowTemplate
         );
