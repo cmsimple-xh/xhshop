@@ -74,7 +74,7 @@ $plugin_tx['xhshop']['labels_is_hidden']='in Bearbeitung';
 $plugin_tx['xhshop']['labels_gtc_page']='AGB-Seite';
 $plugin_tx['xhshop']['labels_order_email'] = 'E-Mail Bestellungen an';
 $plugin_tx['xhshop']['labels_minimum_order']='Mindestbestellwert';
-$plugin_tx['xhshop']['hints_minimum_order']="( Mindestbestellwert = Warenwert + Versandkosten )";
+$plugin_tx['xhshop']['hints_minimum_order']="( Mindestbestellwert = Warenwert )";
 $plugin_tx['xhshop']['labels_other_currency']='andere';
 $plugin_tx['xhshop']['labels_full_vat']='voll';
 $plugin_tx['xhshop']['labels_reduced_vat']='ermäßigt';
@@ -188,7 +188,7 @@ $plugin_tx['xhshop']['syscheck_xhversion']="die CMSimple_XH-Version ≥ %s";
 $plugin_tx['xhshop']['error_no_bill']="Rechnungstemplate nicht gefunden!";
 
 $plugin_tx['xhshop']['cf_shop_published']="Ob der Shop veröffentlicht ist (andernfalls befindet er sich im Wartungsmodus)";
-$plugin_tx['xhshop']['cf_shop_minimum_order']="Mindestbestellwert (Warenwert + Versandkosten) – Eingabe mit Dezimalpunkt";
+$plugin_tx['xhshop']['cf_shop_minimum_order']="Mindestbestellwert – Eingabe mit Dezimalpunkt";
 $plugin_tx['xhshop']['cf_shop_default_currency']="Die Währung des Shops – Eingabe als Währungssymbol, beispielsweise €, $, £ or ¥";
 $plugin_tx['xhshop']['cf_shop_currency_code']="ISO 4217 Währungscode der Shop-Währung; beispielsweise EUR, USD, GBP oder JPY.";
 $plugin_tx['xhshop']['cf_shop_image_folder']="Ein Ordner relativ zum Bilderordner von CMSimple_XH, in dem die Artikel-Bilder gespeichert sind. Leer lassen, um den Bilderordner selbst zu verwenden. Ansonsten ist ein abschließender Schrägstrich erforderlich, z.B. shop/";

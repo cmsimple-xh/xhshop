@@ -74,7 +74,7 @@ $plugin_tx['xhshop']['labels_is_hidden']='under construction';
 $plugin_tx['xhshop']['labels_gtc_page']='Page of GTC';
 $plugin_tx['xhshop']['labels_order_email'] = 'Sent orders to (email)';
 $plugin_tx['xhshop']['labels_minimum_order']='Order minimum';
-$plugin_tx['xhshop']['hints_minimum_order']="(incl. shipping and fees)";
+$plugin_tx['xhshop']['hints_minimum_order']="(without shipping and fees)";
 $plugin_tx['xhshop']['labels_other_currency']='other';
 $plugin_tx['xhshop']['labels_full_vat']='full';
 $plugin_tx['xhshop']['labels_reduced_vat']='reduced';
@@ -188,7 +188,7 @@ $plugin_tx['xhshop']['syscheck_writable']="'%s' is writable";
 $plugin_tx['xhshop']['syscheck_xhversion']="CMSimple_XH version ≥ %s";
 
 $plugin_tx['xhshop']['cf_shop_published']="Whether the shop is published (opposed to being in maintenance mode)";
-$plugin_tx['xhshop']['cf_shop_minimum_order']="The order minimum (incl. shipping and fees) – enter with decimal point";
+$plugin_tx['xhshop']['cf_shop_minimum_order']="The order minimum (without shipping and fees) – enter with decimal point";
 $plugin_tx['xhshop']['cf_shop_default_currency']="The currency of the shop – enter the currency symbol, for instance, €, $, £ or ¥";
 $plugin_tx['xhshop']['cf_shop_currency_code']="ISO 4217 currency code of the shop's currency; for instance, EUR, USD, GBP or JPY.";
 $plugin_tx['xhshop']['cf_shop_image_folder']="A folder relative to the image folder of CMSimple_XH where the product images are stored. Leave blank to use the image folder directly. Otherwise there has to be a trailing slash, e.g. shop/";
