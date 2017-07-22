@@ -496,7 +496,8 @@ class FrontEndController extends Controller
         $shipping     = $_SESSION['xhsOrder']->getShipping();
         $prefix = str_replace('_', '-', $_SESSION['xhsCustomer']->payment_mode);
         $paymentMethod = $plugin_tx['xhshop']["{$prefix}_label"];
-        $replacements = array('%Datum%'          => date($this->settings['bill_dateformat']),
+        $replacements = array(
+            '%DATE%'           => date($this->settings['bill_dateformat']),
             '%FIRST_NAME%'     => $_SESSION['xhsCustomer']->first_name,
             '%LAST_NAME%'      => $_SESSION['xhsCustomer']->last_name,
             '%STREET%'         => $_SESSION['xhsCustomer']->street,
