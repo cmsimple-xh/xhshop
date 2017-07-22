@@ -17,7 +17,7 @@
 <?php echo $this->contactInput('phone'); ?>
 <?php echo $this->contactInput('zip_code'); ?>
 <?php echo $this->contactInput('city'); ?>
-<?php echo $this->countriesSelectbox(XHS_LANGUAGE); ?>
+<?php echo $this->countriesSelectbox(); ?>
 <p> </p>
 <!-- start payment modes -->
 <h2><?php echo $this->paymentHint(); ?></h2>
