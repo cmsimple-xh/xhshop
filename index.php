@@ -20,6 +20,8 @@ if (function_exists('XH_startSession')) {
     session_start();
 }
 
+bcscale(2);
+
 $xhsCartPreview = false;
 
 if (defined('XH_ADM') && XH_ADM) {
