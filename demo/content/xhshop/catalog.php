@@ -25,7 +25,7 @@ $category_for_the_left_overs['en'] = 'This &amp; that';
 ################### Products ######################;
 $products['p4bbf078122553']['names']['de'] = 'Erbsen (1000g-Packung)';
 $products['p4bbf078122553']['names']['en'] = 'Peas (1000g package)';
-$products['p4bbf078122553']['price'] = 2.25;
+$products['p4bbf078122553']['price'] = '2.25';
 $products['p4bbf078122553']['vat'] = 'reduced';
 $products['p4bbf078122553']['sortIndex'] = 10;
 $products['p4bbf078122553']['previewPicture'] = 'preview_peas.jpg';
@@ -47,7 +47,7 @@ $products['p4bbf078122553']['uid'] = 'p4bbf078122553';
 
 $products['p4bbf07812255f']['names']['de'] = 'Erdbeeren (500g-Packung)';
 $products['p4bbf07812255f']['names']['en'] = 'Strawberries (500g package)';
-$products['p4bbf07812255f']['price'] = 6.26;
+$products['p4bbf07812255f']['price'] = '6.26';
 $products['p4bbf07812255f']['vat'] = 'reduced';
 $products['p4bbf07812255f']['sortIndex'] = 9;
 $products['p4bbf07812255f']['previewPicture'] = 'preview_strawberry.jpg';
@@ -69,7 +69,7 @@ $products['p4bbf07812255f']['uid'] = 'p4bbf07812255f';
 
 $products['p4bbf078122566']['names']['de'] = 'Kirschen (500g-Packung)';
 $products['p4bbf078122566']['names']['en'] = 'Cherries (500g package)';
-$products['p4bbf078122566']['price'] = 5.99;
+$products['p4bbf078122566']['price'] = '5.99';
 $products['p4bbf078122566']['vat'] = 'reduced';
 $products['p4bbf078122566']['sortIndex'] = 7;
 $products['p4bbf078122566']['previewPicture'] = 'preview_cherry.jpg';
@@ -91,7 +91,7 @@ $products['p4bbf078122566']['uid'] = 'p4bbf078122566';
 
 $products['p4bbf07812256c']['names']['de'] = 'Birnen (750g-Packung)';
 $products['p4bbf07812256c']['names']['en'] = 'Pears (750g package)';
-$products['p4bbf07812256c']['price'] = 4.95;
+$products['p4bbf07812256c']['price'] = '4.95';
 $products['p4bbf07812256c']['vat'] = 'reduced';
 $products['p4bbf07812256c']['sortIndex'] = 8;
 $products['p4bbf07812256c']['previewPicture'] = 'preview_pears.jpg';
@@ -113,7 +113,7 @@ $products['p4bbf07812256c']['uid'] = 'p4bbf07812256c';
 
 $products['p4bbf078122572']['names']['de'] = 'Brötchen';
 $products['p4bbf078122572']['names']['en'] = 'Bread Rolls';
-$products['p4bbf078122572']['price'] = 0.75;
+$products['p4bbf078122572']['price'] = '0.75';
 $products['p4bbf078122572']['vat'] = 'reduced';
 $products['p4bbf078122572']['sortIndex'] = 3;
 $products['p4bbf078122572']['previewPicture'] = 'preview_bread.jpg';
@@ -136,7 +136,7 @@ $products['p4bbf078122572']['uid'] = 'p4bbf078122572';
 
 $products['p4bbf078122579']['names']['de'] = 'Muffin';
 $products['p4bbf078122579']['names']['en'] = 'Muffins';
-$products['p4bbf078122579']['price'] = 1.25;
+$products['p4bbf078122579']['price'] = '1.25';
 $products['p4bbf078122579']['vat'] = 'reduced';
 $products['p4bbf078122579']['sortIndex'] = 4;
 $products['p4bbf078122579']['previewPicture'] = 'preview_muffin.jpg';
@@ -158,7 +158,7 @@ $products['p4bbf078122579']['uid'] = 'p4bbf078122579';
 
 $products['p4bbf07812257f']['names']['de'] = 'Kaffee (im Versandbecher)';
 $products['p4bbf07812257f']['names']['en'] = 'Coffee (in shipping cup';
-$products['p4bbf07812257f']['price'] = 2.75;
+$products['p4bbf07812257f']['price'] = '2.75';
 $products['p4bbf07812257f']['vat'] = 'full';
 $products['p4bbf07812257f']['sortIndex'] = 5;
 $products['p4bbf07812257f']['previewPicture'] = 'preview_coffee.jpg';
@@ -180,7 +180,7 @@ $products['p4bbf07812257f']['uid'] = 'p4bbf07812257f';
 
 $products['p4bbf078122585']['names']['de'] = 'Milch (1 Liter-Packung)';
 $products['p4bbf078122585']['names']['en'] = 'Milk (1 liter)';
-$products['p4bbf078122585']['price'] = 1.55;
+$products['p4bbf078122585']['price'] = '1.55';
 $products['p4bbf078122585']['vat'] = 'reduced';
 $products['p4bbf078122585']['sortIndex'] = 6;
 $products['p4bbf078122585']['previewPicture'] = 'preview_milk.jpg';
@@ -202,7 +202,7 @@ $products['p4bbf078122585']['uid'] = 'p4bbf078122585';
 
 $products['p5948ea4f3940b']['names']['de'] = 'Universal-XH-Schraubendreher „CMB“ mit Aufsatz-Bits';
 $products['p5948ea4f3940b']['names']['en'] = 'Universal-XH-Screwdriver „CMB“ with Bits';
-$products['p5948ea4f3940b']['price'] = 9.99;
+$products['p5948ea4f3940b']['price'] = '9.99';
 $products['p5948ea4f3940b']['vat'] = 'full';
 $products['p5948ea4f3940b']['sortIndex'] = 1;
 $products['p5948ea4f3940b']['previewPicture'] = 'preview_screwdriver_XH.jpg';
@@ -227,7 +227,7 @@ $products['p5948ea4f3940b']['uid'] = 'p5948ea4f3940b';
 
 $products['p595e69e48c4e4']['names']['de'] = 'XH Splitter HOL / GER';
 $products['p595e69e48c4e4']['names']['en'] = 'XH Splitter HOL / GER';
-$products['p595e69e48c4e4']['price'] = 9.99;
+$products['p595e69e48c4e4']['price'] = '9.99';
 $products['p595e69e48c4e4']['vat'] = 'full';
 $products['p595e69e48c4e4']['sortIndex'] = 2;
 $products['p595e69e48c4e4']['previewPicture'] = 'preview_xh-splitter-grey.jpg';

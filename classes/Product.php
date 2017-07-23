@@ -26,7 +26,7 @@ class Product
     {
         $result = new self;
         $result->names = $record['names'];
-        $result->price = $record['price'];
+        $result->setPrice($record['price']);
         $result->vat = $record['vat'];
         $result->variants = isset($record['variants']) ? $record['variants'] : array(XHS_LANGUAGE => '');
         $result->previewPicture = isset($record['previewPicture']) ? $record['previewPicture'] : '';
@@ -104,7 +104,7 @@ class Product
 
     public function getGross()
     {
-        return (float)$this->price;
+        return $this->price;
     }
 
     public function getName($language = XHS_LANGUAGE, $variant = null)
@@ -242,10 +242,13 @@ class Product
         $this->teasers[$language] = $description;
     }
 
-    public function setPrice($price = 0.00)
+    public function setPrice($price = '0.00')
     {
-        $price = str_replace(',', '.', $price);
-        $this->price = (float)$price;
+        if (is_string($price) && preg_match('/^[1-9]\d*\.\d{2}$/', $price)) {
+            $this->price = $price;
+        } else {
+            $this->price = number_format($price, 2, '.', '');
+        }
     }
 
     public function setWeight($weight = 0.00)

@@ -79,7 +79,7 @@ class CatalogWriter
             $string .= '$products[\'' . $uid . '\'][\'names\'][\'' . $lang . '\'] = \''
                 . $this->cleanString($name) . "';\n";
         }
-        $string .= '$products[\'' . $uid . '\'][\'price\'] = ' . number_format($product->price, 2, '.', '') . ";\n";
+        $string .= '$products[\'' . $uid . '\'][\'price\'] = \'' . $product->price . "';\n";
         $string .= '$products[\'' . $uid . '\'][\'vat\'] = \'' . $this->cleanString($product->vat) . "';\n";
         $string .= '$products[\'' . $uid . '\'][\'sortIndex\'] = ' . (int)$product->sortIndex . ";\n";
         $string .= '$products[\'' . $uid . '\'][\'previewPicture\'] = \'' . $product->previewPicture . "';\n";
