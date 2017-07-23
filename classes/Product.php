@@ -7,7 +7,12 @@ class Product
     private $names;
     private $descriptions;
     private $teasers;
+
+    /**
+     * @var string
+     */
     private $price;
+
     private $productPages;
     private $previewPicture;
     private $vat;
@@ -96,6 +101,9 @@ class Product
         return (float)$this->weight;
     }
 
+    /**
+     * @return string
+     */
     public function getGross()
     {
         return $this->price;

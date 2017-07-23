@@ -5,20 +5,67 @@ namespace Xhshop;
 class Order
 {
     private $items = array();
+
+    /**
+     * @var string
+     */
     private $cartGross;
+
+    /**
+     * @var string
+     */
     private $vatFull;
+
+    /**
+     * @var string
+     */
     private $vatReduced;
+
+    /**
+     * @var string
+     */
     private $grossFull;
+
+    /**
+     * @var string
+     */
     private $grossReduced;
+
     private $units;
+
+    /**
+     * @var string
+     */
     private $shipping;
-    private $vatFullRate;
-    private $vatReducedRate;
-    private $total;
+
+    /**
+     * @var string
+     */
     private $fee;
 
+    /**
+     * @var float
+     */
+    private $vatFullRate;
+
+    /**
+     * @var float
+     */
+    private $vatReducedRate;
+
+    /**
+     * @var string
+     */
+    private $total;
+
+    /**
+     * @param float $vatFullRate
+     * @param float $vatReducedRate
+     */
     public function __construct($vatFullRate, $vatReducedRate)
     {
+        bcscale(2);
+
         $this->vatFullRate = (float)$vatFullRate;
         $this->vatReducedRate = (float)$vatReducedRate;
     }
@@ -49,22 +96,22 @@ class Order
 
     private function refresh()
     {
-        $this->cartGross = 0.00;
+        $this->cartGross = '0.00';
         $this->units = 0.00;
         $this->grossFull = '0.00';
         $this->grossReduced = '0.00';
         foreach ($this->items as $product) {
             $amount = $product['amount'];
-            $gross = (float)$product['gross'] * $amount;
+            $gross = bcmul($product['gross'], $amount);
             if ($product['vatRate'] == 'full') {
-                $this->grossFull += $gross;
+                $this->grossFull = bcadd($this->grossFull, $gross);
             } elseif ($product['vatRate'] == 'reduced') {
-                $this->grossReduced += $gross;
+                $this->grossReduced = bcadd($this->grossReduced, $gross);
             }
             $this->units +=  (float)$product['units'] * $amount;
-            $this->cartGross += $gross;
+            $this->cartGross = bcadd($this->cartGross, $gross);
         }
-        $this->total = $this->cartGross + $this->shipping + $this->fee;
+        $this->total = bcadd($this->cartGross, bcadd($this->shipping, $this->fee));
         $this->vatFull = $this->calculateVat($this->grossFull, $this->vatFullRate);
         $this->vatReduced = $this->calculateVat($this->grossReduced, $this->vatReducedRate);
         $this->vatForShippingAndFee();
@@ -72,20 +119,25 @@ class Order
 
     private function vatForShippingAndFee()
     {
-        if ($this->cartGross <= 0) {
+        if (bccomp($this->cartGross, '0.00') <= 0) {
             return;
         }
-        $fees = $this->shipping + $this->fee;
+        $fees = bcadd($this->shipping, $this->fee);
         $ratio = $this->grossReduced / $this->cartGross;
         $feeVatFull = $this->calculateVat((1 - $ratio) * $fees, $this->vatFullRate);
         $feeVatReduced = $this->calculateVat($ratio * $fees, $this->vatReducedRate);
-        $this->vatFull += $feeVatFull;
-        $this->vatReduced += $feeVatReduced;
+        $this->vatFull = bcadd($this->vatFull, $feeVatFull);
+        $this->vatReduced = bcadd($this->vatReduced, $feeVatReduced);
     }
 
+    /**
+     * @param float $value
+     * @param float $rate
+     * @return string
+     */
     private function calculateVat($value, $rate)
     {
-        return $value - $value * 100 / (100 + $rate);
+        return number_format($value - $value * 100 / (100 + $rate), 2, '.', '');
     }
 
     public function hasItems()
@@ -100,18 +152,29 @@ class Order
 
     public function setShipping($shipping)
     {
-        $this->shipping = $shipping;
+        if (is_string($shipping) && preg_match('/^[1-9]\d*\.\d{2}$/', $shipping)) {
+            $this->shipping = $shipping;
+        } else {
+            $this->shipping = number_format($shipping, 2, '.', '');
+        }
         $this->refresh();
     }
 
+    /**
+     * @return string
+     */
     public function getShipping()
     {
         return $this->shipping;
     }
 
-    public function setFee($fee = 0)
+    public function setFee($fee = '0.00')
     {
-        $this->fee = $fee;
+        if (is_string($fee) && preg_match('/^-?[1-9]\d*\.\d{2}$/', $fee)) {
+            $this->fee = $fee;
+        } else {
+            $this->fee = number_format($fee, 2, '.', '');
+        }
         $this->refresh();
     }
 
@@ -120,28 +183,43 @@ class Order
         return $this->units;
     }
 
+    /**
+     * @return string
+     */
     public function getCartSum()
     {
         return $this->cartGross;
     }
 
+    /**
+     * @return string
+     */
     public function getVat()
     {
-        return $this->vatReduced + $this->vatFull;
+        return bcadd($this->vatReduced, $this->vatFull);
     }
 
+    /**
+     * @return string
+     */
     public function getVatReduced()
     {
         return $this->vatReduced;
     }
 
+    /**
+     * @return string
+     */
     public function getVatFull()
     {
         return $this->vatFull;
     }
 
+    /**
+     * @return string
+     */
     public function getTotal()
     {
-        return $this->cartGross + $this->shipping + $this->fee;
+        return $this->total;
     }
 }

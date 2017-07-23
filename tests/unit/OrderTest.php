@@ -17,40 +17,130 @@ class OrderTest extends TestCase
         $this->assertFalse($order->hasItems());
     }
 
-    public function testGetCartSum()
+    /**
+     * @dataProvider provideDataForTestGetCartSum
+     */
+    public function testGetCartSum($factoryMethod, $expected)
     {
-        $order = $this->createOrderWithOnePearAndTwoBlueSplitters();
-        $this->assertEquals(24.93, $order->getCartSum(), '', 0.005);
+        $order = $factoryMethod();
+        $this->assertSame($expected, $order->getCartSum());
     }
 
-    public function testGetVat()
+    public function provideDataForTestGetCartSum()
     {
-        $order = $this->createOrderWithOnePearAndTwoBlueSplitters();
-        $this->assertEquals(4.08, $order->getVat(), '', 0.005);
+        return array(
+            [[$this, 'createOrderWithHundredPears'], '495.00'],
+            [[$this, 'createOrderWithElevenGreenSplitters'], '109.89'],
+            [[$this, 'createOrderWithOnePearAndTwoBlueSplitters'], '24.93']
+        );
     }
 
-    public function testGetVatReduced()
+    /**
+     * @dataProvider provideDataForTestGetVat
+     */
+    public function testGetVat($factoryMethod, $expected)
     {
-        $order = $this->createOrderWithOnePearAndTwoBlueSplitters();
-        $this->assertEquals(0.38, $order->getVatReduced(), '', 0.005);
+        $order = $factoryMethod();
+        $this->assertSame($expected, $order->getVat());
     }
 
-    public function testGetVatFull()
+    public function provideDataForTestGetVat()
     {
-        $order = $this->createOrderWithOnePearAndTwoBlueSplitters();
-        $this->assertEquals(3.70, $order->getVatFull(), '', 0.005);
+        return array(
+            [[$this, 'createOrderWithHundredPears'], '33.19'],
+            [[$this, 'createOrderWithElevenGreenSplitters'], '18.03'],
+            [[$this, 'createOrderWithOnePearAndTwoBlueSplitters'], '4.07']
+        );
     }
 
-    public function testGetShipping()
+    /**
+     * @dataProvider provideDataForTestGetVatReduced
+     */
+    public function testGetVatReduced($factoryMethod, $expected)
     {
-        $order = $this->createOrderWithOnePearAndTwoBlueSplitters();
-        $this->assertEquals(5.50, $order->getShipping(), '', 0.005);
+        $order = $factoryMethod();
+        $this->assertSame($expected, $order->getVatReduced());
     }
 
-    public function testGetTotal()
+    public function provideDataForTestGetVatReduced()
     {
-        $order = $this->createOrderWithOnePearAndTwoBlueSplitters();
-        $this->assertEquals(28.93, $order->getTotal(), '', 0.005);
+        return array(
+            [[$this, 'createOrderWithHundredPears'], '33.19'],
+            [[$this, 'createOrderWithElevenGreenSplitters'], '0.00'],
+            [[$this, 'createOrderWithOnePearAndTwoBlueSplitters'], '0.37']
+        );
+    }
+
+    /**
+     * @dataProvider provideDataForTestGetVatFull
+     */
+    public function testGetVatFull($factoryMethod, $expected)
+    {
+        $order = $factoryMethod();
+        $this->assertSame($expected, $order->getVatFull());
+    }
+
+    public function provideDataForTestGetVatFull()
+    {
+        return array(
+            [[$this, 'createOrderWithHundredPears'], '0.00'],
+            [[$this, 'createOrderWithElevenGreenSplitters'], '18.03'],
+            [[$this, 'createOrderWithOnePearAndTwoBlueSplitters'], '3.70']
+        );
+    }
+
+    /**
+     * @dataProvider provideDataForTestGetShipping
+     */
+    public function testGetShipping($factoryMethod, $expected)
+    {
+        $order = $factoryMethod();
+        $this->assertSame($expected, $order->getShipping());
+    }
+
+    public function provideDataForTestGetShipping()
+    {
+        return array(
+            [[$this, 'createOrderWithHundredPears'], '9.89'],
+            [[$this, 'createOrderWithElevenGreenSplitters'], '3.33'],
+            [[$this, 'createOrderWithOnePearAndTwoBlueSplitters'], '5.50']
+        );
+    }
+
+    /**
+     * @dataProvider provideDataForTestGetTotal
+     */
+    public function testGetTotal($factoryMethod, $expected)
+    {
+        $order = $factoryMethod();
+        $this->assertSame($expected, $order->getTotal());
+    }
+
+    public function provideDataForTestGetTotal()
+    {
+        return array(
+            [[$this, 'createOrderWithHundredPears'], '507.39'],
+            [[$this, 'createOrderWithElevenGreenSplitters'], '112.89'],
+            [[$this, 'createOrderWithOnePearAndTwoBlueSplitters'], '28.93']
+        );
+    }
+
+    private function createOrderWithHundredPears()
+    {
+        $order = new Order(19, 7);
+        $order->addItem($this->createPearsProduct(), 100);
+        $order->setShipping('9.89');
+        $order->setFee('2.50');
+        return $order;
+    }
+
+    private function createOrderWithElevenGreenSplitters()
+    {
+        $order = new Order(19, 7);
+        $order->addItem($this->createSplitterProduct(), 11, 'green');
+        $order->setShipping('3.33');
+        $order->setFee('-0.33');
+        return $order;
     }
 
     private function createOrderWithOnePearAndTwoBlueSplitters()
@@ -58,8 +148,8 @@ class OrderTest extends TestCase
         $order = new Order(19, 7);
         $order->addItem($this->createSplitterProduct(), 2, 'blue');
         $order->addItem($this->createPearsProduct(), 1);
-        $order->setShipping(5.50);
-        $order->setFee(-1.50);
+        $order->setShipping('5.50');
+        $order->setFee('-1.50');
         return $order;
     }
 
@@ -67,7 +157,7 @@ class OrderTest extends TestCase
     {
         $product = $this->createMock(Product::class);
         $product->method('getUid')->willReturn('pears');
-        $product->method('getGross')->willReturn(4.95);
+        $product->method('getGross')->willReturn('4.95');
         $product->method('getVat')->willReturn('reduced');
         return $product;
     }
@@ -76,7 +166,7 @@ class OrderTest extends TestCase
     {
         $product = $this->createMock(Product::class);
         $product->method('getUid')->willReturn('splitter');
-        $product->method('getGross')->willReturn(9.99);
+        $product->method('getGross')->willReturn('9.99');
         $product->method('getVat')->willReturn('full');
         return $product;
     }
