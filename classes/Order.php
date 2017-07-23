@@ -152,7 +152,7 @@ class Order
 
     public function setShipping($shipping)
     {
-        if (is_string($shipping) && preg_match('/^[1-9]\d*\.\d{2}$/', $shipping)) {
+        if (is_string($shipping) && preg_match('/^(?:\d|[1-9]\d+)\.\d{2}$/', $shipping)) {
             $this->shipping = $shipping;
         } else {
             $this->shipping = number_format($shipping, 2, '.', '');
@@ -170,7 +170,7 @@ class Order
 
     public function setFee($fee = '0.00')
     {
-        if (is_string($fee) && preg_match('/^-?[1-9]\d*\.\d{2}$/', $fee)) {
+        if (is_string($fee) && preg_match('/^-?(?:\d|[1-9]\d+)\.\d{2}$/', $fee)) {
             $this->fee = $fee;
         } else {
             $this->fee = number_format($fee, 2, '.', '');
