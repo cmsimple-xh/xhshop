@@ -15,7 +15,6 @@ class Order
     private $vatReducedRate;
     private $total;
     private $fee;
-    private $showNet = false; // practically unused
 
     public function __construct($vatFullRate, $vatReducedRate)
     {
@@ -138,9 +137,6 @@ class Order
 
     public function getCartSum()
     {
-        if ($this->showNet == true) {
-            return $this->cartNet;
-        }
         return $this->cartGross;
     }
 
