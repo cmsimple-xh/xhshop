@@ -28,10 +28,9 @@ class FrontEndController extends Controller
             list($country, $grades) = explode(':', $line);
             $countryGrades[trim($country)] = trim($grades);
         }
-        if (isset($_SESSION['xhsCustomer'])) {
-            $countries = array_flip($this->settings['shipping_countries']);
-            $country = $countries[$_SESSION['xhsCustomer']->country];
-            $grades = $countryGrades[$country];
+        if (isset($_SESSION['xhsCustomer'])
+                && ($code = array_search($_SESSION['xhsCustomer']->country, $this->settings['shipping_countries']))) {
+            $grades = $countryGrades[$code];
         } else {
             $grades = reset($countryGrades);
         }
