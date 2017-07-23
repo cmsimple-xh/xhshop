@@ -48,8 +48,8 @@ class OrderTest extends TestCase
     {
         return array(
             [[$this, 'createOrderWithHundredPears'], '33.19'],
-            [[$this, 'createOrderWithElevenGreenSplitters'], '18.03'],
-            [[$this, 'createOrderWithOnePearAndTwoBlueSplitters'], '4.07']
+            [[$this, 'createOrderWithElevenGreenSplitters'], '18.02'],
+            [[$this, 'createOrderWithOnePearAndTwoBlueSplitters'], '4.08']
         );
     }
 
@@ -67,7 +67,7 @@ class OrderTest extends TestCase
         return array(
             [[$this, 'createOrderWithHundredPears'], '33.19'],
             [[$this, 'createOrderWithElevenGreenSplitters'], '0.00'],
-            [[$this, 'createOrderWithOnePearAndTwoBlueSplitters'], '0.37']
+            [[$this, 'createOrderWithOnePearAndTwoBlueSplitters'], '0.38']
         );
     }
 
@@ -84,7 +84,7 @@ class OrderTest extends TestCase
     {
         return array(
             [[$this, 'createOrderWithHundredPears'], '0.00'],
-            [[$this, 'createOrderWithElevenGreenSplitters'], '18.03'],
+            [[$this, 'createOrderWithElevenGreenSplitters'], '18.02'],
             [[$this, 'createOrderWithOnePearAndTwoBlueSplitters'], '3.70']
         );
     }

@@ -112,22 +112,28 @@ class Order
             $this->cartGross = bcadd($this->cartGross, $gross);
         }
         $this->total = bcadd($this->cartGross, bcadd($this->shipping, $this->fee));
-        $this->vatFull = $this->calculateVat($this->grossFull, $this->vatFullRate);
-        $this->vatReduced = $this->calculateVat($this->grossReduced, $this->vatReducedRate);
-        $this->vatForShippingAndFee();
+        $this->calculateTaxes();
     }
 
-    private function vatForShippingAndFee()
+    private function calculateTaxes()
     {
         if (bccomp($this->cartGross, '0.00') <= 0) {
+            $this->vatFull = $this->vatReduced = '0.00';
             return;
         }
+
         $fees = bcadd($this->shipping, $this->fee);
-        $ratio = $this->grossReduced / $this->cartGross;
-        $feeVatFull = $this->calculateVat((1 - $ratio) * $fees, $this->vatFullRate);
-        $feeVatReduced = $this->calculateVat($ratio * $fees, $this->vatReducedRate);
-        $this->vatFull = bcadd($this->vatFull, $feeVatFull);
-        $this->vatReduced = bcadd($this->vatReduced, $feeVatReduced);
+        $num = $this->grossReduced;
+        $denom = $this->cartGross;
+
+        $fullFee = number_format($fees * ($denom - $num) / $denom, 2, '.', '');
+        $reducedFee = number_format($fees * $num / $denom, 2, '.', '');
+
+        $fullTotal = bcadd($this->grossFull, $fullFee);
+        $reducedTotal = bcadd($this->grossReduced, $reducedFee);
+
+        $this->vatFull = $this->calculateVat($fullTotal, $this->vatFullRate);
+        $this->vatReduced = $this->calculateVat($reducedTotal, $this->vatReducedRate);
     }
 
     /**
