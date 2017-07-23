@@ -6,9 +6,10 @@ class Order
 {
     private $items = array();
     private $cartGross;
-    private $cartNet;
     private $vatFull;
     private $vatReduced;
+    private $grossFull;
+    private $grossReduced;
     private $units;
     private $shipping;
     private $vatFullRate;
@@ -30,7 +31,6 @@ class Order
         }
         $this->items[$index]['amount'] = (int)$amount;
         $this->items[$index]['variant'] = $variant;
-        $this->items[$index]['net'] = (float)$this->getProductNet($product);
         $this->items[$index]['gross'] = $product->getGross();
         $this->items[$index]['vatRate'] = $product->getVat();
         $this->items[$index]['units'] = (float)$product->getWeight();
@@ -47,60 +47,45 @@ class Order
         $this->refresh();
     }
 
-    private function getProductNet(Product $product)
-    {
-        $rate = 0;
-        if ($product->getVat() == 'full') {
-            $rate = $this->vatFullRate;
-        } elseif ($product->getVat() == 'reduced') {
-            $rate = $this->vatReducedRate;
-        }
-        return $product->getNet($rate);
-    }
-
     private function refresh()
     {
         $this->cartGross = 0.00;
-        $this->cartNet = 0.00;
         $this->units = 0.00;
-        $this->vatReduced = 0.00;
-        $this->vatFull = 0.00;
+        $this->grossFull = '0.00';
+        $this->grossReduced = '0.00';
         foreach ($this->items as $product) {
             $amount = $product['amount'];
             $gross = (float)$product['gross'] * $amount;
-            $net = (float)$product['net'] * $amount;
-            $tax = $gross - $net;
             if ($product['vatRate'] == 'full') {
-                $this->vatFull += $tax;
-            }
-            if ($product['vatRate'] == 'reduced') {
-                $this->vatReduced += $tax;
+                $this->grossFull += $gross;
+            } elseif ($product['vatRate'] == 'reduced') {
+                $this->grossReduced += $gross;
             }
             $this->units +=  (float)$product['units'] * $amount;
             $this->cartGross += $gross;
-            $this->cartNet += $net;
         }
-        $this->vatForShippingAndFee();
         $this->total = $this->cartGross + $this->shipping + $this->fee;
+        $this->vatFull = $this->calculateVat($this->grossFull, $this->vatFullRate);
+        $this->vatReduced = $this->calculateVat($this->grossReduced, $this->vatReducedRate);
+        $this->vatForShippingAndFee();
     }
 
     private function vatForShippingAndFee()
     {
+        if ($this->cartGross <= 0) {
+            return;
+        }
         $fees = $this->shipping + $this->fee;
-        
-        if ($this->vatFull > 0) {
-            $factor = (($this->vatFull/$this->vatFullRate) * (100  + $this->vatFullRate))/$this->cartGross;
-            $temp = $fees * $factor;
-            $temp = ($temp/(100 + $this->vatFullRate)) * $this->vatFullRate;
-            $this->vatFull = $this->vatFull +  $temp;
-        }
-        if ($this->vatReduced > 0) {
-            $factor = (($this->vatReduced/$this->vatReducedRate) * (100  + $this->vatReducedRate))/$this->cartGross;
-            $temp = $fees * $factor;
-            $temp = ($temp/(100 + $this->vatReducedRate)) * $this->vatReducedRate;
-            $this->vatReduced = $this->vatReduced +  $temp;
-        }
-        return;
+        $ratio = $this->grossReduced / $this->cartGross;
+        $feeVatFull = $this->calculateVat((1 - $ratio) * $fees, $this->vatFullRate);
+        $feeVatReduced = $this->calculateVat($ratio * $fees, $this->vatReducedRate);
+        $this->vatFull += $feeVatFull;
+        $this->vatReduced += $feeVatReduced;
+    }
+
+    private function calculateVat($value, $rate)
+    {
+        return $value - $value * 100 / (100 + $rate);
     }
 
     public function hasItems()
@@ -142,7 +127,7 @@ class Order
 
     public function getVat()
     {
-        return $this->vatFull + $this->vatReduced;
+        return $this->vatReduced + $this->vatFull;
     }
 
     public function getVatReduced()

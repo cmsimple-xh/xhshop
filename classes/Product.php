@@ -96,12 +96,6 @@ class Product
         return (float)$this->weight;
     }
 
-    public function getNet($vatRate)
-    {
-        $net = $this->price/(100 + $vatRate)*100;
-        return (float)$net;
-    }
-
     public function getGross()
     {
         return $this->price;

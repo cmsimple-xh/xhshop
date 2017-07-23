@@ -32,13 +32,13 @@ class OrderTest extends TestCase
     public function testGetVatReduced()
     {
         $order = $this->createOrderWithOnePearAndTwoBlueSplitters();
-        $this->assertEquals(0.37, $order->getVatReduced(), '', 0.005);
+        $this->assertEquals(0.38, $order->getVatReduced(), '', 0.005);
     }
 
     public function testGetVatFull()
     {
         $order = $this->createOrderWithOnePearAndTwoBlueSplitters();
-        $this->assertEquals(3.71, $order->getVatFull(), '', 0.005);
+        $this->assertEquals(3.70, $order->getVatFull(), '', 0.005);
     }
 
     public function testGetShipping()
@@ -68,7 +68,6 @@ class OrderTest extends TestCase
         $product = $this->createMock(Product::class);
         $product->method('getUid')->willReturn('pears');
         $product->method('getGross')->willReturn(4.95);
-        $product->method('getNet')->willReturn(4.63);
         $product->method('getVat')->willReturn('reduced');
         return $product;
     }
@@ -78,7 +77,6 @@ class OrderTest extends TestCase
         $product = $this->createMock(Product::class);
         $product->method('getUid')->willReturn('splitter');
         $product->method('getGross')->willReturn(9.99);
-        $product->method('getNet')->willReturn(8.39);
         $product->method('getVat')->willReturn('full');
         return $product;
     }
