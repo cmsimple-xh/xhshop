@@ -126,8 +126,8 @@ class Order
         $num = $this->grossReduced;
         $denom = $this->cartGross;
 
-        $fullFee = number_format($fees * ($denom - $num) / $denom, 2, '.', '');
-        $reducedFee = number_format($fees * $num / $denom, 2, '.', '');
+        $fullFee = new Decimal($fees * ($denom - $num) / $denom);
+        $reducedFee = new Decimal($fees * $num / $denom);
 
         $fullTotal = bcadd($this->grossFull, $fullFee);
         $reducedTotal = bcadd($this->grossReduced, $reducedFee);
@@ -143,7 +143,7 @@ class Order
      */
     private function calculateVat($value, $rate)
     {
-        return number_format($value - $value * 100 / (100 + $rate), 2, '.', '');
+        return (string) new Decimal($value - $value * 100 / (100 + $rate));
     }
 
     public function hasItems()
@@ -156,13 +156,9 @@ class Order
         return $this->items;
     }
 
-    public function setShipping($shipping)
+    public function setShipping(Decimal $shipping)
     {
-        if (is_string($shipping) && preg_match('/^(?:\d|[1-9]\d+)\.\d{2}$/', $shipping)) {
-            $this->shipping = $shipping;
-        } else {
-            $this->shipping = number_format($shipping, 2, '.', '');
-        }
+        $this->shipping = (string) $shipping;
         $this->refresh();
     }
 
@@ -174,13 +170,9 @@ class Order
         return $this->shipping;
     }
 
-    public function setFee($fee = '0.00')
+    public function setFee(Decimal $fee)
     {
-        if (is_string($fee) && preg_match('/^-?(?:\d|[1-9]\d+)\.\d{2}$/', $fee)) {
-            $this->fee = $fee;
-        } else {
-            $this->fee = number_format($fee, 2, '.', '');
-        }
+        $this->fee = (string) $fee;
         $this->refresh();
     }
 

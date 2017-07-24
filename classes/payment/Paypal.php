@@ -68,7 +68,7 @@ class Paypal extends PaymentModule
             $form .= '
      <input type="hidden" name="item_name_' . $item['itemCounter'] . '" value="' . $name . '">
      <input type="hidden" name="quantity_' . $item['itemCounter'] . '" value="' . $item['amount'] . '">
-     <input type="hidden" name="amount_' . $item['itemCounter'] . '" value="' . number_format((float) $item['price'], 2, '.', '') . '">
+     <input type="hidden" name="amount_' . $item['itemCounter'] . '" value="' . new Decimal($item['price']) . '">
      <input type="hidden" name="item_number_' . $item['itemCounter'] . '" value="' . $item['itemCounter'] . '">';
         }
         $form .= '

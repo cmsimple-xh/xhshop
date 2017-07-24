@@ -96,7 +96,7 @@ class FrontEndController extends Controller
         } else {
             $_SESSION['xhsOrder']->removeItem($this->catalog->getProduct($_POST['cartItem']), $variant);
         }
-        $_SESSION['xhsOrder']->setShipping($this->calculateShipping());
+        $_SESSION['xhsOrder']->setShipping(new Decimal($this->calculateShipping()));
 
         $url = CMSIMPLE_URL . '?' . $_SERVER['QUERY_STRING'];
         header("Location: $url", true, 303);
@@ -407,7 +407,7 @@ class FrontEndController extends Controller
         } elseif (!$this->isValidCustomer()) {
             $this->relocateToCheckout('customersData', 302);
         }
-        $_SESSION['xhsOrder']->setShipping($this->calculateShipping());
+        $_SESSION['xhsOrder']->setShipping(new Decimal($this->calculateShipping()));
         $fee           = $this->calculatePaymentFee();
         $paymentModule = $this->paymentModules[$_SESSION['xhsCustomer']->payment_mode];
         if ($paymentModule->wantsCartItems() !== false) {
@@ -421,7 +421,7 @@ class FrontEndController extends Controller
         if (isset($params['annotation'])) {
             $params['annotation'] = nl2br($params['annotation']);
         }
-        $_SESSION['xhsOrder']->setFee($fee);
+        $_SESSION['xhsOrder']->setFee(new Decimal($fee));
         $params['xhs_url']    = XHS_URL;
         $params['xhs_checkout_url'] = '?' . XHS_URL . '&xhsCheckout=finish';
         $params['payment']    = $paymentModule;

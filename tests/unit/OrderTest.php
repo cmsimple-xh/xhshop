@@ -129,8 +129,8 @@ class OrderTest extends TestCase
     {
         $order = new Order(19, 7);
         $order->addItem($this->createPearsProduct(), 100);
-        $order->setShipping('9.89');
-        $order->setFee('2.50');
+        $order->setShipping(new Decimal('9.89'));
+        $order->setFee(new Decimal('2.50'));
         return $order;
     }
 
@@ -138,8 +138,8 @@ class OrderTest extends TestCase
     {
         $order = new Order(19, 7);
         $order->addItem($this->createSplitterProduct(), 11, 'green');
-        $order->setShipping('3.33');
-        $order->setFee('-0.33');
+        $order->setShipping(new Decimal('3.33'));
+        $order->setFee(new Decimal('-0.33'));
         return $order;
     }
 
@@ -148,8 +148,8 @@ class OrderTest extends TestCase
         $order = new Order(19, 7);
         $order->addItem($this->createSplitterProduct(), 2, 'blue');
         $order->addItem($this->createPearsProduct(), 1);
-        $order->setShipping('5.50');
-        $order->setFee('-1.50');
+        $order->setShipping(new Decimal('5.50'));
+        $order->setFee(new Decimal('-1.50'));
         return $order;
     }
 

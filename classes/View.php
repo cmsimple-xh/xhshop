@@ -116,7 +116,6 @@ abstract class View
 
     private function floatInputNameValueLabel($name, $value = 0, $params = null)
     {
-        $value = (float)$value;
         if (is_array($params)) {
             if (!isset($params['style'])) {
                 $params['style'] = 'text-align: right;';
@@ -132,8 +131,7 @@ abstract class View
 
         $params['type'] = 'number';
         $params['step'] = '0.01';
-        $value = number_format($value, 2);
-        return $this->textinputNameValueLabel($name, $value, $params);
+        return $this->textinputNameValueLabel($name, new Decimal($value), $params);
     }
 
     protected function moneyInputNameValueLabel($name, $value = 0, $params = array())
