@@ -40,7 +40,7 @@ foreach($this->cartItems as $product){
 <input type="hidden" name="cartItem" value="<?php echo $product['key'];?>">
 <button class="xhsDelBtn" title="<?php $this->label('delete'); ?>"><span class="fa fa-remove fa-lg"></span></button>
 </form></td>
-<td class="xhsMoneyCell"><b><?php echo $this->formatCurrency($product['sum']); ?></b></td>
+<td class="xhsMoneyCell"><strong><?php echo $this->formatCurrency($product['sum']); ?></strong></td>
 </tr>
 <tr>
 <td colspan="3"><hr class="xhsHr1"></td>
@@ -49,7 +49,7 @@ foreach($this->cartItems as $product){
 <tr>
 <td>&nbsp;</td>
 <td class="xhsTdR"><?php echo $this->label('subtotal') ?></td>
-<td class="xhsMoneyCell"><?php echo $this->formatCurrency($this->cartSum); ?></td>
+<td class="xhsMoneyCell"><strong><?php echo $this->formatCurrency($this->cartSum); ?></strong></td>
 </tr>
 <tr>
 <td colspan="2">&nbsp;</td>
