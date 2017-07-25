@@ -142,24 +142,29 @@ abstract class View
         return $this->floatinputNameValueLabel($name, $value, $params) . " ". $this->currency;
     }
 
-    public function formatFloat($sum)
+    /**
+     * @return string
+     */
+    public function formatDecimal(Decimal $value)
     {
         global $plugin_tx;
 
+        if (!preg_match('/^(-?\d{1,3})((?:\d{3})*)\.(\d{2})$/', $value, $matches)) {
+            trigger_error('unexpected decimal format', E_USER_WARNING);
+        }
         $dec_sep = trim($plugin_tx['xhshop']['config_decimal_separator']);
         $thousands_sep = trim($plugin_tx['xhshop']['config_thousands_separator']);
-        if (($sum instanceof Decimal || is_string($sum))
-                && preg_match('/^(-?\d{1,3})((?:\d{3})*)\.(\d{2})$/', $sum, $matches)) {
-            $integer = $matches[1] . preg_replace('/(\d{3})/', "$thousands_sep\$1", $matches[2]);
-            return $integer . $dec_sep . $matches[3];
-        } else {
-            return number_format($sum, 2, $dec_sep, $thousands_sep);
-        }
+        list(, $lead, $triplets, $decimals) = $matches;
+        $triplets = preg_replace('/(\d{3})/', "$thousands_sep\$1", $triplets);
+        return $lead . $triplets . $dec_sep . $decimals;
     }
 
-    public function formatCurrency($sum)
+    /**
+     * @return string
+     */
+    public function formatCurrency(Decimal $value)
     {
-        return $this->formatFloat($sum)  . ' ' . $this->currency;
+        return $this->formatDecimal($value)  . ' ' . $this->currency;
     }
 
     public function formatPercentage($value)

@@ -252,8 +252,8 @@ class FrontEndController extends Controller
             $params['vatTotal']         = $_SESSION['xhsOrder']->getVat();
             $params['vatFull']          = $_SESSION['xhsOrder']->getVatFull();
             $params['vatReduced']       = $_SESSION['xhsOrder']->getVatReduced();
-            $params['minimum_order']    = $this->settings['minimum_order'];
-            $params['no_shipping_from'] = $this->settings['forwarding_expenses_up_to'];
+            $params['minimum_order']    = new Decimal($this->settings['minimum_order']);
+            $params['no_shipping_from'] = new Decimal($this->settings['forwarding_expenses_up_to']);
             $params['canOrder']         = $this->canOrder();
             $params['price_info']       = $price_info;
             $params['xhs_url']          = XHS_URL;
@@ -523,9 +523,9 @@ class FrontEndController extends Controller
         } else {
             $vat_hint = $this->viewProvider->labels['included_vat'] . ' '
                 . $this->viewProvider->formatCurrency($_SESSION['xhsOrder']->getVat());
-            $vat_hint .= ' (' . $this->viewProvider->formatCurrency($this->settings['vat_reduced']) . ': '
+            $vat_hint .= ' (' . $this->viewProvider->formatCurrency(new Decimal($this->settings['vat_reduced'])) . ': '
                 . $this->viewProvider->formatCurrency($_SESSION['xhsOrder']->getVatReduced()) . ' - ';
-            $vat_hint .= $this->viewProvider->formatPercentage($this->settings['vat_full']) . ': '
+            $vat_hint .= $this->viewProvider->formatPercentage(new Decimal($this->settings['vat_full'])) . ': '
                 . $this->viewProvider->formatCurrency($_SESSION['xhsOrder']->getVatFull()) . ')';
         }
 
@@ -551,7 +551,7 @@ class FrontEndController extends Controller
             '%COMPANY_ZIP%'    => $this->settings['zip_code'],
             '%COMPANY_CITY%'   => $this->settings['city'],
             '%SUM%'            => $this->viewProvider->formatCurrency($subtotal),
-            '%WEIGHT%'         => $this->viewProvider->formatFloat($_SESSION['xhsOrder']->getUnits()),
+            '%WEIGHT%'         => $this->viewProvider->formatDecimal($_SESSION['xhsOrder']->getUnits()),
             '%SHIPPING%'       => $this->viewProvider->formatCurrency($shipping),
             '%ROWS%'           => $rows,
             '%FEE_LABEL%'      => $feeLabel,

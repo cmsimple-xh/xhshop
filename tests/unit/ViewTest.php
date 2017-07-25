@@ -7,9 +7,9 @@ use PHPUnit\Framework\TestCase;
 class ViewTest extends TestCase
 {
     /**
-     * @dataProvider provideDataForTestFormatFloat
+     * @dataProvider provideDataForTestFormatDecimal
      */
-    public function testFormatFloat($value, $dsep, $tsep, $expected)
+    public function testFormatDecimal($value, $dsep, $tsep, $expected)
     {
         global $plugin_tx;
 
@@ -21,13 +21,12 @@ class ViewTest extends TestCase
             ->disableOriginalConstructor()
             ->setMethods(null)
             ->getMock();
-        $this->assertSame($expected, $view->formatFloat($value));
+        $this->assertSame($expected, $view->formatDecimal(new Decimal($value)));
     }
 
-    public function provideDataForTestFormatFloat()
+    public function provideDataForTestFormatDecimal()
     {
         return array(
-            [           1234567.89, ',', '.',             '1.234.567,89'],
             [               '1.23', ',', '.',                     '1,23'],
             [              '12.34', ',', '.',                    '12,34'],
             [             '123.45', ',', '.',                   '123,45'],
