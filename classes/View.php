@@ -145,7 +145,8 @@ abstract class View
 
         $dec_sep = trim($plugin_tx['xhshop']['config_decimal_separator']);
         $thousands_sep = trim($plugin_tx['xhshop']['config_thousands_separator']);
-        if (is_string($sum) && preg_match('/^(\d{1,3})((?:\d{3})*)\.(\d{2})$/', $sum, $matches)) {
+        if (($sum instanceof Decimal || is_string($sum))
+                && preg_match('/^(-?\d{1,3})((?:\d{3})*)\.(\d{2})$/', $sum, $matches)) {
             $integer = $matches[1] . preg_replace('/(\d{3})/', "$thousands_sep\$1", $matches[2]);
             return $integer . $dec_sep . $matches[3];
         } else {

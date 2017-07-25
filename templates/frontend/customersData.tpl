@@ -25,9 +25,9 @@
 <?php foreach($this->payments as $module){
 $checked = $_SESSION['xhsCustomer']->payment_mode == $module->getName() ?  ' checked="checked"' : '';
 $fee = '';
-if((float)$module->getFee() !== 0.00){
-	$fee = ' (' . $this->formatCurrency((float)$module->getFee()) . ' ';
-	$fee .= (float)$module->getFee() < 0 ? '<b>' . $this->labels['reduction'] . '</b>' : $this->labels['fee'];
+if(bccomp($module->getFee(), new Xhshop\Decimal('0.00')) !== 0){
+	$fee = ' (' . $this->formatCurrency($module->getFee()) . ' ';
+	$fee .= bccomp($module->getFee(), new Xhshop\Decimal('0.00')) < 0 ? '<b>' . $this->labels['reduction'] . '</b>' : $this->labels['fee'];
 	$fee .= ')';
 } ?>
 <label>

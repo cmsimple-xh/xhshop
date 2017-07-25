@@ -34,12 +34,12 @@ class Order
     private $units;
 
     /**
-     * @var string
+     * @var Decimal
      */
     private $shipping;
 
     /**
-     * @var string
+     * @var Decimal
      */
     private $fee;
 
@@ -158,12 +158,12 @@ class Order
 
     public function setShipping(Decimal $shipping)
     {
-        $this->shipping = (string) $shipping;
+        $this->shipping = $shipping;
         $this->refresh();
     }
 
     /**
-     * @return string
+     * @return Decimal
      */
     public function getShipping()
     {
@@ -172,7 +172,7 @@ class Order
 
     public function setFee(Decimal $fee)
     {
-        $this->fee = (string) $fee;
+        $this->fee = $fee;
         $this->refresh();
     }
 

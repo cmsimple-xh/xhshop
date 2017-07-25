@@ -95,7 +95,7 @@ class OrderTest extends TestCase
     public function testGetShipping($factoryMethod, $expected)
     {
         $order = $factoryMethod();
-        $this->assertSame($expected, $order->getShipping());
+        $this->assertSame($expected, (string) $order->getShipping());
     }
 
     public function provideDataForTestGetShipping()

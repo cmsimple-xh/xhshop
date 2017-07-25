@@ -37,9 +37,9 @@ class FrontEndController extends Controller
         foreach (explode(';', $grades) as $grade) {
             $parts = explode('=', trim($grade));
             if (count($parts) === 2) {
-                $this->settings['weightRange'][trim($parts[0])] = (float) $parts[1];
+                $this->settings['weightRange'][trim($parts[0])] = new Decimal($parts[1]);
             } else {
-                $this->settings['shipping_max'] = $parts[0];
+                $this->settings['shipping_max'] = new Decimal($parts[0]);
             }
         }
     }
@@ -96,45 +96,52 @@ class FrontEndController extends Controller
         } else {
             $_SESSION['xhsOrder']->removeItem($this->catalog->getProduct($_POST['cartItem']), $variant);
         }
-        $_SESSION['xhsOrder']->setShipping(new Decimal($this->calculateShipping()));
+        $_SESSION['xhsOrder']->setShipping($this->calculateShipping());
 
         $url = CMSIMPLE_URL . '?' . $_SERVER['QUERY_STRING'];
         header("Location: $url", true, 303);
         exit;
     }
 
+    /**
+     * @return Decimal
+     */
     private function calculateShipping()
     {
         if (!$this->settings['charge_for_shipping']) {
-            return 0;
+            return new Decimal('0.00');
         }
         if ($this->settings['shipping_up_to'] == 'true' &&
-                $_SESSION['xhsOrder']->getCartSum() >= (float) $this->settings['forwarding_expenses_up_to']) {
-            return 0;
+                bccomp($_SESSION['xhsOrder']->getCartSum(), new Decimal($this->settings['forwarding_expenses_up_to'])) >= 0) {
+            return new Decimal('0.00');
         }
         if (empty($this->settings['weightRange'])) {
-            return (float) $this->settings['shipping_max'];
+            return $this->settings['shipping_max'];
         }
         $weight = $_SESSION['xhsOrder']->getUnits();
 
         if (isset($this->settings['weightRange'])) {
             foreach ($this->settings['weightRange'] as $key => $value) {
                 if ($weight <= (float) $key) {
-                    return (float) $value;
+                    return $value;
                 }
             }
         }
-        return (float) $this->settings['shipping_max'];
+        return $this->settings['shipping_max'];
     }
 
+    /**
+     * @return Decimal
+     */
     private function calculatePaymentFee()
     {
         if (isset($_SESSION['xhsCustomer']->payment_mode)) {
-            if ($this->loadPaymentModule($_SESSION['xhsCustomer']->payment_mode)) {
-                return $this->paymentModules[$_SESSION['xhsCustomer']->payment_mode]->getFee();
+            $paymode = $_SESSION['xhsCustomer']->payment_mode;
+            if ($this->loadPaymentModule($paymode)) {
+                return $this->paymentModules[$paymode]->getFee();
             }
         }
-        return 0.0;
+        return new Decimal('0.00');
     }
 
     public function cartPreview()
@@ -238,7 +245,7 @@ class FrontEndController extends Controller
             $params['units']            = $_SESSION['xhsOrder']->getUnits();
             $params['unitName']         = $this->settings['shipping_unit'];
             $params['shipping']         = $_SESSION['xhsOrder']->getShipping();
-            $params['total']            = $_SESSION['xhsOrder']->getShipping() + $_SESSION['xhsOrder']->getCartSum();
+            $params['total']            = bcadd($_SESSION['xhsOrder']->getShipping(), $_SESSION['xhsOrder']->getCartSum());
             $params['vatTotal']         = $_SESSION['xhsOrder']->getVat();
             $params['vatFull']          = $_SESSION['xhsOrder']->getVatFull();
             $params['vatReduced']       = $_SESSION['xhsOrder']->getVatReduced();
@@ -411,7 +418,7 @@ class FrontEndController extends Controller
         } elseif (!$this->isValidCustomer()) {
             $this->relocateToCheckout('customersData', 302);
         }
-        $_SESSION['xhsOrder']->setShipping(new Decimal($this->calculateShipping()));
+        $_SESSION['xhsOrder']->setShipping($this->calculateShipping());
         $fee           = $this->calculatePaymentFee();
         $paymentModule = $this->paymentModules[$_SESSION['xhsCustomer']->payment_mode];
         if ($paymentModule->wantsCartItems() !== false) {
@@ -425,7 +432,7 @@ class FrontEndController extends Controller
         if (isset($params['annotation'])) {
             $params['annotation'] = nl2br($params['annotation']);
         }
-        $_SESSION['xhsOrder']->setFee(new Decimal($fee));
+        $_SESSION['xhsOrder']->setFee($fee);
         $params['xhs_url']    = XHS_URL;
         $params['xhs_checkout_url'] = '?' . XHS_URL . '&xhsCheckout=finish';
         $params['payment']    = $paymentModule;
