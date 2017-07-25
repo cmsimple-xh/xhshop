@@ -164,7 +164,10 @@ abstract class View
 
     public function formatPercentage($value)
     {
-        return $value . ' %';
+        global $plugin_tx;
+
+        assert(is_string($value));
+        return str_replace('.', trim($plugin_tx['xhshop']['config_decimal_separator']), $value) . ' %';
     }
 
     private function hint($key)
