@@ -258,8 +258,12 @@ class FrontEndController extends Controller
 
     private function canOrder()
     {
-        return isset($_SESSION['xhsOrder']) && $_SESSION['xhsOrder']->hasItems()
-            && (float) $this->settings['minimum_order'] <= $_SESSION['xhsOrder']->getCartSum();
+        if (!isset($_SESSION['xhsOrder'])) {
+            return false;
+        }
+        $order = $_SESSION['xhsOrder'];
+        $minimum = new Decimal($this->settings['minimum_order']);
+        return $order->hasItems() && bccomp($order->getCartSum(), $minimum) >= 0;
     }
 
     private function customersData(array $missingData = array())
