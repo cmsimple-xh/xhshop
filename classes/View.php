@@ -131,7 +131,10 @@ abstract class View
 
         $params['type'] = 'number';
         $params['step'] = '0.01';
-        return $this->textinputNameValueLabel($name, new Decimal($value), $params);
+        if (!($value instanceof Decimal)) {
+            $value = new Decimal($value);
+        }
+        return $this->textinputNameValueLabel($name, $value, $params);
     }
 
     protected function moneyInputNameValueLabel($name, $value = 0, $params = array())

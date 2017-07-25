@@ -72,7 +72,7 @@ abstract class PaymentModule
      */
     public function getFee()
     {
-        return isset($this->settings['fee']) ? new Decimal($this->settings['fee']) : new Decimal('0.00');
+        return isset($this->settings['fee']) ? new Decimal($this->settings['fee']) : Decimal::zero();
     }
 
     public function orderSubmitForm()

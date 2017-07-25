@@ -23,7 +23,7 @@ class OrderTest extends TestCase
     public function testGetCartSum($factoryMethod, $expected)
     {
         $order = $factoryMethod();
-        $this->assertSame($expected, $order->getCartSum());
+        $this->assertEquals(new Decimal($expected), $order->getCartSum());
     }
 
     public function provideDataForTestGetCartSum()
@@ -41,7 +41,7 @@ class OrderTest extends TestCase
     public function testGetVat($factoryMethod, $expected)
     {
         $order = $factoryMethod();
-        $this->assertSame($expected, $order->getVat());
+        $this->assertEquals(new Decimal($expected), $order->getVat());
     }
 
     public function provideDataForTestGetVat()
@@ -59,7 +59,7 @@ class OrderTest extends TestCase
     public function testGetVatReduced($factoryMethod, $expected)
     {
         $order = $factoryMethod();
-        $this->assertSame($expected, $order->getVatReduced());
+        $this->assertEquals(new Decimal($expected), $order->getVatReduced());
     }
 
     public function provideDataForTestGetVatReduced()
@@ -77,7 +77,7 @@ class OrderTest extends TestCase
     public function testGetVatFull($factoryMethod, $expected)
     {
         $order = $factoryMethod();
-        $this->assertSame($expected, $order->getVatFull());
+        $this->assertEquals(new Decimal($expected), $order->getVatFull());
     }
 
     public function provideDataForTestGetVatFull()
@@ -95,7 +95,7 @@ class OrderTest extends TestCase
     public function testGetShipping($factoryMethod, $expected)
     {
         $order = $factoryMethod();
-        $this->assertSame($expected, (string) $order->getShipping());
+        $this->assertEquals(new Decimal($expected), $order->getShipping());
     }
 
     public function provideDataForTestGetShipping()
@@ -113,7 +113,7 @@ class OrderTest extends TestCase
     public function testGetTotal($factoryMethod, $expected)
     {
         $order = $factoryMethod();
-        $this->assertSame($expected, $order->getTotal());
+        $this->assertEquals(new Decimal($expected), $order->getTotal());
     }
 
     public function provideDataForTestGetTotal()
@@ -157,7 +157,7 @@ class OrderTest extends TestCase
     {
         $product = $this->createMock(Product::class);
         $product->method('getUid')->willReturn('pears');
-        $product->method('getGross')->willReturn('4.95');
+        $product->method('getGross')->willReturn(new Decimal('4.95'));
         $product->method('getVat')->willReturn('reduced');
         return $product;
     }
@@ -166,7 +166,7 @@ class OrderTest extends TestCase
     {
         $product = $this->createMock(Product::class);
         $product->method('getUid')->willReturn('splitter');
-        $product->method('getGross')->willReturn('9.99');
+        $product->method('getGross')->willReturn(new Decimal('9.99'));
         $product->method('getVat')->willReturn('full');
         return $product;
     }

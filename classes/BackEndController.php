@@ -44,7 +44,7 @@ class BackEndController extends Controller
         $params['category'] = isset($_POST['xhsCategory']) ? $_POST['xhsCategory'] : null;
         foreach ($params['products'] as $index => $product) {
             $indices[] = $index;
-            if (bccomp($product['price'], '0.00') <= 0) {
+            if (!$product['price']->isGreaterThan(Decimal::zero())) {
                 $errors[$index][] = 'no_price';
             }
             if (!$product['isAvailable']) {

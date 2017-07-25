@@ -58,7 +58,7 @@
 		<td class="xhsMoneyCell"><?php echo $this->formatCurrency($this->shipping); ?></td>
 	</tr>
 <?php
-if (bccomp($this->fee, '0.00') < 0){
+if ($this->fee->isLessThan(Xhshop\Decimal::zero())){
 	$feeLabel = $this->labels['reduction'];
 } else {
 	$feeLabel = $this->labels['fee'];

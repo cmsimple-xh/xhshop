@@ -7,27 +7,27 @@ class Order
     private $items = array();
 
     /**
-     * @var string
+     * @var Decimal
      */
     private $cartGross;
 
     /**
-     * @var string
+     * @var Decimal
      */
     private $vatFull;
 
     /**
-     * @var string
+     * @var Decimal
      */
     private $vatReduced;
 
     /**
-     * @var string
+     * @var Decimal
      */
     private $grossFull;
 
     /**
-     * @var string
+     * @var Decimal
      */
     private $grossReduced;
 
@@ -54,7 +54,7 @@ class Order
     private $vatReducedRate;
 
     /**
-     * @var string
+     * @var Decimal
      */
     private $total;
 
@@ -64,10 +64,10 @@ class Order
      */
     public function __construct($vatFullRate, $vatReducedRate)
     {
-        bcscale(2);
-
         $this->vatFullRate = (float)$vatFullRate;
         $this->vatReducedRate = (float)$vatReducedRate;
+        $this->shipping = Decimal::zero();
+        $this->fee = Decimal::zero();
     }
 
     public function addItem(Product $product, $amount, $variant = null)
@@ -96,54 +96,53 @@ class Order
 
     private function refresh()
     {
-        $this->cartGross = '0.00';
+        $this->cartGross = Decimal::zero();
         $this->units = 0.00;
-        $this->grossFull = '0.00';
-        $this->grossReduced = '0.00';
+        $this->grossFull = Decimal::zero();
+        $this->grossReduced = Decimal::zero();
         foreach ($this->items as $product) {
             $amount = $product['amount'];
-            $gross = bcmul($product['gross'], $amount);
+            $gross = $product['gross']->times(new Decimal($amount));
             if ($product['vatRate'] == 'full') {
-                $this->grossFull = bcadd($this->grossFull, $gross);
+                $this->grossFull = $this->grossFull->plus($gross);
             } elseif ($product['vatRate'] == 'reduced') {
-                $this->grossReduced = bcadd($this->grossReduced, $gross);
+                $this->grossReduced = $this->grossReduced->plus($gross);
             }
             $this->units +=  (float)$product['units'] * $amount;
-            $this->cartGross = bcadd($this->cartGross, $gross);
+            $this->cartGross = $this->cartGross->plus($gross);
         }
-        $this->total = bcadd($this->cartGross, bcadd($this->shipping, $this->fee));
+        $this->total = $this->cartGross->plus($this->shipping->plus($this->fee));
         $this->calculateTaxes();
     }
 
     private function calculateTaxes()
     {
-        if (bccomp($this->cartGross, '0.00') <= 0) {
-            $this->vatFull = $this->vatReduced = '0.00';
+        if (!$this->cartGross->isGreaterThan(Decimal::zero())) {
+            $this->vatFull = $this->vatReduced = Decimal::zero();
             return;
         }
 
-        $fees = bcadd($this->shipping, $this->fee);
+        $fees = $this->shipping->plus($this->fee);
         $num = $this->grossReduced;
         $denom = $this->cartGross;
 
-        $fullFee = new Decimal($fees * ($denom - $num) / $denom);
-        $reducedFee = new Decimal($fees * $num / $denom);
+        $fullFee = $fees->times($denom->minus($num))->dividedBy($denom);
+        $reducedFee = $fees->times($num)->dividedBy($denom);
 
-        $fullTotal = bcadd($this->grossFull, $fullFee);
-        $reducedTotal = bcadd($this->grossReduced, $reducedFee);
+        $fullTotal = $this->grossFull->plus($fullFee);
+        $reducedTotal = $this->grossReduced->plus($reducedFee);
 
         $this->vatFull = $this->calculateVat($fullTotal, $this->vatFullRate);
         $this->vatReduced = $this->calculateVat($reducedTotal, $this->vatReducedRate);
     }
 
     /**
-     * @param float $value
      * @param float $rate
-     * @return string
+     * @return Decimal
      */
-    private function calculateVat($value, $rate)
+    private function calculateVat(Decimal $value, $rate)
     {
-        return (string) new Decimal($value - $value * 100 / (100 + $rate));
+        return new Decimal((string) $value - (string) $value * 100 / (100 + $rate));
     }
 
     public function hasItems()
@@ -182,7 +181,7 @@ class Order
     }
 
     /**
-     * @return string
+     * @return Decimal
      */
     public function getCartSum()
     {
@@ -190,15 +189,15 @@ class Order
     }
 
     /**
-     * @return string
+     * @return Decimal
      */
     public function getVat()
     {
-        return bcadd($this->vatReduced, $this->vatFull);
+        return $this->vatReduced->plus($this->vatFull);
     }
 
     /**
-     * @return string
+     * @return Decimal
      */
     public function getVatReduced()
     {
@@ -206,7 +205,7 @@ class Order
     }
 
     /**
-     * @return string
+     * @return Decimal
      */
     public function getVatFull()
     {
@@ -214,7 +213,7 @@ class Order
     }
 
     /**
-     * @return string
+     * @return Decimal
      */
     public function getTotal()
     {

@@ -9,7 +9,7 @@ class Product
     private $teasers;
 
     /**
-     * @var string
+     * @var Decimal
      */
     private $price;
 
@@ -102,7 +102,7 @@ class Product
     }
 
     /**
-     * @return string
+     * @return Decimal
      */
     public function getGross()
     {
@@ -246,7 +246,7 @@ class Product
 
     public function setPrice(Decimal $price)
     {
-        $this->price = (string) $price;
+        $this->price = $price;
     }
 
     public function setWeight($weight = 0.00)
