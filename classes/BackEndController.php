@@ -44,7 +44,7 @@ class BackEndController extends Controller
         $params['category'] = isset($_POST['xhsCategory']) ? $_POST['xhsCategory'] : null;
         foreach ($params['products'] as $index => $product) {
             $indices[] = $index;
-            if ((float) $product['price'] <= 0) {
+            if (!$product['price']->isGreaterThan(Decimal::zero())) {
                 $errors[$index][] = 'no_price';
             }
             if (!$product['isAvailable']) {
@@ -233,10 +233,10 @@ class BackEndController extends Controller
             $product->setName($this->tidyPostString($_POST['xhsName']));
         }
         if (isset($_POST['xhsWeight'])) {
-            $product->setWeight($this->tidyPostString($_POST['xhsWeight']));
+            $product->setWeight(new Decimal($this->tidyPostString($_POST['xhsWeight'])));
         }
         if (isset($_POST['xhsPrice'])) {
-            $product->setPrice($this->tidyPostString($_POST['xhsPrice']));
+            $product->setPrice(new Decimal($this->tidyPostString($_POST['xhsPrice'])));
         }
         if (isset($_POST['xhsTeaser'])) {
             $product->setTeaser($this->tidyPostString($_POST['xhsTeaser'], false));

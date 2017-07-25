@@ -37,9 +37,9 @@ class FrontEndController extends Controller
         foreach (explode(';', $grades) as $grade) {
             $parts = explode('=', trim($grade));
             if (count($parts) === 2) {
-                $this->settings['weightRange'][trim($parts[0])] = (float) $parts[1];
+                $this->settings['weightRange'][trim($parts[0])] = new Decimal($parts[1]);
             } else {
-                $this->settings['shipping_max'] = $parts[0];
+                $this->settings['shipping_max'] = new Decimal($parts[0]);
             }
         }
     }
@@ -103,38 +103,45 @@ class FrontEndController extends Controller
         exit;
     }
 
+    /**
+     * @return Decimal
+     */
     private function calculateShipping()
     {
         if (!$this->settings['charge_for_shipping']) {
-            return 0;
+            return Decimal::zero();
         }
         if ($this->settings['shipping_up_to'] == 'true' &&
-                $_SESSION['xhsOrder']->getCartSum() >= (float) $this->settings['forwarding_expenses_up_to']) {
-            return 0;
+                !$_SESSION['xhsOrder']->getCartSum()->isLessThan(new Decimal($this->settings['forwarding_expenses_up_to']))) {
+            return Decimal::zero();
         }
         if (empty($this->settings['weightRange'])) {
-            return (float) $this->settings['shipping_max'];
+            return $this->settings['shipping_max'];
         }
         $weight = $_SESSION['xhsOrder']->getUnits();
 
         if (isset($this->settings['weightRange'])) {
             foreach ($this->settings['weightRange'] as $key => $value) {
-                if ($weight <= (float) $key) {
-                    return (float) $value;
+                if (!$weight->isGreaterThan(new Decimal($key))) {
+                    return $value;
                 }
             }
         }
-        return (float) $this->settings['shipping_max'];
+        return $this->settings['shipping_max'];
     }
 
+    /**
+     * @return Decimal
+     */
     private function calculatePaymentFee()
     {
         if (isset($_SESSION['xhsCustomer']->payment_mode)) {
-            if ($this->loadPaymentModule($_SESSION['xhsCustomer']->payment_mode)) {
-                return $this->paymentModules[$_SESSION['xhsCustomer']->payment_mode]->getFee();
+            $paymode = $_SESSION['xhsCustomer']->payment_mode;
+            if ($this->loadPaymentModule($paymode)) {
+                return $this->paymentModules[$paymode]->getFee();
             }
         }
-        return 0.0;
+        return Decimal::zero();
     }
 
     public function cartPreview()
@@ -197,7 +204,7 @@ class FrontEndController extends Controller
                 $cartItems[$index]['detailLink']  = $detailLink;
                 $cartItems[$index]['price']       = $product['gross'];
                 $cartItems[$index]['vatRate']     = $vatRate;
-                $cartItems[$index]['sum']         = $product['gross'] * $product['amount'];
+                $cartItems[$index]['sum']         = $product['gross']->times(new Decimal($product['amount']));
                 if ($this->catalog->getProduct($productKey)->getPreviewPictureName()) {
                     $cartItems[$index]['previewPicture'] =
                             $this->catalog->getProduct($productKey)->getPreviewPicturePath();
@@ -238,7 +245,7 @@ class FrontEndController extends Controller
             $params['units']            = $_SESSION['xhsOrder']->getUnits();
             $params['unitName']         = $this->settings['shipping_unit'];
             $params['shipping']         = $_SESSION['xhsOrder']->getShipping();
-            $params['total']            = $_SESSION['xhsOrder']->getShipping() + $_SESSION['xhsOrder']->getCartSum();
+            $params['total']            = $_SESSION['xhsOrder']->getShipping()->plus($_SESSION['xhsOrder']->getCartSum());
             $params['vatTotal']         = $_SESSION['xhsOrder']->getVat();
             $params['vatFull']          = $_SESSION['xhsOrder']->getVatFull();
             $params['vatReduced']       = $_SESSION['xhsOrder']->getVatReduced();
@@ -258,8 +265,12 @@ class FrontEndController extends Controller
 
     private function canOrder()
     {
-        return isset($_SESSION['xhsOrder']) && $_SESSION['xhsOrder']->hasItems()
-            && (float) $this->settings['minimum_order'] <= $_SESSION['xhsOrder']->getCartSum();
+        if (!isset($_SESSION['xhsOrder'])) {
+            return false;
+        }
+        $order = $_SESSION['xhsOrder'];
+        $minimum = new Decimal($this->settings['minimum_order']);
+        return $order->hasItems() && !$order->getCartSum()->isLessThan($minimum);
     }
 
     private function customersData(array $missingData = array())

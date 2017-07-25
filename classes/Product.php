@@ -7,14 +7,24 @@ class Product
     private $names;
     private $descriptions;
     private $teasers;
+
+    /**
+     * @var Decimal
+     */
     private $price;
+
     private $productPages;
     private $previewPicture;
     private $vat;
     private $separator;
     private $categories;
     private $stock_on_hand;
+
+    /**
+     * @var Decimal
+     */
     private $weight;
+
     private $variants;
     private $uid;
     private $sortIndex;
@@ -26,12 +36,12 @@ class Product
     {
         $result = new self;
         $result->names = $record['names'];
-        $result->price = $record['price'];
+        $result->setPrice(new Decimal($record['price']));
         $result->vat = $record['vat'];
         $result->variants = isset($record['variants']) ? $record['variants'] : array(XHS_LANGUAGE => '');
         $result->previewPicture = isset($record['previewPicture']) ? $record['previewPicture'] : '';
         $result->image = isset($record['image']) ? $record['image'] : '';
-        $result->weight = $record['weight'];
+        $result->weight = new Decimal($record['weight']);
         $result->setStockOnHand(isset($record['stock_on_hand']) ? $record['stock_on_hand'] : 1);
         $result->teasers = isset($record['teasers']) ? $record['teasers'] : array(XHS_LANGUAGE => '');
         $result->descriptions = isset($record['descriptions']) ? $record['descriptions'] :array(XHS_LANGUAGE => '');
@@ -88,23 +98,23 @@ class Product
         return $this->sortIndex;
     }
 
+    /**
+     * @return Decimal
+     */
     public function getWeight()
     {
         if (!isset($this->weight)) {
-            $this->weight = 0;
+            $this->weight = Decimal::zero();
         }
-        return (float)$this->weight;
+        return $this->weight;
     }
 
-    public function getNet($vatRate)
-    {
-        $net = $this->price/(100 + $vatRate)*100;
-        return (float)$net;
-    }
-
+    /**
+     * @return Decimal
+     */
     public function getGross()
     {
-        return (float)$this->price;
+        return $this->price;
     }
 
     public function getName($language = XHS_LANGUAGE, $variant = null)
@@ -242,16 +252,14 @@ class Product
         $this->teasers[$language] = $description;
     }
 
-    public function setPrice($price = 0.00)
+    public function setPrice(Decimal $price)
     {
-        $price = str_replace(',', '.', $price);
-        $this->price = (float)$price;
+        $this->price = $price;
     }
 
-    public function setWeight($weight = 0.00)
+    public function setWeight(Decimal $weight)
     {
-        $weight = str_replace(',', '.', $weight);
-        $this->weight = (float)$weight;
+        $this->weight = $weight;
     }
 
     public function setStockOnHand($quantity = 1)

@@ -18,7 +18,7 @@ class CatalogWriterTest extends TestCase
             'de' => '<p>Coffee. Mediocrem erroribus forensibus ea mel, mea omnes eligendi eu. Sit sint eros ne.</p>',
             'en' => ''
         ),
-        'price' => 2.75,
+        'price' => '2.75',
         'productPages' => array(
             'de' => [],
             'en' => []
@@ -31,7 +31,7 @@ class CatalogWriterTest extends TestCase
             'en' => ['Beverages']
         ),
         'stock_on_hand' => 1,
-        'weight' => 0.3,
+        'weight' => '0.30',
         'variants' => array(
             'de' => [],
             'en' => []
@@ -50,7 +50,7 @@ class CatalogWriterTest extends TestCase
             'en' => '<p>Posse nostrum ne est, amet hinc intellegam et his. Cum tota modus exerci in, verterem aliquyam ei vix, nec id autem reprimique.</p>'
         ),
         'teasers' => ['de' => '<p>Ganz fantastische Brötchen!</p>'],
-        'price' => 0.75,
+        'price' => '0.75',
         'productPages' => array('de' => [], 'en' => []),
         'previewPicture' => 'preview_bread.jpg',
         'vat' => 'reduced',
@@ -60,7 +60,7 @@ class CatalogWriterTest extends TestCase
             'en' => ['Delicious things', '– fresh from the bakery']
         ),
         'stock_on_hand' => 1,
-        'weight' => 0.04,
+        'weight' => '0.04',
         'variants' => array(
             'de' => ['Sesam', 'Mohn', 'Käse'],
             'en' => []
@@ -92,12 +92,12 @@ $category_for_the_left_overs['de'] = 'dies und das';
 ################### Products ######################;
 $products['p4bbf07812257f']['names']['de'] = 'Kaffee (im Versandbecher)';
 $products['p4bbf07812257f']['names']['en'] = 'Coffee (in shipping cup)';
-$products['p4bbf07812257f']['price'] = 2.75;
+$products['p4bbf07812257f']['price'] = '2.75';
 $products['p4bbf07812257f']['vat'] = 'full';
 $products['p4bbf07812257f']['sortIndex'] = 4;
 $products['p4bbf07812257f']['previewPicture'] = 'preview_coffee.jpg';
 $products['p4bbf07812257f']['image'] = 'coffee.jpg';
-$products['p4bbf07812257f']['weight'] = 0.30;
+$products['p4bbf07812257f']['weight'] = '0.30';
 $products['p4bbf07812257f']['stock_on_hand'] = 1;
 $products['p4bbf07812257f']['teasers']['de'] = '<p>Coffee. Mediocrem erroribus forensibus ea mel, mea omnes eligendi eu. Sit sint eros ne.</p>';
 $products['p4bbf07812257f']['teasers']['en'] = '';
@@ -115,12 +115,12 @@ $products['p4bbf07812257f']['uid'] = 'p4bbf07812257f';
 
 $products['p4bbf078122572']['names']['de'] = 'Brötchen';
 $products['p4bbf078122572']['names']['en'] = 'Bread Rolls';
-$products['p4bbf078122572']['price'] = 0.75;
+$products['p4bbf078122572']['price'] = '0.75';
 $products['p4bbf078122572']['vat'] = 'reduced';
 $products['p4bbf078122572']['sortIndex'] = 3;
 $products['p4bbf078122572']['previewPicture'] = 'preview_bread.jpg';
 $products['p4bbf078122572']['image'] = 'bread.jpg';
-$products['p4bbf078122572']['weight'] = 0.04;
+$products['p4bbf078122572']['weight'] = '0.04';
 $products['p4bbf078122572']['stock_on_hand'] = 1;
 $products['p4bbf078122572']['teasers']['de'] = '<p>Ganz fantastische Brötchen!</p>';
 $products['p4bbf078122572']['descriptions']['de'] = '<p>Posse nostrum ne est, amet hinc intellegam et his. Cum tota modus exerci in, verterem aliquyam ei vix, nec id autem reprimique.</p><p>Posse nostrum ne est, amet hinc intellegam et his. Cum tota modus exerci in, verterem aliquyam ei vix, nec id autem reprimique.</p>';

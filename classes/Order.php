@@ -5,22 +5,72 @@ namespace Xhshop;
 class Order
 {
     private $items = array();
-    private $cartGross;
-    private $cartNet;
-    private $vatFull;
-    private $vatReduced;
-    private $units;
-    private $shipping;
-    private $vatFullRate;
-    private $vatReducedRate;
-    private $total;
-    private $fee;
-    private $showNet = false; // practically unused
 
+    /**
+     * @var Decimal
+     */
+    private $cartGross;
+
+    /**
+     * @var Decimal
+     */
+    private $vatFull;
+
+    /**
+     * @var Decimal
+     */
+    private $vatReduced;
+
+    /**
+     * @var Decimal
+     */
+    private $grossFull;
+
+    /**
+     * @var Decimal
+     */
+    private $grossReduced;
+
+    /**
+     * @var Decimal
+     */
+    private $units;
+
+    /**
+     * @var Decimal
+     */
+    private $shipping;
+
+    /**
+     * @var Decimal
+     */
+    private $fee;
+
+    /**
+     * @var float
+     */
+    private $vatFullRate;
+
+    /**
+     * @var float
+     */
+    private $vatReducedRate;
+
+    /**
+     * @var Decimal
+     */
+    private $total;
+
+    /**
+     * @param float $vatFullRate
+     * @param float $vatReducedRate
+     */
     public function __construct($vatFullRate, $vatReducedRate)
     {
         $this->vatFullRate = (float)$vatFullRate;
         $this->vatReducedRate = (float)$vatReducedRate;
+        $this->shipping = Decimal::zero();
+        $this->fee = Decimal::zero();
     }
 
     public function addItem(Product $product, $amount, $variant = null)
@@ -31,10 +81,9 @@ class Order
         }
         $this->items[$index]['amount'] = (int)$amount;
         $this->items[$index]['variant'] = $variant;
-        $this->items[$index]['net'] = (float)$this->getProductNet($product);
         $this->items[$index]['gross'] = $product->getGross();
         $this->items[$index]['vatRate'] = $product->getVat();
-        $this->items[$index]['units'] = (float)$product->getWeight();
+        $this->items[$index]['units'] = $product->getWeight();
         $this->refresh();
     }
 
@@ -48,60 +97,55 @@ class Order
         $this->refresh();
     }
 
-    private function getProductNet(Product $product)
-    {
-        $rate = 0;
-        if ($product->getVat() == 'full') {
-            $rate = $this->vatFullRate;
-        } elseif ($product->getVat() == 'reduced') {
-            $rate = $this->vatReducedRate;
-        }
-        return $product->getNet($rate);
-    }
-
     private function refresh()
     {
-        $this->cartGross = 0.00;
-        $this->cartNet = 0.00;
-        $this->units = 0.00;
-        $this->vatReduced = 0.00;
-        $this->vatFull = 0.00;
+        $this->cartGross = Decimal::zero();
+        $this->units = Decimal::zero();
+        $this->grossFull = Decimal::zero();
+        $this->grossReduced = Decimal::zero();
         foreach ($this->items as $product) {
             $amount = $product['amount'];
-            $gross = (float)$product['gross'] * $amount;
-            $net = (float)$product['net'] * $amount;
-            $tax = $gross - $net;
+            $gross = $product['gross']->times(new Decimal($amount));
             if ($product['vatRate'] == 'full') {
-                $this->vatFull += $tax;
+                $this->grossFull = $this->grossFull->plus($gross);
+            } elseif ($product['vatRate'] == 'reduced') {
+                $this->grossReduced = $this->grossReduced->plus($gross);
             }
-            if ($product['vatRate'] == 'reduced') {
-                $this->vatReduced += $tax;
-            }
-            $this->units +=  (float)$product['units'] * $amount;
-            $this->cartGross += $gross;
-            $this->cartNet += $net;
+            $this->units = $this->units->plus($product['units']->times(new Decimal($amount)));
+            $this->cartGross = $this->cartGross->plus($gross);
         }
-        $this->vatForShippingAndFee();
-        $this->total = $this->cartGross + $this->shipping + $this->fee;
+        $this->total = $this->cartGross->plus($this->shipping->plus($this->fee));
+        $this->calculateTaxes();
     }
 
-    private function vatForShippingAndFee()
+    private function calculateTaxes()
     {
-        $fees = $this->shipping + $this->fee;
-        
-        if ($this->vatFull > 0) {
-            $factor = (($this->vatFull/$this->vatFullRate) * (100  + $this->vatFullRate))/$this->cartGross;
-            $temp = $fees * $factor;
-            $temp = ($temp/(100 + $this->vatFullRate)) * $this->vatFullRate;
-            $this->vatFull = $this->vatFull +  $temp;
+        if (!$this->cartGross->isGreaterThan(Decimal::zero())) {
+            $this->vatFull = $this->vatReduced = Decimal::zero();
+            return;
         }
-        if ($this->vatReduced > 0) {
-            $factor = (($this->vatReduced/$this->vatReducedRate) * (100  + $this->vatReducedRate))/$this->cartGross;
-            $temp = $fees * $factor;
-            $temp = ($temp/(100 + $this->vatReducedRate)) * $this->vatReducedRate;
-            $this->vatReduced = $this->vatReduced +  $temp;
-        }
-        return;
+
+        $fees = $this->shipping->plus($this->fee);
+        $num = $this->grossReduced;
+        $denom = $this->cartGross;
+
+        $fullFee = $fees->times($denom->minus($num))->dividedBy($denom);
+        $reducedFee = $fees->times($num)->dividedBy($denom);
+
+        $fullTotal = $this->grossFull->plus($fullFee);
+        $reducedTotal = $this->grossReduced->plus($reducedFee);
+
+        $this->vatFull = $this->calculateVat($fullTotal, $this->vatFullRate);
+        $this->vatReduced = $this->calculateVat($reducedTotal, $this->vatReducedRate);
+    }
+
+    /**
+     * @param float $rate
+     * @return Decimal
+     */
+    private function calculateVat(Decimal $value, $rate)
+    {
+        return new Decimal((string) $value - (string) $value * 100 / (100 + $rate));
     }
 
     public function hasItems()
@@ -114,53 +158,71 @@ class Order
         return $this->items;
     }
 
-    public function setShipping($shipping)
+    public function setShipping(Decimal $shipping)
     {
         $this->shipping = $shipping;
         $this->refresh();
     }
 
+    /**
+     * @return Decimal
+     */
     public function getShipping()
     {
         return $this->shipping;
     }
 
-    public function setFee($fee = 0)
+    public function setFee(Decimal $fee)
     {
         $this->fee = $fee;
         $this->refresh();
     }
 
+    /**
+     * @return Decimal
+     */
     public function getUnits()
     {
         return $this->units;
     }
 
+    /**
+     * @return Decimal
+     */
     public function getCartSum()
     {
-        if ($this->showNet == true) {
-            return $this->cartNet;
-        }
         return $this->cartGross;
     }
 
+    /**
+     * @return Decimal
+     */
     public function getVat()
     {
-        return $this->vatFull + $this->vatReduced;
+        return $this->vatReduced->plus($this->vatFull);
     }
 
+    /**
+     * @return Decimal
+     */
     public function getVatReduced()
     {
         return $this->vatReduced;
     }
 
+    /**
+     * @return Decimal
+     */
     public function getVatFull()
     {
         return $this->vatFull;
     }
 
+    /**
+     * @return Decimal
+     */
     public function getTotal()
     {
-        return $this->cartGross + $this->shipping + $this->fee;
+        return $this->total;
     }
 }

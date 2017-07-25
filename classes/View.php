@@ -116,7 +116,6 @@ abstract class View
 
     private function floatInputNameValueLabel($name, $value = 0, $params = null)
     {
-        $value = (float)$value;
         if (is_array($params)) {
             if (!isset($params['style'])) {
                 $params['style'] = 'text-align: right;';
@@ -132,7 +131,9 @@ abstract class View
 
         $params['type'] = 'number';
         $params['step'] = '0.01';
-        $value = number_format($value, 2);
+        if (!($value instanceof Decimal)) {
+            $value = new Decimal($value);
+        }
         return $this->textinputNameValueLabel($name, $value, $params);
     }
 
@@ -147,7 +148,13 @@ abstract class View
 
         $dec_sep = trim($plugin_tx['xhshop']['config_decimal_separator']);
         $thousands_sep = trim($plugin_tx['xhshop']['config_thousands_separator']);
-        return number_format($sum, 2, $dec_sep, $thousands_sep);
+        if (($sum instanceof Decimal || is_string($sum))
+                && preg_match('/^(-?\d{1,3})((?:\d{3})*)\.(\d{2})$/', $sum, $matches)) {
+            $integer = $matches[1] . preg_replace('/(\d{3})/', "$thousands_sep\$1", $matches[2]);
+            return $integer . $dec_sep . $matches[3];
+        } else {
+            return number_format($sum, 2, $dec_sep, $thousands_sep);
+        }
     }
 
     protected function formatCurrency($sum)
