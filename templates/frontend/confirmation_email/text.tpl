@@ -1,4 +1,4 @@
-<?php $feeLabel = ($this->fee < 0) ? $this->labels['reduction'] : $this->labels['fee']; ?>
+<?php $feeLabel = ($this->fee->isLessThan(Xhshop\Decimal::zero())) ? $this->labels['reduction'] : $this->labels['fee']; ?>
 <?php echo $this->mail['salutation'];?> %FIRST_NAME% %LAST_NAME%,
 
 <?php echo $this->mail['thank_you']; ?>

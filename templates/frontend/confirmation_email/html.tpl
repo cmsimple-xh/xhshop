@@ -88,7 +88,7 @@ tr.brdT2 td {
 <td class="moneyCell"><?php echo $this->formatCurrency($this->shipping); ?></td>
 </tr>
 <?php
-if($this->fee < 0){
+if ($this->fee->isLessThan(Xhshop\Decimal::zero())) {
 	$feeLabel = $this->labels['reduction'];
 } else {
 	$feeLabel = $this->labels['fee'];

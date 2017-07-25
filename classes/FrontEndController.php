@@ -512,7 +512,7 @@ class FrontEndController extends Controller
         }
         $fee     = $this->calculatePaymentFee();
 
-        if ($fee < 0) {
+        if ($fee->isLessThan(Decimal::zero())) {
             $feeLabel = $this->viewProvider->labels['reduction'];
         } else {
             $feeLabel = $this->viewProvider->labels['fee'];
@@ -556,7 +556,7 @@ class FrontEndController extends Controller
             '%ROWS%'           => $rows,
             '%FEE_LABEL%'      => $feeLabel,
             '%FEE%'            => $this->viewProvider->formatFloat($fee) . $currency,
-            '%TOTAL%'          => $this->viewProvider->formatFloat($subtotal + $shipping + $fee) . $currency,
+            '%TOTAL%'          => $this->viewProvider->formatFloat($subtotal->plus($shipping)->plus($fee)) . $currency,
             '%VAT_HINT%'       => $vat_hint
         );
 
