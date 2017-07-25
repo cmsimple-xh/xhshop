@@ -231,8 +231,11 @@ class FrontEndController extends Controller
                 $cartItems[$key]['variantName'] = ', ' . $item['variantName'];
             }
         }
-        $suffix = (bool) $this->settings['dont_deal_with_taxes'] << 1
-            | (bool) $this->settings['charge_for_shipping'];
+        $forwardingLimit = new Decimal($this->settings['forwarding_expenses_up_to']);
+        $chargeForShipping = $this->settings['charge_for_shipping']
+            && (!$this->settings['shipping_up_to']
+                || $_SESSION['xhsOrder']->getCartSum()->isLessThan($forwardingLimit));
+        $suffix = (bool) $this->settings['dont_deal_with_taxes'] << 1 | $chargeForShipping;
         $price_info = $this->viewProvider->linkedPageHint(
             $this->settings['shipping_costs_page'],
             $plugin_tx['xhshop']["hints_prices_$suffix"]
