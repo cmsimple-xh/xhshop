@@ -165,7 +165,6 @@ $plugin_tx['xhshop']['hints_no_products_found'] = 'Sorry! No products with "%s" 
 $plugin_tx['xhshop']['hints_price_info_vat']="incl. taxes";
 $plugin_tx['xhshop']['hints_price_info_shipping']="plus %sforwarding expenses%s";
 $plugin_tx['xhshop']['hints_price_info_no_vat']="no taxes";
-$plugin_tx['xhshop']['hints_on_netto']=" % auf Nettobetrag ";
 
 ##### NEW (fhs) ########
 $plugin_tx['xhshop']['labels_cat_select'] = 'Select Category';

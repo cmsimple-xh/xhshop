@@ -165,7 +165,6 @@ $plugin_tx['xhshop']['hints_no_products_found'] = 'Es wurden leider keine Artike
 $plugin_tx['xhshop']['hints_price_info_vat']="inkl. MwSt.";
 $plugin_tx['xhshop']['hints_price_info_shipping']="zzgl. %sVersandkosten%s";
 $plugin_tx['xhshop']['hints_price_info_no_vat']="MwSt. wird nach § 19 UStG. nicht erhoben.";
-$plugin_tx['xhshop']['hints_on_netto']=" % auf Nettobetrag ";
 
 ##### NEW (fhs) ########
 $plugin_tx['xhshop']['labels_cat_select'] = 'Kategorie-Auswahl';
