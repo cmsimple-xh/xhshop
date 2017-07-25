@@ -84,7 +84,7 @@ class CatalogWriter
         $string .= '$products[\'' . $uid . '\'][\'sortIndex\'] = ' . (int)$product->sortIndex . ";\n";
         $string .= '$products[\'' . $uid . '\'][\'previewPicture\'] = \'' . $product->previewPicture . "';\n";
         $string .= '$products[\'' . $uid . '\'][\'image\'] = \'' . $product->image . "';\n";
-        $string .= '$products[\'' . $uid . '\'][\'weight\'] = ' . number_format($product->weight, 2, '.', '') . ";\n";
+        $string .= '$products[\'' . $uid . '\'][\'weight\'] = \'' . $product->weight . "';\n";
         $string .= '$products[\'' . $uid . '\'][\'stock_on_hand\'] = ' . (int)$product->stock_on_hand . ";\n";
         if (!isset($product->teasers)) {
             $product->teasers = array(XHS_LANGUAGE => '');

@@ -122,7 +122,7 @@ class FrontEndController extends Controller
 
         if (isset($this->settings['weightRange'])) {
             foreach ($this->settings['weightRange'] as $key => $value) {
-                if ($weight <= (float) $key) {
+                if (!$weight->isGreaterThan(new Decimal($key))) {
                     return $value;
                 }
             }

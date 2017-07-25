@@ -31,6 +31,9 @@ class Order
      */
     private $grossReduced;
 
+    /**
+     * @var Decimal
+     */
     private $units;
 
     /**
@@ -80,7 +83,7 @@ class Order
         $this->items[$index]['variant'] = $variant;
         $this->items[$index]['gross'] = $product->getGross();
         $this->items[$index]['vatRate'] = $product->getVat();
-        $this->items[$index]['units'] = (float)$product->getWeight();
+        $this->items[$index]['units'] = $product->getWeight();
         $this->refresh();
     }
 
@@ -97,7 +100,7 @@ class Order
     private function refresh()
     {
         $this->cartGross = Decimal::zero();
-        $this->units = 0.00;
+        $this->units = Decimal::zero();
         $this->grossFull = Decimal::zero();
         $this->grossReduced = Decimal::zero();
         foreach ($this->items as $product) {
@@ -108,7 +111,7 @@ class Order
             } elseif ($product['vatRate'] == 'reduced') {
                 $this->grossReduced = $this->grossReduced->plus($gross);
             }
-            $this->units +=  (float)$product['units'] * $amount;
+            $this->units = $this->units->plus($product['units']->times(new Decimal($amount)));
             $this->cartGross = $this->cartGross->plus($gross);
         }
         $this->total = $this->cartGross->plus($this->shipping->plus($this->fee));
@@ -175,6 +178,9 @@ class Order
         $this->refresh();
     }
 
+    /**
+     * @return Decimal
+     */
     public function getUnits()
     {
         return $this->units;

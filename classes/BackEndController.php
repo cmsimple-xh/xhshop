@@ -233,7 +233,7 @@ class BackEndController extends Controller
             $product->setName($this->tidyPostString($_POST['xhsName']));
         }
         if (isset($_POST['xhsWeight'])) {
-            $product->setWeight($this->tidyPostString($_POST['xhsWeight']));
+            $product->setWeight(new Decimal($this->tidyPostString($_POST['xhsWeight'])));
         }
         if (isset($_POST['xhsPrice'])) {
             $product->setPrice(new Decimal($this->tidyPostString($_POST['xhsPrice'])));
