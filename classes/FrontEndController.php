@@ -498,13 +498,13 @@ class FrontEndController extends Controller
         }
         $rows   = '';
 
-        $currency = ' ' . $this->settings['default_currency'];
         foreach ($this->collectCartItems() as $product) {
             $name    = strip_tags($product['name']) . ' ' . $product['variantName'];
-            $price   = $this->viewProvider->formatFloat($product['price']) . $currency;
-            $sum     = $this->viewProvider->formatFloat($product['sum']) . $currency;
+            $price   = $this->viewProvider->formatCurrency($product['price']);
+            $sum     = $this->viewProvider->formatCurrency($product['sum']);
             $amount  = $product['amount'] . ' ';
-            $vatRate = $this->viewProvider->labels['get_vat'] . $product['vatRate'] . ' %';
+            $vatRate = $this->viewProvider->labels['get_vat']
+                . $this->viewProvider->formatPercentage($product['vatRate']);
             if ($this->settings['dont_deal_with_taxes']) {
                 $vatRate = '';
             }
@@ -522,11 +522,11 @@ class FrontEndController extends Controller
             $vat_hint = $this->viewProvider->hints['price_info_no_vat'];
         } else {
             $vat_hint = $this->viewProvider->labels['included_vat'] . ' '
-                . $this->viewProvider->formatFloat($_SESSION['xhsOrder']->getVat()) . $currency;
-            $vat_hint .= ' (' . $this->settings['vat_reduced'] . '%: '
-                . $this->viewProvider->formatFloat($_SESSION['xhsOrder']->getVatReduced()) . $currency . ' - ';
-            $vat_hint .= $this->settings['vat_full'] . '%: '
-                . $this->viewProvider->formatFloat($_SESSION['xhsOrder']->getVatFull()) . $currency . ')';
+                . $this->viewProvider->formatCurrency($_SESSION['xhsOrder']->getVat());
+            $vat_hint .= ' (' . $this->viewProvider->formatCurrency($this->settings['vat_reduced']) . ': '
+                . $this->viewProvider->formatCurrency($_SESSION['xhsOrder']->getVatReduced()) . ' - ';
+            $vat_hint .= $this->viewProvider->formatPercentage($this->settings['vat_full']) . ': '
+                . $this->viewProvider->formatCurrency($_SESSION['xhsOrder']->getVatFull()) . ')';
         }
 
         $subtotal     = $_SESSION['xhsOrder']->getCartSum();
@@ -550,13 +550,13 @@ class FrontEndController extends Controller
             '%COMPANY_STREET%' => $this->settings['street'],
             '%COMPANY_ZIP%'    => $this->settings['zip_code'],
             '%COMPANY_CITY%'   => $this->settings['city'],
-            '%SUM%'            => $this->viewProvider->formatFloat($subtotal) . $currency,
+            '%SUM%'            => $this->viewProvider->formatCurrency($subtotal),
             '%WEIGHT%'         => $this->viewProvider->formatFloat($_SESSION['xhsOrder']->getUnits()),
-            '%SHIPPING%'       => $this->viewProvider->formatFloat($shipping) . $currency,
+            '%SHIPPING%'       => $this->viewProvider->formatCurrency($shipping),
             '%ROWS%'           => $rows,
             '%FEE_LABEL%'      => $feeLabel,
-            '%FEE%'            => $this->viewProvider->formatFloat($fee) . $currency,
-            '%TOTAL%'          => $this->viewProvider->formatFloat($subtotal->plus($shipping)->plus($fee)) . $currency,
+            '%FEE%'            => $this->viewProvider->formatCurrency($fee),
+            '%TOTAL%'          => $this->viewProvider->formatCurrency($subtotal->plus($shipping)->plus($fee)),
             '%VAT_HINT%'       => $vat_hint
         );
 

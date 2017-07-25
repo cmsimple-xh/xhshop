@@ -157,9 +157,14 @@ abstract class View
         }
     }
 
-    protected function formatCurrency($sum)
+    public function formatCurrency($sum)
     {
-        return $this->formatFloat($sum)  . ' ' . $this->currency;
+        return $this->formatFloat($sum)  . ' ' . $this->currency;
+    }
+
+    public function formatPercentage($value)
+    {
+        return $value . ' %';
     }
 
     private function hint($key)

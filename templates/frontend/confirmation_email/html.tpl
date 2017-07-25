@@ -104,7 +104,7 @@ if ($this->fee->isLessThan(Xhshop\Decimal::zero())) {
 </table>
 <p>&nbsp;</p>
 <?php if ($this->hideVat == false):?>
-<p><?php echo $this->labels['included_vat'] . ' ' . $this->formatCurrency($this->vatTotal); ?> (<?php echo $this->formatFloat($this->reducedRate); ?>% = <?php echo $this->formatCurrency($this->vatReduced); ?> – <?php echo $this->formatFloat($this->fullRate); ?>% = <?php echo $this->formatCurrency($this->vatFull); ?>)</p>
+<p><?php echo $this->labels['included_vat'] . ' ' . $this->formatCurrency($this->vatTotal); ?> (<?php echo $this->formatPercentage($this->reducedRate); ?> = <?php echo $this->formatCurrency($this->vatReduced); ?> – <?php echo $this->formatPercentage($this->fullRate); ?> = <?php echo $this->formatCurrency($this->vatFull); ?>)</p>
 <?php else:?>
 <p><?php echo $this->hints['price_info_no_vat']?></p>
 <?php endif?>
