@@ -167,12 +167,19 @@ abstract class View
         return $this->formatDecimal($value)  . ' ' . $this->currency;
     }
 
+    /**
+     * @param Stringifiable $value
+     * @return string
+     */
     public function formatPercentage($value)
     {
         global $plugin_tx;
 
-        assert(is_string($value));
-        return str_replace('.', trim($plugin_tx['xhshop']['config_decimal_separator']), $value) . ' %';
+        if (!preg_match('/^\s*(?:[1-9][0-9]+|[0-9])(?:\.[0-9]+)?\s*$/', $value)) {
+            trigger_error('unexpected percentage format', E_USER_WARNING);
+        }
+        $decsep = trim($plugin_tx['xhshop']['config_decimal_separator']);
+        return str_replace('.', $decsep, trim($value)) . ' %';
     }
 
     private function hint($key)

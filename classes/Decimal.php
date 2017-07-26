@@ -19,7 +19,9 @@ class Decimal
 
     public function __construct($value)
     {
-        assert(!($value instanceof Decimal));
+        if ($value instanceof Decimal) {
+            trigger_error('argument is already a Decimal', E_USER_WARNING);
+        }
         if (is_string($value) && preg_match('/^-?(?:\d|[1-9]\d+)\.\d{2}$/', $value)) {
             $this->value = $value;
         } else {
