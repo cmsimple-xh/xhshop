@@ -10,6 +10,9 @@
 <?php $this->label('delivery_adress'); ?>:
 %FIRST_NAME% %LAST_NAME%
 %STREET%
+<?php if ($this->extra_address_line):?>
+%EXTRA_ADDRESS_LINE%
+<?php endif?>
 %ZIP_CODE% %CITY%
 %COUNTRY%
 %EMAIL%

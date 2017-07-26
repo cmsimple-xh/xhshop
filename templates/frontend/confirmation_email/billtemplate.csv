@@ -7,4 +7,5 @@ Rechnungssumme;;;;%TOTAL%
 
 Kunde;;;;%FIRST_NAME% %LAST_NAME%
 Straße;;;;%STREET%
+Adresszusatz;;;;%EXTRA_ADDRESS_LINE%
 Ort;;;;"%ZIP% %CITY%"

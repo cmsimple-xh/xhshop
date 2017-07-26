@@ -15,6 +15,7 @@
 <dt><?php echo $this->label('delivery_adress'); ?>:</dt>
 <dd>%FIRST_NAME% %LAST_NAME%</dd>
 <dd>%STREET%</dd>
+<dd>%EXTRA_ADDRESS_LINE%</dd>
 <dd>%ZIP_CODE% %CITY%</dd>
 <dd>%COUNTRY%</dd>
 <dd>%EMAIL%</dd>

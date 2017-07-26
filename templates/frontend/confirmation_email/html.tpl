@@ -55,6 +55,9 @@ tr.brdT2 td {
 <td><?php echo $this->labels['delivery_adress']; ?>:&nbsp;&nbsp;</td>
 <td>%FIRST_NAME% %LAST_NAME%<br>
 %STREET%<br>
+<?php if ($this->extra_address_line):?>
+%EXTRA_ADDRESS_LINE%<br>
+<?php endif?>
 %ZIP_CODE% %CITY%<br>
 %COUNTRY%<br>
 %EMAIL%<br>

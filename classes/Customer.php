@@ -8,6 +8,7 @@ class Customer
     public $first_name;
     public $last_name;
     public $street;
+    public $extra_address_line;
     public $zip_code;
     public $city;
     public $country;

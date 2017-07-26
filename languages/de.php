@@ -53,6 +53,7 @@ $plugin_tx['xhshop']['labels_first_name'] = 'Vorname';
 $plugin_tx['xhshop']['labels_last_name'] = 'Nachname';
 $plugin_tx['xhshop']['labels_product_categories']='Kategorien';
 $plugin_tx['xhshop']['labels_street']='Straße';
+$plugin_tx['xhshop']['labels_extra_address_line']="Adresszusatz";
 $plugin_tx['xhshop']['labels_city']='Ort';
 $plugin_tx['xhshop']['labels_zip_code']='PLZ';
 $plugin_tx['xhshop']['labels_email']='E-Mail';
