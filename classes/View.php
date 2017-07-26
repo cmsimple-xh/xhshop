@@ -103,7 +103,7 @@ abstract class View
         return $html;
     }
 
-    protected function textinputNameValueLabel($name = '', $value = '', $params = array())
+    protected function textInputNameValueLabel($name = '', $value = '', $params = array())
     {
         $html = '<input name="'.$name.'" value="'. $value . '"';
         if (!isset($params['type'])) {
@@ -134,7 +134,7 @@ abstract class View
         if (!($value instanceof Decimal)) {
             $value = new Decimal($value);
         }
-        return $this->textinputNameValueLabel($name, $value, $params);
+        return $this->textInputNameValueLabel($name, $value, $params);
     }
 
     protected function moneyInputNameValueLabel($name, $value = 0, $params = array())

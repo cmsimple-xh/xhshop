@@ -69,7 +69,7 @@ class FrontEndView extends View
             $params['required'] = 'required';
         }
         $html .= $label;
-        $html .= $this->textinputNameValueLabel($field, $value, $params);
+        $html .= $this->textInputNameValueLabel($field, $value, $params);
         return $html;
     }
 

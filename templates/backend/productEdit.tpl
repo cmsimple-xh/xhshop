@@ -7,7 +7,7 @@
 		<?php echo $this->textInputNameValueLabel('xhsName', '%NAME%', null, array('size' => 60)); ?></p>
         <p><strong><?php $this->label('product_variants'); ?>:</strong><br>
 		<?php $this->hint('product_variants'); ?><br>
-		<?php echo $this->textinputNameValueLabel('xhsVariants', '%VARIANTS%', array('size' => '60')); ?></p>
+		<?php echo $this->textInputNameValueLabel('xhsVariants', '%VARIANTS%', array('size' => '60')); ?></p>
 		<p>
 		<table class="xhsTable">
 			<tr>
