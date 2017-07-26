@@ -19,7 +19,7 @@
 				<td><?php echo $this->radioNameValueLabel('vat', 'full') . '&nbsp;'; $this->label('full_vat');?> <?php echo $this->radioNameValueLabel('vat', 'reduced') . '&nbsp;'; $this->label('reduced_vat'); ?></td>
 			</tr>
 			<tr>
-				<td><strong><?php echo $this->shipping_unit; ?>:</strong></td>
+				<td><strong><?php printf($this->labels['shipping_unit'], $this->shipping_unit); ?>:</strong></td>
 				<td><?php echo $this->floatInputNameValueLabel('xhsWeight', $this->weight, array('size' => '10')); ?></td>
 			</tr>
 			<tr>

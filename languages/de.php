@@ -37,6 +37,7 @@ $plugin_tx['xhshop']['labels_hints'] = 'Hinweise';
 $plugin_tx['xhshop']['labels_update'] = "aktualisieren";
 $plugin_tx['xhshop']['labels_delete'] = "entfernen";
 $plugin_tx['xhshop']['labels_price']='Einzelpreis';
+$plugin_tx['xhshop']['labels_shipping_unit']="Versandeinheit (%s)";
 $plugin_tx['xhshop']['labels_available'] = 'Lieferbar';
 $plugin_tx['xhshop']['labels_cart'] = 'Ihr Warenkorb';
 $plugin_tx['xhshop']['labels_next']='weiter';
