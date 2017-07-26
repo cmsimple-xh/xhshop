@@ -156,7 +156,6 @@ $plugin_tx['xhshop']['labels_subtracted_vat']='abzüglich MwSt:';
 $plugin_tx['xhshop']['labels_send_order']='Jetzt kaufen!';
 $plugin_tx['xhshop']['hints_sorry_we_are_closed'] = '<p>Wir bitten um Entschuldigung!</p><p>Der Shop wird gerade überarbeitet. Eine Bestellung ist zurzeit nicht möglich.</p><p>Bitte versuchen Sie es später wieder.</p>';
 $plugin_tx['xhshop']['labels_save_settings'] = 'speichern';
-$plugin_tx['xhshop']['labels_get_vat']='vat.';
 $plugin_tx['xhshop']['hints_no_categories'] = 'Keine Kategorien angelegt.';
 $plugin_tx['xhshop']['hints_sold_out'] = 'Pardon! Alle Artikel der Kategorie <span class="srchTrm">%s</span> sind zurzeit ausverkauft.';
 $plugin_tx['xhshop']['hints_sold_out_back']="Der Kategorie <span class=\"srchTrm\">%s</span> sind keine Artikel zugeordnet.";

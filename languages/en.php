@@ -156,7 +156,6 @@ $plugin_tx['xhshop']['labels_subtracted_vat']='VAT to be deducted';
 $plugin_tx['xhshop']['labels_send_order']='Buy now!';
 $plugin_tx['xhshop']['hints_sorry_we_are_closed'] = "<b>We are really sorry!</b><br><br>The shop is down for maintenance.";
 $plugin_tx['xhshop']['labels_save_settings'] = 'save';
-$plugin_tx['xhshop']['labels_get_vat']='vat.';
 $plugin_tx['xhshop']['hints_no_categories'] = 'No product categories set';
 $plugin_tx['xhshop']['hints_sold_out'] = 'Sorry! All products of category <span class="srchTrm">%s</span> are currently sold out!';
 $plugin_tx['xhshop']['hints_sold_out_back'] = 'No products are assigned to category <span class="srchTrm">%s</span>.';
