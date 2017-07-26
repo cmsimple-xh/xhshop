@@ -28,14 +28,17 @@
 			<h2>Installation</h2>
 			<ol>
 				<li class="important"> Sichere deine CMSimple_XH-Installation von deinem Server (Sicherheitskopie).</li>
-				<li>Entpacke das heruntergeladene ZIP-Archiv auf deinem Computer.</li>
-				<li> Lade das gesamte Verzeichnis <code>xhshop/</code> auf deinen Server in das CMSimple_XH-Verzeichnis <code>plugins/</code>.</li>
-				<li> Vergebe Schreibrechte (0755) für die Unterverzeichnisse <code>config/</code>, <code>css/</code>, <code>data/</code> und <code>languages/</code>.</li>
-				<li> Navigiere über das Admin-Menü zu <code>Plugins ⇒ xhshop</code> und prüfe, ob alle Voraussetzungen für den Betrieb erfüllt sind.<br>
+				<li>Entpacke das heruntergeladene ZIP-Archiv auf deinem Computer.<br>
 					<br>
 				</li>
 			</ol>
-			<p>Im Download-Paket sind einige Beispielartikel mit Bildern enthalten. Die Bilder für den Shop befinden sich im Ordner <code>userfiles/images/shop/</code>. Es empfiehlt sich, diese Bilder zunächst ebenfalls in deiner CMSimple_XH-Installation in den gleichen Ordner zu kopieren. Später &#8211; wenn du deine eigenen Artikel eingepflegt hast &#8211; kannst du diese Beispielbilder löschen.</p>
+			<p>Nach dem Entpacken findest du 3 Ordner vor: <code>content</code>, <code>plugins</code> und <code>userfiles</code>. Diese Ordner repräsentieren die <strong>Ziel</strong>ordner deiner CMSimple_XH-Installation – das heißt, <strong>die Inhalte</strong> dieser Ordner müssen in die entsprechenden Ordner deiner CMSimple_XH-Installation kopiert werden.</p>
+			<p><strong>Der Ordner <code>content</code></strong><br>
+			Kopiere den darin enthaltenen Ordner <code>xhshop</code> komplett in den Ordner <code>content</code> deiner CMSimple_XH-Installation. Dieser Ordner enthält die <code>catalog.php</code> mit allen Daten aller Shop-Artikel und Kategorien, die zur Demonstration ausgeliefert werden. Die Speicherung im Content-Ordner hat den Vorteil, dass die Daten bei einer Neuinstallation oder einem Update des Shops erhalten bleiben. Außerdem enthält dieser Ordner einen weiteren: <code>tmp_orders</code>, der zur Zwischenspeicherung temporärer Daten bei PayPal-Bestellungen dient.</p>
+			<p><strong>Der Ordner <code>plugins</code></strong><br>
+			Kopiere den darin enthaltenen Ordner <code>xhshop</code> komplett in den Ordner <code>plugins</code> deiner CMSimple_XH-Installation. Dieser Ordner enthält das XH-Shop-Plugin. Sorge hier für Schreibrechte (0755) für die Unterverzeichnisse <code>config/</code>, <code>css/</code> und <code>languages/</code>.</p>
+			<p><strong>Der Ordner <code>userfiles</code></strong><br>
+			Kopiere den darin enthaltenen Ordner <code>images/shop/</code> komplett in den Ordner <code>userfiles/images/</code> deiner CMSimple_XH-Installation. Dieser Ordner enthält Beispielbilder, die zur Demonstration ausgeliefert werden. Du kannst diese Demo-Bilder später entfernen, sobald du eigene Artikel mit eigenen Bildern angelegt hast.</p>
 		</section>
 		<section id="settings">
 			<h2>Administration</h2>
