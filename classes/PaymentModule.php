@@ -34,12 +34,17 @@ abstract class PaymentModule
     protected $settings = array();
     protected $cartItems = array();
     private $shopCurrency; // unused?
-    protected $shipping = 0.0;
+
+    /**
+     * @Decimal
+     */
+    protected $shipping;
 
     public function __construct()
     {
         $this->loadLanguage();
         $this->loadSettings();
+        $this->shipping = Decimal::zero();
     }
 
     public function getLabel()
@@ -125,7 +130,7 @@ abstract class PaymentModule
         $this->shopCurrency = $currency;
     }
 
-    public function setShipping($shipping = 0.0)
+    public function setShipping(Decimal $shipping)
     {
         $this->shipping = $shipping;
     }

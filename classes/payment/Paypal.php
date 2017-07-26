@@ -4,6 +4,8 @@ namespace Xhshop\Payment;
 
 use Xhshop\PaymentModule;
 
+use Xhshop\Decimal;
+
 class Paypal extends PaymentModule
 {
     private $urls = array(
@@ -57,7 +59,7 @@ class Paypal extends PaymentModule
     <input type="hidden" name="lc" value="' . strtoupper(XHS_LANGUAGE) . '">
     <input type="hidden" name="rm" value="2">
     <input type="hidden" name="custom" value="' . session_id() . '">
-    <input type="hidden" name="handling_cart" value="' . ($this->settings['fee'] + $this->shipping) . '">
+    <input type="hidden" name="handling_cart" value="' . $this->shipping->plus(new Decimal($this->settings['fee'])) . '">
     <input type="hidden" name="cancel_return" value="' . $_SERVER['HTTP_REFERER'] . '">
           <input type="hidden" name="notify_url" value="' . $_SERVER['HTTP_REFERER'] . '">
     <input type="hidden" name="return" value="' . $_SERVER['HTTP_REFERER'] . '">';
@@ -68,7 +70,7 @@ class Paypal extends PaymentModule
             $form .= '
      <input type="hidden" name="item_name_' . $item['itemCounter'] . '" value="' . $name . '">
      <input type="hidden" name="quantity_' . $item['itemCounter'] . '" value="' . $item['amount'] . '">
-     <input type="hidden" name="amount_' . $item['itemCounter'] . '" value="' . new Decimal($item['price']) . '">
+     <input type="hidden" name="amount_' . $item['itemCounter'] . '" value="' . $item['price'] . '">
      <input type="hidden" name="item_number_' . $item['itemCounter'] . '" value="' . $item['itemCounter'] . '">';
         }
         $form .= '
