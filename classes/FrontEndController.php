@@ -525,7 +525,7 @@ class FrontEndController extends Controller
                 . $this->viewProvider->formatCurrency($_SESSION['xhsOrder']->getVat());
             $vat_hint .= ' (' . $this->viewProvider->formatCurrency(new Decimal($this->settings['vat_reduced'])) . ': '
                 . $this->viewProvider->formatCurrency($_SESSION['xhsOrder']->getVatReduced()) . ' - ';
-            $vat_hint .= $this->viewProvider->formatPercentage(new Decimal($this->settings['vat_full'])) . ': '
+            $vat_hint .= $this->viewProvider->formatPercentage($this->settings['vat_full']) . ': '
                 . $this->viewProvider->formatCurrency($_SESSION['xhsOrder']->getVatFull()) . ')';
         }
 
