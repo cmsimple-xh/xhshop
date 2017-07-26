@@ -86,10 +86,10 @@ abstract class View
     {
         $html = '';
         if (isset($label)) {
-            $html = '<label> ';
+            $html .= '<label> ';
         }
         
-        $html = '<input type="radio" name="'.$name. '" value="'.$value.'"';
+        $html .= '<input type="radio" name="'.$name. '" value="'.$value.'"';
         if (isset($name) && $this->$name == $value) {
             $html .= ' checked="checked"';
         }
@@ -98,7 +98,7 @@ abstract class View
         }
         $html .= '>';
         if (isset($label)) {
-               $html .= ' ' . $this->label($label) . '</label>';
+               $html .= "\xC2\xA0" . $this->labels[$label] . '</label>';
         }
         return $html;
     }

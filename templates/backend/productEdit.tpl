@@ -16,7 +16,7 @@
 			</tr>
 			<tr>
 				<td><strong><?php $this->label('vat_rate'); ?>:</strong></td>
-				<td><?php echo $this->radioNameValueLabel('vat', 'full') . '&nbsp;'; $this->label('full_vat');?> <?php echo $this->radioNameValueLabel('vat', 'reduced') . '&nbsp;'; $this->label('reduced_vat'); ?></td>
+				<td><?php echo $this->radioNameValueLabel('vat', 'full', 'full_vat'); ?> <?php echo $this->radioNameValueLabel('vat', 'reduced', 'reduced_vat'); ?></td>
 			</tr>
 			<tr>
 				<td><strong><?php printf($this->labels['shipping_unit'], $this->shipping_unit); ?>:</strong></td>
@@ -24,7 +24,7 @@
 			</tr>
 			<tr>
 				<td><strong><?php $this->label('available');?>:</strong></td>
-				<td><?php echo $this->radioNameValueLabel('stockOnHand', 1) . '&nbsp;'; $this->label('yes'); ?> <?php echo $this->radioNameValueLabel('stockOnHand', 0) . '&nbsp;'; $this->label('no'); ?></td>
+				<td><?php echo $this->radioNameValueLabel('stockOnHand', 1, 'yes'); ?> <?php echo $this->radioNameValueLabel('stockOnHand', 0, 'no'); ?></td>
 			</tr>
 			<tr>
 				<td colspan="2"><hr></td>

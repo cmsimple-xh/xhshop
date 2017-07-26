@@ -58,9 +58,9 @@
 	<?php $this->hint('default_product_category'); ?></p>
 	<form method="post">
 		%CSRF_TOKEN_INPUT%
-		<p><?php echo $this->radioNameValueLabel('xhsDefaultCat', $this->labels['all_categories']);?>&nbsp;<?php echo $this->label('all_categories') ?><br>
+		<p><label><?php echo $this->radioNameValueLabel('xhsDefaultCat', $this->labels['all_categories']);?>&nbsp;<?php echo $this->label('all_categories') ?></label><br>
 		<?php foreach($this->categories as $category){ ?>
-		<?php echo $this->radioNameValueLabel('xhsDefaultCat', $category);?>&nbsp;<?php echo $category; ?><br>
+		<label><?php echo $this->radioNameValueLabel('xhsDefaultCat', $category);?>&nbsp;<?php echo $category; ?></label><br>
         <?php } ?></p>
 		<div class="">
 			<input type="hidden" name="xhsTask" value="saveProductCategories">
