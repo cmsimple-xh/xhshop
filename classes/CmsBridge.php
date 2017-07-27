@@ -76,7 +76,8 @@ class CmsBridge
 
     public function setMeta($strName, $strContent)
     {
-        global $cf;
-        $cf['meta'][$strName] = strip_tags($strContent);
+        global $tx;
+
+        $tx['meta'][$strName] = strip_tags($strContent);
     }
 }
