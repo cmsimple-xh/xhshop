@@ -3,6 +3,7 @@
 ;;;;;;
 ;Warenwert;;;%SUM%;;
 ;Versandkosten;;;%SHIPPING%;;
+;%FEE_LABEL%;;;%FEE%;;
 ;Rechnungssumme;;;%TOTAL%;;
 ;;;;;;
 ;;;;;Anrede;%SALUTATION%
