@@ -46,6 +46,7 @@
 		<input type="hidden" name="xhsTask" value="saveProductCategories">
 		<button class="xhsShopButton"><span class="fa fa-save fa-fw"></span> <?php echo $this->labels['save_settings'] ;?></button>
 	</form>
+	<p>&nbsp;</p>
 	<p><strong><?php $this->label('left_over_category'); ?></strong></p>
 	<form method = "post">
 		%CSRF_TOKEN_INPUT%
@@ -54,6 +55,7 @@
 		<button class="xhsShopButton"><span class="fa fa-save fa-fw"></span> <?php echo $this->labels['save_settings'] ;?></button>
 	</form>
 	<?php if(count($this->categories) > 0){ ?>
+	<p>&nbsp;</p>
 	<p><strong><?php $this->label('default_product_category'); ?></strong><br>
 	<?php $this->hint('default_product_category'); ?></p>
 	<form method="post">
