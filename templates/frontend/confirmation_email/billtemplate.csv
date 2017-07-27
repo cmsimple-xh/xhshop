@@ -1,11 +1,19 @@
-﻿Anzahl;Artikel;Steuersatz;Einzelpreis;Summe
-%pa%;%pname%;%pvat%;%pprice%;%psum%
-
-Warenwert;;;;%SUM%
-Versandkosten;;;;%SHIPPING%
-Rechnungssumme;;;;%TOTAL%
-
-Kunde;;;;%FIRST_NAME% %LAST_NAME%
-Straße;;;;%STREET%
-Adresszusatz;;;;%EXTRA_ADDRESS_LINE%
-Ort;;;;"%ZIP% %CITY%"
+﻿Anzahl;Artikel;Steuersatz;Einzelpreis;Summe;;
+%pa%;%pname%;%pvat%;%pprice%;%psum%;;
+;;;;;;
+;Warenwert;;;%SUM%;;
+;Versandkosten;;;%SHIPPING%;;
+;Rechnungssumme;;;%TOTAL%;;
+;;;;;;
+;;;;;Anrede;%SALUTATION%
+;;;;;Name;%FIRST_NAME% %LAST_NAME%
+;;;;;Straße;%STREET%
+;;;;;Adresszusatz;%EXTRA_ADDRESS_LINE%
+;;;;;Ort;%ZIP% %CITY%
+;;;;;;
+;;;;;Telefon;%PHONE%
+;;;;;E-Mail;%EMAIL%
+;;;;;Weitergabe;%MAY_FORWARD_EMAIL%
+;;;;;;
+;;;;;Zahlweise;%PAYMENT_METHOD%
+;;;;;Anmerkung;%ANNOTATION%
