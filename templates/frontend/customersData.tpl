@@ -18,8 +18,12 @@
 <?php echo $this->contactInput('zip_code'); ?>
 <?php echo $this->contactInput('city'); ?>
 <?php echo $this->countriesSelectbox(); ?>
-<?php echo $this->contactInput('email'); ?>
 <?php echo $this->contactInput('phone'); ?>
+<?php echo $this->contactInput('email'); ?>
+<label>
+<input type="hidden" name="may_forward_email" value="0">
+<input type="checkbox" name="may_forward_email" value="1" <?php if ($_SESSION['xhsCustomer']->may_forward_email) echo 'checked'; ?>>
+<?php $this->label('may_forward_email'); ?></label>
 <p> </p>
 <!-- start payment modes -->
 <h2><?php echo $this->paymentHint(); ?></h2>

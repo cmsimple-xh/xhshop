@@ -543,6 +543,7 @@ class FrontEndController extends Controller
             '%CITY%'               => $_SESSION['xhsCustomer']->city,
             '%COUNTRY%'            => $_SESSION['xhsCustomer']->country,
             '%EMAIL%'              => $_SESSION['xhsCustomer']->email,
+            '%MAY_FORWARD_EMAIL%'  => $this->viewProvider->labels[$_SESSION['xhsCustomer']->may_forward_email ? 'yes' : 'no'],
             '%PHONE%'              => $_SESSION['xhsCustomer']->phone,
             '%ANNOTATION%'         => $_SESSION['xhsCustomer']->annotation,
             '%PAYMENT_METHOD%'     => $paymentMethod,

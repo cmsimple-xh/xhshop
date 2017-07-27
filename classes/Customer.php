@@ -16,5 +16,6 @@ class Customer
     public $annotation;
     public $payment_mode;
     public $email;
+    public $may_forward_email;
     public $phone;
 }

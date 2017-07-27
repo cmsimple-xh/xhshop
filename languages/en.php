@@ -57,6 +57,7 @@ $plugin_tx['xhshop']['labels_extra_address_line']="Extra address line";
 $plugin_tx['xhshop']['labels_city']='City';
 $plugin_tx['xhshop']['labels_zip_code']='ZIP';
 $plugin_tx['xhshop']['labels_email']='Email';
+$plugin_tx['xhshop']['labels_may_forward_email']="I approve of forwarding my email address to the parcel service.";
 $plugin_tx['xhshop']['labels_phone']='Phone';
 $plugin_tx['xhshop']['labels_country']='Country';
 $plugin_tx['xhshop']['labels_male']='Mr';
