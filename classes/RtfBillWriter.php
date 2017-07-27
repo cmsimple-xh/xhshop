@@ -69,20 +69,94 @@ class RtfBillWriter implements BillWriter
     public function writeProductRow($name, $amount, $price, $sum, $vatRate)
     {
         if (!isset($this->rowTemplate)) {
-            if (preg_match_all('/\\\\trowd.*?\\\\row/s', $this->template, $matches, PREG_OFFSET_CAPTURE)) {
-                foreach ($matches[0] as $match) {
-                    if (stripos($match[0], '%PNAME%') !== false) {
-                        $this->rowTemplate = $match[0];
-                        $this->template = substr($this->template, 0, $match[1]) . '%ROWS%' . substr($this->template, $match[1] + strlen($this->rowTemplate));
-                        break;
-                    }
-                }
-            }
+            preg_match_all('/\{|\}|\\\\trowd|\\\\row|%PNAME%/i', $this->template, $matches, PREG_OFFSET_CAPTURE);
+            $structure = $matches[0];
+            do {
+                $foundAdjacentBracePairs = $this->removeAdjacentBracePairs($structure);
+                $foundEmptyRows = $this->removeEmptyRows($structure);
+            } while ($foundAdjacentBracePairs || $foundEmptyRows);
+            $this->determineTemplates($structure);
         }
         return str_ireplace(
             array('%PA%', '%PNAME%', '%PVAT%', '%PPRICE%', '%PSUM%'),
             array($amount, $name, $vatRate, $price, $sum),
             $this->rowTemplate
         );
+    }
+
+    /**
+     * @return bool
+     */
+    private function removeAdjacentBracePairs(array &$structure)
+    {
+        $found = false;
+        for ($i = 0; $i < count($structure) - 1; $i++) {
+            if ($structure[$i][0] === '{' && $structure[$i + 1][0] === '}') {
+                $found = true;
+                unset($structure[$i], $structure[$i + 1]);
+                $i++;
+            } elseif ($structure[$i][0] === '{' && $structure[$i+1][0] === '%pname%'
+                    && $structure[$i+2][0] === '}') {
+                $found = true;
+                unset($structure[$i], $structure[$i+2]);
+                $i += 2;
+            }
+        }
+        $structure = array_values($structure);
+        return $found;
+    }
+
+    /**
+     * @return bool
+     */
+    private function removeEmptyRows(array &$structure)
+    {
+        $found = false;
+        for ($i = 0; $i < count($structure)-1; $i++) {
+            if ($structure[$i][0] === '\trowd' && $structure[$i+1][0] === '\row') {
+                $found = true;
+                unset($structure[$i], $structure[$i+1]);
+                $i++;
+            }
+        }
+        $structure = array_values($structure);
+        return $found;
+    }
+
+    /**
+     * @return void
+     */
+    private function determineTemplates(array $structure)
+    {
+        $pname = $this->findPNamePlaceholder($structure);
+        if (!isset($pname)) {
+            trigger_error('can\'t find the %PNAME% placeholder', E_USER_WARNING);
+        }
+        if ($structure[$pname-1][0] !== '\trowd') {
+            trigger_error('can\'t determine start of row', E_USER_WARNING);
+        }
+        if (!in_array($structure[$pname+1][0], array('\row', '\trowd'))) {
+            trigger_error('can\'t determine end of row', E_USER_WARNING);
+        }
+        $start = $structure[$pname-1][1];
+        $end = $structure[$pname+1][1];
+        if ($structure[$pname+1][0] === '\row') {
+            $end += strlen('\row');
+        }
+        $this->rowTemplate = substr($this->template, $start, $end-$start);
+        $this->template = substr($this->template, 0, $start) . '%ROWS%' . substr($this->template, $end);
+    }
+
+    /**
+     * @return ?int
+     */
+    private function findPNamePlaceholder(array $structure)
+    {
+        foreach ($structure as $index => $element) {
+            if (strcasecmp($element[0], '%pname%') === 0) {
+                return $index;
+            }
+        }
+        return null;
     }
 }
