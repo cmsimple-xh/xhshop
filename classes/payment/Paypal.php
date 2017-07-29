@@ -103,17 +103,17 @@ class Paypal extends PaymentModule
         $header = "POST /cgi-bin/webscr HTTP/1.0\r\n";
 
         if ($this->settings['sandbox']) {
-            $header .= "Host: www.sandbox.paypal.com:443\r\n";
+            $header .= "Host: ipnpb.sandbox.paypal.com:443\r\n";
         } else {
-            $header .= "Host: www.paypal.com:443\r\n";
+            $header .= "Host: ipnpb.paypal.com:443\r\n";
         }
         $header .= "Content-Type: application/x-www-form-urlencoded\r\n";
         $header .= "Content-Length: " . strlen($req) . "\r\n\r\n";
 
         if ($this->settings['sandbox']) {
-            $fp = fsockopen('ssl://www.sandbox.paypal.com', 443, $errno, $errstr, 30);
+            $fp = fsockopen('ssl://ipnpb.sandbox.paypal.com', 443, $errno, $errstr, 30);
         } else {
-            $fp = fsockopen('ssl://www.paypal.com', 443, $errno, $errstr, 30);
+            $fp = fsockopen('ssl://ipnpb.paypal.com', 443, $errno, $errstr, 30);
         }
 
         if (!$fp) {
