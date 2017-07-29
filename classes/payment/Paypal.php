@@ -159,8 +159,8 @@ class Paypal extends PaymentModule
         global $xhsController;
 
         $file = XHS_CONTENT_PATH . 'xhshop/tmp_orders/pp_' . $_POST['custom'];
-        if ($_POST['receiver_email '] === $this->settings['email']
-                && $_POST['payment_status '] === 'Completed'
+        if ($_POST['receiver_email'] === $this->settings['email']
+                && $_POST['payment_status'] === 'Completed'
                 && file_exists($file . '.temp')) {
             $temp                    = implode("", file($file . '.temp'));
             $temp                    = unserialize($temp);
