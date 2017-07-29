@@ -158,16 +158,16 @@ class Paypal extends PaymentModule
     {
         global $xhsController;
 
-        $file = XHS_CONTENT_PATH . 'xhshop/tmp_orders/pp_' . $_POST['custom'];
+        $file = XHS_CONTENT_PATH . 'xhshop/tmp_orders/pp_' . $_POST['custom'] . '.temp';
         if ($_POST['receiver_email'] === $this->settings['email']
                 && $_POST['payment_status'] === 'Completed'
-                && file_exists($file . '.temp')) {
+                && file_exists($file)) {
             XH_logMessage('info', 'xhshop', 'ipn', 'processed: ' . serialize($_POST));
-            $temp                    = implode("", file($file . '.temp'));
+            $temp                    = file_get_contents($file);
             $temp                    = unserialize($temp);
             $_SESSION['xhsCustomer'] = $temp['xhsCustomer'];
             $_SESSION['xhsOrder']    = $temp['xhsOrder'];
-            unlink($file . '.temp');
+            unlink($file);
             $xhsController->finishCheckout();
         } else {
             XH_logMessage('info', 'xhshop', 'ipn', 'ignored: ' . serialize($_POST));
