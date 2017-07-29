@@ -109,6 +109,7 @@ class Paypal extends PaymentModule
         }
         $header .= "Content-Type: application/x-www-form-urlencoded\r\n";
         $header .= "Content-Length: " . strlen($req) . "\r\n\r\n";
+        $header .= "User-Agent: XH-Shop-IPN-VerificationScript\r\n\r\n";
 
         if ($this->settings['sandbox']) {
             $fp = fsockopen('ssl://ipnpb.sandbox.paypal.com', 443, $errno, $errstr, 30);
