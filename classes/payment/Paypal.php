@@ -158,12 +158,10 @@ class Paypal extends PaymentModule
     {
         global $xhsController;
 
-        /*
-         *  bei Bedarf pruefen, ob die Bestellung ausgefuehrt werden soll. (Stimmt die Haendler-E-Mail, ...?
-         */
-      
         $file = XHS_CONTENT_PATH . 'xhshop/tmp_orders/pp_' . $_POST['custom'];
-        if (file_exists($file . '.temp')) {
+        if ($_POST['receiver_email '] === $this->settings['email']
+                && $_POST['payment_status '] === 'Completed'
+                && file_exists($file . '.temp')) {
             $temp                    = implode("", file($file . '.temp'));
             $temp                    = unserialize($temp);
             $_SESSION['xhsCustomer'] = $temp['xhsCustomer'];
