@@ -464,7 +464,7 @@ class FrontEndController extends Controller
      *
      * @return <string>
      */
-    private function finishCheckOut()
+    public function finishCheckOut()
     {
         if (!$this->canOrder()) {
             $this->relocateToCheckout('cart', 302);
