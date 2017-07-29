@@ -162,12 +162,15 @@ class Paypal extends PaymentModule
         if ($_POST['receiver_email'] === $this->settings['email']
                 && $_POST['payment_status'] === 'Completed'
                 && file_exists($file . '.temp')) {
+            XH_logMessage('info', 'xhshop', 'ipn', 'processed: ' . serialize($_POST));
             $temp                    = implode("", file($file . '.temp'));
             $temp                    = unserialize($temp);
             $_SESSION['xhsCustomer'] = $temp['xhsCustomer'];
             $_SESSION['xhsOrder']    = $temp['xhsOrder'];
             unlink($file . '.temp');
             $xhsController->finishCheckout();
+        } else {
+            XH_logMessage('info', 'xhshop', 'ipn', 'ignored: ' . serialize($_POST));
         }
     }
 }
