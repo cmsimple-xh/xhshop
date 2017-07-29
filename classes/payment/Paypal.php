@@ -133,11 +133,6 @@ class Paypal extends PaymentModule
               
                 $file = XHS_CONTENT_PATH . 'xhshop/tmp_orders/pp_' . $_POST['custom'];
                 if (file_exists($file . '.temp')) {
-                    if (!(bool) session_id()) {
-                        session_id($_POST['custom']);
-                        session_start();
-                    }
-
                     $temp                    = implode("", file($file . '.temp'));
                     $temp                    = unserialize($temp);
                     $_SESSION['xhsCustomer'] = $temp['xhsCustomer'];
