@@ -128,15 +128,13 @@ class Paypal extends PaymentModule
         }
         $res = stream_get_contents($fp);
         list($headers, $body) = explode("\r\n\r\n", $res);
-        switch (trim($body)) {
-            case 'VERIFIED':
-                $this->handleVerifiedIpn();
-                break;
-            case 'INVALID':
+        $lines = explode("\r\n", $body);
+        if (in_array('VERIFIED', $lines)) {
+            $this->handleVerifiedIpn();
+        } elseif (in_array('INVALID', $lines)) {
                 // just ignore this IPN
-                break;
-            default:
-                $this->handshakeFailed(sprintf('unexpected response for IPN pingback request: %s', trim($body)));
+        } else {
+            $this->handshakeFailed(sprintf('unexpected response for IPN pingback request: %s', trim($body)));
         }
         fclose($fp);
         while (ob_get_level()) {
