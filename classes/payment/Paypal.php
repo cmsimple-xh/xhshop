@@ -90,7 +90,6 @@ class Paypal extends PaymentModule
     public function ipn()
     {
         // read the post from PayPal system and add 'cmd'
-        global $xhsController;
         $req = 'cmd=_notify-validate';
 
         foreach ($_POST as $key => $value) {
@@ -128,19 +127,7 @@ class Paypal extends PaymentModule
         while (!feof($fp)) {
             $res = fgets($fp);
             if ($res === 'VERIFIED') {
-                /*
-                 *  bei Bedarf pruefen, ob die Bestellung ausgefuehrt werden soll. (Stimmt die Haendler-E-Mail, ...?
-                 */
-              
-                $file = XHS_CONTENT_PATH . 'xhshop/tmp_orders/pp_' . $_POST['custom'];
-                if (file_exists($file . '.temp')) {
-                    $temp                    = implode("", file($file . '.temp'));
-                    $temp                    = unserialize($temp);
-                    $_SESSION['xhsCustomer'] = $temp['xhsCustomer'];
-                    $_SESSION['xhsOrder']    = $temp['xhsOrder'];
-                    unlink($file . '.temp');
-                    $xhsController->finishCheckout();
-                }
+                $this->handleVerifiedIpn();
                 break;
             } elseif ($res === 'INVALID') {
                 // just ignore this IPN
@@ -165,5 +152,24 @@ class Paypal extends PaymentModule
         }
         header('HTTP/1.1 500 Internal Server Error');
         exit;
+    }
+
+    private function handleVerifiedIpn()
+    {
+        global $xhsController;
+
+        /*
+         *  bei Bedarf pruefen, ob die Bestellung ausgefuehrt werden soll. (Stimmt die Haendler-E-Mail, ...?
+         */
+      
+        $file = XHS_CONTENT_PATH . 'xhshop/tmp_orders/pp_' . $_POST['custom'];
+        if (file_exists($file . '.temp')) {
+            $temp                    = implode("", file($file . '.temp'));
+            $temp                    = unserialize($temp);
+            $_SESSION['xhsCustomer'] = $temp['xhsCustomer'];
+            $_SESSION['xhsOrder']    = $temp['xhsOrder'];
+            unlink($file . '.temp');
+            $xhsController->finishCheckout();
+        }
     }
 }
