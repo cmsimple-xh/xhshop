@@ -119,12 +119,12 @@ class Paypal extends PaymentModule
         }
 
         if (!$fp) {
-            $this->handshakeFailed();
+            $this->handshakeFailed(sprintf('fsockopen returned %d: %s', $errno, trim($errstr)));
         }
 
         $payload = $header . $req;
         if (fwrite($fp, $payload) !== strlen($payload)) {
-            $this->handshakeFailed();
+            $this->handshakeFailed('could not sent complete IPN pingback request');
         }
         $res = stream_get_contents($fp);
         list($headers, $body) = explode("\r\n\r\n", $res);
@@ -136,7 +136,7 @@ class Paypal extends PaymentModule
                 // just ignore this IPN
                 break;
             default:
-                $this->handshakeFailed();
+                $this->handshakeFailed(sprintf('unexpected response for IPN pingback request: %s', trim($body)));
         }
         fclose($fp);
         while (ob_get_level()) {
@@ -146,9 +146,9 @@ class Paypal extends PaymentModule
         exit;
     }
 
-    private function handshakeFailed()
+    private function handshakeFailed($message)
     {
-        XH_logMessage('error', 'xhshop', 'ipn', 'Handshake failed!');
+        XH_logMessage('error', 'xhshop', 'ipn', sprintf('Handshake failed! (%s)', $message));
         while (ob_get_level()) {
             ob_end_clean();
         }
