@@ -168,7 +168,7 @@ class Paypal extends PaymentModule
             $_SESSION['xhsCustomer'] = $temp['xhsCustomer'];
             $_SESSION['xhsOrder']    = $temp['xhsOrder'];
             unlink($file);
-            $xhsController->finishCheckout();
+            $xhsController->finishCheckout(true);
         } else {
             XH_logMessage('info', 'xhshop', 'ipn', 'ignored: ' . serialize($_POST));
         }

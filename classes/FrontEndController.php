@@ -464,21 +464,29 @@ class FrontEndController extends Controller
      *
      * @return <string>
      */
-    public function finishCheckOut()
+    public function finishCheckOut($viaIpn = false)
     {
         if (!$this->canOrder()) {
+            if ($viaIpn) {
+                return;
+            }
             $this->relocateToCheckout('cart', 302);
         } elseif (!$this->isValidCustomer()) {
+            if ($viaIpn) {
+                return;
+            }
             $this->relocateToCheckout('customersData', 302);
         }
-        $this->csrfProtector->check();
-        if (!isset($_SESSION['xhsCustomer']) || !isset($_SESSION['xhsOrder'])) {
-            return '';
+        if (!$viaIpn) {
+            $this->csrfProtector->check();
         }
         $bill = $this->writeBill();
 
         $sent = $this->sendEmails($bill);
 
+        if ($viaIpn) {
+            return;
+        }
         if ($sent === true) {
             $this->relocateToCheckout('thankYou', 303);
         } else {
