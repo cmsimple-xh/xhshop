@@ -99,7 +99,7 @@ class Paypal extends PaymentModule
 
 // post back to PayPal system to validate
 
-        $header = "POST /cgi-bin/webscr HTTP/1.0\r\n";
+        $header = "POST /cgi-bin/webscr HTTP/1.1\r\n";
 
         if ($this->settings['sandbox']) {
             $header .= "Host: ipnpb.sandbox.paypal.com:443\r\n";
@@ -107,8 +107,10 @@ class Paypal extends PaymentModule
             $header .= "Host: ipnpb.paypal.com:443\r\n";
         }
         $header .= "Content-Type: application/x-www-form-urlencoded\r\n";
-        $header .= "Content-Length: " . strlen($req) . "\r\n\r\n";
-        $header .= "User-Agent: XH-Shop-IPN-VerificationScript\r\n\r\n";
+        $header .= "Content-Length: " . strlen($req) . "\r\n";
+        $header .= "User-Agent: XH-Shop-IPN-VerificationScript\r\n";
+        $header .= "Connection: close\r\n";
+        $header .= "\r\n";
 
         if ($this->settings['sandbox']) {
             $fp = fsockopen('ssl://ipnpb.sandbox.paypal.com', 443, $errno, $errstr, 30);
