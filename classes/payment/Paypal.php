@@ -117,16 +117,16 @@ class Paypal extends PaymentModule
         }
 
         if (!$fp) {
-            /*
-             * HTTP-ERROR: Was tun?
-             */
-            return;
+            $this->handshakeFailed();
         }
 
-        fputs($fp, $header . $req);
+        $payload = $header . $req;
+        if (fwrite($fp, $payload) !== strlen($payload)) {
+            $this->handshakeFailed();
+        }
         while (!feof($fp)) {
-            $res = fgets($fp, 1024);
-            if (strcmp($res, "VERIFIED") == 0) {
+            $res = fgets($fp);
+            if ($res === 'VERIFIED') {
                 /*
                  *  bei Bedarf pruefen, ob die Bestellung ausgefuehrt werden soll. (Stimmt die Haendler-E-Mail, ...?
                  */
@@ -144,14 +144,30 @@ class Paypal extends PaymentModule
                     $_SESSION['xhsOrder']    = $temp['xhsOrder'];
                     unlink($file . '.temp');
                     $xhsController->finishCheckout();
-                } else {
                 }
-            } elseif (strcmp($res, "INVALID") == 0) {
-                /*
-                 *  Fehlerbehandlung "ungueltig"
-                 */
+                break;
+            } elseif ($res === 'INVALID') {
+                // just ignore this IPN
+                break;
+            } else {
+                $this->handshakeFailed();
             }
         }
         fclose($fp);
+        while (ob_get_level()) {
+            ob_end_clean();
+        }
+        header('HTTP/1.1 200 OK');
+        exit;
+    }
+
+    private function handshakeFailed()
+    {
+        XH_logMessage('error', 'xhshop', 'ipn', 'Handshake failed!');
+        while (ob_get_level()) {
+            ob_end_clean();
+        }
+        header('HTTP/1.1 500 Internal Server Error');
+        exit;
     }
 }
