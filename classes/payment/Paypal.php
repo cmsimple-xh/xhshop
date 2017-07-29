@@ -37,8 +37,13 @@ class Paypal extends PaymentModule
         return 'paypal';
     }
 
+    /**
+     * @see https://developer.paypal.com/docs/classic/paypal-payments-standard/integration-guide/cart_upload/#implementing-the-cart-upload-command
+     */
     public function orderSubmitForm()
     {
+        global $plugin_tx;
+
         $name = 'pp_' . session_id() . '.temp';
         //$name = 'test';
         $fh   = fopen(XHS_CONTENT_PATH . 'xhshop/tmp_orders/' . $name, "w");
@@ -50,6 +55,7 @@ class Paypal extends PaymentModule
         fwrite($fh, $temp) or die("could not write");
         fclose($fh);
 
+        $shopUrl = CMSIMPLE_URL . $plugin_tx['xhshop']['config_shop_page'];
         $form = '
 <form action="' . $this->urls[$this->settings['sandbox'] ? 'development' : 'production'] . '" method="post">
     <input type="hidden" name="cmd" value="_cart">
@@ -60,9 +66,9 @@ class Paypal extends PaymentModule
     <input type="hidden" name="rm" value="2">
     <input type="hidden" name="custom" value="' . session_id() . '">
     <input type="hidden" name="handling_cart" value="' . $this->shipping->plus(new Decimal($this->settings['fee'])) . '">
-    <input type="hidden" name="cancel_return" value="' . $_SERVER['HTTP_REFERER'] . '">
-          <input type="hidden" name="notify_url" value="' . $_SERVER['HTTP_REFERER'] . '">
-    <input type="hidden" name="return" value="' . $_SERVER['HTTP_REFERER'] . '">';
+    <input type="hidden" name="cancel_return" value="' . "$shopUrl&xhsCheckout=customersData" . '">
+    <input type="hidden" name="notify_url" value="' . "$shopUrl&xhsIpn" . '">
+    <input type="hidden" name="return" value="' . "$shopUrl&xhsCheckout=thankYou" . '">';
 
         foreach ($this->cartItems as $item) {
             $name = strip_tags($item['name']);
@@ -136,7 +142,7 @@ class Paypal extends PaymentModule
                     $temp                    = unserialize($temp);
                     $_SESSION['xhsCustomer'] = $temp['xhsCustomer'];
                     $_SESSION['xhsOrder']    = $temp['xhsOrder'];
-                    rename($file . '.temp', $file . '.sent');
+                    unlink($file . '.temp');
                     $xhsController->finishCheckout();
                 } else {
                 }
