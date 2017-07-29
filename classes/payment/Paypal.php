@@ -126,17 +126,17 @@ class Paypal extends PaymentModule
         if (fwrite($fp, $payload) !== strlen($payload)) {
             $this->handshakeFailed();
         }
-        while (!feof($fp)) {
-            $res = fgets($fp);
-            if ($res === 'VERIFIED') {
+        $res = stream_get_contents($fp);
+        list($headers, $body) = explode("\r\n\r\n", $res);
+        switch (trim($body)) {
+            case 'VERIFIED':
                 $this->handleVerifiedIpn();
                 break;
-            } elseif ($res === 'INVALID') {
+            case 'INVALID':
                 // just ignore this IPN
                 break;
-            } else {
+            default:
                 $this->handshakeFailed();
-            }
         }
         fclose($fp);
         while (ob_get_level()) {
