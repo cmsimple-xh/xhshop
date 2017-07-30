@@ -159,7 +159,7 @@ class OrderTest extends TestCase
         $product->method('getUid')->willReturn('pears');
         $product->method('getGross')->willReturn(new Decimal('4.95'));
         $product->method('getVat')->willReturn('reduced');
-        $product->method('getUnits')->willReturn(new Decimal('0.80'));
+        $product->method('getWeight')->willReturn(new Decimal('0.80'));
         return $product;
     }
 
@@ -169,7 +169,7 @@ class OrderTest extends TestCase
         $product->method('getUid')->willReturn('splitter');
         $product->method('getGross')->willReturn(new Decimal('9.99'));
         $product->method('getVat')->willReturn('full');
-        $product->method('getUnits')->willReturn(new Decimal('0.09'));
+        $product->method('getWeight')->willReturn(new Decimal('0.09'));
         return $product;
     }
 }
