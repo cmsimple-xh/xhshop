@@ -123,7 +123,7 @@ class Paypal extends PaymentModule
             $this->handshakeFailed('could not sent complete IPN pingback request');
         }
         $res = stream_get_contents($fp);
-        list($headers, $body) = explode("\r\n\r\n", $res);
+        list(, $body) = explode("\r\n\r\n", $res);
         $lines = explode("\r\n", $body);
         if (in_array('VERIFIED', $lines)) {
             $this->handleVerifiedIpn();

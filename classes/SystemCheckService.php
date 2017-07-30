@@ -177,7 +177,6 @@ class SystemCheckService
             }
         }
 
-        $countries = array();
         foreach (explode(';', $this->lang['config_shipping_countries']) as $pair) {
             list($code) = explode('=', $pair);
             if (!isset($countryGrades[trim($code)])) {
