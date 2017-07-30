@@ -61,7 +61,7 @@ if ($xhsController instanceof FrontEndController
     if (!isset($_GET['xhsCheckout']) && (int)$s > -1 && !$print) {
         $xhsCartPreview = $xhsController->cartPreview();
 
-        if (!strpos(file_get_contents($pth['file']['template']), '$xhsCartPreview')) {
+        if (!strpos(XH_readFile($pth['file']['template']), '$xhsCartPreview')) {
             $c[$s] = $xhsController->cartPreview() . $c[$s];
         }
     }

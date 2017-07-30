@@ -15,7 +15,7 @@ class CatalogWriter
 
     public function write()
     {
-        return file_put_contents(XHS_CATALOG, $this->emitCatalog()) !== false;
+        return XH_writeFile(XHS_CATALOG, $this->emitCatalog()) !== false;
     }
 
     private function emitCatalog()

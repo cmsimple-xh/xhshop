@@ -49,7 +49,7 @@ class Paypal extends PaymentModule
             mkdir(dirname($filename), 0777, true);
             chmod(dirname($filename), 0777);
         }
-        file_put_contents($filename, serialize($_SESSION));
+        XH_writeFile($filename, serialize($_SESSION));
 
         $shopUrl = CMSIMPLE_URL . $plugin_tx['xhshop']['config_shop_page'];
         $form = '
@@ -159,7 +159,7 @@ class Paypal extends PaymentModule
                 && $_POST['payment_status'] === 'Completed'
                 && file_exists($file)) {
             XH_logMessage('info', 'xhshop', 'ipn', 'processed: ' . serialize($_POST));
-            $temp                    = file_get_contents($file);
+            $temp                    = XH_readFile($file);
             $temp                    = unserialize($temp);
             $_SESSION['xhsCustomer'] = $temp['xhsCustomer'];
             $_SESSION['xhsOrder']    = $temp['xhsOrder'];

@@ -9,7 +9,7 @@ class RtfBillWriter implements BillWriter
 
     public function loadTemplate($template)
     {
-        $this->template = file_get_contents($template);
+        $this->template = XH_readFile($template);
         return $this->template !== false;
     }
 
