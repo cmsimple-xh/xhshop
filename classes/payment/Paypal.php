@@ -37,8 +37,13 @@ class Paypal extends PaymentModule
         return 'paypal';
     }
 
+    /**
+     * @see https://developer.paypal.com/docs/classic/paypal-payments-standard/integration-guide/cart_upload/#implementing-the-cart-upload-command
+     */
     public function orderSubmitForm()
     {
+        global $plugin_tx;
+
         $name = 'pp_' . session_id() . '.temp';
         //$name = 'test';
         $fh   = fopen(XHS_CONTENT_PATH . 'xhshop/tmp_orders/' . $name, "w");
@@ -50,6 +55,7 @@ class Paypal extends PaymentModule
         fwrite($fh, $temp) or die("could not write");
         fclose($fh);
 
+        $shopUrl = CMSIMPLE_URL . $plugin_tx['xhshop']['config_shop_page'];
         $form = '
 <form action="' . $this->urls[$this->settings['sandbox'] ? 'development' : 'production'] . '" method="post">
     <input type="hidden" name="cmd" value="_cart">
@@ -60,9 +66,9 @@ class Paypal extends PaymentModule
     <input type="hidden" name="rm" value="2">
     <input type="hidden" name="custom" value="' . session_id() . '">
     <input type="hidden" name="handling_cart" value="' . $this->shipping->plus(new Decimal($this->settings['fee'])) . '">
-    <input type="hidden" name="cancel_return" value="' . $_SERVER['HTTP_REFERER'] . '">
-          <input type="hidden" name="notify_url" value="' . $_SERVER['HTTP_REFERER'] . '">
-    <input type="hidden" name="return" value="' . $_SERVER['HTTP_REFERER'] . '">';
+    <input type="hidden" name="cancel_return" value="' . "$shopUrl&xhsCheckout=customersData" . '">
+    <input type="hidden" name="notify_url" value="' . "$shopUrl&xhsIpn" . '">
+    <input type="hidden" name="return" value="' . "$shopUrl&xhsCheckout=thankYou" . '">';
 
         foreach ($this->cartItems as $item) {
             $name = strip_tags($item['name']);
@@ -84,7 +90,6 @@ class Paypal extends PaymentModule
     public function ipn()
     {
         // read the post from PayPal system and add 'cmd'
-        global $xhsController;
         $req = 'cmd=_notify-validate';
 
         foreach ($_POST as $key => $value) {
@@ -94,58 +99,78 @@ class Paypal extends PaymentModule
 
 // post back to PayPal system to validate
 
-        $header = "POST /cgi-bin/webscr HTTP/1.0\r\n";
+        $header = "POST /cgi-bin/webscr HTTP/1.1\r\n";
 
         if ($this->settings['sandbox']) {
-            $header .= "Host: www.sandbox.paypal.com:443\r\n";
+            $header .= "Host: ipnpb.sandbox.paypal.com:443\r\n";
         } else {
-            $header .= "Host: www.paypal.com:443\r\n";
+            $header .= "Host: ipnpb.paypal.com:443\r\n";
         }
         $header .= "Content-Type: application/x-www-form-urlencoded\r\n";
-        $header .= "Content-Length: " . strlen($req) . "\r\n\r\n";
+        $header .= "Content-Length: " . strlen($req) . "\r\n";
+        $header .= "User-Agent: XH-Shop-IPN-VerificationScript\r\n";
+        $header .= "Connection: close\r\n";
+        $header .= "\r\n";
 
         if ($this->settings['sandbox']) {
-            $fp = fsockopen('ssl://www.sandbox.paypal.com', 443, $errno, $errstr, 30);
+            $fp = fsockopen('ssl://ipnpb.sandbox.paypal.com', 443, $errno, $errstr, 30);
         } else {
-            $fp = fsockopen('ssl://www.paypal.com', 443, $errno, $errstr, 30);
+            $fp = fsockopen('ssl://ipnpb.paypal.com', 443, $errno, $errstr, 30);
         }
 
         if (!$fp) {
-            /*
-             * HTTP-ERROR: Was tun?
-             */
-            return;
+            $this->handshakeFailed(sprintf('fsockopen returned %d: %s', $errno, trim($errstr)));
         }
 
-        fputs($fp, $header . $req);
-        while (!feof($fp)) {
-            $res = fgets($fp, 1024);
-            if (strcmp($res, "VERIFIED") == 0) {
-                /*
-                 *  bei Bedarf pruefen, ob die Bestellung ausgefuehrt werden soll. (Stimmt die Haendler-E-Mail, ...?
-                 */
-              
-                $file = XHS_CONTENT_PATH . 'xhshop/tmp_orders/pp_' . $_POST['custom'];
-                if (file_exists($file . '.temp')) {
-                    if (!(bool) session_id()) {
-                        session_id($_POST['custom']);
-                        session_start();
-                    }
-
-                    $temp                    = implode("", file($file . '.temp'));
-                    $temp                    = unserialize($temp);
-                    $_SESSION['xhsCustomer'] = $temp['xhsCustomer'];
-                    $_SESSION['xhsOrder']    = $temp['xhsOrder'];
-                    rename($file . '.temp', $file . '.sent');
-                    $xhsController->finishCheckout();
-                } else {
-                }
-            } elseif (strcmp($res, "INVALID") == 0) {
-                /*
-                 *  Fehlerbehandlung "ungueltig"
-                 */
-            }
+        $payload = $header . $req;
+        if (fwrite($fp, $payload) !== strlen($payload)) {
+            $this->handshakeFailed('could not sent complete IPN pingback request');
+        }
+        $res = stream_get_contents($fp);
+        list($headers, $body) = explode("\r\n\r\n", $res);
+        $lines = explode("\r\n", $body);
+        if (in_array('VERIFIED', $lines)) {
+            $this->handleVerifiedIpn();
+        } elseif (in_array('INVALID', $lines)) {
+                // just ignore this IPN
+        } else {
+            $this->handshakeFailed(sprintf('unexpected response for IPN pingback request: %s', trim($body)));
         }
         fclose($fp);
+        while (ob_get_level()) {
+            ob_end_clean();
+        }
+        header('HTTP/1.1 200 OK');
+        exit;
+    }
+
+    private function handshakeFailed($message)
+    {
+        XH_logMessage('error', 'xhshop', 'ipn', sprintf('Handshake failed! (%s)', $message));
+        while (ob_get_level()) {
+            ob_end_clean();
+        }
+        header('HTTP/1.1 500 Internal Server Error');
+        exit;
+    }
+
+    private function handleVerifiedIpn()
+    {
+        global $xhsController;
+
+        $file = XHS_CONTENT_PATH . 'xhshop/tmp_orders/pp_' . $_POST['custom'] . '.temp';
+        if ($_POST['receiver_email'] === $this->settings['email']
+                && $_POST['payment_status'] === 'Completed'
+                && file_exists($file)) {
+            XH_logMessage('info', 'xhshop', 'ipn', 'processed: ' . serialize($_POST));
+            $temp                    = file_get_contents($file);
+            $temp                    = unserialize($temp);
+            $_SESSION['xhsCustomer'] = $temp['xhsCustomer'];
+            $_SESSION['xhsOrder']    = $temp['xhsOrder'];
+            unlink($file);
+            $xhsController->finishCheckout(true);
+        } else {
+            XH_logMessage('info', 'xhshop', 'ipn', 'ignored: ' . serialize($_POST));
+        }
     }
 }
