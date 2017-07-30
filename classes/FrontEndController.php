@@ -673,6 +673,7 @@ class FrontEndController extends Controller
         if (!$product) {
             return $this->productList();
         }
+        $previewPicturePath = $product->getPreviewPicturePath();
         $params = array();
         $params['name']        = $product->getName();
         $params['teaser']      = $product->getTeaser();
@@ -680,16 +681,18 @@ class FrontEndController extends Controller
         $params['button']      = $this->addToCartButton($product);
         $params['variants']    = count($product->getVariants() > 0) ? $product->getVariants() : false;
         $params['price']       = $product->getGross();
+        $params['currency']    = $this->settings['currency_code'];
         $params['uid']         = $product->getUid();
         $params['hideVat']     = (bool) $this->settings['dont_deal_with_taxes'];
         $params['vatRate']     = $this->settings['vat_' . $product->getVat()];
         $params['vatInfo']     = $this->vatInfo();
         $params['image']       = $this->viewProvider->linkedImage(
-            $product->getPreviewPicturePath(),
+            $previewPicturePath,
             $product->getImagePath(),
             $product->getName(XHS_LANGUAGE),
             'zoom_g'
         );
+        $params['previewPicture'] = preg_replace('/\/\.\/|\/.{2}\/\.\.\//', '/', CMSIMPLE_URL . $previewPicturePath);
         $params['shippingCostsUrl'] = $this->settings['shipping_costs_page'];
         $this->bridge->setTitle($params['name']);
         $this->bridge->setMeta('description', $params['teaser']);
