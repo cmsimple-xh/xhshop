@@ -9,13 +9,8 @@ class RtfBillWriter implements BillWriter
 
     public function loadTemplate($template)
     {
-        $fh = fopen($template, "r");
-        if (!$fh) {
-            return false;
-        }
-        $this->template = fread($fh, filesize($template));
-        fclose($fh);
-        return true;
+        $this->template = file_get_contents($template);
+        return $this->template !== false;
     }
 
     public function replace(array $replacements)

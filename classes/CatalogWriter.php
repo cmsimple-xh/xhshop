@@ -15,29 +15,7 @@ class CatalogWriter
 
     public function write()
     {
-        $string = $this->emitCatalog();
-        if (!file_exists(XHS_CATALOG)) {
-            $handle = fopen(XHS_CATALOG, 'w');
-
-            if ($handle) {
-                fwrite($handle, $string);
-                chmod(XHS_CATALOG, 0666);
-                fclose($handle);
-            } else {
-                trigger_error('Catalogue::saveCatalogArray() - failed to create ' . XHS_CATALOG);
-            }
-        }
-        $handle = fopen(XHS_CATALOG, 'w');
-        if (!is_writeable(XHS_CATALOG)) {
-            if (!chmod(XHS_CATALOG, 0666)) {
-                trigger_error('Catalogue::saveCatalogArray() - can\'t write to ' . XHS_CATALOG);
-                fclose($handle);
-                return false;
-            }
-        }
-        fwrite($handle, $string);
-        fclose($handle);
-        return true;
+        return file_put_contents(XHS_CATALOG, $this->emitCatalog()) !== false;
     }
 
     private function emitCatalog()
