@@ -191,7 +191,7 @@ abstract class View
         echo $key . ' - missing in language file ([\'hints\'])';
     }
 
-    private function label($key)
+    protected function label($key)
     {
         $key = str_replace("'", "", $key);
         if (isset($this->labels[$key])) {
