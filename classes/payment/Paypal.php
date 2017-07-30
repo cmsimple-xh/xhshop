@@ -44,16 +44,12 @@ class Paypal extends PaymentModule
     {
         global $plugin_tx;
 
-        $name = 'pp_' . session_id() . '.temp';
-        //$name = 'test';
-        $fh   = fopen(XHS_CONTENT_PATH . 'xhshop/tmp_orders/' . $name, "w");
-        if (!$fh) {
-            die("could not open ");
+        $filename = XHS_CONTENT_PATH . 'xhshop/tmp_orders/pp_' . session_id() . '.temp';
+        if (!file_exists(dirname($filename))) {
+            mkdir(dirname($filename), 0777, true);
+            chmod(dirname($filename), 0777);
         }
-        $temp = serialize($_SESSION);
-
-        fwrite($fh, $temp) or die("could not write");
-        fclose($fh);
+        file_put_contents($filename, serialize($_SESSION));
 
         $shopUrl = CMSIMPLE_URL . $plugin_tx['xhshop']['config_shop_page'];
         $form = '
