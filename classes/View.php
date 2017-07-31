@@ -129,8 +129,6 @@ abstract class View
             $params = array('style'=> 'text-align: right;', 'size'=>'5');
         }
 
-        $params['type'] = 'number';
-        $params['step'] = '0.01';
         if (!($value instanceof Decimal)) {
             $value = new Decimal($value);
         }
