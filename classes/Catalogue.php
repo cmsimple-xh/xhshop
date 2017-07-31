@@ -68,6 +68,9 @@ class Catalogue
 
         $writer = new CatalogWriter((object) get_object_vars($this));
         $writer->write();
+        if (function_exists('opcache_invalidate')) {
+            opcache_invalidate(XHS_CATALOG);
+        }
         $this->loadArray();
         return;
     }
