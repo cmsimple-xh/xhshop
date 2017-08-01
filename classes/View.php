@@ -8,7 +8,7 @@ abstract class View
     protected $themePath = null;
     private $currency;
     private $params = array();
-    protected $hints = array();
+    public $hints = array();
     public $labels = array();
     protected $shippingCountries = array();
 

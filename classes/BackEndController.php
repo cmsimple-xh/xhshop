@@ -223,6 +223,7 @@ class BackEndController extends Controller
     private function saveProduct()
     {
         $this->csrfProtector->check();
+        $html = '';
         $id = isset($_POST['xhsProductID']) ? $_POST['xhsProductID'] : 'new';
         if (key_exists($id, $this->catalog->getProducts())) {
             $product = $this->catalog->getProduct($id);
@@ -233,10 +234,29 @@ class BackEndController extends Controller
             $product->setName($this->tidyPostString($_POST['xhsName']));
         }
         if (isset($_POST['xhsWeight'])) {
-            $product->setWeight(new Decimal($this->tidyPostString($_POST['xhsWeight'])));
+            if (is_numeric(ltrim($_POST['xhsWeight']))) {
+                $product->setWeight(new Decimal($this->tidyPostString($_POST['xhsWeight'])));
+            } else {
+                $html .= XH_message(
+                    'fail',
+                    $this->viewProvider->hints['wrong_format'],
+                    sprintf($this->viewProvider->labels['shipping_unit'], $this->settings['shipping_unit'])
+                );
+                $product->setWeight(Decimal::zero());
+            }
         }
         if (isset($_POST['xhsPrice'])) {
-            $product->setPrice(new Decimal($this->tidyPostString($_POST['xhsPrice'])));
+            if (is_numeric(ltrim($_POST['xhsPrice']))) {
+                $product->setPrice(new Decimal($this->tidyPostString($_POST['xhsPrice'])));
+            } else {
+                $html .= XH_message(
+                    'fail',
+                    $this->viewProvider->hints['wrong_format'],
+                    $this->viewProvider->labels['price']
+                    
+                );
+                $product->setPrice(Decimal::zero());
+            }
         }
         if (isset($_POST['xhsTeaser'])) {
             $product->setTeaser($this->tidyPostString($_POST['xhsTeaser'], false));
@@ -303,7 +323,7 @@ class BackEndController extends Controller
             $this->catalog->updateProduct($id, $product);
         }
 
-        return $this->editProduct($id);
+        return $html . $this->editProduct($id);
     }
 
     /**
