@@ -36,11 +36,12 @@ class FrontEndView extends View
         $html = '';
         $value = '';
         $label = $this->labels[$field];
-        if ($field == 'city') {
-            $label = '<label for="'.$field.'" class="xhsFormLabel">'.$label. ':</label>';
+        if (in_array($field, $this->requiredCustomerData)) {
+            $class = 'xhsFormLabel xhsRequired';
         } else {
-            $label = '<label for="'.$field.'" class="xhsFormLabel">'.$label. ':</label>';
+            $class = 'xhsFormLabel';
         }
+        $label = '<label for="'.$field.'" class="' . $class . '">'.$label. ':</label>';
         if (in_array($field, $this->missingData)) {
             $label = '<span class="xhsRequired">'.$label.'</span>';
         }
@@ -75,7 +76,12 @@ class FrontEndView extends View
 
     protected function salutationSelectbox()
     {
-        $html = '<label for="xhsSalutation" class="xhsFormLabel">' . $this->labels['salutation'] . ':</label>'
+        if (in_array('salutation', $this->requiredCustomerData)) {
+            $class = 'xhsFormLabel xhsRequired';
+        } else {
+            $class = 'xhsFormLabel';
+        }
+        $html = '<label for="xhsSalutation" class="' . $class . '">' . $this->labels['salutation'] . ':</label>'
             . '<select name="salutation" id="xhsSalutation" required>';
         $salutations = array('', $this->labels['salutation_misses'],
                 $this->labels['salutation_mister'], $this->labels['salutation_x']);
@@ -95,7 +101,12 @@ class FrontEndView extends View
         if (empty($this->shippingCountries)) {
             return '';
         }
-        $html = '<label for="xhsCountries" class="xhsFormLabel">' . $this->labels['country'] . ':</label>'
+        if (in_array('salutation', $this->requiredCustomerData)) {
+            $class = 'xhsFormLabel xhsRequired';
+        } else {
+            $class = 'xhsFormLabel';
+        }
+        $html = '<label for="xhsCountries" class="' . $class . '">' . $this->labels['country'] . ':</label>'
         . '<select name="country" id="xhsCountries">';
         foreach ($this->shippingCountries as $country) {
             $html .= "\n\t".'<option';
