@@ -71,7 +71,7 @@ foreach($this->cartItems as $product){
 <?php if( $this->shipping->isGreaterThan(Xhshop\Decimal::zero()) && $this->shipping_limit == 'true' && $this->canOrder) { ?>
 <tr>
 <td colspan="3" class="xhsHint">
-<p><b><?php $this->label('hint'); ?>:</b> <?php $this->hint('no_shipping_from'); echo ' ' . $this->formatCurrency($this->no_shipping_from);?>.</p>
+<p><strong><?php $this->label('hint'); ?>:</strong> <?php $this->hint('no_shipping_from'); echo ' ' . $this->formatCurrency($this->no_shipping_from);?>.</p>
 </td>
 </tr>
 <?php } ?>

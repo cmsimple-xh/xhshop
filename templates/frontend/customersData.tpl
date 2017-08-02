@@ -32,7 +32,7 @@ $checked = $_SESSION['xhsCustomer']->payment_mode == $module->getName() ?  ' che
 $fee = '';
 if (!$module->getFee()->isEqualTo(Xhshop\Decimal::zero())) {
 	$fee = ' (' . $this->formatCurrency($module->getFee()) . ' ';
-	$fee .= $module->getFee()->isLessThan(Xhshop\Decimal::zero()) ? '<b>' . $this->labels['reduction'] . '</b>' : $this->labels['fee'];
+	$fee .= $module->getFee()->isLessThan(Xhshop\Decimal::zero()) ? '<strong>' . $this->labels['reduction'] . '</strong>' : $this->labels['fee'];
 	$fee .= ')';
 } ?>
 <label>

@@ -2,15 +2,15 @@
 <h1>%APPNAME%</h1>
 <table style="margin: 1.5em 0 1.5em 0">
 <tr>
-<td><b>Version:</b></td>
+<td><strong>Version:</strong></td>
 <td>%VERSION%</td>
 </tr>
 <tr>
-<td><b>Website:</b></td>
+<td><strong>Website:</strin></td>
 <td><a href="https://github.com/cmsimple-xh/xhshop/" target="_blank">XH-Shop on Github</a></td>
 </tr>
 <tr>
-<td><b>Description:</b></td>
+<td><strong>Description:</strong></td>
 <td>A simple shop for CMSimple_XH.</td>
 </tr>
 </table>

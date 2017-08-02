@@ -101,8 +101,8 @@ if ($this->fee->isLessThan(Xhshop\Decimal::zero())) {
 <td class="moneyCell"><?php echo $this->formatCurrency($this->fee); ?></td>
 </tr>
 <tr class="brdT2">
-<td colspan="3" style="text-align: right;"><b><?php echo $this->labels['total'] ?></b></td>
-<td class="moneyCell"><b><?php echo $this->formatCurrency($this->total); ?></b></td>
+<td colspan="3" style="text-align: right;"><strong><?php echo $this->labels['total'] ?></strong></td>
+<td class="moneyCell"><strong><?php echo $this->formatCurrency($this->total); ?></strong></td>
 </tr>
 </table>
 <p>&nbsp;</p>
