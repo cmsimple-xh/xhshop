@@ -3,6 +3,7 @@
 namespace Xhshop;
 
 use PHPUnit\Framework\TestCase;
+use RangeException;
 
 class DecimalTest extends TestCase
 {
@@ -64,6 +65,13 @@ class DecimalTest extends TestCase
         $this->assertEquals($z, $x->dividedBy($y));
     }
 
+    public function testDevisionByZeroThrows()
+    {
+        $x = new Decimal('1.00');
+        $y = Decimal::zero();
+        $this->expectException(RangeException::class);
+        $x->dividedBy($y);
+    }
     public function testIsEqualTo()
     {
         $x = new Decimal('1.23');

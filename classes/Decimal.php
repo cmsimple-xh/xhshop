@@ -2,6 +2,8 @@
 
 namespace Xhshop;
 
+use RangeException;
+
 class Decimal
 {
     /**
@@ -58,6 +60,9 @@ class Decimal
      */
     public function dividedBy(Decimal $other)
     {
+        if ($other->isEqualTo(Decimal::zero())) {
+            throw new RangeException('cannot divide by zero');
+        }
         return new Decimal(bcdiv($this->value, $other->value, 2));
     }
 
