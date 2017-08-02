@@ -36,7 +36,7 @@ if (!$module->getFee()->isEqualTo(Xhshop\Decimal::zero())) {
 	$fee .= ')';
 } ?>
 <label>
-	<input type="radio" name="payment_mode" value="<?php echo $module->getName(); ?>"<?php echo $checked; ?>>
+	<input type="radio" name="payment_mode" value="<?php echo $module->getName(); ?>"<?php echo $checked; ?><?php if (in_array('payment_mode', $this->requiredCustomerData)) echo 'required'; ?>>
 <?php echo $module->getLabel() . $fee ?>
 </label><br>
 <?php } ?>

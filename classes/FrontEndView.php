@@ -4,7 +4,7 @@ namespace Xhshop;
 
 class FrontEndView extends View
 {
-    private $requiredCustomerData;
+    protected $requiredCustomerData;
 
     public function __construct()
     {
@@ -76,7 +76,8 @@ class FrontEndView extends View
 
     protected function salutationSelectbox()
     {
-        if (in_array('salutation', $this->requiredCustomerData)) {
+        $isRequired = in_array('salutation', $this->requiredCustomerData);
+        if ($isRequired) {
             $class = 'xhsFormLabel xhsRequired';
         } else {
             $class = 'xhsFormLabel';
@@ -85,7 +86,11 @@ class FrontEndView extends View
         if (in_array('salutation', $this->missingData)) {
             $label = '<span class="xhsRequired">' . $label . '</span>';
         }
-        $html = $label . '<select name="salutation" id="xhsSalutation" required>';
+        $html = $label . '<select name="salutation" id="xhsSalutation"';
+        if ($isRequired) {
+            $html .= ' required';
+        }
+        $html .= '>';
         $salutations = array('', $this->labels['salutation_misses'],
                 $this->labels['salutation_mister'], $this->labels['salutation_x']);
         foreach ($salutations as $salutation) {
@@ -104,7 +109,8 @@ class FrontEndView extends View
         if (empty($this->shippingCountries)) {
             return '';
         }
-        if (in_array('salutation', $this->requiredCustomerData)) {
+        $isRequired = in_array('country', $this->requiredCustomerData);
+        if ($isRequired) {
             $class = 'xhsFormLabel xhsRequired';
         } else {
             $class = 'xhsFormLabel';
@@ -113,7 +119,11 @@ class FrontEndView extends View
         if (in_array('country', $this->missingData)) {
             $label = '<span class="xhsRequired">' . $label . '</span>';
         }
-        $html = $label . '<select name="country" id="xhsCountries">';
+        $html = $label . '<select name="country" id="xhsCountries"';
+        if ($isRequired) {
+            $html .= ' required';
+        }
+        $html .= '>';
         $countries = $this->shippingCountries;
         array_unshift($countries, '');
         foreach ($countries as $country) {
