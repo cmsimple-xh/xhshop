@@ -290,12 +290,6 @@ class FrontEndController extends Controller
         foreach ($this->payments as $name) {
             $this->loadPaymentModule($name);
         }
-        if (!isset($_SESSION['xhsCustomer']->payment_mode)) {
-            foreach ($this->paymentModules as $module) {
-                $_SESSION['xhsCustomer']->payment_mode = $module->getName();
-                break;
-            }
-        }
         $params['payments']    = $this->paymentModules;
         $params['missingData'] = $missingData;
 
