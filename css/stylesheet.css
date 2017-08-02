@@ -118,6 +118,7 @@ label.xhsFormLabelInl {
 	display: inline-block;
 	padding: 0 .5em 0 1em;
 }
+label.xhsFormLabel.xhsRequired {}
 input.inline_form, input.data_form {
 /* margin-top: 1ex; */
 }
