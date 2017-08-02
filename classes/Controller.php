@@ -67,6 +67,11 @@ abstract class Controller
         $this->viewProvider = new $viewProvider();
         $this->viewProvider->setCurrency($this->settings['default_currency']);
         $this->viewProvider->setShippingCountries($this->settings['shipping_countries']);
+
+        if (isset($_SESSION['xhsToken']) && $_SESSION['xhsToken'] !== $this->settings['token']) {
+            unset($_SESSION['xhsOrder'], $_SESSION['xhsCustomer']);
+        }
+        $_SESSION['xhsToken'] = $this->settings['token'];
     }
 
     protected function getShippingCountries()

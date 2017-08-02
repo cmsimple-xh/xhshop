@@ -1,6 +1,7 @@
 <?php
 
 $plugin_cf['xhshop']['shop_published']="@PUBLISHED@";
+$plugin_cf['xhshop']['shop_token']="";
 $plugin_cf['xhshop']['shop_minimum_order']="20.00";
 $plugin_cf['xhshop']['shop_default_currency']="€";
 $plugin_cf['xhshop']['shop_currency_code']="EUR";
