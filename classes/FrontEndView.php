@@ -81,8 +81,11 @@ class FrontEndView extends View
         } else {
             $class = 'xhsFormLabel';
         }
-        $html = '<label for="xhsSalutation" class="' . $class . '">' . $this->labels['salutation'] . ':</label>'
-            . '<select name="salutation" id="xhsSalutation" required>';
+        $label = '<label for="xhsSalutation" class="' . $class . '">' . $this->labels['salutation'] . ':</label>';
+        if (in_array('salutation', $this->missingData)) {
+            $label = '<span class="xhsRequired">' . $label . '</span>';
+        }
+        $html = $label . '<select name="salutation" id="xhsSalutation" required>';
         $salutations = array('', $this->labels['salutation_misses'],
                 $this->labels['salutation_mister'], $this->labels['salutation_x']);
         foreach ($salutations as $salutation) {
@@ -106,9 +109,14 @@ class FrontEndView extends View
         } else {
             $class = 'xhsFormLabel';
         }
-        $html = '<label for="xhsCountries" class="' . $class . '">' . $this->labels['country'] . ':</label>'
-        . '<select name="country" id="xhsCountries">';
-        foreach ($this->shippingCountries as $country) {
+        $label = '<label for="xhsCountries" class="' . $class . '">' . $this->labels['country'] . ':</label>';
+        if (in_array('country', $this->missingData)) {
+            $label = '<span class="xhsRequired">' . $label . '</span>';
+        }
+        $html = $label . '<select name="country" id="xhsCountries">';
+        $countries = $this->shippingCountries;
+        array_unshift($countries, '');
+        foreach ($countries as $country) {
             $html .= "\n\t".'<option';
             if ($_SESSION['xhsCustomer']->country == trim($country)) {
                 $html .= ' selected="selected"';
