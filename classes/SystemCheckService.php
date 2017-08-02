@@ -53,6 +53,7 @@ class SystemCheckService
             $this->checkWritability(XHS_CATALOG),
             $this->checkWritability(XHS_CONTENT_PATH . 'xhshop/tmp_orders/'),
             $this->checkEmailAddress(),
+            $this->checkShippingCountries(),
             $this->checkPageExists($this->lang['config_shop_page']),
             $this->checkPageExists($this->lang['config_gtc_page'], false)
         );
@@ -157,6 +158,32 @@ class SystemCheckService
         $label = $this->lang['syscheck_shipping'];
         $stateLabel = $this->lang["syscheck_$state"];
         return (object) compact('state', 'label', 'stateLabel');
+    }
+
+    /**
+     * @return object
+     */
+    private function checkShippingCountries()
+    {
+        $state = $this->areShippingCountriesValid() ? 'success' : 'fail';
+        $label = $this->lang['syscheck_shipping_countries'];
+        $stateLabel = $this->lang["syscheck_$state"];
+        return (object) compact('state', 'label', 'stateLabel');
+    }
+
+    /**
+     * @return bool
+     */
+    private function areShippingCountriesValid()
+    {
+        $valid = false;
+        foreach (explode(';', $this->lang['config_shipping_countries']) as $pair) {
+            if (count(explode('=', $pair)) !== 2) {
+                return false;
+            }
+            $valid = true;
+        }
+        return $valid;
     }
 
     private function areForwardingExpensesValid()

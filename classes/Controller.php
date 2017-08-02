@@ -76,8 +76,11 @@ abstract class Controller
         $countries = array();
         $pairs = explode(';', $plugin_tx['xhshop']['config_shipping_countries']);
         foreach ($pairs as $pair) {
-            list($code, $country) = explode('=', $pair);
-            $countries[trim($code)] = trim($country);
+            $parts = explode('=', $pair);
+            if (count($parts) === 2) {
+                list($code, $country) = $parts;
+                $countries[trim($code)] = trim($country);
+            }
         }
         return $countries;
     }

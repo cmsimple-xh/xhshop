@@ -189,6 +189,7 @@ $plugin_tx['xhshop']['syscheck_phpversion']="PHP version ≥ %s";
 $plugin_tx['xhshop']['syscheck_page_exists']="the page '%s' exists";
 $plugin_tx['xhshop']['syscheck_plugin']="the CMSimple_XH plugin '%s' is installed";
 $plugin_tx['xhshop']['syscheck_shipping']="the forwarding expenses are plausible";
+$plugin_tx['xhshop']['syscheck_shipping_countries']="the shipping countries are plausible";
 $plugin_tx['xhshop']['syscheck_success']="okay";
 $plugin_tx['xhshop']['labels_syscheck']="System check";
 $plugin_tx['xhshop']['syscheck_warning']="warning";
