@@ -49,7 +49,11 @@ class Paypal extends PaymentModule
             mkdir(dirname($filename), 0777, true);
             chmod(dirname($filename), 0777);
         }
-        XH_writeFile($filename, serialize($_SESSION));
+        $data = array(
+            'xhsOrder' => $_SESSION['xhsOrder'],
+            'xhsCustomer' => $_SESSION['xhsCustomer']
+        );
+        XH_writeFile($filename, serialize($data));
 
         $shopUrl = CMSIMPLE_URL . $plugin_tx['xhshop']['config_shop_page'];
         $form = '
