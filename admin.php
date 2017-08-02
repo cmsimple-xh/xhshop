@@ -14,6 +14,10 @@ if (function_exists('XH_wantsPluginAdministration') && XH_wantsPluginAdministrat
     }
     $o .= pluginmenu('SHOW');
     if (in_array($admin, array('plugin_stylesheet', 'plugin_config', 'plugin_language'), true)) {
+        if (isset($_GET['xh_success']) && in_array($_GET['xh_success'], array('config', 'language'))) {
+            header('Location: ' . CMSIMPLE_URL . '?xhshop&xhsTask=syscheck&normal');
+            exit;
+        }
         $o .= plugin_admin_common($action, $admin, $plugin);
     } else {
         $xhsController = new BackEndController();
@@ -37,6 +41,10 @@ function xhshop_pluginMenu()
         XH_registerPluginMenuItem('xhshop', $label, $url);
     }
     XH_registerStandardPluginMenuItems(false);
+    $label = $plugin_tx['xhshop']['labels_syscheck'];
+    $url = "?{$baseurl}&xhsTask=syscheck&normal";
+    XH_registerPluginMenuItem('xhshop', $label, $url);
+    $items[$label] = $url;
     $label = $plugin_tx['xhshop']['labels_about'];
     $url = "?{$baseurl}&xhsTask=helpAbout&normal";
     XH_registerPluginMenuItem('xhshop', $label, $url);

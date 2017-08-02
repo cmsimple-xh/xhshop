@@ -36,9 +36,3 @@
     Copyright &copy; 2017 The XH-Shop developers
 </p>
 </div>
-<div class="xhs_syscheck">
-    <h2><?php echo $this->label('syscheck')?></h2>
-<?php foreach ($this->syschecks as $syscheck):?>
-    <p class="xh_<?php echo $syscheck->state?>"><?php echo $this->syscheck($syscheck->label, $syscheck->stateLabel)?></p>
-<?php endforeach?>
-</div>
