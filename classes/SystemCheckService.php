@@ -192,8 +192,8 @@ class SystemCheckService
      */
     private function isForwardingExpensesLineValid($grades)
     {
-        $weight = 0;
-        $cost = 0;
+        $weight = Decimal::zero();
+        $cost = Decimal::zero();
         $finished = false;
         foreach (explode(';', $grades) as $expenses) {
             if ($finished) {
@@ -202,17 +202,22 @@ class SystemCheckService
             $parts = explode('=', trim($expenses));
             switch (count($parts)) {
                 case 1:
-                    if ($parts[0] <= $cost) {
+                    $c = trim($parts[0]);
+                    if (!is_numeric($c) || ($c = new Decimal($c)) && !$c->isGreaterThan($cost)) {
                         return false;
                     }
                     $finished = true;
                     break;
                 case 2:
-                    if ($parts[0] <= $weight || $parts[1] <= $cost) {
+                    $w = trim($parts[0]);
+                    $c = trim($parts[1]);
+                    if (!is_numeric($w) || !is_numeric($c)
+                            || ($w = new Decimal($w)) && !$w->isGreaterThan($weight)
+                            || ($c = new Decimal($c)) && !$c->isGreaterThan($cost)) {
                         return false;
                     }
-                    $weight = $parts[0];
-                    $cost = $parts[1];
+                    $weight = $w;
+                    $cost = $c;
                     break;
                 default:
                     return false;
