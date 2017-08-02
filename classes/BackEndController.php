@@ -12,7 +12,7 @@ class BackEndController extends Controller
         if (isset($_REQUEST['xhsTask'])) {
             $request = $_REQUEST['xhsTask'];
         } elseif ($su !== $this->settings['url']) {
-            $request = 'helpAbout';
+            $request = 'syscheck';
         } else {
             $request = 'productList';
         }
@@ -313,8 +313,13 @@ class BackEndController extends Controller
     {
         $params['appName'] = $this->appName;
         $params['version'] = $this->version;
+        return $this->render('help_about', $params);
+    }
+
+    protected function syscheck()
+    {
         $service = new SystemCheckService;
         $params['syschecks'] = $service->getChecks();
-        return $this->render('help_about', $params);
+        return $this->render('syscheck', $params);
     }
 }
