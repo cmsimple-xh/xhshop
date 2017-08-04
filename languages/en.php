@@ -5,7 +5,7 @@ $plugin_tx['xhshop']['config_shipping_costs_page']="?Shop/Shipping-Costs";
 $plugin_tx['xhshop']['config_decimal_separator']=".";
 $plugin_tx['xhshop']['config_thousands_separator']=",";
 $plugin_tx['xhshop']['config_shipping_unit']="kg";
-$plugin_tx['xhshop']['config_shipping_countries']="DE=Germany;AT=Austria;CH=Suisse;FR=France";
+$plugin_tx['xhshop']['config_shipping_countries']="DE=Germany;\r\nAT=Austria;\r\nCH=Suisse;\r\nFR=France";
 $plugin_tx['xhshop']['config_bill_dateformat']="F jS, Y";
 $plugin_tx['xhshop']['config_email_attachment']="";
 ####### Mail ################
