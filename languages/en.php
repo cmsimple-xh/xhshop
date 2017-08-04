@@ -181,6 +181,7 @@ $plugin_tx['xhshop']['paypal_go_to_paypal']="go to paypal";
 
 $plugin_tx['xhshop']['error_no_bill']="Template for bill not found!";
 
+$plugin_tx['xhshop']['syscheck_decimal']="%s is a valid decimal number";
 $plugin_tx['xhshop']['syscheck_email']="an email address has been provided";
 $plugin_tx['xhshop']['syscheck_extension']="the PHP extension '%s' is loaded";
 $plugin_tx['xhshop']['syscheck_fail']="failure";

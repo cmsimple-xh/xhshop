@@ -61,6 +61,14 @@ class SystemCheckService
             $checks[] = $this->checkPageExists($this->lang['config_shipping_costs_page'], false);
             $checks[] = $this->checkForwardingExpenses();
         }
+        $checks[] = $this->checkDecimal('shop_minimum_order');
+        $checks[] = $this->checkDecimal('taxes_vat_full');
+        $checks[] = $this->checkDecimal('taxes_vat_reduced');
+        $checks[] = $this->checkDecimal('shipping_forwarding_expenses_up_to');
+        $checks[] = $this->checkDecimal('cash-in-advance_fee');
+        $checks[] = $this->checkDecimal('cash-on-delivery_fee');
+        $checks[] = $this->checkDecimal('on-account_fee');
+        $checks[] = $this->checkDecimal('paypal_fee');
         return $checks;
     }
 
@@ -145,6 +153,18 @@ class SystemCheckService
         $ok = strpos($pageUrl, '?') === 0 && in_array(trim($pageUrl, '?'), $u, true);
         $state = $ok ? 'success' : ($isMandatory ? 'fail' : 'warning');
         $label = sprintf($this->lang['syscheck_page_exists'], $pageUrl);
+        $stateLabel = $this->lang["syscheck_$state"];
+        return (object) compact('state', 'label', 'stateLabel');
+    }
+
+    /**
+     * @param string
+     * @return object
+     */
+    private function checkDecimal($key)
+    {
+        $state = is_numeric(ltrim($this->config[$key])) ? 'success' : 'fail';
+        $label = sprintf($this->lang['syscheck_decimal'], $key);
         $stateLabel = $this->lang["syscheck_$state"];
         return (object) compact('state', 'label', 'stateLabel');
     }
