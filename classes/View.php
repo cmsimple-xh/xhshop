@@ -8,7 +8,7 @@ abstract class View
     protected $themePath = null;
     private $currency;
     private $params = array();
-    protected $hints = array();
+    public $hints = array();
     public $labels = array();
     protected $shippingCountries = array();
 
@@ -129,8 +129,6 @@ abstract class View
             $params = array('style'=> 'text-align: right;', 'size'=>'5');
         }
 
-        $params['type'] = 'number';
-        $params['step'] = '0.01';
         if (!($value instanceof Decimal)) {
             $value = new Decimal($value);
         }
