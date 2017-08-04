@@ -357,6 +357,17 @@ class FrontEndController extends Controller
 
     private function htmlConfirmation()
     {
+        return $this->render('confirmation_email/html', $this->getConfirmationParameters());
+    }
+
+    private function textConfirmation()
+    {
+        return $this->render('confirmation_email/text', $this->getConfirmationParameters());
+    }
+
+    private function getConfirmationParameters()
+    {
+        $params = array();
         foreach ($_SESSION['xhsCustomer'] as $field => $value) {
             $params[$field]       = $value;
         }
@@ -380,32 +391,7 @@ class FrontEndController extends Controller
             $params['fullRate']    = $this->settings['vat_full'];
             $params['reducedRate'] = $this->settings['vat_reduced'];
         }
-        return $this->render('confirmation_email/html', $params);
-    }
-
-    private function textConfirmation()
-    {
-        foreach ($_SESSION['xhsCustomer'] as $field => $value) {
-            $params[$field]       = $value;
-        }
-        $params['fee']        = $this->calculatePaymentFee();
-        $params['cartItems']  = $this->collectCartItems();
-        $params['cartSum']    = $_SESSION['xhsOrder']->getCartSum();
-        $params['shipping']   = $_SESSION['xhsOrder']->getShipping();
-        $params['total']      = $_SESSION['xhsOrder']->getTotal();
-        $params['vatTotal']   = $_SESSION['xhsOrder']->getVat();
-        $params['vatFull']    = $_SESSION['xhsOrder']->getVatFull();
-        $params['vatReduced'] = $_SESSION['xhsOrder']->getVatReduced();
-        $params['contact_name']    = $this->settings['name'];
-        $params['payment']    = $this->paymentModules[$_SESSION['xhsCustomer']->payment_mode]->getLabelString();
-        if ($this->settings['dont_deal_with_taxes']) {
-            $params['hideVat'] = true;
-        } else {
-            $params['hideVat']     = false;
-            $params['fullRate']    = $this->settings['vat_full'];
-            $params['reducedRate'] = $this->settings['vat_reduced'];
-        }
-        return $this->render('confirmation_email/text', $params);
+        return $params;
     }
 
     private function finalConfirmation()
