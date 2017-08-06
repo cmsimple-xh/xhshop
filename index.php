@@ -20,6 +20,11 @@ if (function_exists('XH_startSession')) {
     session_start();
 }
 
+if (class_exists('Fa\RequireCommand')) {
+    $command = new Fa\RequireCommand;
+    $command->execute();
+}
+
 $xhsCartPreview = false;
 
 if (defined('XH_ADM') && XH_ADM) {
