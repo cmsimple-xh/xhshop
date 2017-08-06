@@ -56,6 +56,8 @@ class Decimal
     }
 
     /**
+     * Rounds to nearest
+     *
      * @return Decimal
      */
     public function dividedBy(Decimal $other)
@@ -63,7 +65,13 @@ class Decimal
         if ($other->isEqualTo(Decimal::zero())) {
             throw new RangeException('cannot divide by zero');
         }
-        return new Decimal(bcdiv($this->value, $other->value, 2));
+        $result = bcdiv($this->value, $other->value, 2);
+        $cents = bcmul($other->value, '100', 0);
+        $doublemod = bcmul(bcmod(bcmul($this->value, '10000', 0), $cents), '2', 0);
+        if (bccomp($doublemod, $cents, 0) >= 0) {
+            $result = bcadd($result, '0.01', 2);
+        }
+        return new Decimal($result);
     }
 
     /**

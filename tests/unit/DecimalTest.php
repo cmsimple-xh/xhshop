@@ -65,7 +65,15 @@ class DecimalTest extends TestCase
         $this->assertEquals($z, $x->dividedBy($y));
     }
 
-    public function testDevisionByZeroThrows()
+    public function testDivisionRoundsToNearest()
+    {
+        $x = new Decimal('1.00');
+        $y = new Decimal('200.0');
+        $z = new Decimal('0.01');
+        $this->assertEquals($z, $x->dividedBy($y));
+    }
+
+    public function testDivisionByZeroThrows()
     {
         $x = new Decimal('1.00');
         $y = Decimal::zero();
