@@ -2,8 +2,16 @@
 
 namespace Xhshop;
 
-use RangeException;
-
+/**
+ * Value objects supporting exact arithmetic on decimals with two decimal places
+ *
+ * Objects of this class are primarily meant for all monetary information
+ * storage and calculations, but we're using them for weights as well. All
+ * operations support arbitrary magnitude and are *exact*. Note that there is
+ * no support for division, because that could yield inexact results. If
+ * division is necessary, convert to `Rational` to do the calculations, and
+ * convert back to `Decimal` as late as possible.
+ */
 class Decimal
 {
     /**
@@ -11,7 +19,7 @@ class Decimal
      */
     public static function zero()
     {
-        return new Decimal('0.00');
+        return new self('0.00');
     }
 
     /**
@@ -56,25 +64,6 @@ class Decimal
     }
 
     /**
-     * Rounds to nearest
-     *
-     * @return Decimal
-     */
-    public function dividedBy(Decimal $other)
-    {
-        if ($other->isEqualTo(Decimal::zero())) {
-            throw new RangeException('cannot divide by zero');
-        }
-        $result = bcdiv($this->value, $other->value, 2);
-        $cents = bcmul($other->value, '100', 0);
-        $doublemod = bcmul(bcmod(bcmul($this->value, '10000', 0), $cents), '2', 0);
-        if (bccomp($doublemod, $cents, 0) >= 0) {
-            $result = bcadd($result, '0.01', 2);
-        }
-        return new Decimal($result);
-    }
-
-    /**
      * @return bool
      */
     public function isEqualTo(Decimal $other)
@@ -101,5 +90,13 @@ class Decimal
     public function __toString()
     {
         return $this->value;
+    }
+
+    /**
+     * @return Rational
+     */
+    public function toRational()
+    {
+        return new Rational(bcmul($this->value, '100', 0), '100');
     }
 }

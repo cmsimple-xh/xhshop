@@ -57,29 +57,6 @@ class DecimalTest extends TestCase
         $this->assertEquals($z, $x->times($y));
     }
 
-    public function testDividedBy()
-    {
-        $x = new Decimal(' 3.63');
-        $y = new Decimal(' 0.33');
-        $z = new Decimal('11.00');
-        $this->assertEquals($z, $x->dividedBy($y));
-    }
-
-    public function testDivisionRoundsToNearest()
-    {
-        $x = new Decimal('1.00');
-        $y = new Decimal('200.0');
-        $z = new Decimal('0.01');
-        $this->assertEquals($z, $x->dividedBy($y));
-    }
-
-    public function testDivisionByZeroThrows()
-    {
-        $x = new Decimal('1.00');
-        $y = Decimal::zero();
-        $this->expectException(RangeException::class);
-        $x->dividedBy($y);
-    }
     public function testIsEqualTo()
     {
         $x = new Decimal('1.23');
@@ -99,5 +76,10 @@ class DecimalTest extends TestCase
         $x = new Decimal('1.24');
         $y = new Decimal('1.23');
         $this->assertTrue($x->isGreaterThan($y));
+    }
+
+    public function testRationalConversion()
+    {
+        $this->assertEquals('1/50', (new Decimal('0.02'))->toRational()->toString());
     }
 }

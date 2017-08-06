@@ -8,7 +8,7 @@ class OrderTest extends TestCase
 {
     public function testHasItems()
     {
-        $order = new Order(19, 7);
+        $order = new Order(new Decimal('19'), new Decimal('7'));
         $this->assertFalse($order->hasItems());
         $product = $this->createSplitterProduct();
         $order->addItem($product, 1, 'blue');
@@ -127,7 +127,7 @@ class OrderTest extends TestCase
 
     private function createOrderWithHundredPears()
     {
-        $order = new Order(19, 7);
+        $order = new Order(new Decimal('19'), new Decimal('7'));
         $order->addItem($this->createPearsProduct(), 100);
         $order->setShipping(new Decimal('9.89'));
         $order->setFee(new Decimal('2.50'));
@@ -136,7 +136,7 @@ class OrderTest extends TestCase
 
     private function createOrderWithElevenGreenSplitters()
     {
-        $order = new Order(19, 7);
+        $order = new Order(new Decimal('19'), new Decimal('7'));
         $order->addItem($this->createSplitterProduct(), 11, 'green');
         $order->setShipping(new Decimal('3.33'));
         $order->setFee(new Decimal('-0.33'));
@@ -145,7 +145,7 @@ class OrderTest extends TestCase
 
     private function createOrderWithOnePearAndTwoBlueSplitters()
     {
-        $order = new Order(19, 7);
+        $order = new Order(new Decimal('19'), new Decimal('7'));
         $order->addItem($this->createSplitterProduct(), 2, 'blue');
         $order->addItem($this->createPearsProduct(), 1);
         $order->setShipping(new Decimal('5.50'));

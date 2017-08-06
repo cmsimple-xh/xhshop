@@ -47,12 +47,12 @@ class Order
     private $fee;
 
     /**
-     * @var float
+     * @var Decimal
      */
     private $vatFullRate;
 
     /**
-     * @var float
+     * @var Decimal
      */
     private $vatReducedRate;
 
@@ -61,14 +61,10 @@ class Order
      */
     private $total;
 
-    /**
-     * @param float $vatFullRate
-     * @param float $vatReducedRate
-     */
-    public function __construct($vatFullRate, $vatReducedRate)
+    public function __construct(Decimal $vatFullRate, Decimal $vatReducedRate)
     {
-        $this->vatFullRate = (float)$vatFullRate;
-        $this->vatReducedRate = (float)$vatReducedRate;
+        $this->vatFullRate = $vatFullRate;
+        $this->vatReducedRate = $vatReducedRate;
         $this->shipping = Decimal::zero();
         $this->fee = Decimal::zero();
     }
@@ -125,27 +121,28 @@ class Order
             return;
         }
 
-        $fees = $this->shipping->plus($this->fee);
-        $num = $this->grossReduced;
-        $denom = $this->cartGross;
+        $fees = $this->shipping->plus($this->fee)->toRational();
+        $reducedRate = $this->grossReduced->toRational()->dividedBy($this->cartGross->toRational());
 
-        $fullFee = $fees->times($denom->minus($num))->dividedBy($denom);
-        $reducedFee = $fees->times($num)->dividedBy($denom);
+        $fullFee = $fees->times(Rational::one()->minus($reducedRate));
+        $reducedFee = $fees->times($reducedRate);
 
-        $fullTotal = $this->grossFull->plus($fullFee);
-        $reducedTotal = $this->grossReduced->plus($reducedFee);
+        $fullTotal = $this->grossFull->toRational()->plus($fullFee);
+        $reducedTotal = $this->grossReduced->toRational()->plus($reducedFee);
 
         $this->vatFull = $this->calculateVat($fullTotal, $this->vatFullRate);
         $this->vatReduced = $this->calculateVat($reducedTotal, $this->vatReducedRate);
     }
 
     /**
-     * @param float $rate
      * @return Decimal
      */
-    private function calculateVat(Decimal $value, $rate)
+    private function calculateVat(Rational $value, Decimal $rate)
     {
-        return new Decimal((string) $value - (string) $value * 100 / (100 + $rate));
+        $hundred = Rational::hundred();
+        $percentage = $hundred->dividedBy($hundred->plus($rate->toRational()));
+        $net = $value->times($percentage);
+        return $value->minus($net)->toDecimal();
     }
 
     public function hasItems()
