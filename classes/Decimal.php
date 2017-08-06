@@ -16,12 +16,23 @@ use RangeException;
  */
 class Decimal
 {
+    const FORMAT_REGEX = '/^\s*(-?(?:[0-9]|[1-9][0-9]+)(\.[0-9]{0,2})?)\s*$/';
+
     /**
      * @return Decimal
      */
     public static function zero()
     {
         return new self('0.00');
+    }
+
+    /**
+     * @return bool
+     */
+    public static function isValid($value)
+    {
+        return (is_string($value) || is_int($value))
+            && preg_match(self::FORMAT_REGEX, $value);
     }
 
     /**
@@ -32,7 +43,7 @@ class Decimal
     public function __construct($value)
     {
         if ((is_string($value) || is_int($value))
-                && preg_match('/^\s*(-?(?:[0-9]|[1-9][0-9]+)(\.[0-9]{0,2})?)\s*$/', $value, $matches)) {
+                && preg_match(self::FORMAT_REGEX, $value, $matches)) {
             $this->value = $matches[1] . substr('.00', isset($matches[2]) ? strlen($matches[2]) : 0);
         } else {
             if (defined('XH_ADM') && XH_ADM) {

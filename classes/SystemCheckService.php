@@ -163,7 +163,7 @@ class SystemCheckService
      */
     private function checkDecimal($key)
     {
-        $state = is_numeric(ltrim($this->config[$key])) ? 'success' : 'fail';
+        $state = Decimal::isValid($this->config[$key]) ? 'success' : 'fail';
         $label = sprintf($this->lang['syscheck_decimal'], $key);
         $stateLabel = $this->lang["syscheck_$state"];
         return (object) compact('state', 'label', 'stateLabel');
@@ -249,16 +249,16 @@ class SystemCheckService
             $parts = explode('=', trim($expenses));
             switch (count($parts)) {
                 case 1:
-                    $c = trim($parts[0]);
-                    if (!is_numeric($c) || ($c = new Decimal($c)) && !$c->isGreaterThan($cost)) {
+                    $c = $parts[0];
+                    if (!Decimal::isValid($c) || ($c = new Decimal($c)) && !$c->isGreaterThan($cost)) {
                         return false;
                     }
                     $finished = true;
                     break;
                 case 2:
-                    $w = trim($parts[0]);
-                    $c = trim($parts[1]);
-                    if (!is_numeric($w) || !is_numeric($c)
+                    $w = $parts[0];
+                    $c = $parts[1];
+                    if (!Decimal::isValid($w) || !Decimal::isValid($c)
                             || ($w = new Decimal($w)) && !$w->isGreaterThan($weight)
                             || ($c = new Decimal($c)) && !$c->isGreaterThan($cost)) {
                         return false;

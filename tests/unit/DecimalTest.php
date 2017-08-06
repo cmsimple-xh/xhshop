@@ -13,6 +13,29 @@ class DecimalTest extends TestCase
     }
 
     /**
+     * @dataProvider provideDataForValidationTest
+     * @return void
+     */
+    public function testValidation($value, $expected)
+    {
+        $this->assertSame($expected, Decimal::isValid($value));
+    }
+
+    /**
+     * @return array
+     */
+    public function provideDataForValidationTest()
+    {
+        return array(
+            ['.123', false],
+            ['1.23', true],
+            ['12.3', true],
+            ['123.', true],
+            ['1234', true]
+        );
+    }
+
+    /**
      * @dataProvider provideDataForTestConversion
      */
     public function testConversion($value, $expected)

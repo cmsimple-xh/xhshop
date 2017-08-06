@@ -234,7 +234,7 @@ class BackEndController extends Controller
             $product->setName($this->tidyPostString($_POST['xhsName']));
         }
         if (isset($_POST['xhsWeight'])) {
-            if (is_numeric(ltrim($_POST['xhsWeight']))) {
+            if (Decimal::isValid($_POST['xhsWeight'])) {
                 $product->setWeight(new Decimal($this->tidyPostString($_POST['xhsWeight'])));
             } else {
                 $html .= XH_message(
@@ -246,7 +246,7 @@ class BackEndController extends Controller
             }
         }
         if (isset($_POST['xhsPrice'])) {
-            if (is_numeric(ltrim($_POST['xhsPrice']))) {
+            if (Decimal::isValid($_POST['xhsPrice'])) {
                 $product->setPrice(new Decimal($this->tidyPostString($_POST['xhsPrice'])));
             } else {
                 $html .= XH_message(
