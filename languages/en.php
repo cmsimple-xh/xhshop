@@ -23,6 +23,9 @@ $plugin_tx['xhshop']['mail_confirmation_log']="Confirmation sent to %s";
 $plugin_tx['xhshop']['mail_notification_log']="Notification about order from %s sent";
 $plugin_tx['xhshop']['mail_confirmation_error_log']="Confirmation couldn't be sent to %1\$s (%2\$)";
 $plugin_tx['xhshop']['mail_notification_error_log']="Notification about order from %1\$s couldn't be sent (%2\$s)";
+$plugin_tx['xhshop']['mail_additional_subject']="Additional email about order from %1\$s";
+$plugin_tx['xhshop']['mail_additional_log']="Additional email about order from %s sent";
+$plugin_tx['xhshop']['mail_additional_error_log']="Additional email about ortder from %1\$s couldn't be sent (%2\$s)";
 ##### GENERAL ########
 $plugin_tx['xhshop']['labels_yes']='yes';
 $plugin_tx['xhshop']['labels_no']='no';

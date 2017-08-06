@@ -365,6 +365,16 @@ class FrontEndController extends Controller
         return $this->render('confirmation_email/text', $this->getConfirmationParameters());
     }
 
+    private function additionalHtmlMail()
+    {
+        return $this->render('additional_email/html', $this->getConfirmationParameters());
+    }
+
+    private function additionalTextMail()
+    {
+        return $this->render('additional_email/text', $this->getConfirmationParameters());
+    }
+
     private function getConfirmationParameters()
     {
         $params = array();
@@ -554,8 +564,6 @@ class FrontEndController extends Controller
 
     private function sendEmails($bill)
     {
-        global $plugin_tx;
-
         require_once(XHS_BASE_PATH . 'phpmailer/class.phpmailer.php');
         $mail = new PHPMailer();
         $mail->WordWrap = 60;
@@ -580,7 +588,7 @@ class FrontEndController extends Controller
         if (!$mail->Send()) {
             $message = sprintf($this->viewProvider->mail['confirmation_error_log'], $customer, $mail->ErrorInfo);
             XH_logMessage('error', 'xhshop', 'mail', $message);
-            return sprintf($plugin_tx['xhshop']['mail_confirmation_error'], $this->settings['order_email']);
+            return sprintf($this->viewProvider->mail['confirmation_error'], $this->settings['order_email']);
         } else {
             $message = sprintf($this->viewProvider->mail['confirmation_log'], $customer);
             XH_logMessage('info', 'xhshop', 'mail', $message);
@@ -596,9 +604,27 @@ class FrontEndController extends Controller
         if (!$mail->Send()) {
             $message = sprintf($this->viewProvider->mail['notification_error_log'], $customer, $mail->ErrorInfo);
             XH_logMessage('error', 'xhshop', 'mail', $message);
-            return sprintf($plugin_tx['xhshop']['mail_notify_error'], $this->settings['order_email']);
+            return sprintf($this->viewProvider->mail['notify_error'], $this->settings['order_email']);
         } else {
             $message = sprintf($this->viewProvider->mail['notification_log'], $customer);
+            XH_logMessage('info', 'xhshop', 'mail', $message);
+        }
+
+        $folder = XHS_TEMPLATES_PATH . 'frontend/additional_email/';
+        if (!file_exists("{$folder}html.tpl") || !file_exists("{$folder}text.tpl")) {
+            return true;
+        }
+        $mail->clearAttachments();
+        $mail->clearReplyTos();
+        $mail->addReplyTo($customer, $customerName);
+        $mail->Subject = sprintf($this->viewProvider->mail['additional_subject'], $customerName);
+        $mail->Body = $this->additionalHtmlMail();
+        $mail->AltBody = $this->additionalTextMail();
+        if (!$mail->Send()) {
+            $message = sprintf($this->viewProvider->mail['additional_error_log'], $customer, $mail->ErrorInfo);
+            XH_logMessage('error', 'xhshop', 'mail', $message);
+        } else {
+            $message = sprintf($this->viewProvider->mail['additional_log'], $customer);
             XH_logMessage('info', 'xhshop', 'mail', $message);
         }
 
