@@ -253,7 +253,6 @@ class BackEndController extends Controller
                     'fail',
                     $this->viewProvider->hints['wrong_format'],
                     $this->viewProvider->labels['price']
-                    
                 );
                 $product->setPrice(Decimal::zero());
             }
