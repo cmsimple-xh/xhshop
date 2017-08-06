@@ -360,31 +360,31 @@ class FrontEndController extends Controller
 
     private function htmlConfirmation()
     {
-        return $this->render('confirmation_email/html', $this->getConfirmationParameters());
+        return $this->render('confirmation_email/html', $this->getConfirmationParameters(true));
     }
 
     private function textConfirmation()
     {
-        return $this->render('confirmation_email/text', $this->getConfirmationParameters());
+        return $this->render('confirmation_email/text', $this->getConfirmationParameters(false));
     }
 
     private function additionalHtmlMail()
     {
-        return $this->render('additional_email/html', $this->getConfirmationParameters());
+        return $this->render('additional_email/html', $this->getConfirmationParameters(true));
     }
 
     private function additionalTextMail()
     {
-        return $this->render('additional_email/text', $this->getConfirmationParameters());
+        return $this->render('additional_email/text', $this->getConfirmationParameters(false));
     }
 
-    private function getConfirmationParameters()
+    private function getConfirmationParameters($html)
     {
         $params = array();
         foreach ($_SESSION['xhsCustomer'] as $field => $value) {
             $params[$field]       = $value;
         }
-        if (isset($params['annotation'])) {
+        if (isset($params['annotation']) && $html) {
             $params['annotation'] = nl2br($params['annotation']);
         }
         $params['fee']        = $this->calculatePaymentFee();
