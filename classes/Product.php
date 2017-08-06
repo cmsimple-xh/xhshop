@@ -36,12 +36,22 @@ class Product
     {
         $result = new self;
         $result->names = $record['names'];
-        $result->setPrice(new Decimal($record['price']));
+        $price = $record['price'];
+        // old catalog.php may store the price as float
+        if (is_float($price)) {
+            $price = number_format($price, 2, '.', '');
+        }
+        $result->setPrice(new Decimal($price));
         $result->vat = $record['vat'];
         $result->variants = isset($record['variants']) ? $record['variants'] : array(XHS_LANGUAGE => '');
         $result->previewPicture = isset($record['previewPicture']) ? $record['previewPicture'] : '';
         $result->image = isset($record['image']) ? $record['image'] : '';
-        $result->weight = new Decimal($record['weight']);
+        $weight = $record['weight'];
+        // old catalog.php may store the weight as float
+        if (is_float($weight)) {
+            $weight = number_format($weight, 2, '.', '');
+        }
+        $result->weight = new Decimal($weight);
         $result->setStockOnHand(isset($record['stock_on_hand']) ? $record['stock_on_hand'] : 1);
         $result->teasers = isset($record['teasers']) ? $record['teasers'] : array(XHS_LANGUAGE => '');
         $result->descriptions = isset($record['descriptions']) ? $record['descriptions'] :array(XHS_LANGUAGE => '');

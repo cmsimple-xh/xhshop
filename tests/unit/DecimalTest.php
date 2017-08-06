@@ -17,20 +17,25 @@ class DecimalTest extends TestCase
      */
     public function testConversion($value, $expected)
     {
-        $this->assertSame($expected, (string) new Decimal($value));
+        $this->assertSame($expected, (new Decimal($value))->toString());
     }
 
     public function provideDataForTestConversion()
     {
         return array(
-            [  '0.00',   '0.00'],
+            ['  1   ',   '1.00'],
+            ['  1.  ',   '1.00'],
+            ['  1.0 ',   '1.00'],
+            [  '1.00',   '1.00'],
             ['123.45', '123.45'],
-            ['-12.34', '-12.34'],
-            [       0,   '0.00'],
-            [     0.0,   '0.00'],
-            [  123.45, '123.45'],
-            [  -12.34, '-12.34']
+            ['-12.34', '-12.34']
         );
+    }
+
+    public function testInvalidFormatThrows()
+    {
+        $this->expectException(RangeException::class);
+        new Decimal('9,99');
     }
 
     public function testPlus()

@@ -136,8 +136,8 @@ class BackEndController extends Controller
             $params['teaser']         = '';
             $params['description']    = '';
             $params['variants']       = '';
-            $params['price']          = 0.00;
-            $params['weight']         = 1.00;
+            $params['price']          = new Decimal('0.00');
+            $params['weight']         = new Decimal('1.00');
             $params['stockOnHand']    = 1;
             $params['preview']        = '';
             $params['image']          = '';

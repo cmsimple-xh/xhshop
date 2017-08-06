@@ -114,7 +114,7 @@ abstract class View
         return $html;
     }
 
-    private function floatInputNameValueLabel($name, $value = 0, $params = null)
+    private function floatInputNameValueLabel($name, Decimal $value, $params = null)
     {
         if (is_array($params)) {
             if (!isset($params['style'])) {
@@ -129,13 +129,10 @@ abstract class View
             $params = array('style'=> 'text-align: right;', 'size'=>'5');
         }
 
-        if (!($value instanceof Decimal)) {
-            $value = new Decimal($value);
-        }
-        return $this->textInputNameValueLabel($name, $value, $params);
+        return $this->textInputNameValueLabel($name, $value->toString(), $params);
     }
 
-    protected function moneyInputNameValueLabel($name, $value = 0, $params = array())
+    protected function moneyInputNameValueLabel($name, Decimal $value, $params = array())
     {
         return $this->floatinputNameValueLabel($name, $value, $params) . " ". $this->currency;
     }
@@ -147,7 +144,7 @@ abstract class View
     {
         global $plugin_tx;
 
-        if (!preg_match('/^(-?\d{1,3})((?:\d{3})*)\.(\d{2})$/', $value, $matches)) {
+        if (!preg_match('/^(-?\d{1,3})((?:\d{3})*)\.(\d{2})$/', $value->toString(), $matches)) {
             trigger_error('unexpected decimal format', E_USER_WARNING);
         }
         $dec_sep = trim($plugin_tx['xhshop']['config_decimal_separator']);

@@ -2,6 +2,8 @@
 
 namespace Xhshop;
 
+use RangeException;
+
 /**
  * Value objects supporting exact arithmetic on decimals with two decimal places
  *
@@ -29,13 +31,16 @@ class Decimal
 
     public function __construct($value)
     {
-        if ($value instanceof Decimal) {
-            trigger_error('argument is already a Decimal', E_USER_WARNING);
-        }
-        if (is_string($value) && preg_match('/^-?(?:\d|[1-9]\d+)\.\d{2}$/', $value)) {
-            $this->value = $value;
+        if ((is_string($value) || is_int($value))
+                && preg_match('/^\s*(-?(?:[0-9]|[1-9][0-9]+)(\.[0-9]{0,2})?)\s*$/', $value, $matches)) {
+            $this->value = $matches[1] . substr('.00', isset($matches[2]) ? strlen($matches[2]) : 0);
         } else {
-            $this->value = number_format($value, 2, '.', '');
+            if (defined('XH_ADM') && XH_ADM) {
+                trigger_error('unexpected decimal format', E_USER_WARNING);
+                $this->value = '0.00';
+            } else {
+                throw new RangeException('unexpected decimal format');
+            }
         }
     }
 
@@ -87,7 +92,7 @@ class Decimal
         return bccomp($this->value, $other->value, 2) > 0;
     }
 
-    public function __toString()
+    public function toString()
     {
         return $this->value;
     }
