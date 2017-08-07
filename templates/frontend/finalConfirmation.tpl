@@ -10,8 +10,6 @@
 <div class="xhsStepHint"><span class="fa fa-question-circle fa-fw"></span> <?php $this->hint('final_confirmation'); ?></div>
 <h2><?php $this->label('summary'); ?></h2>
 <dl class="xhsDl">
-<dt><?php $this->label('date_of_order'); ?></dt>
-<dd><?php echo date('d.m.Y [H:i]'); ?></dd>
 <dt><?php echo $this->label('delivery_adress'); ?>:</dt>
 <dd>%FIRST_NAME% %LAST_NAME%</dd>
 <dd>%STREET%</dd>
