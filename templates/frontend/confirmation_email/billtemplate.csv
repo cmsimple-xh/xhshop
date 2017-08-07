@@ -11,6 +11,7 @@
 ;;;;;Straße;%STREET%
 ;;;;;Adresszusatz;%EXTRA_ADDRESS_LINE%
 ;;;;;Ort;%ZIP% %CITY%
+;;;;;Land;%COUNTRY_CODE% - %COUNTRY%
 ;;;;;;
 ;;;;;Telefon;%PHONE%
 ;;;;;E-Mail;%EMAIL%
