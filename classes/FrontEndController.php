@@ -543,6 +543,7 @@ class FrontEndController extends Controller
             '%ZIP%'                => $_SESSION['xhsCustomer']->zip_code,
             '%CITY%'               => $_SESSION['xhsCustomer']->city,
             '%COUNTRY%'            => $_SESSION['xhsCustomer']->country,
+            '%COUNTRY_CODE%'       => array_search($_SESSION['xhsCustomer']->country, $this->settings['shipping_countries']),
             '%EMAIL%'              => $_SESSION['xhsCustomer']->email,
             '%MAY_FORWARD_EMAIL%'  => $this->viewProvider->labels[$_SESSION['xhsCustomer']->may_forward_email ? 'yes' : 'no'],
             '%PHONE%'              => $_SESSION['xhsCustomer']->phone,
