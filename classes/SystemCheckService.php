@@ -197,7 +197,7 @@ class SystemCheckService
     private function areShippingCountriesValid()
     {
         $valid = false;
-        foreach (explode(';', $this->lang['config_shipping_countries']) as $pair) {
+        foreach (preg_split('/\r\n|\r|\n/', $this->lang['config_shipping_countries']) as $pair) {
             if (count(explode('=', $pair)) !== 2) {
                 return false;
             }

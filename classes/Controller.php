@@ -79,7 +79,7 @@ abstract class Controller
         global $plugin_tx;
 
         $countries = array();
-        $pairs = explode(';', $plugin_tx['xhshop']['config_shipping_countries']);
+        $pairs = preg_split('/\r\n|\r|\n/', $plugin_tx['xhshop']['config_shipping_countries']);
         foreach ($pairs as $pair) {
             $parts = explode('=', $pair);
             if (count($parts) === 2) {
