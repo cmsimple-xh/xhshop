@@ -579,7 +579,6 @@ class FrontEndController extends Controller
 
         $mail->From = $this->settings['order_email'];
         $mail->FromName = $this->settings['company_name'];
-        $mail->AddReplyTo($this->settings['order_email'], $this->settings['company_name']);
         $mail->AddAddress($customer, $customerName);
         $mail->Subject = sprintf($this->viewProvider->mail['email_subject'], $this->settings['company_name']);
 
@@ -619,7 +618,6 @@ class FrontEndController extends Controller
             return true;
         }
         $mail->clearAttachments();
-        $mail->clearReplyTos();
         $mail->addReplyTo($customer, $customerName);
         $mail->Subject = sprintf($this->viewProvider->mail['additional_subject'], $customerName);
         $mail->Body = $this->additionalHtmlMail();
