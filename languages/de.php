@@ -23,9 +23,6 @@ $plugin_tx['xhshop']['mail_confirmation_log']="Bestätigung versendet an %s";
 $plugin_tx['xhshop']['mail_notification_log']="Benachrichtigung über Bestellung von %s versendet";
 $plugin_tx['xhshop']['mail_confirmation_error_log']="Bestätigung konnte nicht an %1\$s versendet werden (%2\$s)";
 $plugin_tx['xhshop']['mail_notification_error_log']="Benachrichtigung über Bestellung von %1\$s konnte nicht versendet werden (%2\$s)";
-$plugin_tx['xhshop']['mail_additional_subject']="Zusätzliche E-Mail über Bestellung von %1\$s";
-$plugin_tx['xhshop']['mail_additional_log']="Zusätzliche E-Mail über Bestellung von %s versendet";
-$plugin_tx['xhshop']['mail_additional_error_log']="Zusätzliche E-Mail über Bestellung von %1\$s konnte nicht versendet werden (%2\$s)";
 ##### GENERAL ########
 $plugin_tx['xhshop']['labels_yes']='ja';
 $plugin_tx['xhshop']['labels_no']='nein';

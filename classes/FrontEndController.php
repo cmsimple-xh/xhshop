@@ -603,7 +603,7 @@ class FrontEndController extends Controller
         $mail->clearAttachments();
         $mail->AddAddress($this->settings['order_email'], $this->settings['company_name']);
         $mail->Subject = sprintf($this->viewProvider->mail['notify'], $customerName, $this->settings['company_name']);
-        $mail->AddStringAttachment($bill, "bill.{$this->settings['bill_format']}");
+        $mail->AddStringAttachment($bill, "bill.{$this->settings['bill_format']}", 'base64', $this->settings['bill_format'] === 'eml' ? 'application/octet-stream' : '');
         $mail->Body = $this->htmlConfirmation();
         $mail->AltBody = $this->textConfirmation();
         if (!$mail->Send()) {
@@ -612,23 +612,6 @@ class FrontEndController extends Controller
             return sprintf($this->viewProvider->mail['notify_error'], $this->settings['order_email']);
         } else {
             $message = sprintf($this->viewProvider->mail['notification_log'], $customer);
-            XH_logMessage('info', 'xhshop', 'mail', $message);
-        }
-
-        $folder = XHS_TEMPLATES_PATH . 'frontend/additional_email/';
-        if (!file_exists("{$folder}html.tpl") || !file_exists("{$folder}text.tpl")) {
-            return true;
-        }
-        $mail->clearAttachments();
-        $mail->addReplyTo($customer, $customerName);
-        $mail->Subject = sprintf($this->viewProvider->mail['additional_subject'], $customerName);
-        $mail->Body = $this->additionalHtmlMail();
-        $mail->AltBody = $this->additionalTextMail();
-        if (!$mail->Send()) {
-            $message = sprintf($this->viewProvider->mail['additional_error_log'], $customer, $mail->ErrorInfo);
-            XH_logMessage('error', 'xhshop', 'mail', $message);
-        } else {
-            $message = sprintf($this->viewProvider->mail['additional_log'], $customer);
             XH_logMessage('info', 'xhshop', 'mail', $message);
         }
 
