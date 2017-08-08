@@ -549,6 +549,8 @@ class FrontEndController extends Controller
             '%PHONE%'              => $_SESSION['xhsCustomer']->phone,
             '%ANNOTATION%'         => $_SESSION['xhsCustomer']->annotation,
             '%PAYMENT_METHOD%'     => $paymentMethod,
+            '%CONTACT_NAME%'       => $this->settings['name'],
+            '%CONTACT_EMAIL%'      => $this->settings['order_email'],
             '%COMPANY_NAME%'       => $this->settings['company_name'],
             '%COMPANY_STREET%'     => $this->settings['street'],
             '%COMPANY_ZIP%'        => $this->settings['zip_code'],
