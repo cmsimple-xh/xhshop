@@ -7,6 +7,7 @@ $plugin_tx['xhshop']['config_thousands_separator']=".";
 $plugin_tx['xhshop']['config_shipping_unit']="kg";
 $plugin_tx['xhshop']['config_shipping_countries']="DE=Deutschland\nAT=Österreich\nCH=Schweiz\nFR=Frankreich";
 $plugin_tx['xhshop']['config_bill_dateformat']="d.m.Y";
+$plugin_tx['xhshop']['config_email_bills']="bill.csv,bill.rtf,bill.eml";
 $plugin_tx['xhshop']['config_email_attachment']="";
 ####### Mail ################
 $plugin_tx['xhshop']['mail_email_subject']="Ihre Bestellung bei %s";
@@ -23,9 +24,8 @@ $plugin_tx['xhshop']['mail_confirmation_log']="Bestätigung versendet an %s";
 $plugin_tx['xhshop']['mail_notification_log']="Benachrichtigung über Bestellung von %s versendet";
 $plugin_tx['xhshop']['mail_confirmation_error_log']="Bestätigung konnte nicht an %1\$s versendet werden (%2\$s)";
 $plugin_tx['xhshop']['mail_notification_error_log']="Benachrichtigung über Bestellung von %1\$s konnte nicht versendet werden (%2\$s)";
-$plugin_tx['xhshop']['mail_additional_subject']="Zusätzliche E-Mail über Bestellung von %1\$s";
-$plugin_tx['xhshop']['mail_additional_log']="Zusätzliche E-Mail über Bestellung von %s versendet";
-$plugin_tx['xhshop']['mail_additional_error_log']="Zusätzliche E-Mail über Bestellung von %1\$s konnte nicht versendet werden (%2\$s)";
+$plugin_tx['xhshop']['mail_bill_format_unsupported']="Rechnungsformat \"%s\" wird nicht unterstützt!";
+$plugin_tx['xhshop']['mail_bill_template_missing']="Rechnungsvorlage \"%s\" fehlt!";
 ##### GENERAL ########
 $plugin_tx['xhshop']['labels_yes']='ja';
 $plugin_tx['xhshop']['labels_no']='nein';
@@ -199,15 +199,12 @@ $plugin_tx['xhshop']['syscheck_warning']="Warnung";
 $plugin_tx['xhshop']['syscheck_writable']="'%s' schreibbar ist";
 $plugin_tx['xhshop']['syscheck_xhversion']="die CMSimple_XH-Version ≥ %s";
 
-$plugin_tx['xhshop']['error_no_bill']="Rechnungstemplate nicht gefunden!";
-
 $plugin_tx['xhshop']['cf_shop_published']="Ob der Shop veröffentlicht ist (andernfalls befindet er sich im Wartungsmodus)";
 $plugin_tx['xhshop']['cf_shop_minimum_order']="Mindestbestellwert – Eingabe mit Dezimalpunkt";
 $plugin_tx['xhshop']['cf_shop_default_currency']="Die Währung des Shops – Eingabe als Währungssymbol, beispielsweise €, $, £ or ¥";
 $plugin_tx['xhshop']['cf_shop_currency_code']="ISO 4217 Währungscode der Shop-Währung; beispielsweise EUR, USD, GBP oder JPY.";
 $plugin_tx['xhshop']['cf_shop_image_folder']="Ein Ordner relativ zum Bilderordner von CMSimple_XH, in dem die Artikel-Bilder gespeichert sind. Leer lassen, um den Bilderordner selbst zu verwenden. Ansonsten ist ein abschließender Schrägstrich erforderlich, z.B. shop/";
 $plugin_tx['xhshop']['cf_shop_preview_folder']="Ein Ordner relativ zum Bilderordner von CMSimple_XH, in dem die Artikel-Vorschau-Bilder gespeichert sind. Leer lassen, um den Bilderordner selbst zu verwenden. Ansonsten ist ein abschließender Schrägstrich erforderlich, z.B. shop/";
-$plugin_tx['xhshop']['cf_shop_bill_format']="Das Dateiformat der \"Rechnung\", die als Anhang mit der Bestellbenachrichtigungs-Email verschickt wird";
 $plugin_tx['xhshop']['cf_contact_order_email']="E-Mail-Adresse, an die die Bestellungen verschickt werden";
 $plugin_tx['xhshop']['cf_contact_company_name']="Shop-Name oder Firmen-Name";
 $plugin_tx['xhshop']['cf_contact_name']="Name des Shop-Betreibers. Dieser Name wird u.A. unter die Bestätigungsmail gesetzt.";

@@ -2,7 +2,6 @@
 
 $plugin_mcf['xhshop']['shop_published']="bool";
 $plugin_mcf['xhshop']['shop_token']="random";
-$plugin_mcf['xhshop']['shop_bill_format']="enum:csv,rtf";
 $plugin_mcf['xhshop']['taxes_vat_default_full']="bool";
 $plugin_mcf['xhshop']['taxes_dont_deal_with_taxes']="bool";
 $plugin_mcf['xhshop']['shipping_charge_for_shipping']="bool";

@@ -7,6 +7,7 @@ $plugin_tx['xhshop']['config_thousands_separator']=",";
 $plugin_tx['xhshop']['config_shipping_unit']="kg";
 $plugin_tx['xhshop']['config_shipping_countries']="DE=Germany\nAT=Austria\nCH=Suisse\nFR=France";
 $plugin_tx['xhshop']['config_bill_dateformat']="F jS, Y";
+$plugin_tx['xhshop']['config_email_bills']="bill.csv,bill.rtf,bill.eml";
 $plugin_tx['xhshop']['config_email_attachment']="";
 ####### Mail ################
 $plugin_tx['xhshop']['mail_email_subject']="Your order from %s";
@@ -23,9 +24,8 @@ $plugin_tx['xhshop']['mail_confirmation_log']="Confirmation sent to %s";
 $plugin_tx['xhshop']['mail_notification_log']="Notification about order from %s sent";
 $plugin_tx['xhshop']['mail_confirmation_error_log']="Confirmation couldn't be sent to %1\$s (%2\$)";
 $plugin_tx['xhshop']['mail_notification_error_log']="Notification about order from %1\$s couldn't be sent (%2\$s)";
-$plugin_tx['xhshop']['mail_additional_subject']="Additional email about order from %1\$s";
-$plugin_tx['xhshop']['mail_additional_log']="Additional email about order from %s sent";
-$plugin_tx['xhshop']['mail_additional_error_log']="Additional email about ortder from %1\$s couldn't be sent (%2\$s)";
+$plugin_tx['xhshop']['mail_bill_format_unsupported']="Bill format \"%s\" is not supported!";
+$plugin_tx['xhshop']['mail_bill_template_missing']="Bill template \"%s\" is missing!";
 ##### GENERAL ########
 $plugin_tx['xhshop']['labels_yes']='yes';
 $plugin_tx['xhshop']['labels_no']='no';
@@ -183,8 +183,6 @@ $plugin_tx['xhshop']['on-account_label']="On Account";
 $plugin_tx['xhshop']['paypal_label']="Paypal";
 $plugin_tx['xhshop']['paypal_go_to_paypal']="go to paypal";
 
-$plugin_tx['xhshop']['error_no_bill']="Template for bill not found!";
-
 $plugin_tx['xhshop']['syscheck_decimal']="%s is a valid decimal number";
 $plugin_tx['xhshop']['syscheck_email']="an email address has been provided";
 $plugin_tx['xhshop']['syscheck_extension']="the PHP extension '%s' is loaded";
@@ -207,7 +205,6 @@ $plugin_tx['xhshop']['cf_shop_default_currency']="The currency of the shop – e
 $plugin_tx['xhshop']['cf_shop_currency_code']="ISO 4217 currency code of the shop's currency; for instance, EUR, USD, GBP or JPY.";
 $plugin_tx['xhshop']['cf_shop_image_folder']="A folder relative to the image folder of CMSimple_XH where the product images are stored. Leave blank to use the image folder directly. Otherwise there has to be a trailing slash, e.g. shop/";
 $plugin_tx['xhshop']['cf_shop_preview_folder']="A folder relative to the image folder of CMSimple_XH where the product preview images are stored. Leave blank to use the image folder directly. Otherwise there has to be a trailing slash, e.g. shop/";
-$plugin_tx['xhshop']['cf_shop_bill_format']="The file format of the \"bill\" that is attached to the order notification mail";
 $plugin_tx['xhshop']['cf_contact_order_email']="E-mail address to send the orders to";
 $plugin_tx['xhshop']['cf_contact_company_name']="Shop or company name";
 $plugin_tx['xhshop']['cf_contact_name']="Name of the shop operator. This name is used to sign the confirmation mail, amongst others.";

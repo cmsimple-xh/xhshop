@@ -46,6 +46,7 @@ abstract class Controller
         $this->settings['shipping_unit'] = $plugin_tx['xhshop']['config_shipping_unit'];
         $this->settings['shipping_countries'] = $this->getShippingCountries();
         $this->settings['bill_dateformat'] = $plugin_tx['xhshop']['config_bill_dateformat'];
+        $this->settings['email_bills'] = $plugin_tx['xhshop']['config_email_bills'];
         $this->settings['email_attachment'] = $plugin_tx['xhshop']['config_email_attachment'];
         $this->paymentModules = array();
         $this->payments = $this->getPaymentModules();
