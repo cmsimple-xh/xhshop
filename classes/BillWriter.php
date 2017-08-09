@@ -15,9 +15,6 @@ namespace Xhshop;
  * implement the `BillWriter` interface. The prefix of the class (`Foo` in this
  * example) is the file extension of the mail attachment with the first letter
  * written in upper case.
- *
- * To be able to select the new bill format in the plugin configuration, the
- * respective entry in `metaconfig.php` has to be extended.
  */
 interface BillWriter
 {
