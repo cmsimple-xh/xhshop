@@ -16,7 +16,7 @@ class EmlBillWriter implements BillWriter
     {
         $template = XH_readFile($template);
         list($this->subject, $this->template) = preg_split('/\r\n|\r|\n/', $template, 2);
-        return $this->template !== false;
+        return $template !== false;
     }
 
     public function replace(array $replacements)
