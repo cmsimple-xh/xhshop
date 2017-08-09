@@ -2,6 +2,7 @@
 
 namespace Xhshop;
 
+use RuntimeException;
 use PHPMailer;
 
 class FrontEndController extends Controller
@@ -473,9 +474,7 @@ class FrontEndController extends Controller
         if (!$viaIpn) {
             $this->csrfProtector->check();
         }
-        $bill = $this->writeBill();
-
-        $sent = $this->sendEmails($bill);
+        $sent = $this->sendEmails();
 
         if ($viaIpn) {
             return;
@@ -487,15 +486,19 @@ class FrontEndController extends Controller
         }
     }
 
-    private function writeBill()
+    private function writeBill($filename)
     {
         global $plugin_tx;
 
-        $class = 'Xhshop\\' . ucfirst($this->settings['bill_format']) . 'BillWriter';
+        $pathinfo = pathinfo($filename);
+        $class = 'Xhshop\\' . ucfirst($pathinfo['extension']) . 'BillWriter';
+        if (!class_exists($class)) {
+            throw new RuntimeException($pathinfo['extension'], 1);
+        }
         $writer = new $class();
-        $template = XHS_TEMPLATES_PATH . 'frontend/confirmation_email/billtemplate.' . $this->settings['bill_format'];
+        $template = XHS_TEMPLATES_PATH . 'frontend/confirmation_email/' . $pathinfo['filename'] . '.tpl.' . $pathinfo['extension'];
         if (!$writer->loadTemplate($template)) {
-            return $plugin_tx['xhshop']['error_no_bill'];
+            throw new RuntimeException($template, 2);
         }
         $rows   = '';
 
@@ -568,7 +571,7 @@ class FrontEndController extends Controller
         return $writer->replace($replacements);
     }
 
-    private function sendEmails($bill)
+    private function sendEmails()
     {
         require_once(XHS_BASE_PATH . 'phpmailer/class.phpmailer.php');
         $mail = new PHPMailer();
@@ -603,7 +606,23 @@ class FrontEndController extends Controller
         $mail->clearAttachments();
         $mail->AddAddress($this->settings['order_email'], $this->settings['company_name']);
         $mail->Subject = sprintf($this->viewProvider->mail['notify'], $customerName, $this->settings['company_name']);
-        $mail->AddStringAttachment($bill, "bill.{$this->settings['bill_format']}", 'base64', $this->settings['bill_format'] === 'eml' ? 'application/octet-stream' : '');
+        foreach (explode(',', $this->settings['email_bills']) as $filename) {
+            try {
+                $bill = $this->writeBill($filename);
+                $mimetype = pathinfo($filename, PATHINFO_EXTENSION) === 'eml' ? 'application/octet-stream' : '';
+            } catch (RuntimeException $ex) {
+                switch ($ex->getCode()) {
+                    case 1:
+                        $bill = sprintf($this->viewProvider->mail['bill_format_unsupported'], $ex->getMessage());
+                        break;
+                    case 2:
+                        $bill = sprintf($this->viewProvider->mail['bill_template_missing'], $ex->getMessage());
+                        break;
+                }
+                $mimetype = 'text/plain';
+            }
+            $mail->addStringAttachment($bill, $filename, 'base64', $mimetype);
+        }
         $mail->Body = $this->htmlConfirmation();
         $mail->AltBody = $this->textConfirmation();
         if (!$mail->Send()) {
