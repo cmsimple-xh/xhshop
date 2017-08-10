@@ -606,7 +606,7 @@ class FrontEndController extends Controller
         $mail->clearAttachments();
         $mail->AddAddress($this->settings['order_email'], $this->settings['company_name']);
         $mail->Subject = sprintf($this->viewProvider->mail['notify'], $customerName, $this->settings['company_name']);
-        foreach (explode(',', $this->settings['email_bills']) as $filename) {
+        foreach (explode(';', $this->settings['email_bills']) as $filename) {
             try {
                 $bill = $this->writeBill($filename);
                 $mimetype = pathinfo($filename, PATHINFO_EXTENSION) === 'eml' ? 'application/octet-stream' : '';
