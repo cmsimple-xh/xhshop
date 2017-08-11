@@ -369,16 +369,6 @@ class FrontEndController extends Controller
         return $this->render('confirmation_email/text', $this->getConfirmationParameters(false));
     }
 
-    private function additionalHtmlMail()
-    {
-        return $this->render('additional_email/html', $this->getConfirmationParameters(true));
-    }
-
-    private function additionalTextMail()
-    {
-        return $this->render('additional_email/text', $this->getConfirmationParameters(false));
-    }
-
     private function getConfirmationParameters($html)
     {
         $params = array();
