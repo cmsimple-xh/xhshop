@@ -746,7 +746,15 @@ class FrontEndController extends Controller
             $this->loadPaymentModule('paypal');
             $this->paymentModules['paypal']->ipn();
         }
-        if (!$this->settings['published']) {
+        $ok = true;
+        $systemCheckService = new SystemCheckService();
+        foreach ($systemCheckService->getChecks() as $check) {
+            if ($check->state === 'fail') {
+                $ok = false;
+                break;
+            }
+        }
+        if (!$ok || !$this->settings['published']) {
             return $this->closed();
         }
         if (isset($_GET['xhsProduct'])) {
