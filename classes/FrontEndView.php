@@ -106,9 +106,6 @@ class FrontEndView extends View
 
     protected function countriesSelectbox()
     {
-        if (empty($this->shippingCountries)) {
-            return '';
-        }
         $isRequired = in_array('country', $this->requiredCustomerData);
         if ($isRequired) {
             $class = 'xhsFormLabel xhsRequired';
