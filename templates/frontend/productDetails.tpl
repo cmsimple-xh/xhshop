@@ -21,7 +21,7 @@
 			</div>
 			<?php } ?>
 			<div class="xhsPrdPrice" property="offers" typeof="Offer">
-				<meta property="price" content="<?php echo $this->price; ?>">
+				<meta property="price" content="<?php echo $this->price->toString(); ?>">
 				<meta property="priceCurrency" content="<?php echo $this->currency; ?>">
 				<meta property="availability" content="http://schema.org/InStock">
 				<span class="xhsPrdPriceLabel"><?php echo $this->labels['price']; ?><br>
