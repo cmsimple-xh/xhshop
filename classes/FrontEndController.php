@@ -513,7 +513,7 @@ class FrontEndController extends Controller
         } else {
             $vat_hint = $this->viewProvider->labels['included_vat'] . ' '
                 . $this->viewProvider->formatCurrency($_SESSION['xhsOrder']->getVat());
-            $vat_hint .= ' (' . $this->viewProvider->formatCurrency(new Decimal($this->settings['vat_reduced'])) . ': '
+            $vat_hint .= ' (' . $this->viewProvider->formatPercentage($this->settings['vat_reduced']) . ': '
                 . $this->viewProvider->formatCurrency($_SESSION['xhsOrder']->getVatReduced()) . ' - ';
             $vat_hint .= $this->viewProvider->formatPercentage($this->settings['vat_full']) . ': '
                 . $this->viewProvider->formatCurrency($_SESSION['xhsOrder']->getVatFull()) . ')';
