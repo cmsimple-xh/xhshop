@@ -31,6 +31,7 @@ $plugin_tx['xhshop']['labels_yes']='ja';
 $plugin_tx['xhshop']['labels_no']='nein';
 $plugin_tx['xhshop']['labels_or']='oder';
 $plugin_tx['xhshop']['labels_select'] = 'auswählen';
+$plugin_tx['xhshop']['labels_please_select']="Bitte wählen";
 $plugin_tx['xhshop']['labels_about'] = 'About';
 $plugin_tx['xhshop']['labels_fee']='Gebühr';
 $plugin_tx['xhshop']['labels_reduction']='Nachlass';

@@ -95,6 +95,10 @@ class FrontEndView extends View
                 $this->labels['salutation_mister'], $this->labels['salutation_x']);
         foreach ($salutations as $salutation) {
             $html .= '<option';
+            if ($salutation === '') {
+                $html .= ' value=""';
+                $salutation = $this->labels['please_select'];
+            }
             if ($_SESSION['xhsCustomer']->salutation === $salutation) {
                 $html .= ' selected';
             }
@@ -125,6 +129,10 @@ class FrontEndView extends View
         array_unshift($countries, '');
         foreach ($countries as $country) {
             $html .= "\n\t".'<option';
+            if ($country === '') {
+                $html .= ' value=""';
+                $country = $this->labels['please_select'];
+            }
             if ($_SESSION['xhsCustomer']->country == trim($country)) {
                 $html .= ' selected="selected"';
             }
