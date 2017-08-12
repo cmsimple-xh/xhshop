@@ -47,6 +47,9 @@ if (defined('XH_ADM') && XH_ADM) {
     } else {
         $xhsController = new FrontEndController();
     }
+    if ($xhsController->hasSystemCheckFailure()) {
+        $e .= '<li>' . $plugin_tx['xhshop']['hints_errors'] . '</li>';
+    }
 } else {
     $xhsController = new FrontEndController();
 }

@@ -739,14 +739,7 @@ class FrontEndController extends Controller
             $this->loadPaymentModule('paypal');
             $this->paymentModules['paypal']->ipn();
         }
-        $ok = true;
-        $systemCheckService = new SystemCheckService();
-        foreach ($systemCheckService->getChecks() as $check) {
-            if ($check->state === 'fail') {
-                $ok = false;
-                break;
-            }
-        }
+        $ok = !$this->hasSystemCheckFailure();
         if (defined('XH_ADM') && XH_ADM && !$ok && $this->settings['published']) {
             return $this->render('closed', array('key' => 'cannnot_open'));
         } elseif (!$ok || !$this->settings['published']) {

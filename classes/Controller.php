@@ -77,6 +77,20 @@ abstract class Controller
         $_SESSION['xhsToken'] = $this->settings['token'];
     }
 
+    /**
+     * @return bool
+     */
+    public function hasSystemCheckFailure()
+    {
+        $systemCheckService = new SystemCheckService();
+        foreach ($systemCheckService->getChecks() as $check) {
+            if ($check->state === 'fail') {
+                return true;
+            }
+        }
+        return false;
+    }
+
     protected function getShippingCountries()
     {
         global $plugin_tx;
