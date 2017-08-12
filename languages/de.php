@@ -183,6 +183,7 @@ $plugin_tx['xhshop']['on-account_label']="Rechnung";
 $plugin_tx['xhshop']['paypal_label']="Paypal";
 $plugin_tx['xhshop']['paypal_go_to_paypal']="mit Paypal bezahlen";
 
+$plugin_tx['xhshop']['syscheck_catalog']="der Katalog gültig ist";
 $plugin_tx['xhshop']['syscheck_decimal']="%s eine gültige Dezimalzahl enthält";
 $plugin_tx['xhshop']['syscheck_email']="eine E-Mail-Adresse hinterlegt wurde";
 $plugin_tx['xhshop']['syscheck_extension']="die PHP-Erweiterung '%s' geladen ist";

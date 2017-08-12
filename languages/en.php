@@ -183,6 +183,7 @@ $plugin_tx['xhshop']['on-account_label']="On Account";
 $plugin_tx['xhshop']['paypal_label']="Paypal";
 $plugin_tx['xhshop']['paypal_go_to_paypal']="go to paypal";
 
+$plugin_tx['xhshop']['syscheck_catalog']="the catalog is valid";
 $plugin_tx['xhshop']['syscheck_decimal']="%s is a valid decimal number";
 $plugin_tx['xhshop']['syscheck_email']="an email address has been provided";
 $plugin_tx['xhshop']['syscheck_extension']="the PHP extension '%s' is loaded";
