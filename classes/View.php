@@ -163,18 +163,14 @@ abstract class View
     }
 
     /**
-     * @param Stringifiable $value
      * @return string
      */
-    public function formatPercentage($value)
+    public function formatPercentage(Decimal $value)
     {
         global $plugin_tx;
 
-        if (!preg_match('/^\s*(?:[1-9][0-9]+|[0-9])(?:\.[0-9]+)?\s*$/', $value)) {
-            trigger_error('unexpected percentage format', E_USER_WARNING);
-        }
         $decsep = trim($plugin_tx['xhshop']['config_decimal_separator']);
-        return str_replace('.', $decsep, trim($value)) . ' %';
+        return str_replace('.', $decsep, rtrim(rtrim($value->toString(), '0'), '.')) . ' %';
     }
 
     private function hint($key)

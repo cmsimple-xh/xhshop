@@ -38,6 +38,8 @@ abstract class Controller
                 $this->settings[substr($key, 11)] = $value;
             }
         }
+        $this->settings['vat_full'] = new Decimal($this->settings['vat_full']);
+        $this->settings['vat_reduced'] = new Decimal($this->settings['vat_reduced']);
         $this->settings['image_folder'] = "{$pth['folder']['images']}{$this->settings['image_folder']}";
         $this->settings['preview_folder'] = "{$pth['folder']['images']}{$this->settings['preview_folder']}";
         $this->settings['url'] = ltrim($plugin_tx['xhshop']['config_shop_page'], '?');
