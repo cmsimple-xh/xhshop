@@ -1,4 +1,4 @@
 <div class="xhsClosed">
-    <?php echo $this->hint('sorry_we_are_closed'); ?>
+    <?php echo $this->hints[$this->key]; ?>
 </div>
 <p>&nbsp;</p>

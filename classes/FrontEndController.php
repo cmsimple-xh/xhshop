@@ -698,13 +698,6 @@ class FrontEndController extends Controller
         return $this->render('productDetails', $params);
     }
 
-    private function closed()
-    {
-        $params = array();
-
-        return $this->render('closed', $params);
-    }
-
     public function shopToc($level = 6)
     {
         if (!$this->settings['use_categories']) {
@@ -754,8 +747,10 @@ class FrontEndController extends Controller
                 break;
             }
         }
-        if (!$ok || !$this->settings['published']) {
-            return $this->closed();
+        if (defined('XH_ADM') && XH_ADM && !$ok && $this->settings['published']) {
+            return $this->render('closed', array('key' => 'cannnot_open'));
+        } elseif (!$ok || !$this->settings['published']) {
+            return $this->render('closed', array('key' => 'sorry_we_are_closed'));
         }
         if (isset($_GET['xhsProduct'])) {
             return $this->productDetails();
