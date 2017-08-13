@@ -22,7 +22,7 @@ $plugin_tx['xhshop']['mail_confirmation_error']="<p>Sorry! Your message could no
 $plugin_tx['xhshop']['mail_notify_error']="<p>Sorry! Although an email confirmation has been sent to you, your order was not transmitted to our shop!<p><p>Please inform us via email: <a href=\"mailto:%1\$s\">%1\$s</a></p>";
 $plugin_tx['xhshop']['mail_confirmation_log']="Confirmation sent to %s";
 $plugin_tx['xhshop']['mail_notification_log']="Notification about order from %s sent";
-$plugin_tx['xhshop']['mail_confirmation_error_log']="Confirmation couldn't be sent to %1\$s (%2\$)";
+$plugin_tx['xhshop']['mail_confirmation_error_log']="Confirmation couldn't be sent to %1\$s (%2\$s)";
 $plugin_tx['xhshop']['mail_notification_error_log']="Notification about order from %1\$s couldn't be sent (%2\$s)";
 $plugin_tx['xhshop']['mail_bill_format_unsupported']="Bill format \"%s\" is not supported!";
 $plugin_tx['xhshop']['mail_bill_template_missing']="Bill template \"%s\" is missing!";
