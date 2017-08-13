@@ -69,6 +69,7 @@ class SystemCheckService
         $checks[] = $this->checkDecimal('cash-on-delivery_fee');
         $checks[] = $this->checkDecimal('on-account_fee');
         $checks[] = $this->checkDecimal('paypal_fee');
+        $checks[] = $this->checkCatalog();
         return $checks;
     }
 
@@ -268,6 +269,35 @@ class SystemCheckService
                     break;
                 default:
                     return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * @return object
+     */
+    private function checkCatalog()
+    {
+        $state = $this->isCatalogValid() ? 'success' : 'fail';
+        $label = $this->lang['syscheck_catalog'];
+        $stateLabel = $this->lang["syscheck_$state"];
+        return (object) compact('state', 'label', 'stateLabel');
+    }
+
+    /**
+     * @return bool
+     */
+    private function isCatalogValid()
+    {
+        include XHS_CATALOG;
+        if (!isset($products)) {
+            return true; // no products are okay
+        }
+        foreach ($products as $product) {
+            if (!is_float($product['price']) && !Decimal::isValid($product['price'])
+                    || !is_float($product['weight']) && !Decimal::isValid($product['weight'])) {
+                return false;
             }
         }
         return true;

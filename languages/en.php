@@ -162,7 +162,9 @@ $plugin_tx['xhshop']['labels_included_vat']='VAT included in total:';
 $plugin_tx['xhshop']['labels_added_vat']='additional VAT';
 $plugin_tx['xhshop']['labels_subtracted_vat']='VAT to be deducted';
 $plugin_tx['xhshop']['labels_send_order']='Buy now!';
+$plugin_tx['xhshop']['hints_errors']="XH-Shop errors detected. See <a href=\"?xhshop&normal\">the system check</a> for details.";
 $plugin_tx['xhshop']['hints_sorry_we_are_closed'] = "<b>We are really sorry!</b><br><br>The shop is down for maintenance.";
+$plugin_tx['xhshop']['hints_cannnot_open']="The shop has been switched to maintenance mode, because there are errors which have to be resolved. See the system check for details.";
 $plugin_tx['xhshop']['labels_save_settings'] = 'save';
 $plugin_tx['xhshop']['hints_no_categories'] = 'No product categories set';
 $plugin_tx['xhshop']['hints_sold_out'] = 'Sorry! All products of category <span class="srchTrm">%s</span> are currently sold out!';
@@ -184,6 +186,7 @@ $plugin_tx['xhshop']['on-account_label']="On Account";
 $plugin_tx['xhshop']['paypal_label']="Paypal";
 $plugin_tx['xhshop']['paypal_go_to_paypal']="go to paypal";
 
+$plugin_tx['xhshop']['syscheck_catalog']="the catalog is valid";
 $plugin_tx['xhshop']['syscheck_decimal']="%s is a valid decimal number";
 $plugin_tx['xhshop']['syscheck_email']="an email address has been provided";
 $plugin_tx['xhshop']['syscheck_extension']="the PHP extension '%s' is loaded";

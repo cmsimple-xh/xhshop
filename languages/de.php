@@ -162,7 +162,9 @@ $plugin_tx['xhshop']['labels_included_vat']='In der Summe enthaltene MwSt.:';
 $plugin_tx['xhshop']['labels_added_vat']='zuzüglich MwSt.:';
 $plugin_tx['xhshop']['labels_subtracted_vat']='abzüglich MwSt:';
 $plugin_tx['xhshop']['labels_send_order']='Jetzt kaufen!';
+$plugin_tx['xhshop']['hints_errors']="XH-Shop-Fehler gefunden. Details siehe <a href=\"?xhshop&normal\">Systemprüfung</a>.";
 $plugin_tx['xhshop']['hints_sorry_we_are_closed'] = '<p>Wir bitten um Entschuldigung!</p><p>Der Shop wird gerade überarbeitet. Eine Bestellung ist zurzeit nicht möglich.</p><p>Bitte versuchen Sie es später wieder.</p>';
+$plugin_tx['xhshop']['hints_cannnot_open']="Der Shop wurde in den Wartungsmodus versetzt, weil Fehler vorhanden sind, die behoben werden müssen. In der Systemprüfung finden Sie Details.";
 $plugin_tx['xhshop']['labels_save_settings'] = 'speichern';
 $plugin_tx['xhshop']['hints_no_categories'] = 'Keine Kategorien angelegt.';
 $plugin_tx['xhshop']['hints_sold_out'] = 'Pardon! Alle Artikel der Kategorie <span class="srchTrm">%s</span> sind zurzeit ausverkauft.';
@@ -184,6 +186,7 @@ $plugin_tx['xhshop']['on-account_label']="Rechnung";
 $plugin_tx['xhshop']['paypal_label']="Paypal";
 $plugin_tx['xhshop']['paypal_go_to_paypal']="mit Paypal bezahlen";
 
+$plugin_tx['xhshop']['syscheck_catalog']="der Katalog gültig ist";
 $plugin_tx['xhshop']['syscheck_decimal']="%s eine gültige Dezimalzahl enthält";
 $plugin_tx['xhshop']['syscheck_email']="eine E-Mail-Adresse hinterlegt wurde";
 $plugin_tx['xhshop']['syscheck_extension']="die PHP-Erweiterung '%s' geladen ist";
