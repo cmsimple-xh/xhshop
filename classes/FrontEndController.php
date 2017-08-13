@@ -89,7 +89,7 @@ class FrontEndController extends Controller
         }
 
         if (!isset($_SESSION['xhsOrder'])) {
-            $_SESSION['xhsOrder'] = new Order($this->settings['vat_full'], $this->settings['vat_reduced'] );
+            $_SESSION['xhsOrder'] = new Order($this->settings['vat_full'], $this->settings['vat_reduced']);
         }
 
         if ((int) $_POST['xhsAmount'] > 0) {
