@@ -92,10 +92,14 @@ class FrontEndController extends Controller
             $_SESSION['xhsOrder'] = new Order($this->settings['vat_full'], $this->settings['vat_reduced']);
         }
 
-        if ((int) $_POST['xhsAmount'] > 0) {
-            $_SESSION['xhsOrder']->addItem($this->catalog->getProduct($_POST['cartItem']), $_POST['xhsAmount'], $variant);
+        if (isset($_POST['xhsReplace'])) {
+            if ((int) $_POST['xhsAmount'] > 0) {
+                $_SESSION['xhsOrder']->addItem($this->catalog->getProduct($_POST['cartItem']), $_POST['xhsAmount'], $variant);
+            } else {
+                $_SESSION['xhsOrder']->removeItem($this->catalog->getProduct($_POST['cartItem']), $variant);
+            }
         } else {
-            $_SESSION['xhsOrder']->removeItem($this->catalog->getProduct($_POST['cartItem']), $variant);
+            $_SESSION['xhsOrder']->addItem($this->catalog->getProduct($_POST['cartItem']), $_POST['xhsAmount'], $variant, false);
         }
         $_SESSION['xhsOrder']->setShipping($this->calculateShipping());
 
