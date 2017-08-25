@@ -29,6 +29,7 @@ foreach($this->cartItems as $product){
 <!--<input class="xhsInpAmount" type="number" min="1" step="1" name="xhsAmount" value="<?php echo $product['amount']; ?>" onChange="this.parentNode.submit()">-->
 <input class="xhsInpAmount" type="number" min="1" step="1" name="xhsAmount" value="<?php echo $product['amount']; ?>"> x <?php echo $this->formatCurrency($product['price']) ;?><br>
 <input type="hidden" name="xhsTask" value="updateCart">
+<input type="hidden" name="xhsReplace" value="1">
 <input type="hidden" name="xhsVariant" value="<?php echo $product['variantKey']; ?>">
 <input type="hidden" name="cartItem" value="<?php echo $product['key'];?>">
 <button class="xhsUpdBtn" title="<?php $this->label('update'); ?>"><span class="fa fa-refresh fa-lg"></span></button>

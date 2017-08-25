@@ -69,13 +69,21 @@ class Order
         $this->fee = Decimal::zero();
     }
 
-    public function addItem(Product $product, $amount, $variant = null)
+    public function addItem(Product $product, $amount, $variant = null, $replace = true)
     {
         $index = $product->getUid();
         if (isset($variant)) {
             $index .= '_'.$variant;
         }
-        $this->items[$index]['amount'] = (int)$amount;
+        if ($replace) {
+            $this->items[$index]['amount'] = (int)$amount;
+        } else {
+            $this->items[$index]['amount'] += (int)$amount;
+            if ($this->items[$index]['amount'] <= 0) {
+                $this->removeItem($product, $variant);
+                return;
+            }
+        }
         $this->items[$index]['variant'] = $variant;
         $this->items[$index]['gross'] = $product->getGross();
         $this->items[$index]['vatRate'] = $product->getVat();
