@@ -341,6 +341,7 @@ abstract class Controller
             }
             closedir($handle);
         }
+        natcasesort($files);
         return $files;
     }
 
