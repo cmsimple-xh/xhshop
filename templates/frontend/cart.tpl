@@ -37,6 +37,7 @@ foreach($this->cartItems as $product){
 %CSRF_TOKEN_INPUT%
 <input type="hidden" name="xhsAmount" value="0">
 <input type="hidden" name="xhsTask" value="updateCart">
+<input type="hidden" name="xhsReplace" value="1">
 <input type="hidden" name="xhsVariant" value="<?php echo $product['variantKey']; ?>">
 <input type="hidden" name="cartItem" value="<?php echo $product['key'];?>">
 <button class="xhsDelBtn" title="<?php $this->label('delete'); ?>"><span class="fa fa-remove fa-lg"></span></button>
