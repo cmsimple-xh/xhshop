@@ -1,7 +1,7 @@
 XHShop Plugin for CMSimple_XH
 =============================
 
-[![rc: 1.0rc3](https://img.shields.io/badge/rc-1.0rc3-yellow.svg)](https://github.com/cmsimple-xh/xhshop/releases/tag/1.0rc3)
+[![stable: 1.0](https://img.shields.io/badge/stable-1.0-green.svg)](https://github.com/cmsimple-xh/xhshop/releases/tag/1.0)
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0)
 
 This plugin is based on the [wellrad plugin](http://www.wellrad.de/) 1.2.1 by
