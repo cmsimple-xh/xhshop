@@ -240,8 +240,8 @@ class SystemCheckService
      */
     private function isForwardingExpensesLineValid($grades)
     {
-        $weight = Decimal::zero();
-        $cost = Decimal::zero();
+        $weight = new Decimal('-0.01');
+        $cost = new Decimal('-0.01');
         $finished = false;
         foreach (explode(';', $grades) as $expenses) {
             if ($finished) {
