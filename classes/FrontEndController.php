@@ -682,7 +682,7 @@ class FrontEndController extends Controller
         $params['teaser']      = $product->getTeaser();
         $params['description'] = $product->getDescription();
         $params['button']      = $this->addToCartButton($product);
-        $params['variants']    = count($product->getVariants() > 0) ? $product->getVariants() : false;
+        $params['variants']    = count($product->getVariants()) > 0 ? $product->getVariants() : false;
         $params['price']       = $product->getGross();
         $params['currency']    = $this->settings['currency_code'];
         $params['uid']         = $product->getUid();
