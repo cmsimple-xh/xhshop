@@ -8,6 +8,7 @@ class BackEndView extends View
     {
         parent::__construct();
         $this->templatePath = XHS_TEMPLATES_PATH. '/backend/';
+        $this->themePath = XHS_BASE_PATH . 'theme/backend/';
     }
 
     public function picSelector($path, array $imageArray, $selectedPic, $element)
