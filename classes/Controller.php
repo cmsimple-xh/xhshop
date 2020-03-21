@@ -180,6 +180,7 @@ abstract class Controller
             $products[$index]['detailLink'] = $detailLink;
             $products[$index]['price'] = $product->getGross();
             $products[$index]['sortIndex'] = $product->getSortIndex();
+            $products[$index]['isAvailable'] = $product->isAvailable();
             if ($detailLink!='' || !$product->getImageName()) {
                 $products[$index]['previewPicture'] = $this->viewProvider->linkedImage(
                     $product->getPreviewPicturePath(),
