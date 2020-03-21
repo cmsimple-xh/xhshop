@@ -180,13 +180,22 @@ abstract class Controller
             $products[$index]['detailLink'] = $detailLink;
             $products[$index]['price'] = $product->getGross();
             $products[$index]['sortIndex'] = $product->getSortIndex();
-            $products[$index]['isAvailable'] = $product->isAvailable();
-            $products[$index]['previewPicture'] = $this->viewProvider->linkedImage(
-                $product->getPreviewPicturePath(),
-                $this->bridge->translateUrl($product->getDetailsLink(XHS_LANGUAGE)),
-                $product->getName(),
-                ''
-            );
+            if ($detailLink!='' || !$product->getImageName()) {
+                $products[$index]['previewPicture'] = $this->viewProvider->linkedImage(
+                    $product->getPreviewPicturePath(),
+                    $this->bridge->translateUrl($product->getDetailsLink(XHS_LANGUAGE)),
+                    $product->getName(),
+                    ''
+                );
+            }
+            else {
+                $products[$index]['previewPicture'] = $this->viewProvider->linkedImage(
+                    $product->getPreviewPicturePath(),
+                    $product->getImagePath(),
+                    $product->getName(),
+                    'zoom'
+                );
+            }
             $products[$index]['categories'] = $product->getCategories();
             if ($product->hasVariants()) {
                 $products[$index]['variants'] = $product->getVariants();
