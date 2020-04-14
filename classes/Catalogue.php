@@ -57,14 +57,15 @@ class Catalogue
 
         asort($sortOrder);
 
-
+        $productsSorted = array();
         $i = 1;
         foreach (array_keys($sortOrder) as $key) {
-            $products[$key]->setSortIndex($i);
+            $productsSorted[$key] = $products[$key];
+            $productsSorted[$key]->setSortIndex($i);
             $i++;
         }
 
-        $this->products = isset($products) ? $products : array();
+        $this->products = isset($products) ? $productsSorted : array();
 
         $writer = new CatalogWriter((object) get_object_vars($this));
         $writer->write();
