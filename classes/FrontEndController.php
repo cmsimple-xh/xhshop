@@ -64,6 +64,8 @@ class FrontEndController extends Controller
     {
         $params = array('productName' => $product->getName(XHS_LANGUAGE),
             'product'     => $product,
+            'image'       => $product->getImagePath(),
+            'previewPicture'    => $product->getPreviewPicturePath(),
             'vatInfo'     => $this->vatInfo(),
             'vatRate'     => $this->settings['vat_' . $product->getVat()]);
         if ($product->hasVariants()) {
