@@ -10,11 +10,13 @@ class Catalogue
     private $category_for_the_left_overs;
     private $default_category;
     private $version;
+    private $allowShowAll;
 
-    public function __construct($separator, $version)
+    public function __construct($separator, $version, $allowShowAll)
     {
         $this->version = $version;
         $this->separator = $separator;
+        $this->allowShowAll = (bool) $allowShowAll;
         $this->products = array();
         $this->categories = array();
 
@@ -29,6 +31,13 @@ class Catalogue
 
         $this->categories = $categories;
         $this->category_for_the_left_overs = $category_for_the_left_overs;
+        if (!$this->allowShowAll) {
+            foreach ($default_category as $lang => $cat) {
+                if (!in_array($cat, $categories[$lang], true)) {
+                    $default_category[$lang] = $categories[$lang][0];
+                }
+            }
+        }
         $this->default_category = $default_category;
 
         if (!isset($products) || !is_array($products)) {

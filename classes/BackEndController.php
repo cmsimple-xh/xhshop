@@ -175,6 +175,7 @@ class BackEndController extends Controller
         $params['categories'] =  parent::categories();
         $params['leftOverCat'] = $this->catalog->getFallbackCategory();
         $params['xhsDefaultCat'] = $this->catalog->getDefaultCategory();
+        $params['allowShowAll'] = $this->settings['allow_show_all'];
         $params['csrf_token_input'] = $this->csrfProtector->tokenInput();
 
         return $this->render('categories', $params);

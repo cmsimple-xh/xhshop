@@ -60,7 +60,9 @@
 	<?php $this->hint('default_product_category'); ?></p>
 	<form method="post">
 		%CSRF_TOKEN_INPUT%
+		<?php if ($this->allowShowAll){ ?>
 		<p><label><?php echo $this->radioNameValueLabel('xhsDefaultCat', $this->labels['all_categories']);?>&nbsp;<?php echo $this->label('all_categories') ?></label><br>
+		<?php } ?>
 		<?php foreach($this->categories as $category){ ?>
 		<label><?php echo $this->radioNameValueLabel('xhsDefaultCat', $category);?>&nbsp;<?php echo $category; ?></label><br>
         <?php } ?></p>

@@ -60,7 +60,7 @@ abstract class Controller
             define('XHS_URL', $this->settings['url']);
         }
         $this->bridge = new CmsBridge();
-        $this->catalog = new Catalogue(XHS_URI_SEPARATOR, $this->version);
+        $this->catalog = new Catalogue(XHS_URI_SEPARATOR, $this->version, $this->settings['allow_show_all']);
         if (!class_exists('XH_CSRFProtection')) {
             include_once "{$pth['folder']['classes']}CsrfProtection.php";
         }
