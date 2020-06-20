@@ -54,7 +54,7 @@ if (defined('XH_ADM') && XH_ADM) {
     $xhsController = new FrontEndController();
 }
 
-$hjs .= '<script src="'.$pth['folder']['plugins'].'/xhshop/js/xhs.min.js"></script>';
+$hjs .= '<script src="'.$pth['folder']['plugins'].'xhshop/js/xhs.min.js"></script>';
 
 if ($xhsController instanceof FrontEndController
     && $xhsController->settings['published']
