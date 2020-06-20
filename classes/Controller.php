@@ -112,6 +112,7 @@ abstract class Controller
         if (!($this->viewProvider instanceof View)) {
             return "XHSController:render no view provider!";
         }
+        $this->viewProvider->resetParams();
         if (isset($params)) {
             foreach ($params as $key => $value) {
                 $this->viewProvider->assignParam($key, $value);

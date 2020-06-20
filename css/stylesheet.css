@@ -1,5 +1,5 @@
 /*** Cart-Box for CMSimple_XH-Sites ***/
-#cartButton {
+.cartButton {
 	border: 2px solid #f60;
 	clear: both;
 	margin: 2em 0;
@@ -75,7 +75,7 @@ input.linkButton:hover {
 	text-decoration: underline;
 	color: maroon;
 }
-#cartButton {
+.cartButton {
 	border: 2px solid #f60;
 	clear: both;
 	margin: 2em 0;

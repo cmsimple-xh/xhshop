@@ -1,5 +1,5 @@
 <?php ?>
-<section id="cartButton" class="xhsMain">
+<section class="cartButton xhsMain">
 	<h1 class="xhsInl xhsLft"><?php echo $this->productName; ?></h1>
 	<div class="xhsInfoBlock">
 		<div class="xhsPrdPrice"><span class="xhsPrdPriceLabel"><?php echo $this->labels['price'];?></span> <span class="xhsPrdPriceNum"><?php echo $this->formatCurrency($this->product->getGross()); ?></span></div>
