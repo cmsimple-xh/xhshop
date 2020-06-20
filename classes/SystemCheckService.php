@@ -271,7 +271,7 @@ class SystemCheckService
                     return false;
             }
         }
-        return true;
+        return $finished;
     }
 
     /**
