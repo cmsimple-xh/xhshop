@@ -248,7 +248,7 @@ class Catalogue
 
     public function addProduct(Product $product)
     {
-        $product->setSortIndex(0);
+        $product->setSortIndex(PHP_INT_MAX);
         $this->products[] = $product;
         $this->save();
     }
