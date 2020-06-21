@@ -68,7 +68,7 @@ class BackEndController extends Controller
         $params['indices'] = $indices;
         $params['caveats'] = $hints;
         $params['errors']  = $errors;
-        $params['showCategorySelect'] = true;
+        $params['showCategorySelect'] = (bool) $this->settings['use_categories'];
         $params['csrf_token_input'] = $this->csrfProtector->tokenInput();
         return $this->render('catalog', $params);
     }

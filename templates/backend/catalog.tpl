@@ -1,11 +1,13 @@
 <?php ?>
 <section class="xhsMain xhsClearB">
 	<div class="xhsCatSel">
+		<?php if($this->showCategorySelect !== false){ ?>
 		<form class="catSelectBox" method="get">
 			<input name="selected" value="<?php echo $this->page_url; ?>" type="hidden">
 			<span class="fa fa-list fa-lg fa-fw"></span> <?php echo $this->categorySelect(); ?>
 			<input name="xhsTask" value="productList" type="hidden" >
 		</form>
+		<?php } ?>
 	</div>
 	<h1 class="xhsCatHeader"><?php echo XH_hsc($this->categoryHeader) ?></h1>
 	<?php if(count($this->products) == 0){ ?>
