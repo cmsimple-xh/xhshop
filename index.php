@@ -61,7 +61,11 @@ if ($xhsController instanceof FrontEndController
     && !$edit) {
     if (isset($_POST['xhsTask'])) {
         if ($_POST['xhsTask'] == 'updateCart') {
-            $xhsController->updateCart();
+            if (empty($_COOKIE)) {
+                $o .= XH_message('info', $plugin_tx['xhshop']['message_no_cookie']);
+            } else {
+                $xhsController->updateCart();
+            }
         }
     }
 
