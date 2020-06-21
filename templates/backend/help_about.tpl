@@ -10,6 +10,10 @@
 <td><a href="https://github.com/cmsimple-xh/xhshop/" target="_blank">XH-Shop on Github</a></td>
 </tr>
 <tr>
+<td><strong>Wiki:</strong></td>
+<td><a href="https://github.com/cmsimple-xh/xhshop/wiki" target="_blank">XH-Shop Wiki (German)</a></td>
+</tr>
+<tr>
 <td><strong>Description:</strong></td>
 <td>A simple shop for CMSimple_XH.</td>
 </tr>
