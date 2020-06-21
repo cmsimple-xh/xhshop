@@ -179,6 +179,7 @@ $plugin_tx['xhshop']['hints_price_info_no_vat']="no taxes";
 $plugin_tx['xhshop']['labels_cat_select'] = 'Select Category';
 
 $plugin_tx['xhshop']['message_backup_created']="Backup %s created";
+$plugin_tx['xhshop']['message_no_cookie']="For shopping, your browser needs to allow session cookies!";
 
 $plugin_tx['xhshop']['cash-in-advance_label']="Cash in Advance";
 $plugin_tx['xhshop']['cash-on-delivery_label']="Cash on Delivery";

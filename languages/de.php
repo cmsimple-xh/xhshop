@@ -179,6 +179,7 @@ $plugin_tx['xhshop']['hints_price_info_no_vat']="MwSt. wird nach § 19 UStG. nic
 $plugin_tx['xhshop']['labels_cat_select'] = 'Kategorie-Auswahl';
 
 $plugin_tx['xhshop']['message_backup_created']="Sicherung %s angelegt";
+$plugin_tx['xhshop']['message_no_cookie']="Um Einkaufen zu können, muss Ihr Browser Sitzungs-Cookies erlauben!";
 
 $plugin_tx['xhshop']['cash-in-advance_label']="Vorkasse";
 $plugin_tx['xhshop']['cash-on-delivery_label']="Nachnahme";
