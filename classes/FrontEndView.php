@@ -175,7 +175,11 @@ class FrontEndView extends View
     public function linkedPageHint($url, $text)
     {
         if ($url) {
-            $starttag = sprintf('<a href="%s&print" class="zoom_i xhsCosLnk" target="_blank">', $url);
+            if (in_array('hi_fancybox', XH_plugins(), true)) {
+                $starttag = sprintf('<a href="%s&print" class="zoom_i xhsCosLnk" target="_blank">', $url);
+            } else {
+                $starttag = sprintf('<a href="%s" class="xhsCosLnk">', $url);
+            }
             $endtag = '</a>';
         } else {
             $starttag = $endtag = '';
