@@ -6,7 +6,7 @@
 <td>%VERSION%</td>
 </tr>
 <tr>
-<td><strong>Website:</strin></td>
+<td><strong>Website:</strong></td>
 <td><a href="https://github.com/cmsimple-xh/xhshop/" target="_blank">XH-Shop on Github</a></td>
 </tr>
 <tr>
