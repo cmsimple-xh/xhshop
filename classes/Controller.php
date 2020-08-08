@@ -323,11 +323,12 @@ abstract class Controller
         return false;
     }
 
-    protected function getImageFiles($directory = null)
+    protected function getImageFiles($directory = null, $prefix = '')
     {
         if ($directory === null) {
             $directory = $this->settings['image_folder'];
         }
+        $directory = rtrim($directory, "\\/");
         $handle = opendir($directory);
         $files = array();
         if ($handle) {
@@ -335,8 +336,13 @@ abstract class Controller
                 if ($file == '.' || $file == '..') {
                     continue;
                 }
+                $newprefix = $prefix ? "$prefix/$file" : $file;
+                if (is_dir(($subdir = "$directory/$file"))) {
+                    $subfiles = $this->getImageFiles($subdir, $newprefix);
+                    $files = array_merge($files, $subfiles);
+                } 
                 if ($this->isAllowedImageFile($file)) {
-                    $files[] = $file;
+                    $files[] = $newprefix;
                 }
             }
             closedir($handle);
