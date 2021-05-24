@@ -70,7 +70,7 @@ abstract class View
         return $html;
     }
 
-    private function injectParams($params)
+    protected function injectParams($params)
     {
         if (is_string($params)) {
             return  ' ' . $params;
@@ -114,7 +114,7 @@ abstract class View
         return $html;
     }
 
-    private function floatInputNameValueLabel($name, Decimal $value, $params = null)
+    protected function floatInputNameValueLabel($name, Decimal $value, $params = null)
     {
         if (is_array($params)) {
             if (!isset($params['style'])) {
@@ -173,7 +173,7 @@ abstract class View
         return str_replace('.', $decsep, rtrim(rtrim($value->toString(), '0'), '.')) . ' %';
     }
 
-    private function hint($key)
+    protected function hint($key)
     {
         if (isset($this->hints[$key])) {
             echo($this->hints[$key]);
