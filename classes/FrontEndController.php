@@ -63,9 +63,11 @@ class FrontEndController extends Controller
     public function addToCartButton(Product $product)
     {
         $params = array('productName' => $product->getName(XHS_LANGUAGE),
-            'product'     => $product,
-            'vatInfo'     => $this->vatInfo(),
-            'vatRate'     => $this->settings['vat_' . $product->getVat()]);
+            'product'           => $product,
+            'image'             => $product->getImagePath(),
+            'previewPicture'    => $product->getPreviewPicturePath(),
+            'vatInfo'           => $this->vatInfo(),
+            'vatRate'           => $this->settings['vat_' . $product->getVat()]);
         if ($product->hasVariants()) {
             $params['variants'] = $product->getVariants(XHS_LANGUAGE);
         }
