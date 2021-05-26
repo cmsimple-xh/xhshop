@@ -60,8 +60,8 @@ class CatalogWriter
         $string .= '$products[\'' . $uid . '\'][\'price\'] = \'' . $product->price->toString() . "';\n";
         $string .= '$products[\'' . $uid . '\'][\'vat\'] = \'' . $this->cleanString($product->vat) . "';\n";
         $string .= '$products[\'' . $uid . '\'][\'sortIndex\'] = ' . (int)$product->sortIndex . ";\n";
-        $string .= '$products[\'' . $uid . '\'][\'previewPicture\'] = \'' . $product->previewPicture . "';\n";
-        $string .= '$products[\'' . $uid . '\'][\'image\'] = \'' . $product->image . "';\n";
+        $string .= '$products[\'' . $uid . '\'][\'previewPicture\'] = \'' . $this->cleanString($product->previewPicture) . "';\n";
+        $string .= '$products[\'' . $uid . '\'][\'image\'] = \'' . $this->cleanString($product->image) . "';\n";
         $string .= '$products[\'' . $uid . '\'][\'weight\'] = \'' . $product->weight->toString() . "';\n";
         $string .= '$products[\'' . $uid . '\'][\'stock_on_hand\'] = ' . (int)$product->stock_on_hand . ";\n";
         if (!isset($product->teasers)) {
