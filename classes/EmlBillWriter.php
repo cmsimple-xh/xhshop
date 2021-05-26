@@ -2,7 +2,7 @@
 
 namespace Xhshop;
 
-use PHPMailer;
+use use PHPMailer\PHPMailer\PHPMailer;
 
 class EmlBillWriter implements BillWriter
 {
@@ -21,7 +21,10 @@ class EmlBillWriter implements BillWriter
 
     public function replace(array $replacements)
     {
-        require_once(XHS_BASE_PATH . 'phpmailer/class.phpmailer.php');
+        global $sl;
+        
+        require_once(XHS_BASE_PATH . 'phpmailer/PHPMailer.php');
+        require_once(XHS_BASE_PATH . 'phpmailer/Exception.php');
         foreach ($replacements as $search => $replace) {
             $this->template = str_ireplace($search, $replace, $this->template);
             $this->subject = str_ireplace($search, $replace, $this->subject);
@@ -30,6 +33,8 @@ class EmlBillWriter implements BillWriter
         $mail->WordWrap = 60;
         $mail->IsHTML(true);
         $mail->set('CharSet', 'UTF-8');
+        $mail->setLanguage($sl, XHS_BASE_PATH . 'phpmailer/language/');
+        
         $mail->From = $replacements['%CONTACT_EMAIL%'];
         $mail->FromName = $replacements['%CONTACT_NAME%'];
         $mail->AddAddress($replacements['%EMAIL%'], "{$replacements['%FIRST_NAME%']} {$replacements['%LAST_NAME%']}");

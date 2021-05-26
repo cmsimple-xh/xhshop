@@ -3,7 +3,7 @@
 namespace Xhshop;
 
 use RuntimeException;
-use PHPMailer;
+use PHPMailer\PHPMailer\PHPMailer;
 
 class FrontEndController extends Controller
 {
@@ -566,11 +566,15 @@ class FrontEndController extends Controller
 
     private function sendEmails()
     {
-        require_once(XHS_BASE_PATH . 'phpmailer/class.phpmailer.php');
+        global $sl;
+        
+        require_once(XHS_BASE_PATH . 'phpmailer/PHPMailer.php');
+        require_once(XHS_BASE_PATH . 'phpmailer/Exception.php');
         $mail = new PHPMailer();
         $mail->WordWrap = 60;
         $mail->IsHTML(true);
         $mail->set('CharSet', 'UTF-8');
+        $mail->setLanguage($sl, XHS_BASE_PATH . 'phpmailer/language/');
 
         $customer     = $_SESSION['xhsCustomer']->email;
         $customerName = $_SESSION['xhsCustomer']->first_name . ' ' . $_SESSION['xhsCustomer']->last_name;
