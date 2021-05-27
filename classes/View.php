@@ -40,6 +40,12 @@ abstract class View
         $this->currency = $currency;
     }
 
+    public function resetParams()
+    {
+        $this->params = array();
+        unset($this->variants);
+    }
+
     public function assignParam($key, $param)
     {
         if (is_string($param)) {
