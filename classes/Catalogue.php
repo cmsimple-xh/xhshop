@@ -57,12 +57,15 @@ class Catalogue
 
         asort($sortOrder);
 
-
         $i = 1;
         foreach (array_keys($sortOrder) as $key) {
             $products[$key]->setSortIndex($i);
             $i++;
         }
+
+        uasort($products, function (Product $productA, Product $productB) {
+            return $productA->getSortIndex() - $productB->getSortIndex();
+        });
 
         $this->products = isset($products) ? $products : array();
 
@@ -245,7 +248,7 @@ class Catalogue
 
     public function addProduct(Product $product)
     {
-        $product->setSortIndex(0);
+        $product->setSortIndex(PHP_INT_MAX);
         $this->products[] = $product;
         $this->save();
     }

@@ -155,9 +155,6 @@ abstract class Controller
         }
 
         $productList = $this->catalog->getProducts($category);
-        uasort($productList, function (Product $productA, Product $productB) {
-            return $productA->getSortIndex() - $productB->getSortIndex();
-        });
         $products = array();
 
         foreach ($productList as $index => $product) {
