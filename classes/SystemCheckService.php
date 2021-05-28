@@ -40,7 +40,7 @@ class SystemCheckService
     public function getChecks()
     {
         $checks = array(
-            $this->checkPhpVersion('5.3.0'),
+            $this->checkPhpVersion('5.5.0'),
             $this->checkExtension('bcmath'),
             $this->checkExtension('json'),
             $this->checkExtension('mbstring'),
