@@ -2,7 +2,7 @@
 
 namespace Xhshop;
 
-use use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\PHPMailer;
 
 class EmlBillWriter implements BillWriter
 {
