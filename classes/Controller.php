@@ -186,8 +186,7 @@ abstract class Controller
                     $product->getName(),
                     ''
                 );
-            }
-            else {
+            } else {
                 $products[$index]['previewPicture'] = $this->viewProvider->linkedImage(
                     $product->getPreviewPicturePath(),
                     $product->getImagePath(),

@@ -1,0 +1,28 @@
+name: checks
+on: [push]
+jobs:
+  checks:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.3'
+          extensions: uopz
+          tools: composer
+      - name: Install CMSimple_XH
+        run: |
+          curl -fsSL -o CMSimple_XH-1.7.4.zip https://github.com/cmsimple-xh/cmsimple-xh/releases/download/1.7.4/CMSimple_XH-1.7.4.zip
+          unzip -q CMSimple_XH-1.7.4.zip
+      - name: Checkout XHShop
+        uses: actions/checkout@v2
+        with:
+          path: 'cmsimplexh/plugins/xhshop'
+      - name: composer install
+        run: cd cmsimplexh/plugins/xhshop && composer install
+      - name: phing sniff
+        run: cd cmsimplexh/plugins/xhshop && PATH=vendor/bin:$PATH phing sniff
+      - name: phing mess
+        run: cd cmsimplexh/plugins/xhshop && PATH=vendor/bin:$PATH phing mess
+      - name: phing unit-tests
+        run: cd cmsimplexh/plugins/xhshop && PATH=vendor/bin:$PATH phing unit-tests
