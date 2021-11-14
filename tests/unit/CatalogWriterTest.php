@@ -145,8 +145,8 @@ EOT;
         global $pth, $plugin_cf;
 
         $this->root = vfsStream::setup('root');
-        uopz_redefine('XHS_LANGUAGE', 'en');
-        uopz_redefine('XHS_CATALOG', vfsStream::url('root/catalog.php'));
+        define('XHS_LANGUAGE', 'en');
+        define('XHS_CATALOG', vfsStream::url('root/catalog.php'));
         $pth = ["folder" => ["images" => ""]];
         $plugin_cf = ["xhshop" => [
             "shop_image_folder" => "",
