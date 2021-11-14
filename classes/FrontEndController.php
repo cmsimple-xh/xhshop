@@ -703,6 +703,8 @@ class FrontEndController extends Controller
         );
         $params['previewPicture'] = preg_replace('/\/\.\/|\/.{2}\/\.\.\//', '/', CMSIMPLE_URL . $previewPicturePath);
         $params['shippingCostsUrl'] = $this->settings['shipping_costs_page'];
+        $params['csrf_token_input'] = $this->csrfProtector->tokenInput();
+        $this->csrfProtector->store();
         $this->bridge->setTitle($params['name']);
         $this->bridge->setMeta('description', $params['teaser']);
         return $this->render('productDetails', $params);
