@@ -50,12 +50,9 @@
     </target>
 
     <target name="unit-tests" description="runs all unit tests">
-        <phpunit bootstrap="tests/unit/bootstrap.php" haltonerror="true" haltonfailure="true">
-            <formatter type="plain" usefile="false"/>
-            <batchtest>
-                <fileset refid="unit-tests"/>
-            </batchtest>
-        </phpunit>
+        <exec executable="phpunit" passthru="true" checkreturn="true">
+            <arg line="--bootstrap tests/unit/bootstrap.php tests/unit"/>
+        </exec>
     </target>
 
     <target name="coverage" description="generates coverage report">

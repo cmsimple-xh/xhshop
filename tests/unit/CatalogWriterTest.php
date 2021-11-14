@@ -142,9 +142,15 @@ EOT;
 
     protected function setUp()
     {
+        global $pth, $plugin_cf;
+
         $this->root = vfsStream::setup('root');
         uopz_redefine('XHS_LANGUAGE', 'en');
         uopz_redefine('XHS_CATALOG', vfsStream::url('root/catalog.php'));
+        $pth = ["folder" => ["images" => ""]];
+        $plugin_cf = ["xhshop" => [
+            "shop_image_folder" => "",
+            "shop_preview_folder" => ""]];
     }
 
     public function testWrite()

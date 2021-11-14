@@ -3,11 +3,13 @@ on: [push, pull_request]
 jobs:
   checks:
     runs-on: ubuntu-20.04
+    matrix:
+      php: ['7.3', '7.4']
     steps:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '7.3'
+          php-version: ${{matrix.php}}
           extensions: uopz
           tools: composer
       - name: Install CMSimple_XH
