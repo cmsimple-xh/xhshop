@@ -258,7 +258,7 @@ class FrontEndController extends Controller
             $params['units']            = $_SESSION['xhsOrder']->getUnits();
             $params['unitName']         = $this->settings['shipping_unit'];
             $params['shipping']         = $_SESSION['xhsOrder']->getShipping();
-            $params['total']            = 
+            $params['total']            =
                 $_SESSION['xhsOrder']->getShipping()->plus($_SESSION['xhsOrder']->getCartSum());
             $params['vatTotal']         = $_SESSION['xhsOrder']->getVat();
             $params['vatFull']          = $_SESSION['xhsOrder']->getVatFull();
