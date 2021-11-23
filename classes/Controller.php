@@ -14,6 +14,7 @@ abstract class Controller
     protected $payments;
     protected $paymentModules;
     protected $bridge;
+    protected $shopIsOn1stPage;
 
     /**
      * @var CsrfProtection
@@ -22,7 +23,7 @@ abstract class Controller
 
     public function __construct()
     {
-        global $pth, $plugin_cf, $plugin_tx, $_XH_csrfProtection;
+        global $pth, $plugin_cf, $plugin_tx, $u, $_XH_csrfProtection, $xh_publisher; 
 
         $this->settings = array();
         foreach ($plugin_cf['xhshop'] as $key => $value) {
@@ -55,9 +56,14 @@ abstract class Controller
         /**
          * TODO: eliminate need of that CMSimple-separator, leave it to the bridge
          */
+         
+         $this->shopIsOn1stPage = !XH_ADM && $this->settings['url'] === $u[$xh_publisher->getFirstPublishedPage()];
 
         if (!defined('XHS_URL') && isset($this->settings['url'])) {
-            define('XHS_URL', $this->settings['url']);
+            define('XHS_URL', 
+                $this->isShopOn1stPage() === false ? 
+                    $this->settings['url'] : 
+                    '');
         }
         $this->bridge = new CmsBridge();
         $this->catalog = new Catalogue(XHS_URI_SEPARATOR, $this->version, $this->settings['allow_show_all']);
@@ -381,5 +387,9 @@ abstract class Controller
     public function shopToc($level = 6)
     {
         return '';
+    }
+    public function isShopOn1stPage()
+    {
+        return $this->shopIsOn1stPage;
     }
 }

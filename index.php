@@ -66,11 +66,11 @@ if ($xhsController instanceof FrontEndController
     }
 
     // disable cartPreview (Button) also in print view (or fancybox)
-    if (!isset($_GET['xhsCheckout']) && (int)$s > -1 && !$print) {
+    if (!isset($_GET['xhsCheckout']) && (int)$pd_s > -1 && !$print) {
         $xhsCartPreview = $xhsController->cartPreview();
 
         if (!strpos(XH_readFile($pth['file']['template']), '$xhsCartPreview')) {
-            $c[$s] = $xhsController->cartPreview() . $c[$s];
+            $c[$pd_s] = $xhsController->cartPreview() . $c[$pd_s];
         }
     }
 
@@ -82,8 +82,8 @@ if ($xhsController instanceof FrontEndController
             $xhsCartButtons .= $xhsController->addToCartButton($product);
         }
         
-        if ($s >= 0) {
-             $c[$s] .= $xhsCartButtons;
+        if ($pd_s >= 0) {
+             $c[$pd_s] .= $xhsCartButtons;
             //$c[$s] =  preg_replace('/(<\/h[1-'.$cf['menu']['levels'].']>)/i', "$1 $xhsCartButtons", $c[$s], 1);
         }
     }

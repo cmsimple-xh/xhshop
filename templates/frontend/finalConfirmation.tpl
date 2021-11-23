@@ -93,7 +93,9 @@ if ($this->fee->isLessThan(Xhshop\Decimal::zero())){
 <div>
 <div class="xhsLft">	
 <form method="get">
+<?php if (strlen(XHS_URL) > 0): ?>
 <input type="hidden" name="selected" value="%XHS_URL%">
+<?php endif; ?>
 <input type="hidden" name="xhsCheckout" value="customersData">
 <button class="xhsShopButton"><span class="fa fa-arrow-circle-left fa-fw"></span> <?php $this->label('back'); ?></button>
 </form>

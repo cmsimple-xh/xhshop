@@ -62,7 +62,9 @@ if(in_array('cos_confirmed', $this->missingData)){
 <button class="xhsShopButton xhsRght xhsInl"><?php $this->label('next'); ?> <span class="fa fa-arrow-circle-right fa-fw"></span></button>
 </form>
 <form method="get" class="xhsLft">
-<input type="hidden" name="selected" value="%XHS_URL%">
+<?php if (strlen(XHS_URL) > 0): ?>
+		<input type="hidden" name="selected" value="%XHS_URL%">
+<?php endif; ?>
 <input type="hidden" name="xhsCheckout" value="cart">
 <button class="xhsShopButton xhsInl"><span class="fa fa-arrow-circle-left fa-fw"></span> <?php $this->label('back'); ?></button>
 </form>

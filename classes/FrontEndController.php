@@ -105,7 +105,8 @@ class FrontEndController extends Controller
         }
         $_SESSION['xhsOrder']->setShipping($this->calculateShipping());
 
-        $url = CMSIMPLE_URL . '?' . $_SERVER['QUERY_STRING'];
+        $url = CMSIMPLE_URL;
+        if (strlen($_SERVER['QUERY_STRING']) > 0 ) $url = $url . '?' . $_SERVER['QUERY_STRING'];
         header("Location: $url", true, 303);
         exit;
     }
@@ -716,9 +717,9 @@ class FrontEndController extends Controller
             return;
         }
         $params = array();
-        $url                   = $this->bridge->translateUrl(XHS_URL);
+        $url                   = $this->isShopOn1stPage() ? '' : $this->bridge->translateUrl(XHS_URL);
         $params['shopUrl']     = $url;
-        $params['shopHeading'] = $this->bridge->getHeadingOfUrl(XHS_URL);
+        $params['shopHeading'] = $this->bridge->getHeadingOfUrl($this->isShopOn1stPage() ? $this->url : XHS_URL);
         $params['categories']  = array();
         if ($this->settings['allow_show_all']) {
             $params['categories'][0]['url']  = urlencode($this->viewProvider->labels['all_categories']);
@@ -790,10 +791,19 @@ class FrontEndController extends Controller
 
     private function relocateToCheckout($step, $status)
     {
-        $url = CMSIMPLE_URL . '?' . XHS_URL;
+        $url = '';
         if (isset($step)) {
             $url .= "&xhsCheckout=$step";
         }
+        $temp = $this->isShopOn1stPage();
+        if ($this->isShopOn1stPage() === false) {
+            $url = XHS_URL . $url;         
+        }
+        if (strlen($url) > 0) {
+            $url = '?' . $url;
+        }
+        $url = CMSIMPLE_URL . $url;
+        
         header("Location: $url", true, $status);
         exit;
     }
