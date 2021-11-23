@@ -160,7 +160,7 @@ class Catalogue
     public function getFallbackCategory()
     {
         return isset($this->category_for_the_left_overs[XHS_LANGUAGE]) ?
-            $this->category_for_the_left_overs[XHS_LANGUAGE] : 
+            $this->category_for_the_left_overs[XHS_LANGUAGE] :
             'N.N.';
     }
 

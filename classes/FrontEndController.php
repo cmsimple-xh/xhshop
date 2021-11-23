@@ -106,8 +106,9 @@ class FrontEndController extends Controller
         $_SESSION['xhsOrder']->setShipping($this->calculateShipping());
 
         $url = CMSIMPLE_URL;
-        if (strlen($_SERVER['QUERY_STRING']) > 0)
+        if (strlen($_SERVER['QUERY_STRING']) > 0) {
             $url = $url . '?' . $_SERVER['QUERY_STRING'];
+        }
         header("Location: $url", true, 303);
         exit;
     }

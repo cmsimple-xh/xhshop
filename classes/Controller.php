@@ -60,12 +60,7 @@ abstract class Controller
          $this->shopIsOn1stPage = !XH_ADM && $this->settings['url'] === $u[$xh_publisher->getFirstPublishedPage()];
 
         if (!defined('XHS_URL') && isset($this->settings['url'])) {
-            define(
-                'XHS_URL',
-                $this->isShopOn1stPage() === false ?
-                    $this->settings['url'] :
-                    ''
-                );
+            define('XHS_URL',$this->isShopOn1stPage() === false ? $this->settings['url'] : '');
         }
         $this->bridge = new CmsBridge();
         $this->catalog = new Catalogue(XHS_URI_SEPARATOR, $this->version, $this->settings['allow_show_all']);
