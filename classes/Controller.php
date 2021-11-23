@@ -23,7 +23,7 @@ abstract class Controller
 
     public function __construct()
     {
-        global $pth, $plugin_cf, $plugin_tx, $u, $_XH_csrfProtection, $xh_publisher; 
+        global $pth, $plugin_cf, $plugin_tx, $u, $_XH_csrfProtection, $xh_publisher;
 
         $this->settings = array();
         foreach ($plugin_cf['xhshop'] as $key => $value) {
@@ -60,17 +60,21 @@ abstract class Controller
          $this->shopIsOn1stPage = !XH_ADM && $this->settings['url'] === $u[$xh_publisher->getFirstPublishedPage()];
 
         if (!defined('XHS_URL') && isset($this->settings['url'])) {
-            define('XHS_URL', 
-                $this->isShopOn1stPage() === false ? 
-                    $this->settings['url'] : 
-                    '');
+            define(
+                'XHS_URL',
+                $this->isShopOn1stPage() === false ?
+                    $this->settings['url'] :
+                    ''
+                );
         }
         $this->bridge = new CmsBridge();
         $this->catalog = new Catalogue(XHS_URI_SEPARATOR, $this->version, $this->settings['allow_show_all']);
         if (!class_exists('XH_CSRFProtection')) {
             include_once "{$pth['folder']['classes']}CsrfProtection.php";
         }
-        $this->csrfProtector = isset($_XH_csrfProtection) ? $_XH_csrfProtection : new XH_CSRFProtection('xhs_csrf_token');
+        $this->csrfProtector = isset($_XH_csrfProtection) ?
+            $_XH_csrfProtection :
+            new XH_CSRFProtection('xhs_csrf_token');
 
         $viewProvider = preg_replace('/Controller$/', 'View', get_class($this));
         $this->viewProvider = new $viewProvider();
@@ -137,7 +141,10 @@ abstract class Controller
         $options = array();
 
         if ($this->settings['allow_show_all'] || $this instanceof BackEndController) {
-            $options[] = array('value' => $this->viewProvider->labels['all_categories'], 'label' => $this->viewProvider->labels['all_categories']);
+            $options[] = array(
+                'value' => $this->viewProvider->labels['all_categories'],
+                'label' => $this->viewProvider->labels['all_categories']
+            );
         }
         foreach ($this->categories() as $category) {
             if (!$this instanceof FrontEndController || $this->catalog->isAnyProductAvailable($category)) {

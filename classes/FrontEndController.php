@@ -106,7 +106,8 @@ class FrontEndController extends Controller
         $_SESSION['xhsOrder']->setShipping($this->calculateShipping());
 
         $url = CMSIMPLE_URL;
-        if (strlen($_SERVER['QUERY_STRING']) > 0 ) $url = $url . '?' . $_SERVER['QUERY_STRING'];
+        if (strlen($_SERVER['QUERY_STRING']) > 0)
+            $url = $url . '?' . $_SERVER['QUERY_STRING'];
         header("Location: $url", true, 303);
         exit;
     }
@@ -256,7 +257,8 @@ class FrontEndController extends Controller
             $params['units']            = $_SESSION['xhsOrder']->getUnits();
             $params['unitName']         = $this->settings['shipping_unit'];
             $params['shipping']         = $_SESSION['xhsOrder']->getShipping();
-            $params['total']            = $_SESSION['xhsOrder']->getShipping()->plus($_SESSION['xhsOrder']->getCartSum());
+            $params['total']            = 
+                $_SESSION['xhsOrder']->getShipping()->plus($_SESSION['xhsOrder']->getCartSum());
             $params['vatTotal']         = $_SESSION['xhsOrder']->getVat();
             $params['vatFull']          = $_SESSION['xhsOrder']->getVatFull();
             $params['vatReduced']       = $_SESSION['xhsOrder']->getVatReduced();
@@ -490,7 +492,8 @@ class FrontEndController extends Controller
             throw new RuntimeException($pathinfo['extension'], 1);
         }
         $writer = new $class();
-        $template = XHS_TEMPLATES_PATH . 'frontend/confirmation_email/' . $pathinfo['filename'] . '.tpl.' . $pathinfo['extension'];
+        $template = XHS_TEMPLATES_PATH . 'frontend/confirmation_email/' .
+            $pathinfo['filename'] . '.tpl.' . $pathinfo['extension'];
         if (!$writer->loadTemplate($template)) {
             throw new RuntimeException($template, 2);
         }
@@ -540,9 +543,13 @@ class FrontEndController extends Controller
             '%ZIP%'                => $_SESSION['xhsCustomer']->zip_code,
             '%CITY%'               => $_SESSION['xhsCustomer']->city,
             '%COUNTRY%'            => $_SESSION['xhsCustomer']->country,
-            '%COUNTRY_CODE%'       => array_search($_SESSION['xhsCustomer']->country, $this->settings['shipping_countries']),
+            '%COUNTRY_CODE%'       => array_search(
+                $_SESSION['xhsCustomer']->country,
+                $this->settings['shipping_countries']
+            ),
             '%EMAIL%'              => $_SESSION['xhsCustomer']->email,
-            '%MAY_FORWARD_EMAIL%'  => $this->viewProvider->labels[$_SESSION['xhsCustomer']->may_forward_email ? 'yes' : 'no'],
+            '%MAY_FORWARD_EMAIL%'  => $this->viewProvider->labels[$_SESSION['xhsCustomer']->may_forward_email ?
+                'yes' : 'no'],
             '%PHONE%'              => $_SESSION['xhsCustomer']->phone,
             '%ANNOTATION%'         => $_SESSION['xhsCustomer']->annotation,
             '%PAYMENT_METHOD%'     => $paymentMethod,
@@ -797,7 +804,7 @@ class FrontEndController extends Controller
         }
         $temp = $this->isShopOn1stPage();
         if ($this->isShopOn1stPage() === false) {
-            $url = XHS_URL . $url;         
+            $url = XHS_URL . $url;
         }
         if (strlen($url) > 0) {
             $url = '?' . $url;

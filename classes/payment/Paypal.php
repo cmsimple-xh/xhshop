@@ -65,7 +65,8 @@ class Paypal extends PaymentModule
     <input type="hidden" name="lc" value="' . strtoupper(XHS_LANGUAGE) . '">
     <input type="hidden" name="rm" value="2">
     <input type="hidden" name="custom" value="' . session_id() . '">
-    <input type="hidden" name="handling_cart" value="' . $this->shipping->plus(new Decimal($this->settings['fee']))->toString() . '">
+    <input type="hidden" name="handling_cart" value="' . 
+        $this->shipping->plus(new Decimal($this->settings['fee']))->toString() . '">
     <input type="hidden" name="cancel_return" value="' . "$shopUrl&xhsCheckout=customersData" . '">
     <input type="hidden" name="notify_url" value="' . "$shopUrl&xhsIpn" . '">
     <input type="hidden" name="return" value="' . "$shopUrl&xhsCheckout=thankYou" . '">';
@@ -80,7 +81,8 @@ class Paypal extends PaymentModule
      <input type="hidden" name="item_number_' . $item['itemCounter'] . '" value="' . $item['itemCounter'] . '">';
         }
         $form .= '
-     <button class="xhsShopButton"><span class="fa fa-paypal fa-fw"></span> ' . $this->language['go_to_paypal'] . '</button>
+     <button class="xhsShopButton"><span class="fa fa-paypal fa-fw"></span> ' . 
+        $this->language['go_to_paypal'] . '</button>
 </form>
 ';
 
