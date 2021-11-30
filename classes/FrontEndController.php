@@ -727,7 +727,7 @@ class FrontEndController extends Controller
         $params = array();
         $url                   = $this->bridge->translateUrl(XHS_URL);
         $params['shopUrl']     = $url;
-        $params['shopHeading'] = $this->bridge->getHeadingOfUrl($this->isShopOn1stPage() ? $this->url : XHS_URL);
+        $params['shopHeading'] = $this->bridge->getHeadingOfUrl($this->settings['url']);
         $params['categories']  = array();
         if ($this->settings['allow_show_all']) {
             $params['categories'][0]['url']  = urlencode($this->viewProvider->labels['all_categories']);
