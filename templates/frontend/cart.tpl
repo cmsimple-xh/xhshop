@@ -83,10 +83,9 @@ foreach($this->cartItems as $product){
 <tr>
 <td colspan="3">
 <form method="get" class="xhsLft">
-<?php if (strlen(XHS_URL) > 0): ?>
-		<input type="hidden" name="selected" value="%XHS_URL%">
-<?php endif; ?>
-<button class="xhsShopButton"><span class="fa fa-arrow-circle-left fa-fw"></span> <?php $this->label('continue_shopping');?></button>
+  <a class="xhsShopButton" href="<?= XHS_URL != ''? '%XHS_URL%' : './'; ?>">
+    <span class="fa fa-arrow-circle-left fa-fw"></span> <?php $this->label('continue_shopping');?>
+  </a>
 </form>
 <?php if($this->canOrder) { ?>
 <form method="get" class="xhsRght">

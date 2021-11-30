@@ -44,7 +44,7 @@
 	background-color: #efefef;
 	color: #333;
 }
-input.xhsShopButton, input[type="submit"].xhsShopButton, button.xhsAddCart, button.xhsShopButton {
+input.xhsShopButton, input[type="submit"].xhsShopButton, button.xhsAddCart, button.xhsShopButton, .xhsMain a.xhsShopButton {
 	background: #f60 !important;
 	border: 0 none !important;
 	color: #fff !important;
@@ -55,7 +55,7 @@ input.xhsShopButton, input[type="submit"].xhsShopButton, button.xhsAddCart, butt
 	font-size: 1em !important;
 	white-space: nowrap !important;
 }
-input.xhsShopButton:hover, button.xhsAddCart:hover, button.xhsShopButton:hover {
+input.xhsShopButton:hover, button.xhsAddCart:hover, button.xhsShopButton:hover, .xhsLft a.xhsShopButton:hover {
 	border: 0 none !important;
 	background-color: #333 !important;
 	background-image: none !important;
