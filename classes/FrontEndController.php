@@ -725,7 +725,7 @@ class FrontEndController extends Controller
             return;
         }
         $params = array();
-        $url                   = $this->isShopOn1stPage() ? '' : $this->bridge->translateUrl(XHS_URL);
+        $url                   = $this->bridge->translateUrl(XHS_URL);
         $params['shopUrl']     = $url;
         $params['shopHeading'] = $this->bridge->getHeadingOfUrl($this->isShopOn1stPage() ? $this->url : XHS_URL);
         $params['categories']  = array();
