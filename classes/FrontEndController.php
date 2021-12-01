@@ -163,6 +163,7 @@ class FrontEndController extends Controller
             $params['cartItems'] = $cartItems;
             $params['cartSum']   = $_SESSION['xhsOrder']->getCartSum();
             $params['count']     = count($cartItems);
+            $params['xhsController']     = $this;
             return $this->render('cartPreview', $params);
         }
         return false;
@@ -268,6 +269,7 @@ class FrontEndController extends Controller
             $params['canOrder']         = $this->canOrder();
             $params['price_info']       = $price_info;
             $params['xhs_url']          = XHS_URL;
+            $params['xhsController']     = $this;
             $params['xhs_checkout_url'] = '?' . XHS_URL . '&xhsCheckout=cart';
             $params['csrf_token_input'] = $this->csrfProtector->tokenInput();
             $this->csrfProtector->store();
@@ -308,6 +310,7 @@ class FrontEndController extends Controller
         $params['xhs_checkout_url'] = '?' . XHS_URL . '&xhsCheckout=checkCustomersData';
         $params['gtcUrl'] = ($this->settings['gtc_page']);
         $params['csrf_token_input'] = $this->csrfProtector->tokenInput();
+        $params['xhsController']     = $this;
         $this->csrfProtector->store();
 
         return $this->render('customersData', $params);
@@ -445,6 +448,7 @@ class FrontEndController extends Controller
             $params['fullRate']    = $this->settings['vat_full'];
             $params['reducedRate'] = $this->settings['vat_reduced'];
         }
+        $params['xhsController']    = $this;
         $params['csrf_token_input'] = $this->csrfProtector->tokenInput();
         $this->csrfProtector->store();
 
@@ -716,6 +720,7 @@ class FrontEndController extends Controller
         $this->csrfProtector->store();
         $this->bridge->setTitle($params['name']);
         $this->bridge->setMeta('description', $params['teaser']);
+        $params['xhsController']    = $this;
         return $this->render('productDetails', $params);
     }
 

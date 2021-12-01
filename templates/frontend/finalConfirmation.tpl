@@ -93,7 +93,7 @@ if ($this->fee->isLessThan(Xhshop\Decimal::zero())){
 <div>
 <div class="xhsLft">	
 <form method="get">
-<?php if (strlen(XHS_URL) > 0): ?>
+<?php if ($this->xhsController->isShopOn1stPage() === false): ?>
 <input type="hidden" name="selected" value="%XHS_URL%">
 <?php endif; ?>
 <input type="hidden" name="xhsCheckout" value="customersData">

@@ -1,5 +1,5 @@
 <?php ?>
-<a class="xhsShopButton" href="<?=strlen(XHS_URL)> 0 ? '?'. XHS_URL : './';?>"><span class="fa fa-list fa-lg fa-fw"></span> <?php echo $this->labels['products_list']; ?></a>
+<a class="xhsShopButton" href="<?=$this->xhsController->isShopOn1stPage() ? './' : '?'. XHS_URL;?>"><span class="fa fa-list fa-lg fa-fw"></span> <?php echo $this->labels['products_list']; ?></a>
 <article class="xhsMain xhsPrdDetails" vocab="http://schema.org/" typeof="Product">
 	<h1 class="xhsProdTitle" property="name">%NAME%</h1>
 	<div class="xhsPrdDetTeaser">%TEASER%</div>
