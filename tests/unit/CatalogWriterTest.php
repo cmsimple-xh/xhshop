@@ -140,7 +140,7 @@ EOT;
 
     private $root;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         global $pth, $plugin_cf;
 
