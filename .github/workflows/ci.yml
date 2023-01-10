@@ -14,8 +14,8 @@ jobs:
           tools: composer
       - name: Install CMSimple_XH
         run: |
-          curl -fsSL -o CMSimple_XH-1.7.4.zip https://github.com/cmsimple-xh/cmsimple-xh/releases/download/1.7.4/CMSimple_XH-1.7.4.zip
-          unzip -q CMSimple_XH-1.7.4.zip
+          curl -fsSL -o CMSimple_XH-1.7.5.zip https://github.com/cmsimple-xh/cmsimple-xh/releases/download/1.7.5/CMSimple_XH-1.7.5.zip
+          unzip -q CMSimple_XH-1.7.5.zip
       - name: Checkout XHShop
         uses: actions/checkout@v2
         with:
