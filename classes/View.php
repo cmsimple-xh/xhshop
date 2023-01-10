@@ -2,6 +2,9 @@
 
 namespace Xhshop;
 
+use AllowDynamicProperties;
+
+#[AllowDynamicProperties]
 abstract class View
 {
     protected $templatePath;
@@ -11,6 +14,7 @@ abstract class View
     public $hints = array();
     public $labels = array();
     protected $shippingCountries = array();
+    public $mail = array();
 
     public function __construct()
     {
