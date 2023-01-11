@@ -1,11 +1,10 @@
 {
     "require-dev": {
         "phing/phing": "2.16.*",
-        "squizlabs/php_codesniffer": "2.9.*",
+        "squizlabs/php_codesniffer": "3.7.*",
         "phpmd/phpmd": "2.6.*",
-        "bartlett/php-compatinfo": "5.2.*",
-        "phpunit/phpunit": "8.5.*",
+        "phpunit/phpunit": "9.5.*",
         "mikey179/vfsstream": "1.6.*",
-        "tedivm/jshrink": "1.2.*"
+        "tedivm/jshrink": "1.4.*"
     }
 }

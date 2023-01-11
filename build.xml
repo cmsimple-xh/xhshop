@@ -32,21 +32,20 @@
     </target>
 
     <target name="sniff" description="checks adherence to coding standards">
-        <phpcodesniffer standard="PSR2" format="full" haltonerror="true">
-            <fileset refid="php-sources"/>
-            <fileset refid="unit-tests"/>
-        </phpcodesniffer>
+        <exec executable="phpcs" passthru="true" checkreturn="true">
+            <arg value="--standard=PSR2"/>
+            <arg line="--runtime-set ignore_warnings_on_exit true"/>
+            <arg file="classes"/>
+            <arg file="admin.php"/>
+            <arg file="index.php"/>
+            <arg file="tests/unit"/>
+        </exec>
     </target>
 
     <target name="mess" description="detects code flaws">
         <phpmd rulesets="codesize,unusedcode">
             <fileset refid="php-sources"/>
          </phpmd>
-    </target>
-
-    <target name="compat"
-            description="checks compatibility with PHP_CompatInfo">
-        <exec command="phpcompatinfo analyser:run --alias current" logoutput="true"/>
     </target>
 
     <target name="unit-tests" description="runs all unit tests">
