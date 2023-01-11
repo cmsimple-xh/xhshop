@@ -98,7 +98,7 @@ class Order
     }
 
     /**
-     * @param ?variant
+     * @param ?string variant
      * @return void
      */
     public function removeItem(Product $product, $variant = null)

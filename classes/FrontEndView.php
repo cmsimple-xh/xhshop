@@ -35,7 +35,7 @@ class FrontEndView extends View
     }
 
     /**
-     * @param string
+     * @param string $field
      * @return string
      */
     protected function contactInput($field)
