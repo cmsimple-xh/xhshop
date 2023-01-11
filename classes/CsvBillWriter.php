@@ -8,10 +8,16 @@ class CsvBillWriter implements BillWriter
 
     private $records = array();
 
+    /** @var ?int */
     private $rowRecordNum;
 
+    /** @var bool */
     private $hasBom;
 
+    /**
+     * @param string $template
+     * @return bool
+     */
     public function loadTemplate($template)
     {
         if (!($stream = fopen($template, 'r'))) {
@@ -28,6 +34,7 @@ class CsvBillWriter implements BillWriter
         return true;
     }
 
+    /** @return string */
     public function replace(array $replacements)
     {
         unset($this->records[$this->rowRecordNum]);
@@ -54,6 +61,10 @@ class CsvBillWriter implements BillWriter
         return $result;
     }
 
+    /**
+     * @param string $name
+     * @return string
+     */
     public function writeProductRow($name, $amount, $price, $sum, $vatRate)
     {
         if (!isset($this->rowRecordNum)) {

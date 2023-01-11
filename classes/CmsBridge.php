@@ -17,11 +17,16 @@ class CmsBridge
         $this->urls = $u;
     }
 
+    /** @return array */
     public function getHeadings()
     {
         return $this->headings;
     }
 
+    /**
+     * @param string $url
+     * @return string
+     */
     public function getHeadingOfUrl($url = '- nope -')
     {
         if (array_search($url, $this->urls) === false) {
@@ -30,26 +35,34 @@ class CmsBridge
         return $this->headings[array_search($url, $this->urls)];
     }
 
+    /** @return array */
     public function getUrls()
     {
         return $this->urls;
     }
 
+    /** @return bool */
     public function pageExists($link = '')
     {
         return in_array($link, $this->urls);
     }
 
+    /**
+     * @param string $url
+     * @return string
+     */
     public function translateUrl($url)
     {
         return '?' . $url;
     }
 
+    /** @return array */
     public function getLevels()
     {
         return $this->levels;
     }
 
+    /** @return void */
     public function initProductDescriptionEditor()
     {
         global $bjs;
@@ -62,18 +75,28 @@ class CmsBridge
                 . '</script>';
     }
 
+    /** @return string */
     public function getCurrentPage()
     {
         $url = explode('&', $_SERVER['QUERY_STRING']);
         return $url[0];
     }
 
+    /**
+     * @param string $strTitle
+     * @return void
+     */
     public function setTitle($strTitle)
     {
         global $title;
         $title = strip_tags($strTitle);
     }
 
+    /**
+     * @param string $strName
+     * @param string $strContent
+     * @return void
+     */
     public function setMeta($strName, $strContent)
     {
         global $tx;

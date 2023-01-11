@@ -40,6 +40,7 @@ class Decimal
      */
     private $value;
 
+    /** @param string $value */
     public function __construct($value)
     {
         if ((is_string($value) || is_int($value))

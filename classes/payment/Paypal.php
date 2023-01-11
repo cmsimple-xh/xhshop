@@ -21,23 +21,27 @@ class Paypal extends PaymentModule
         $this->settings['currency_code'] = $plugin_cf['xhshop']['shop_currency_code'];
     }
 
+    /** @return bool */
     public function wantsCartItems()
     {
         return true;
     }
 
+    /** @return string */
     public function getLabel()
     {
         return '<img src="' . XHS_BASE_PATH . 'images/paypal-logo.png" alt="PayPal">
 ';
     }
 
+    /** @return string */
     public function getName()
     {
         return 'paypal';
     }
 
     /**
+     * @return string
      * @see https://developer.paypal.com/docs/classic/paypal-payments-standard/integration-guide/cart_upload/#implementing-the-cart-upload-command
      */
     public function orderSubmitForm()
@@ -89,6 +93,7 @@ class Paypal extends PaymentModule
         return $form;
     }
 
+    /** @return never */
     public function ipn()
     {
         // read the post from PayPal system and add 'cmd'
@@ -146,6 +151,10 @@ class Paypal extends PaymentModule
         exit;
     }
 
+    /**
+     * @param string $message
+     * @return never
+     */
     private function handshakeFailed($message)
     {
         XH_logMessage('error', 'xhshop', 'ipn', sprintf('Handshake failed! (%s)', $message));
@@ -156,6 +165,7 @@ class Paypal extends PaymentModule
         exit;
     }
 
+    /** @return void */
     private function handleVerifiedIpn()
     {
         global $xhsController;

@@ -6,6 +6,7 @@ use stdClass;
 
 class CatalogWriter
 {
+    /** @var stdClass */
     private $catalog;
 
     public function __construct(stdClass $catalog)
@@ -13,11 +14,13 @@ class CatalogWriter
         $this->catalog = $catalog;
     }
 
+    /** @return bool */
     public function write()
     {
         return XH_writeFile(XHS_CATALOG, $this->emitCatalog()) !== false;
     }
 
+    /** @return string */
     private function emitCatalog()
     {
         $string = "<?php \n";
@@ -50,6 +53,10 @@ class CatalogWriter
         return $string;
     }
 
+    /**
+     * @param string $uid
+     * @return string
+     */
     private function emitProduct($uid, stdClass $product)
     {
         $string = '';
@@ -83,6 +90,10 @@ class CatalogWriter
         return $string;
     }
 
+    /**
+     * @param string $uid
+     * @return string
+     */
     private function emitVariants($uid, stdClass $product)
     {
         $string = '';
@@ -102,6 +113,10 @@ class CatalogWriter
         return $string;
     }
 
+    /**
+     * @param string $uid
+     * @return string
+     */
     private function emitCategories($uid, stdClass $product)
     {
         $string = '';
@@ -121,6 +136,10 @@ class CatalogWriter
         return $string;
     }
 
+    /**
+     * @param string $uid
+     * @return string
+     */
     private function emitProductPages($uid, stdClass $product)
     {
         $string = '';
@@ -140,6 +159,10 @@ class CatalogWriter
         return $string;
     }
 
+    /**
+     * @param string $string
+     * @return string
+     */
     private function cleanString($string)
     {
         $string = str_replace(array('./', '<?php', '<?', '?>'), '', $string);

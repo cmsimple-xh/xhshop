@@ -59,6 +59,7 @@ class Rational
         $this->normalize();
     }
 
+    /** @return void */
     private function normalize()
     {
         if (bccomp($this->denominator, '0', 0) < 0) {
@@ -74,6 +75,11 @@ class Rational
         $this->denominator = bcdiv($this->denominator, $gcd, 0);
     }
 
+    /**
+     * @param string $a
+     * @param string $b
+     * @return string
+     */
     private function gcd($a, $b)
     {
         if (bccomp($b, '0', 0) === 0) {
@@ -121,6 +127,7 @@ class Rational
         return $this->times(new Rational($other->denominator, $other->numerator));
     }
 
+    /** @return string */
     public function toString()
     {
         return "{$this->numerator}/{$this->denominator}";

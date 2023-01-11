@@ -4,6 +4,10 @@ namespace Xhshop;
 
 class BackEndController extends Controller
 {
+    /**
+     * @param ?string $request
+     * @return string
+     */
     public function handleRequest($request = null)
     {
         global $su;
@@ -24,6 +28,10 @@ class BackEndController extends Controller
         return $html;
     }
 
+    /**
+     * @param true $collectAll
+     * @return string|never
+     */
     protected function productList($collectAll = true)
     {
         if (isset($_POST['xhsProductSwapID']) && isset($_POST['xhsProductID'])) {
@@ -73,6 +81,10 @@ class BackEndController extends Controller
         return $this->render('catalog', $params);
     }
 
+    /**
+     * @param ?string $id
+     * @return string
+     */
     private function editProduct($id = null)
     {
         if (!isset($id)) {
@@ -158,6 +170,7 @@ class BackEndController extends Controller
     }
 
     /**
+     * @return int|false
      * @SuppressWarnings(PHPMD.UnusedPrivateMethod)
      */
     private function deleteProduct()
@@ -170,6 +183,7 @@ class BackEndController extends Controller
         return $this->productList();
     }
 
+    /** @return string */
     private function productCategories()
     {
         $params['categories'] =  parent::categories();
@@ -182,6 +196,7 @@ class BackEndController extends Controller
     }
 
     /**
+     * @return string
      * @SuppressWarnings(PHPMD.UnusedPrivateMethod)
      */
     private function saveProductCategories()
@@ -219,6 +234,7 @@ class BackEndController extends Controller
     }
 
     /**
+     * @return string
      * @SuppressWarnings(PHPMD.UnusedPrivateMethod)
      */
     private function saveProduct()
@@ -327,6 +343,7 @@ class BackEndController extends Controller
     }
 
     /**
+     * @return string
      * @SuppressWarnings(PHPMD.UnusedPrivateMethod)
      */
     private function helpAbout()
@@ -336,6 +353,7 @@ class BackEndController extends Controller
         return $this->render('help_about', $params);
     }
 
+    /** @return string */
     protected function syscheck()
     {
         $service = new SystemCheckService;

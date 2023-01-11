@@ -4,8 +4,11 @@ namespace Xhshop;
 
 class Product
 {
+    /** @var array */
     private $names;
+    /** @var array */
     private $descriptions;
+    /** @var array */
     private $teasers;
 
     /**
@@ -13,11 +16,17 @@ class Product
      */
     private $price;
 
+    /** @var array[] */
     private $productPages;
+    /** @var string */
     private $previewPicture;
+    /** @var string */
     private $vat;
+    /** @var string */
     private $separator;
+    /** @var array */
     private $categories;
+    /** @var int */
     private $stock_on_hand;
 
     /**
@@ -25,13 +34,25 @@ class Product
      */
     private $weight;
 
+    /** @var array */
     private $variants;
+    /** @var string */
     private $uid;
+    /** @var int */
     private $sortIndex;
+    /** @var string */
     private $image;
+    /** @var string */
     private $imageFolder;
+    /** @var string */
     private $previewFolder;
 
+    /**
+     * @param int $index
+     * @param string $nominalsep
+     * @param string $actualsep
+     * @return self
+     */
     public static function createFromRecord(array $record, $index, $nominalsep, $actualsep)
     {
         $result = new self;
@@ -92,17 +113,21 @@ class Product
 
     /**
      * For serialization only!
+     *
+     * @return \stdClass
      */
     public function getInternalState()
     {
         return (object) get_object_vars($this);
     }
 
+    /** @return string */
     public function getUid()
     {
         return $this->uid;
     }
 
+    /** @return int */
     public function getSortIndex()
     {
         return $this->sortIndex;
@@ -127,6 +152,11 @@ class Product
         return $this->price;
     }
 
+    /**
+     * @param string $language
+     * @param ?string $variant
+     * @return string
+     */
     public function getName($language = XHS_LANGUAGE, $variant = null)
     {
         $variantName = '';
@@ -141,6 +171,11 @@ class Product
         return $this->names[$language]. $variantName;
     }
 
+    /**
+     * @param string|int $variant
+     * @return string|void
+     * @todo $variant default is likely supposed to be "" or maybe null
+     */
     public function getVariantName($variant = 0)
     {
         if (array_key_exists($variant, $this->variants[XHS_LANGUAGE])) {
@@ -148,16 +183,28 @@ class Product
         }
     }
 
+    /**
+     * @param string $language
+     * @return string
+     */
     public function getDescription($language = XHS_LANGUAGE)
     {
         return isset($this->descriptions[$language]) ? $this->descriptions[$language] : '' ;
     }
 
+    /**
+     * @param string $language
+     * @return string
+     */
     public function getTeaser($language = XHS_LANGUAGE)
     {
         return isset($this->teasers[$language]) ? $this->teasers[$language] : '' ;
     }
 
+    /**
+     * @param string $language
+     * @return string
+     */
     public function getDetailsLink($language = XHS_LANGUAGE)
     {
         if (isset($this->descriptions[$language]) && trim($this->descriptions[$language]) != '') {
@@ -166,6 +213,10 @@ class Product
         return $this->getPage($language);
     }
 
+    /**
+     * @param string $language
+     * @return string|false
+     */
     public function getPage($language = XHS_LANGUAGE)
     {
         if (isset($this->productPages[$language][0]) && trim($this->productPages[$language][0]) <> '') {
@@ -174,7 +225,7 @@ class Product
         return false;
     }
 
-
+    /** @return string */
     public function getPreviewPictureName()
     {
         if ((isset($this->previewPicture))) {
@@ -183,6 +234,7 @@ class Product
         return '';
     }
 
+    /** @return string */
     public function getPreviewPicturePath()
     {
         if (!empty($this->previewPicture)) {
@@ -191,11 +243,13 @@ class Product
         return '';
     }
 
+    /** @return string */
     public function getVat()
     {
         return $this->vat;
     }
 
+    /** @return string */
     public function getImageName()
     {
         if (isset($this->image)) {
@@ -204,6 +258,7 @@ class Product
         return '';
     }
 
+    /** @return string */
     public function getImagePath()
     {
         if (!empty($this->image)) {
@@ -212,16 +267,28 @@ class Product
         return '';
     }
 
+    /**
+     * @param string $language
+     * @return array
+     */
     public function getVariants($language = XHS_LANGUAGE)
     {
         return isset($this->variants[$language]) ? $this->variants[$language] : array();
     }
 
+    /**
+     * @param string $language
+     * @return array
+     */
     public function getCategories($language = XHS_LANGUAGE)
     {
         return isset($this->categories[$language]) ? $this->categories[$language] : array();
     }
 
+    /**
+     * @param string $language
+     * @return array
+     */
     public function getProductPages($language = XHS_LANGUAGE)
     {
         if (isset($this->productPages[$language])) {
@@ -230,6 +297,7 @@ class Product
         return array();
     }
 
+    /** @return bool|null */
     public function hasVariants()
     {
         return (isset($this->variants[XHS_LANGUAGE]) && is_array($this->variants[XHS_LANGUAGE]))
@@ -237,51 +305,89 @@ class Product
             : null;
     }
 
+    /**
+     * @param int $value
+     * @return void
+     */
     public function setSortIndex($value)
     {
         $this->sortIndex = $value;
     }
 
+    /**
+     * @param string $value
+     * @return void
+     */
     public function setSeparator($value)
     {
         $this->separator = $value;
     }
 
+    /**
+     * @param string $name
+     * @param string $language
+     * @return void
+     */
     public function setName($name = 'No Name!', $language = XHS_LANGUAGE)
     {
         $this->names[$language] = $name;
     }
 
+    /**
+     * @param string $description
+     * @param string $language
+     * @return void
+     */
     public function setDescription($description = '', $language = XHS_LANGUAGE)
     {
         $this->descriptions[$language] = $description;
     }
 
+    /**
+     * @param string $description
+     * @param string $language
+     * @return void
+     */
     public function setTeaser($description = '', $language = XHS_LANGUAGE)
     {
         $this->teasers[$language] = $description;
     }
 
+    /** @return void */
     public function setPrice(Decimal $price)
     {
         $this->price = $price;
     }
 
+    /** @return void */
     public function setWeight(Decimal $weight)
     {
         $this->weight = $weight;
     }
 
+    /**
+     * @param string|int $quantity
+     * @return void
+     */
     public function setStockOnHand($quantity = 1)
     {
         $this->stock_on_hand = (int)$quantity;
     }
 
+    /**
+     * @param string $rate
+     * @return void
+     */
     public function setVat($rate = 'full')
     {
         $this->vat = (string)$rate;
     }
 
+    /**
+     * @param array $variants
+     * @param string $language
+     * @return void
+     */
     public function setVariants($variants = array(), $language = XHS_LANGUAGE)
     {
         if (is_array($variants)) {
@@ -296,31 +402,53 @@ class Product
         trigger_error('Product:setVariants() expects an array as first argument.');
     }
 
+    /**
+     * @param string $language
+     * @return void
+     */
     public function setProductPages(array $pages = array(), $language = XHS_LANGUAGE)
     {
         $this->productPages[$language] = $pages;
     }
 
+    /**
+     * @param string $language
+     * @return void
+     */
     public function setCategories(array $categories = array(), $language = XHS_LANGUAGE)
     {
         $this->categories[$language] = $categories;
     }
 
+    /**
+     * @param string $key
+     * @param string $value
+     * @return void
+     */
     public function addCategory($key, $value)
     {
         $this->categories[XHS_LANGUAGE][$key] = $value;
     }
 
+    /**
+     * @param string $pic
+     * @return void
+     */
     public function setPreviewPic($pic = '')
     {
         $this->previewPicture = (string)$pic;
     }
 
+    /**
+     * @param string $pic
+     * @return void
+     */
     public function setImage($pic = '')
     {
         $this->image = (string)$pic;
     }
 
+    /** @return bool */
     public function isAvailable()
     {
         return isset($this->stock_on_hand) ? $this->stock_on_hand > 0 : true;

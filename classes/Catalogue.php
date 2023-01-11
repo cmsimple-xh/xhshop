@@ -4,14 +4,26 @@ namespace Xhshop;
 
 class Catalogue
 {
+    /** @var array */
     private $products;
+    /** @var string */
     private $separator;
+    /** @var array */
     private $categories;
+    /** @var array */
     private $category_for_the_left_overs;
+    /** @var array */
     private $default_category;
+    /** @var string */
     private $version;
+    /** @var bool */
     private $allowShowAll;
 
+    /**
+     * @param string $separator
+     * @param string $version
+     * @param bool $allowShowAll
+     */
     public function __construct($separator, $version, $allowShowAll)
     {
         $this->version = $version;
@@ -23,6 +35,7 @@ class Catalogue
         $this->loadArray();
     }
 
+    /** @return void */
     private function loadArray()
     {
         $separator = '/';
@@ -51,6 +64,7 @@ class Catalogue
         }
     }
 
+    /** @return void */
     public function save()
     {
         $sortOrder = array();
@@ -87,6 +101,11 @@ class Catalogue
         return;
     }
 
+    /**
+     * @param ?string $name
+     * @param ?string $index
+     * @return void
+     */
     public function renameCategory($name = null, $index = null)
     {
         if (!isset($index) || !isset($name)) {
@@ -107,6 +126,10 @@ class Catalogue
         $this->save();
     }
 
+    /**
+     * @param ?string $index
+     * @return void
+     */
     public function deleteCategory($index = null)
     {
         if (!isset($index)) {
@@ -119,23 +142,33 @@ class Catalogue
         $this->save();
     }
 
+    /**
+     * @param string $name
+     * @return void
+     */
     public function setLeftOverCategory($name)
     {
         $this->category_for_the_left_overs[XHS_LANGUAGE] = $name;
         $this->save();
     }
 
+    /** @return string */
     public function getDefaultCategory()
     {
         return $this->default_category[XHS_LANGUAGE];
     }
 
+    /**
+     * @param string $name
+     * @return void
+     */
     public function setDefaultCategory($name)
     {
         $this->default_category[XHS_LANGUAGE] = $name;
         $this->save();
     }
 
+    /** @return bool */
     public function hasUncategorizedProducts()
     {
         foreach ($this->products as $product) {
@@ -146,6 +179,7 @@ class Catalogue
         return false;
     }
 
+    /** @return array */
     private function getUncategorizedProducts()
     {
         $products = array();
@@ -157,6 +191,7 @@ class Catalogue
         return $products;
     }
 
+    /** @return string */
     public function getFallbackCategory()
     {
         return isset($this->category_for_the_left_overs[XHS_LANGUAGE]) ?
@@ -164,6 +199,10 @@ class Catalogue
             'N.N.';
     }
 
+    /**
+     * @param ?string $category
+     * @return bool
+     */
     public function isAnyProductAvailable($category = null)
     {
         foreach ($this->getProducts($category) as $product) {
@@ -174,6 +213,10 @@ class Catalogue
         return false;
     }
 
+    /**
+     * @param ?string $category
+     * @return array
+     */
     public function getProducts($category = null)
     {
         if (isset($category)) {
@@ -194,6 +237,7 @@ class Catalogue
         return $this->products;
     }
 
+    /** @return void */
     public function swapSortIndex(Product $productA, Product $productB)
     {
         $swap = $productA->getSortIndex();
@@ -203,6 +247,10 @@ class Catalogue
         $this->save();
     }
 
+    /**
+     * @param string $id
+     * @return Product|false
+     */
     public function getProduct($id)
     {
         if (!key_exists($id, $this->products)) {
@@ -213,11 +261,16 @@ class Catalogue
         }
     }
 
+    /** @return string */
     public function getLastProductId()
     {
         return end($this->products)->getUid();
     }
 
+    /**
+     * @param string $language
+     * @return array|void
+     */
     public function getCategories($language = XHS_LANGUAGE)
     {
         if (!isset($this->categories[$language])) {
@@ -227,6 +280,11 @@ class Catalogue
         return $this->categories[$language];
     }
 
+    /**
+     * @param string $direction
+     * @param ?string $index
+     * @return void
+     */
     public function moveCategory($direction = null, $index = null)
     {
         if (!isset($index)) {
@@ -248,6 +306,10 @@ class Catalogue
         $this->save();
     }
 
+    /**
+     * @param string $name
+     * @return void
+     */
     public function addCategory($name = null)
     {
         if (!isset($name)) {
@@ -257,6 +319,7 @@ class Catalogue
         $this->save();
     }
 
+    /** @return void */
     public function addProduct(Product $product)
     {
         $product->setSortIndex(PHP_INT_MAX);
@@ -265,9 +328,8 @@ class Catalogue
     }
 
     /**
-     *
-     * @param <type> $uid
-     * @return <type>
+     * @param ?string $uid
+     * @return void
      */
     public function updateProduct($uid = null)
     {
@@ -278,6 +340,10 @@ class Catalogue
         $this->save();
     }
 
+    /**
+     * @param ?string $id
+     * @return void|false
+     */
     public function deleteProduct($id = null)
     {
         if (!key_exists($id, $this->products)) {

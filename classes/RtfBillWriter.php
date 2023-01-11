@@ -4,15 +4,22 @@ namespace Xhshop;
 
 class RtfBillWriter implements BillWriter
 {
+    /** @var string */
     private $template;
+    /** @var string */
     private $rowTemplate;
 
+    /**
+     * @param string $template
+     * @return bool
+     */
     public function loadTemplate($template)
     {
         $this->template = XH_readFile($template);
         return $this->template !== false;
     }
 
+    /** @return string */
     public function replace(array $replacements)
     {
         foreach ($replacements as $search => $replace) {
@@ -30,6 +37,9 @@ class RtfBillWriter implements BillWriter
      * code pages *all* non ASCII characters are converted to Unicode escapes
      * without alternative representation. To avoid issues with templates
      * defining a \ucN, all Unicode escapes are grouped in an {\uc0}.
+     *
+     * @param string $text
+     * @return string
      */
     private function convertToRtf($text)
     {
@@ -61,6 +71,14 @@ class RtfBillWriter implements BillWriter
         return ob_get_clean();
     }
 
+    /**
+     * @param string $name
+     * @param string $amount
+     * @param string $price
+     * @param string $sum
+     * @param string $vatRate
+     * @return string
+     */
     public function writeProductRow($name, $amount, $price, $sum, $vatRate)
     {
         if (!isset($this->rowTemplate)) {

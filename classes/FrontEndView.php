@@ -4,6 +4,7 @@ namespace Xhshop;
 
 class FrontEndView extends View
 {
+    /** @var array */
     protected $requiredCustomerData;
 
     public function __construct()
@@ -13,11 +14,13 @@ class FrontEndView extends View
         $this->themePath = XHS_BASE_PATH . 'theme/frontend/';
     }
 
+    /** @return void */
     public function setRequiredCustomerData(array $value)
     {
         $this->requiredCustomerData = $value;
     }
 
+    /** @return string */
     protected function paymentHint()
     {
         if (count($this->payments) == 1) {
@@ -31,6 +34,10 @@ class FrontEndView extends View
         return $hint;
     }
 
+    /**
+     * @param string
+     * @return string
+     */
     protected function contactInput($field)
     {
         $html = '';
@@ -74,6 +81,7 @@ class FrontEndView extends View
         return $html;
     }
 
+    /** @return string */
     protected function salutationSelectbox()
     {
         $isRequired = in_array('salutation', $this->requiredCustomerData);
@@ -108,6 +116,7 @@ class FrontEndView extends View
         return $html;
     }
 
+    /** @return string */
     protected function countriesSelectbox()
     {
         $isRequired = in_array('country', $this->requiredCustomerData);
@@ -143,21 +152,26 @@ class FrontEndView extends View
     }
 
     /**
+     * @return string
      *
-     * @return <string>
-     *
-     * TODO: leave url preparation to cms_bridge
+     * @todo leave url preparation to cms_bridge
      */
     protected function cosHint()
     {
         return $this->linkedPageHint($this->gtcUrl, $this->hints['gtc_confirmation']);
     }
 
+    /** @return string */
     protected function shippingCostsHint()
     {
         return $this->linkedPageHint($this->shippingCostsUrl, $this->hints['price_info_shipping']);
     }
 
+    /**
+     * @param string $url
+     * @param string $text
+     * @return string
+     */
     public function linkedPageHint($url, $text)
     {
         if ($url) {

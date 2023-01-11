@@ -25,6 +25,7 @@ if (function_exists('XH_wantsPluginAdministration') && XH_wantsPluginAdministrat
     }
 }
 
+/** @return array */
 function xhshop_pluginMenu()
 {
     global $su, $plugin_cf, $plugin_tx;

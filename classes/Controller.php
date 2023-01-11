@@ -7,13 +7,19 @@ use XH_CSRFProtection;
 abstract class Controller
 {
     protected $viewProvider;
+    /** @var Catalogue */
     protected $catalog;
+    /** @var array */
     public $settings;
     protected $appName = 'XH-Shop';
     protected $version = '@VERSION@';
+    /** @var array */
     protected $payments;
+    /** @var array */
     protected $paymentModules;
+    /** @var CmsBridge */
     protected $bridge;
+    /** @var bool */
     protected $shopIsOn1stPage;
 
     /**
@@ -96,6 +102,7 @@ abstract class Controller
         return false;
     }
 
+    /** @return array */
     protected function getShippingCountries()
     {
         global $plugin_tx;
@@ -112,6 +119,10 @@ abstract class Controller
         return $countries;
     }
 
+    /**
+     * @param string $template
+     * @return string
+     */
     protected function render($template, array $params = null)
     {
         if (!($this->viewProvider instanceof View)) {
@@ -126,11 +137,13 @@ abstract class Controller
         return $this->viewProvider->loadTemplate($template);
     }
 
+    /** @return array */
     protected function categories()
     {
         return $this->catalog->getCategories();
     }
 
+    /** @return array */
     private function categoryOptions()
     {
         $options = array();
@@ -157,6 +170,11 @@ abstract class Controller
         return $options;
     }
 
+    /**
+     * @param ?string $category
+     * @param bool $collectAll
+     * @return array
+     */
     private function products($category = null, $collectAll = false)
     {
         if ($category !== null) {
@@ -212,6 +230,7 @@ abstract class Controller
         return $products;
     }
 
+    /** @return array */
     public function getPagesProducts()
     {
         $url = $this->bridge->getCurrentPage();
@@ -231,6 +250,10 @@ abstract class Controller
         return $products;
     }
 
+    /**
+     * @param ?string $request
+     * @return string|void
+     */
     public function handleRequest($request = null)
     {
         if (!$request) {
@@ -242,6 +265,10 @@ abstract class Controller
         return $this->$request();
     }
 
+    /**
+     * @param bool $collectAll
+     * @return array|string
+     */
     protected function productList($collectAll = true)
     {
         $category = $this->catalog->getDefaultCategory();
@@ -272,6 +299,10 @@ abstract class Controller
         return $params;
     }
 
+    /**
+     * @param string $needle
+     * @return array|string
+     */
     protected function productSearchList($needle = '')
     {
         $showCats = true;
@@ -309,6 +340,11 @@ abstract class Controller
         return $params;
     }
 
+    /**
+     * @param string $string
+     * @param bool $writeEntities
+     * @return string
+     */
     protected function tidyPostString($string, $writeEntities = true)
     {
         $string = str_replace(array('./', '<?php', '<?', '?>'), '', $string);
@@ -319,6 +355,7 @@ abstract class Controller
     }
 
     /**
+     * @return true
      * @SuppressWarnings(PHPMD.UnusedPrivateMethod)
      */
     private function addPaymentModule(PaymentModule $module)
@@ -328,6 +365,10 @@ abstract class Controller
         return true;
     }
 
+    /**
+     * @param string $name
+     * @return bool
+     */
     protected function loadPaymentModule($name)
     {
         $classname = '\\Xhshop\\Payment\\' . str_replace(' ', '', ucwords(str_replace('_', ' ', $name)));
@@ -338,6 +379,10 @@ abstract class Controller
         return false;
     }
 
+    /**
+     * @param ?string $directory
+     * @return array
+     */
     protected function getImageFiles($directory = null)
     {
         if ($directory === null) {
@@ -360,6 +405,10 @@ abstract class Controller
         return $files;
     }
 
+    /**
+     * @param string $file
+     * @return bool
+     */
     protected function isAllowedImageFile($file = '')
     {
         $extensions = array('jpeg', 'jpg', 'gif', 'png', 'svg', 'tif', 'tiff');
@@ -373,6 +422,7 @@ abstract class Controller
         return false;
     }
 
+    /** @return array */
     private function getPaymentModules()
     {
         global $plugin_cf;
@@ -384,12 +434,16 @@ abstract class Controller
     }
 
     /**
+     * @param int $level
+     * @return string
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function shopToc($level = 6)
     {
         return '';
     }
+
+    /** @return bool */
     public function isShopOn1stPage()
     {
         return $this->shopIsOn1stPage;

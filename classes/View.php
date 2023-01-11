@@ -7,8 +7,11 @@ use AllowDynamicProperties;
 #[AllowDynamicProperties]
 abstract class View
 {
+    /** @var string */
     protected $templatePath;
+    /** @var ?string */
     protected $themePath = null;
+    /** @var string */
     private $currency;
     private $params = array();
     public $hints = array();
@@ -34,22 +37,33 @@ abstract class View
         }
     }
 
+    /** @return void */
     public function setShippingCountries(array $countries)
     {
         $this->shippingCountries = $countries;
     }
 
+    /**
+     * @param string $currency
+     * @return void
+     */
     public function setCurrency($currency)
     {
         $this->currency = $currency;
     }
 
+    /** @return void */
     public function resetParams()
     {
         $this->params = array();
         unset($this->variants);
     }
 
+    /**
+     * @param string $key
+     * @param string $param
+     * @return void
+     */
     public function assignParam($key, $param)
     {
         if (is_string($param)) {
@@ -58,6 +72,10 @@ abstract class View
         $this->$key = $param;
     }
 
+    /**
+     * @param string $template
+     * @return string
+     */
     public function loadTemplate($template)
     {
         $template = str_replace(array('.',  '\\', '<', ' '), '', $template);
@@ -80,6 +98,10 @@ abstract class View
         return $html;
     }
 
+    /**
+     * @param array $params
+     * @return string
+     */
     protected function injectParams($params)
     {
         if (is_string($params)) {
@@ -92,6 +114,13 @@ abstract class View
         return $html;
     }
 
+    /**
+     * @param ?string $name
+     * @param string $value
+     * @param ?string $label
+     * @param ?array $params
+     * @return string
+     */
     protected function radioNameValueLabel($name = null, $value = '', $label = null, $params = null)
     {
         $html = '';
@@ -113,6 +142,12 @@ abstract class View
         return $html;
     }
 
+    /**
+     * @param string $name
+     * @param string $value
+     * @param array $params
+     * @return string
+     */
     protected function textInputNameValueLabel($name = '', $value = '', $params = array())
     {
         $html = '<input name="'.$name.'" value="'. $value . '"';
@@ -124,6 +159,11 @@ abstract class View
         return $html;
     }
 
+    /**
+     * @param string $name
+     * @param array $params
+     * @return string
+     */
     protected function floatInputNameValueLabel($name, Decimal $value, $params = null)
     {
         if (is_array($params)) {
@@ -142,6 +182,11 @@ abstract class View
         return $this->textInputNameValueLabel($name, $value->toString(), $params);
     }
 
+    /**
+     * @param string $name
+     * @param array $params
+     * @return string
+     */
     protected function moneyInputNameValueLabel($name, Decimal $value, $params = array())
     {
         return $this->floatinputNameValueLabel($name, $value, $params) . " ". $this->currency;
@@ -183,6 +228,10 @@ abstract class View
         return str_replace('.', $decsep, rtrim(rtrim($value->toString(), '0'), '.')) . ' %';
     }
 
+    /**
+     * @param string $key
+     * @return void
+     */
     protected function hint($key)
     {
         if (isset($this->hints[$key])) {

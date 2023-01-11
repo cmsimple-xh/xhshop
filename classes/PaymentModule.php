@@ -36,7 +36,7 @@ abstract class PaymentModule
     private $shopCurrency; // unused?
 
     /**
-     * @Decimal
+     * @var Decimal
      */
     protected $shipping;
 
@@ -47,14 +47,14 @@ abstract class PaymentModule
         $this->shipping = Decimal::zero();
     }
 
+    /** @return string */
     public function getLabel()
     {
         return isset($this->language['label']) ? $this->language['label'] : '* ' . $this->getName() . ' *';
     }
 
     /**
-     *
-     * @return <string>
+     * @return string
      *
      * Do not overwrite this in subclasses - or at least return a short <string> that can be used in text emails
      */
@@ -80,21 +80,25 @@ abstract class PaymentModule
         return isset($this->settings['fee']) ? new Decimal($this->settings['fee']) : Decimal::zero();
     }
 
+    /** @return string|false */
     public function orderSubmitForm()
     {
         return false;
     }
 
+    /** @todo isn't this supposed to return false? */
     public function wantsCartItems()
     {
         false;
     }
 
+    /** @return void */
     public function setCartItems(array $cartItems)
     {
         $this->cartItems = $cartItems;
     }
 
+    /** @return false */
     protected function loadLanguage()
     {
         global $plugin_tx;
@@ -110,6 +114,7 @@ abstract class PaymentModule
         return false;
     }
 
+    /** @return false */
     protected function loadSettings()
     {
         global $plugin_cf;
@@ -125,11 +130,16 @@ abstract class PaymentModule
         return false;
     }
 
+    /**
+     * @param ?string $currency
+     * @return void
+     */
     public function setShopCurrency($currency = null)
     {
         $this->shopCurrency = $currency;
     }
 
+    /** @return void */
     public function setShipping(Decimal $shipping)
     {
         $this->shipping = $shipping;

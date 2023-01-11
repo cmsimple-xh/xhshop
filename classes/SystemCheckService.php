@@ -35,7 +35,7 @@ class SystemCheckService
     }
 
     /**
-     * @return object[]
+     * @return \stdClass[]
      */
     public function getChecks()
     {
@@ -75,7 +75,7 @@ class SystemCheckService
 
     /**
      * @param string $version
-     * @return object
+     * @return \stdClass
      */
     private function checkPhpVersion($version)
     {
@@ -88,7 +88,7 @@ class SystemCheckService
     /**
      * @param string $extension
      * @param bool $isMandatory
-     * @return object
+     * @return \stdClass
      */
     private function checkExtension($extension, $isMandatory = true)
     {
@@ -100,7 +100,7 @@ class SystemCheckService
 
     /**
      * @param string $version
-     * @return object
+     * @return \stdClass
      */
     private function checkXhVersion($version)
     {
@@ -112,7 +112,7 @@ class SystemCheckService
 
     /**
      * @param string $plugin
-     * @return object
+     * @return \stdClass
      */
     private function checkPlugin($plugin)
     {
@@ -124,7 +124,7 @@ class SystemCheckService
 
     /**
      * @param string $folder
-     * @return object
+     * @return \stdClass
      */
     private function checkWritability($folder)
     {
@@ -134,6 +134,7 @@ class SystemCheckService
         return (object) compact('state', 'label', 'stateLabel');
     }
 
+    /** @return \stdClass */
     private function checkEmailAddress()
     {
         $state = (trim($this->config['contact_order_email']) !== '') ? 'success' : 'fail';
@@ -145,7 +146,7 @@ class SystemCheckService
     /**
      * @param string $pageUrl
      * @param bool $isMandatory
-     * @return object
+     * @return \stdClass
      */
     private function checkPageExists($pageUrl, $isMandatory = true)
     {
@@ -159,8 +160,8 @@ class SystemCheckService
     }
 
     /**
-     * @param string
-     * @return object
+     * @param string $key
+     * @return \stdClass
      */
     private function checkDecimal($key)
     {
@@ -171,7 +172,7 @@ class SystemCheckService
     }
 
     /**
-     * @return object
+     * @return \stdClass
      */
     private function checkForwardingExpenses()
     {
@@ -182,7 +183,7 @@ class SystemCheckService
     }
 
     /**
-     * @return object
+     * @return \stdClass
      */
     private function checkShippingCountries()
     {
@@ -207,6 +208,7 @@ class SystemCheckService
         return $valid;
     }
 
+    /** @return bool */
     private function areForwardingExpensesValid()
     {
         $lines = preg_split('/\\r\\n|\\r|\\n/', trim($this->config['shipping_forwarding_expenses']));
@@ -236,6 +238,7 @@ class SystemCheckService
     }
 
     /**
+     * @param string $grades
      * @return bool
      */
     private function isForwardingExpensesLineValid($grades)
@@ -275,7 +278,7 @@ class SystemCheckService
     }
 
     /**
-     * @return object
+     * @return \stdClass
      */
     private function checkCatalog()
     {

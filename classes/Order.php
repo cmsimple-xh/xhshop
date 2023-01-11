@@ -69,6 +69,12 @@ class Order
         $this->fee = Decimal::zero();
     }
 
+    /**
+     * @param string $amount
+     * @param ?string $variant
+     * @param bool $replace
+     * @return void
+     */
     public function addItem(Product $product, $amount, $variant = null, $replace = true)
     {
         $index = $product->getUid();
@@ -91,6 +97,10 @@ class Order
         $this->refresh();
     }
 
+    /**
+     * @param ?variant
+     * @return void
+     */
     public function removeItem(Product $product, $variant = null)
     {
         $index = $product->getUid();
@@ -101,6 +111,7 @@ class Order
         $this->refresh();
     }
 
+    /** @return void */
     private function refresh()
     {
         $this->cartGross = Decimal::zero();
@@ -122,6 +133,7 @@ class Order
         $this->calculateTaxes();
     }
 
+    /** @return void */
     private function calculateTaxes()
     {
         if (!$this->cartGross->isGreaterThan(Decimal::zero())) {
@@ -153,16 +165,19 @@ class Order
         return $value->minus($net)->toDecimal();
     }
 
+    /** @return bool */
     public function hasItems()
     {
         return count($this->items) > 0;
     }
 
+    /** @return array */
     public function getItems()
     {
         return $this->items;
     }
 
+    /** @return void */
     public function setShipping(Decimal $shipping)
     {
         $this->shipping = $shipping;
@@ -177,6 +192,7 @@ class Order
         return $this->shipping;
     }
 
+    /** @return void */
     public function setFee(Decimal $fee)
     {
         $this->fee = $fee;

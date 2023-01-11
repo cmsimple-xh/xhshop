@@ -11,6 +11,12 @@ class BackEndView extends View
         $this->themePath = XHS_BASE_PATH . 'theme/backend/';
     }
 
+    /**
+     * @param string $path
+     * @param string $selectedPic
+     * @param string $element
+     * @return string
+     */
     public function picSelector($path, array $imageArray, $selectedPic, $element)
     {
         if (empty($imageArray)) {
@@ -28,6 +34,7 @@ class BackEndView extends View
         return $html;
     }
 
+    /** @return string */
     protected function productPageSelector()
     {
         $html =  '<select name="xhsProductPages[]" multiple size="5">';
@@ -44,6 +51,7 @@ class BackEndView extends View
         return $html;
     }
 
+    /** @return string|void */
     protected function productCategorySelector()
     {
         if (count($this->categories) === 0) {
@@ -58,6 +66,7 @@ class BackEndView extends View
         return $html;
     }
 
+    /** @return string */
     protected function productErrors(array $errors = array())
     {
         if (count($errors) === 0) {
@@ -71,6 +80,7 @@ class BackEndView extends View
         return $html;
     }
 
+    /** @return string */
     protected function productHints(array $caveats = array())
     {
         if (count($caveats) === 0) {

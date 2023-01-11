@@ -100,6 +100,7 @@ if ($f === 'xh_loggedout') {
     }
 }
 
+/** @return string */
 function display_shop()
 {
     global $xhsController, $su, $sn, $plugin_tx;

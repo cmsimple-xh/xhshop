@@ -6,12 +6,19 @@ use PHPMailer\PHPMailer\PHPMailer;
 
 class EmlBillWriter implements BillWriter
 {
+    /** @var string */
     private $template;
 
+    /** @var string */
     private $subject;
 
+    /** @var string */
     private $rowTemplate;
 
+    /**
+     * @param string $template
+     * @return bool
+     */
     public function loadTemplate($template)
     {
         $template = XH_readFile($template);
@@ -19,6 +26,7 @@ class EmlBillWriter implements BillWriter
         return $template !== false;
     }
 
+    /** @return string */
     public function replace(array $replacements)
     {
         global $sl;
@@ -44,6 +52,14 @@ class EmlBillWriter implements BillWriter
         return $mail->getSentMIMEMessage();
     }
 
+    /**
+     * @param string $name
+     * @param string $amount
+     * @param string $price
+     * @param string $sum
+     * @param string $vatRate
+     * @return string
+     */
     public function writeProductRow($name, $amount, $price, $sum, $vatRate)
     {
         if (!isset($this->rowTemplate)) {

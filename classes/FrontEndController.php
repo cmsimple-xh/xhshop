@@ -20,6 +20,7 @@ class FrontEndController extends Controller
         $this->viewProvider->setRequiredCustomerData($this->requiredCustomerData);
     }
 
+    /** @return void */
     private function splitForwardingExpenses()
     {
         $this->settings['weightRange'] = array();
@@ -60,6 +61,7 @@ class FrontEndController extends Controller
         return $info;
     }
 
+    /** @return string */
     public function addToCartButton(Product $product)
     {
         $params = array('productName' => $product->getName(XHS_LANGUAGE),
@@ -77,6 +79,7 @@ class FrontEndController extends Controller
         return $this->render('addToCartButton', $params);
     }
 
+    /** @return never */
     public function updateCart()
     {
         $this->csrfProtector->check();
@@ -154,6 +157,7 @@ class FrontEndController extends Controller
         return Decimal::zero();
     }
 
+    /** @return string|false */
     public function cartPreview()
     {
         $cartItems = $this->collectCartItems();
@@ -229,6 +233,7 @@ class FrontEndController extends Controller
         return false;
     }
 
+    /** @return string|false */
     private function cart()
     {
         global $plugin_tx;
@@ -279,6 +284,7 @@ class FrontEndController extends Controller
         return false;
     }
 
+    /** @return bool */
     private function canOrder()
     {
         if (!isset($_SESSION['xhsOrder'])) {
@@ -289,6 +295,7 @@ class FrontEndController extends Controller
         return $order->hasItems() && !$order->getCartSum()->isLessThan($minimum);
     }
 
+    /** @return string */
     private function customersData(array $missingData = array())
     {
         if (!$this->canOrder()) {
@@ -316,6 +323,7 @@ class FrontEndController extends Controller
         return $this->render('customersData', $params);
     }
 
+    /** @return string|never */
     private function checkCustomersData()
     {
         if (!$this->canOrder()) {
@@ -352,6 +360,7 @@ class FrontEndController extends Controller
         }
     }
 
+    /** @return bool */
     private function isValidCustomer()
     {
         if (!isset($_SESSION['xhsCustomer'])) {
@@ -369,16 +378,22 @@ class FrontEndController extends Controller
         return true;
     }
 
+    /** @return string */
     private function htmlConfirmation()
     {
         return $this->render('confirmation_email/html', $this->getConfirmationParameters(true));
     }
 
+    /** @return string */
     private function textConfirmation()
     {
         return $this->render('confirmation_email/text', $this->getConfirmationParameters(false));
     }
 
+    /**
+     * @param bool $html
+     * @return array
+     */
     private function getConfirmationParameters($html)
     {
         $params = array();
@@ -408,6 +423,7 @@ class FrontEndController extends Controller
         return $params;
     }
 
+    /** @return string */
     private function finalConfirmation()
     {
         if (!$this->canOrder()) {
@@ -487,6 +503,9 @@ class FrontEndController extends Controller
         }
     }
 
+    /**
+     * @param string $filename
+     */
     private function writeBill($filename)
     {
         global $plugin_tx;
@@ -577,6 +596,7 @@ class FrontEndController extends Controller
         return $writer->replace($replacements);
     }
 
+    /** @return true|string */
     private function sendEmails()
     {
         global $sl;
@@ -648,6 +668,7 @@ class FrontEndController extends Controller
         return true;
     }
 
+    /** @return string */
     private function thankYou()
     {
         if (!$this->canOrder()) {
@@ -664,6 +685,7 @@ class FrontEndController extends Controller
         return $this->render('thankYou', $params);
     }
 
+    /** @return string */
     protected function productList($collectAll = true)
     {
         $params                       = parent::productList(false);
@@ -676,8 +698,8 @@ class FrontEndController extends Controller
 
     /**
      *
-     * @param <string> $needle
-     * @return <string> the product list rendered in catalog.tpl
+     * @param string $needle
+     * @return string the product list rendered in catalog.tpl
      */
     protected function productSearchList($needle = '')
     {
@@ -689,6 +711,7 @@ class FrontEndController extends Controller
         return $this->render('catalog', $params);
     }
 
+    /** @return string */
     private function productDetails()
     {
         $product = $this->catalog->getProduct($_GET['xhsProduct']);
@@ -724,6 +747,10 @@ class FrontEndController extends Controller
         return $this->render('productDetails', $params);
     }
 
+    /**
+     * @param int $level
+     * @return string|void
+     */
     public function shopToc($level = 6)
     {
         if (!$this->settings['use_categories']) {
@@ -759,6 +786,10 @@ class FrontEndController extends Controller
         return $this->render('shopToc', $params);
     }
 
+    /**
+     * @param ?string $request
+     * @return string|void
+     */
     public function handleRequest($request = null)
     {
         if (isset($_GET['xhsIpn'])) {
@@ -802,6 +833,11 @@ class FrontEndController extends Controller
         return;
     }
 
+    /**
+     * @param ?string $step
+     * @param int $status
+     * @return never
+     */
     private function relocateToCheckout($step, $status)
     {
         $url = '';
