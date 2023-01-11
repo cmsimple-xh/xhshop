@@ -391,5 +391,5 @@ abstract class Controller
     public function isShopOn1stPage()
     {
         return $this->shopIsOn1stPage;
-}
+    }
 }
