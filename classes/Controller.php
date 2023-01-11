@@ -67,9 +67,7 @@ abstract class Controller
         if (!class_exists('XH_CSRFProtection')) {
             include_once "{$pth['folder']['classes']}CsrfProtection.php";
         }
-        $this->csrfProtector = isset($_XH_csrfProtection) ?
-            $_XH_csrfProtection :
-            new CSRFProtection('xhs_csrf_token');
+        $this->csrfProtector = isset($_XH_csrfProtection) ? $_XH_csrfProtection : new CSRFProtection('xhs_csrf_token');
 
         $viewProvider = preg_replace('/Controller$/', 'View', get_class($this));
         $this->viewProvider = new $viewProvider();
