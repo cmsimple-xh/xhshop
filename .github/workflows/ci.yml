@@ -24,6 +24,8 @@ jobs:
         run: cd cmsimplexh/plugins/xhshop && composer install
       - name: phing sniff
         run: cd cmsimplexh/plugins/xhshop && PATH=vendor/bin:$PATH phing sniff
+      - name: phing phan
+        run: cd cmsimplexh/plugins/xhshop && PATH=vendor/bin:$PATH phing phan
       - name: phing mess
         run: cd cmsimplexh/plugins/xhshop && PATH=vendor/bin:$PATH phing mess
       - name: phing unit-tests

@@ -42,6 +42,12 @@
         </exec>
     </target>
 
+    <target name="phan" description="run static analysis">
+        <exec executable="phan" passthru="true" checkreturn="true">
+            <arg value="--color"/>
+        </exec>
+    </target>
+
     <target name="mess" description="detects code flaws">
         <phpmd rulesets="codesize,unusedcode">
             <fileset refid="php-sources"/>
@@ -91,6 +97,7 @@
         <mkdir dir="dist/content/xhshop/tmp_orders"/>
         <move todir="dist/plugins/xhshop">
             <fileset dir="export">
+                <exclude name=".phan"/>
                 <exclude name="build.xml"/>
                 <exclude name="composer.*"/>
                 <exclude name="coverage.xml"/>

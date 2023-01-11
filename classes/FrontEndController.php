@@ -4,6 +4,7 @@ namespace Xhshop;
 
 use RuntimeException;
 use PHPMailer\PHPMailer\PHPMailer;
+use Xhshop\Payment\Paypal;
 
 class FrontEndController extends Controller
 {
@@ -794,6 +795,7 @@ class FrontEndController extends Controller
     {
         if (isset($_GET['xhsIpn'])) {
             $this->loadPaymentModule('paypal');
+            assert($this->paymentModules['paypal'] instanceof Paypal);
             $this->paymentModules['paypal']->ipn();
         }
         $ok = !$this->hasSystemCheckFailure();
