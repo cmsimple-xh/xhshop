@@ -2,7 +2,7 @@
 
 namespace Xhshop;
 
-use XH_CSRFProtection;
+use XH\CSRFProtection;
 
 abstract class Controller
 {
@@ -17,7 +17,7 @@ abstract class Controller
     protected $shopIsOn1stPage;
 
     /**
-     * @var CsrfProtection
+     * @var CSRFProtection
      */
     protected $csrfProtector;
 
@@ -56,7 +56,7 @@ abstract class Controller
         /**
          * TODO: eliminate need of that CMSimple-separator, leave it to the bridge
          */
-         
+
          $this->shopIsOn1stPage = !XH_ADM && $this->settings['url'] === $u[$xh_publisher->getFirstPublishedPage()];
 
         if (!defined('XHS_URL') && isset($this->settings['url'])) {
@@ -69,7 +69,7 @@ abstract class Controller
         }
         $this->csrfProtector = isset($_XH_csrfProtection) ?
             $_XH_csrfProtection :
-            new XH_CSRFProtection('xhs_csrf_token');
+            new CSRFProtection('xhs_csrf_token');
 
         $viewProvider = preg_replace('/Controller$/', 'View', get_class($this));
         $this->viewProvider = new $viewProvider();
@@ -393,5 +393,5 @@ abstract class Controller
     public function isShopOn1stPage()
     {
         return $this->shopIsOn1stPage;
-    }
+}
 }
