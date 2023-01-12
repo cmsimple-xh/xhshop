@@ -1,4 +1,7 @@
 @charset "utf-8";
+:root {
+	scroll-behavior: smooth;
+}
 * {
 	margin: 0;
 	padding: 0;
@@ -73,10 +76,13 @@ hr {
 p {
 	margin: 0 0 1em 0;
 }
-ul, ol {
+ul,
+ol {
 	padding: 0 0 0 2em;
 }
-h1, h2, h3 {
+h1,
+h2,
+h3 {
 	font-weight: normal;
 	margin: 1.5em 0 .5em 0;
 	line-height: 1.25em;
@@ -113,9 +119,6 @@ nav {
 	overflow: hidden;
 	height: auto;
 }
-/*#nav ul li:first-child {
-	display: none !important;
-}*/
 article.main {
 	width: 100%;
 	max-width: 100%;
