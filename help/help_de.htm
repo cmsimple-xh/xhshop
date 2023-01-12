@@ -1,0 +1,107 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XH-Shop :: Hilfe</title>
+<link href="stylesheet.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div id="top">&nbsp;</div>
+<div id="wrapper">
+	<article class="main"><img src="xhshop-logo.png" alt="Application Icon">
+		<h1>XH-Shop</h1>
+		<p>Ein kleiner simpler Shop für CMSimple_XH</p>
+		<hr>
+		<section id="requirements">
+			<h2>Voraussetzungen</h2>
+			<ul>
+				<li>CMSimple_XH ≥ 1.7.0</li>
+				<li>PHP ≥ 5.3.0</li>
+				<li>Plugin <a href="https://github.com/cmb69/fa_xh/releases/" target="_blank">FA_XH</a> (ist ab CMSimple_XH 1.7 schon dabei)</li>
+				<li>Plugin <a href="http://cmsimple.holgerirmler.de/downloads/hi_fancybox_4.1.zip" target="_blank">FancyBox</a> wird empfohlen &#8211; der Shop funktionier aber auch ohne.<br>
+					(der Link ist ein Direkt-Download)</li>
+			</ul>
+		</section>
+		<section id="installation">
+			<h2>Installation</h2>
+			<ol>
+				<li> Sichere deine CMSimple_XH-Installation von deinem Server (Sicherheitskopie).</li>
+				<li>Entpacke das heruntergeladene ZIP-Archiv auf deinem Computer.</li>
+			</ol>
+			<p> </p>
+			<p>Nach dem Entpacken findest du 3 Ordner vor: <code>content</code>, <code>plugins</code> und <code>userfiles</code>. Diese Ordner repräsentieren die <strong>Ziel</strong>ordner deiner CMSimple_XH-Installation – das heißt, <strong>die Inhalte</strong> dieser Ordner müssen in die entsprechenden Ordner deiner CMSimple_XH-Installation kopiert werden.</p>
+			<p><strong>Der Ordner <code>content</code></strong><br>
+				Kopiere den darin enthaltenen Ordner <code>xhshop</code> komplett in den Ordner <code>content</code> deiner CMSimple_XH-Installation. Dieser Ordner enthält die <code>catalog.php</code> mit allen Daten aller Shop-Artikel und Kategorien, die zur Demonstration ausgeliefert werden. Die Speicherung im Content-Ordner hat den Vorteil, dass die Daten bei einer Neuinstallation oder einem Update des Shops erhalten bleiben. Außerdem enthält dieser Ordner einen weiteren: <code>tmp_orders</code>, der zur Zwischenspeicherung temporärer Daten bei PayPal-Bestellungen dient.</p>
+			<p><strong>Der Ordner <code>plugins</code></strong><br>
+				Kopiere den darin enthaltenen Ordner <code>xhshop</code> komplett in den Ordner <code>plugins</code> deiner CMSimple_XH-Installation. Dieser Ordner enthält das XH-Shop-Plugin. Sorge hier für Schreibrechte (0755) für die Unterverzeichnisse <code>config/</code>, <code>css/</code> und <code>languages/</code>.</p>
+			<p><strong>Der Ordner <code>userfiles</code></strong><br>
+				Kopiere den darin enthaltenen Ordner <code>images/shop/</code> komplett in den Ordner <code>userfiles/images/</code> deiner CMSimple_XH-Installation. Dieser Ordner enthält Beispielbilder, die zur Demonstration ausgeliefert werden. Du kannst diese Demo-Bilder später entfernen, sobald du eigene Artikel mit eigenen Bildern angelegt hast.</p>
+		</section>
+		<section id="settings">
+			<h2>Administration</h2>
+			<h3>Einstellungen</h3>
+			<p>Admin-Menü: <code>Plugins ⇒ xhshop ⇒ Konfiguration</code>.</p>
+			<p>Hier kannst du die vorhandenen Beispiel-Einstellungen des Shops ändern. Beim Überfahren der Hilfe-Icons (?) mit der Maus werden Hinweise zu den Einstellungen angezeigt.</p>
+			<h3>Sprache</h3>
+			<p>Admin-Menü: <code>Plugins ⇒ xhshop ⇒ Sprache</code>.</p>
+			<p>Sämtliche Texte, die durch das Plugin im Frontend oder im Backend ausgegeben werden, sind hier zu finden und können &ndash; abhängig von der gerade verwendeten Sprache &ndash; geändert werden.</p>
+			<p>Einige besondere Link-Adressen (z.B. die Shop-Hauptseite, die AGB und die Versandkosten) werden hier festgelegt (gleich oben im Abschnitt <code>Config</code>). Auch die Einstellungen für Dezimal-Punkt/-Komma und Tausender-Trennzeichen erfolgen hier für den gesamten Shop.</p>
+			<h3>Stylesheet</h3>
+			<p>Admin-Menü: <code>Plugins ⇒ xhshop ⇒ Stylesheet</code>.</p>
+			<p>Die CSS-Styles des XH-Shops können hier angepasst werden.</p>
+		</section>
+		<section id="start">
+			<h2>Einen Shop eröffnen</h2>
+			<p>Logge dich in CMSimple_XH ein und erstelle mit dem Pagemanager (<code>Adminmenü ⇒ Seiten</code>) eine neue Seite <code>Shop</code>. Auf dieser Seite gibst du den Pluginaufruf ein. Der &#8222;normale&#8220; Aufruf für den XH-Shop lautet:</p>
+			<p class="code">{{{display_shop();}}}</p>
+			<p class="additional"><strong>Hinweis:</strong> Wenn du den Code von hier kopierst, dann musst du im Editor vor dem Einfügen &#8222;Als Text einfügen&#8220; wählen. Am Ende sollte der Aufruf in der html-Ansicht des Editors so aussehen:</p>
+			<p class="code">&lt;div&gt;{{{display_shop();}}}&lt;/div&gt;</p>
+			<p>Es ist problemlos möglich oberhalb oder unterhalb dieses Aufrufes andere Elemente auf der Shop-Seite zu platzieren.</p>
+		</section>
+		<section id="templates">
+			<h2>Shop-Templates</h2>
+			<p>Die html-Ausgabe des XH-Shops wird komplett über Templates gesteuert. Diese sind zu finden im Plugin-Ordner <code>/templates</code>.</p>
+			<p>Wenn du lieber die  Originaldateien nicht verändern möchtest &#8211; und das solltest du wirklich nur mit äußerster Vorsicht tun &#8211;, dann kopiere einfach die gewünschten Dateien (zum Beispiel für das Frontend) in den Ordner <code>xhshop/theme/frontend/</code>. Mit diesen Dateien kannst du gefahrlos experimentieren. XH-Shop wird bei jedem Aufruf schauen, ob Dateien in diesem Ordner vorhanden sind. Falls ja, wird er diese Dateien vorrangig für die Ausgabe verwenden. Ist etwas schiefgegangen, kannst du deine veränderten Dateien umbenennen oder entfernen &#8211; der XH-Shop wird dann wieder die Original-Dateien verwenden.</p>
+		</section>
+		<hr>
+		<section id="morehelp">
+			<h2>Weitere Hilfe</h2>
+			<p>Der XH-Shop ist <em>klein, fein und simpel</em> &#8211; aber nicht trivial. Es ist nicht möglich in dieser Hilfedatei sämtliche Funktionen und Optionen zu beschreiben. Deshalb wurde ein Wiki eingerichtet, das von mehreren Autoren bearbeitet werden kann und allen Nutzern zur Verfügung steht. Hier die Adresse:</p>
+			<p><a href="https://github.com/cmsimple-xh/xhshop/wiki" target="_blank">https://github.com/cmsimple-xh/xhshop/wiki</a></p>
+			<p>Falls du auf Fragen stößt, die im Wiki noch nicht behandelt wurden, dann stelle diese im CMSimple_XH-Forum, wo fast immer schnell und kompetent geantwortet wird:</p>
+			<p><a href="https://cmsimpleforum.com/index.php" target="_blank">https://cmsimpleforum.com/</a> </p>
+		</section>
+		<hr>
+		<section id="thanks">
+			<h2>Dank</h2>
+			<p>Außerordentlicher Dank gebührt <strong>Martin Damken</strong> (<a href="http://www.zeichenkombinat.de/" target="_blank">zeichenkombinat.de</a>), der den Shop unter dem Namen <em>wellrad-Shop</em> ursprünglich entwickelte. Besonders dankbar sind wir für seine Genehmigung, den Shop unter anderem Namen mit der CMSimple_XH-Community weiterzuentwickeln.</p>
+			<p>Die erste neue XH-Shop-Version, basierend auf dem wellrad-Shop 1.2.1, entstand unter wesentlicher Mitwirkung von Christop (cmb), Albert (albert) und Frank (frase) &#8211; Dank dafür.</p>
+			<p>Auch wenn schon genannt, <a href="http://3-magi.net" target="_blank">Christoph</a> (cmb) muss an dieser Stelle besonderer Dank ausgesprochen werden. Er hat die Haupt-Programmierarbeit übernommen und für eine bessere CMSimple_XH-Integration gesorgt.</p>
+			<p>Zu guter Letzt vielen Dank an <a href="http://harteg.dk/">Peter Harteg</a>, den <em>Vater</em> von CMSimple, und allen Entwicklern von <a href="http://www.cmsimple-xh.org/">CMSimple_XH</a>, ohne die dieses fantastische CMS nicht existierte.</p>
+		</section>
+		<hr>
+		<section id="license">
+			<h2>Lizenz</h2>
+			<p>Der XH-Shop kann unter Einhaltung der <a href="http://www.gnu.org/licenses/gpl.html" target="_blank">GPLv3</a> verwendet werden.</p>
+			<p>&copy;&nbsp;2017 The CMSimple_XH community.</p>
+		</section>
+		<p class="additional">THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM &quot;AS IS&quot; WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.</p>
+	</article>
+	<nav id="nav">
+		<ul>
+			<li><a href="#top">↑ nach oben ↑</a></li>
+			<li><a href="#requirements">Voraussetzungen</a></li>
+			<li><a href="#installation">Installation</a></li>
+			<li><a href="#settings">Administration</a></li>
+			<li><a href="#start">Shop eröffnen</a></li>
+			<li><a href="#templates">Shop-Templates</a></li>
+			<li><a href="#morehelp">Weitere Hilfe</a></li>
+			<li><a href="#thanks">Dank</a></li>
+			<li><a href="#license">Lizenz</a></li>
+		</ul>
+	</nav>
+</div>
+</body>
+</html>
