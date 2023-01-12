@@ -71,6 +71,5 @@ class BillWriterTest extends TestCase
         return $writer->writeProductRow("Peas (1000g package) ", "8 ", "2.25 €", "18.00 €", "7 %")
             . $writer->writeProductRow("Bread Rolls ", "1 ", "0.75 €", "0.75 €", "7 %")
             . $writer->writeProductRow("Muffins ", "2 ", "1.25 €", "2.50 €", "7 %");
-
     }
 }
