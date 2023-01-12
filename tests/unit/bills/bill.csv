@@ -1,0 +1,23 @@
+﻿Anzahl;Artikel;Steuersatz;Einzelpreis;Summe;;
+"8 ";"Peas (1000g package) ";7 %;2.25 €;18.00 €;;
+"1 ";"Bread Rolls ";7 %;0.75 €;0.75 €;;
+"2 ";"Muffins ";7 %;1.25 €;2.50 €;;
+;;;;;;
+;Warenwert;;;21.25 €;;
+;Versandkosten;;;48.00 €;;
+;fee;;;9.95 €;;
+;Rechnungssumme;;;79.20 €;;
+;;;;;;
+;;;;;Anrede;Mister
+;;;;;Name;"Clause Santa"
+;;;;;Straße;"Iceberg 1"
+;;;;;Adresszusatz;"The large one"
+;;;;;Ort;"7777 North Pole"
+;;;;;Land;"FR - France"
+;;;;;;
+;;;;;Telefon;12345
+;;;;;E-Mail;claus@santa.com
+;;;;;Weitergabe;no
+;;;;;;
+;;;;;Zahlweise;"Cash on Delivery"
+;;;;;Anmerkung;"Yada yada"
