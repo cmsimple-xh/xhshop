@@ -411,12 +411,12 @@ abstract class Controller
      */
     protected function isAllowedImageFile($file = '')
     {
-        $extensions = array('jpeg', 'jpg', 'gif', 'png', 'svg', 'tif', 'tiff');
+        $extensions = preg_split('/\s*,\s*/', $this->settings['image_extensions']);
         $extension = pathinfo($file, PATHINFO_EXTENSION);
         if ($extension == $file) {
             return false;
         }
-        if (in_array($extension, $extensions)) {
+        if (in_array(strtolower($extension), $extensions)) {
             return true;
         }
         return false;

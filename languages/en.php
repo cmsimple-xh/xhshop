@@ -210,6 +210,7 @@ $plugin_tx['xhshop']['cf_shop_default_currency']="The currency of the shop – e
 $plugin_tx['xhshop']['cf_shop_currency_code']="ISO 4217 currency code of the shop's currency; for instance, EUR, USD, GBP or JPY.";
 $plugin_tx['xhshop']['cf_shop_image_folder']="A folder relative to the image folder of CMSimple_XH where the product images are stored. Leave blank to use the image folder directly. Otherwise there has to be a trailing slash, e.g. shop/";
 $plugin_tx['xhshop']['cf_shop_preview_folder']="A folder relative to the image folder of CMSimple_XH where the product preview images are stored. Leave blank to use the image folder directly. Otherwise there has to be a trailing slash, e.g. shop/";
+$plugin_tx['xhshop']['cf_shop_image_extensions']="Fill in the file extensions you want to allow for the images folder as comma separated list.";
 $plugin_tx['xhshop']['cf_contact_order_email']="E-mail address to send the orders to";
 $plugin_tx['xhshop']['cf_contact_company_name']="Shop or company name";
 $plugin_tx['xhshop']['cf_contact_name']="Name of the shop operator. This name is used to sign the confirmation mail, amongst others.";

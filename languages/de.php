@@ -210,6 +210,7 @@ $plugin_tx['xhshop']['cf_shop_default_currency']="Die Währung des Shops – Ein
 $plugin_tx['xhshop']['cf_shop_currency_code']="ISO 4217 Währungscode der Shop-Währung; beispielsweise EUR, USD, GBP oder JPY.";
 $plugin_tx['xhshop']['cf_shop_image_folder']="Ein Ordner relativ zum Bilderordner von CMSimple_XH, in dem die Artikel-Bilder gespeichert sind. Leer lassen, um den Bilderordner selbst zu verwenden. Ansonsten ist ein abschließender Schrägstrich erforderlich, z.B. shop/";
 $plugin_tx['xhshop']['cf_shop_preview_folder']="Ein Ordner relativ zum Bilderordner von CMSimple_XH, in dem die Artikel-Vorschau-Bilder gespeichert sind. Leer lassen, um den Bilderordner selbst zu verwenden. Ansonsten ist ein abschließender Schrägstrich erforderlich, z.B. shop/";
+$plugin_tx['xhshop']['cf_shop_image_extensions']="Listen Sie die im Bilder-Ordner erlaubten Dateiendungen - voneinander durch Kommas getrennt - auf.";
 $plugin_tx['xhshop']['cf_contact_order_email']="E-Mail-Adresse, an die die Bestellungen verschickt werden";
 $plugin_tx['xhshop']['cf_contact_company_name']="Shop-Name oder Firmen-Name";
 $plugin_tx['xhshop']['cf_contact_name']="Name des Shop-Betreibers. Dieser Name wird u.A. unter die Bestätigungsmail gesetzt.";

@@ -7,6 +7,7 @@ $plugin_cf['xhshop']['shop_default_currency']="€";
 $plugin_cf['xhshop']['shop_currency_code']="EUR";
 $plugin_cf['xhshop']['shop_image_folder']="shop/";
 $plugin_cf['xhshop']['shop_preview_folder']="shop/";
+$plugin_cf['xhshop']['shop_image_extensions']="jpeg, jpg, gif, png, svg, tif, tiff";
 $plugin_cf['xhshop']['contact_order_email']="";
 $plugin_cf['xhshop']['contact_company_name']="XH-Shop DEMO";
 $plugin_cf['xhshop']['contact_name']="XH-Shop Team";
