@@ -294,9 +294,8 @@ abstract class View
         }
 
         $html .= "\n\t" .'</select>';
-        $html .= "\n\t" . '<noscript>'
-              . "\n\t" . '<input type="submit" class="xhsShopButton" value="'.$this->labels['select'] .'">'
-             . "\n\t</noscript>\n";
+        $html .= "\n\t" . '<input type="submit" class="xhsShopButton" value="'.$this->labels['select'] .'">'
+             . "\n";
         return $html;
     }
 
