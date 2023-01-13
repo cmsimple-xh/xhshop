@@ -687,9 +687,9 @@ class FrontEndController extends Controller
     }
 
     /** @return string */
-    protected function productList($collectAll = true)
+    protected function productList()
     {
-        $params                       = parent::productList(false);
+        $params                       = $this->productListArray(false);
         $params['showCategorySelect'] = (bool) $this->settings['use_categories'];
         $params['csrf_token_input'] = $this->csrfProtector->tokenInput();
         $this->csrfProtector->store();

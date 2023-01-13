@@ -265,9 +265,9 @@ abstract class Controller
 
     /**
      * @param bool $collectAll
-     * @return array|string
+     * @return array
      */
-    protected function productList($collectAll = true)
+    protected function productListArray($collectAll = true)
     {
         $category = $this->catalog->getDefaultCategory();
         if (!empty($_GET['xhsCategory'])) {

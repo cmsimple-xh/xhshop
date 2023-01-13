@@ -29,10 +29,9 @@ class BackEndController extends Controller
     }
 
     /**
-     * @param true $collectAll
      * @return string|never
      */
-    protected function productList($collectAll = true)
+    protected function productList()
     {
         if (isset($_POST['xhsProductSwapID']) && isset($_POST['xhsProductID'])) {
             $this->csrfProtector->check();
@@ -48,7 +47,7 @@ class BackEndController extends Controller
         $hints      = array();
         $errors     = array();
 
-        $params = parent::productList();
+        $params = $this->productListArray();
         $params['category'] = isset($_POST['xhsCategory']) ? $_POST['xhsCategory'] : null;
         foreach ($params['products'] as $index => $product) {
             $indices[] = $index;
