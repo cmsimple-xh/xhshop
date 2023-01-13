@@ -14,11 +14,7 @@ define('XHS_CATALOG', XHS_CONTENT_PATH . 'xhshop/catalog.php');
 define('XHS_TEMPLATES_PATH', XHS_BASE_PATH . 'templates/');
 define('XHS_URI_SEPARATOR', $cf['uri']['seperator']);
 
-if (function_exists('XH_startSession')) {
-    XH_startSession();
-} elseif (session_id() == '') {
-    session_start();
-}
+XH_startSession();
 
 if (class_exists('Fa\RequireCommand')) {
     $command = new Fa\RequireCommand;
