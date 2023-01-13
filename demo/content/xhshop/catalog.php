@@ -157,7 +157,7 @@ $products['p4bbf078122579']['uid'] = 'p4bbf078122579';
 #-----------------------------------------------------
 
 $products['p4bbf07812257f']['names']['de'] = 'Kaffee (im Versandbecher)';
-$products['p4bbf07812257f']['names']['en'] = 'Coffee (in shipping cup';
+$products['p4bbf07812257f']['names']['en'] = 'Coffee (in shipping cup)';
 $products['p4bbf07812257f']['price'] = '2.75';
 $products['p4bbf07812257f']['vat'] = 'full';
 $products['p4bbf07812257f']['sortIndex'] = 5;
